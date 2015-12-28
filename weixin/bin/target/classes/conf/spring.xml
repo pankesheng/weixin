@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="       
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd       
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd       
+      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd       
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd       
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+	default-autowire="byName">
+	<context:component-scan base-package="com.thanone.pm2" />
+	<context:annotation-config />
+	<!--配置数据源属性文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+		<list>
+			<value>classpath:conf/application.properties</value>
+		</list>
+		</property>
+	</bean>
+	<!--配置数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" abstract="false"
+		scope="singleton" lazy-init="default" autowire="default"  destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="minPoolSize" value="2" /><!-- 允许最小连接数量为2个 -->
+		<property name="maxPoolSize" value="80" /><!-- 允许最大连接数量为80个 -->
+		<property name="initialPoolSize" value="2" /><!-- 初始化连接池时连接数量为2个 -->
+		<property name="maxIdleTime" value="25200" /><!-- 连接有效时间，连接超过25200秒未使用，则该连接丢弃 -->
+		<property name="acquireRetryAttempts" value="30" /><!-- 获取连接失败后再尝试30次，再失败则返回DAOException异常 -->
+		<property name="acquireRetryDelay" value="600" /><!-- 获取下一次连接时最短间隔600毫秒，有助于提高性能 -->
+		<property name="checkoutTimeout" value="30000"/><!-- 获取新连接的超时时间为30000毫秒 -->
+		<property name="idleConnectionTestPeriod" value="0" /><!-- 每0秒检查连接对象状态(不检查) -->
+		<property name="autoCommitOnClose" value="false" />
+	</bean>
+	<!-- 创建SqlSessionFactoryBean -->
+	<bean id="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.thanone.pm2.entity" />
+	</bean>
+	
+	<!-- 扫描basePackage下所有以@BasicRepository标识的 接口-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.thanone.pm2.mapper" />
+		<property name="annotationClass" value="com.zcj.web.mybatis.mapper.BasicRepository"/>
+		<property name="sqlSessionFactoryBeanName" value="mySqlSessionFactory" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- aop配置 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="*" rollback-for="com.zcj.web.exception.BusinessException" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="serviceOperation" expression="execution(* com.zcj.web.mybatis.service.BasicService+.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+	</aop:config>
+	
+	<bean id="configuration" class="com.thanone.pm2.common.Configuration">
+		<property name="contextPath" value="${configuration.contextPath}"/>
+	</bean>
+
+</beans>

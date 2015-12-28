@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>百度地图</title>
+<script src="../jquery/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=EUFQQVfyLtMUGoYS8GmDv1bA" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		initialize();
+	});
+
+	function initialize() {
+		
+		// 地图中心
+		var point = new BMap.Point(120.704, 28.000);
+
+		// 地图初始化及设置
+		var map = new BMap.Map("mymap");
+		map.centerAndZoom(point, 14);
+		map.enableScrollWheelZoom();// 支持缩放
+		map.addControl(new BMap.ScaleControl());// 比例尺控件
+		map.addControl(new BMap.OverviewMapControl());// 缩略地图控件
+		
+		// 自定义图标
+		var iconSuc = new BMap.Icon("icon_loc_1.png", new BMap.Size(25,34), {anchor:new BMap.Size(12,34)});
+		var iconErr = new BMap.Icon("icon_loc_2.png", new BMap.Size(25,37), {anchor:new BMap.Size(12,37)});
+
+		// 添加位置图标
+		z_addMarker(map, 120.704, 28.000, "05-04 15:30", "李某某", "05990", 1==1?iconSuc:iconErr);
+		z_addMarker(map, 120.709, 28.005, "05-04 15:30", "杨某某", "05990", 0==1?iconSuc:iconErr);
+		z_addMarker(map, 120.713, 28.010, "05-04 15:30", "武某某", "05990", 1==1?iconSuc:iconErr);
+	}
+
+	// 标注
+	function z_addMarker(map, lan, lng, locationTime, userRealname, username, myIcon) {
+		var marker = new BMap.Marker(new BMap.Point(lan, lng),{icon:myIcon});
+		var label = new BMap.Label("<a href='test2.html'>"+userRealname+"</a>("+username+")", {
+			offset : new BMap.Size(25,10)
+		});
+		marker.setLabel(label);
+		marker.setTitle(locationTime);
+		map.addOverlay(marker);
+		marker.setAnimation(BMAP_ANIMATION_DROP);
+	}
+	
+</script>
+</head>
+<body>
+	<div id="mymap" style="width: 800px; height: 600px"></div>
+</body>
+</html>

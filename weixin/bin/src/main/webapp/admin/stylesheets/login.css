@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+/* line 3, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+
+/* line 8, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+body {
+	background: url("../images/login-bg.png");
+}
+
+
+/* line 12, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.website-title {
+	margin-bottom: 20px;
+	font-size: 30px;
+	font-family: SimHei, '黑体';
+	color: #fff;
+	text-shadow: 2px 0px 5px #2f578c;
+}
+
+
+/* line 20, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel {
+	width: 420px;
+	padding: 0 15px;
+	text-align: left;
+	font-family: Microsoft YaHei, '微软雅黑', MicrosoftJhengHei;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+/* line 29, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .login-title {
+	height: 57px;
+	line-height: 58px;
+	color: #90befb;
+	font-size: 20px;
+	text-align: center;
+	font-weight: normal;
+	border-bottom: 1px solid #e8e8e8;
+	margin-bottom: 20px;
+}
+
+
+/* line 39, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .login-content {
+	padding: 0 35px;
+}
+
+
+/* line 42, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .login-tip {
+	margin-bottom: 15px;
+	margin-top: -5px;
+	color: #fc4343;
+}
+
+
+/* line 47, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .login-input {
+	width: 348px;
+	height: 40px;
+	border: 1px solid #d0cfcf;
+}
+
+
+/* line 52, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .form-group {
+	position: relative;
+	margin-bottom: 0;
+	padding-bottom: 15px;
+}
+
+
+/* line 56, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .form-group label {
+	color: #6f6f6f;
+}
+
+
+/* line 59, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .form-group .iconfont {
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	color: #d0cfcf;
+}
+
+
+/* line 65, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .form-group .placeholder {
+	position: absolute;
+	top: 12px;
+	left: 30px;
+	color: #c8c8c8;
+}
+
+
+/* line 72, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .form-control {
+	width: 308px;
+	height: 30px;
+	padding-left: 30px;
+	line-height: 30px;
+}
+
+
+/* line 78, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .login-submit {
+	display: block;
+	width: 100%;
+	height: 48px;
+	margin-bottom: 25px;
+	text-align: center;
+	line-height: 48px;
+	font-family: Microsoft YaHei, '微软雅黑', MicrosoftJhengHei;
+	font-size: 22px;
+	color: #fff;
+	background-color: #3a84e8;
+	border: none;
+	cursor: pointer;
+}
+
+
+/* line 91, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .login-submit:hover {
+	text-decoration: none;
+	background-color: #4490f7;
+	color: #fff;
+}
+
+
+/* line 96, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.login-panel .login-submit:active {
+	text-decoration: none;
+	background-color: #3b78e7;
+	color: #fff;
+}
+
+
+/* line 104, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.copyright {
+	width: 420px;
+	margin-top: 10px;
+	text-align: right;
+}
+
+
+/* line 108, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.copyright a {
+	color: #abcad6;
+}
+
+
+/* line 110, G:/SVN/Html/前端库/后台系统初版/html/sass/login.scss */
+
+.copyright a:hover {
+	color: #fff;
+}
+
+
+/*# sourceMappingURL=login.css.map */

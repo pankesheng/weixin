@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+.playPhoto{width:200px;height:150px;margin:0;padding:0;border:1px solid #ccc;background:#fff;overflow:hidden;position:relative}
+.playPhoto ul,.playPhoto li{margin:0;padding:0;border:none}
+.playPhoto ul{position:relative;width:200px;height:150px}
+.playPhoto li{display:inline;float:left}
+.playPhoto ul li{position:absolute;display:none;width:100%;height:100%}
+.playPhoto ul li img{width:200px;height:150px;border:none;padding:0;margin:0}
+.playPhoto ol{position:absolute;top:125px;right:6px;height:18px;padding:0;margin:0;overflow:hidden}
+.playPhoto ol li{float:left;width:16px;height:16px;margin:0 2px;border:1px solid #ccc;background:#f4f4f4;color:#f60;text-align:center;font:12px/16px tahoma,arial;cursor:pointer}
+.playPhoto ol .act{font-weight:bold;color:#fff;background:#f60}
+
+.frontCover,.delPhoto{display:none;color:#666;text-decoration:none;position:absolute;top:3px;left:3px;font:12px/16px \5b8b\4f5;padding:0 2px 0 3px;cursor:pointer;background:#eee}
+.delPhoto{left:auto;right:3px}
+
+.playPhoto .del{position:absolute;top:6px;right:6px;padding:0;margin:0}

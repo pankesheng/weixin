@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>百度地图</title>
+<script src="../jquery/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=EUFQQVfyLtMUGoYS8GmDv1bA" type="text/javascript"></script>
+
+<!-- 点聚合 -->
+<script src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js" type="text/javascript"></script>
+<script src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		initialize();
+	});
+
+	function initialize() {
+		var point = new BMap.Point(120.713, 27.990);
+
+		// 地图初始化及设置
+		var map = new BMap.Map("mymap");
+		map.centerAndZoom(point, 14);
+		map.enableScrollWheelZoom();// 支持缩放
+		map.addControl(new BMap.ScaleControl());// 比例尺控件
+		map.addControl(new BMap.OverviewMapControl());// 缩略地图控件
+		
+		// 自定义图标
+		var iconSta = new BMap.Icon("icon_loc_4.png", new BMap.Size(25,34), {anchor:new BMap.Size(12,34)});
+		var iconSuc = new BMap.Icon("icon_loc_1.png", new BMap.Size(25,34), {anchor:new BMap.Size(12,34)});
+		var iconErr = new BMap.Icon("icon_loc_2.png", new BMap.Size(25,37), {anchor:new BMap.Size(12,37)});
+
+		// 添加标注和线
+		var pointArray = [];
+		var markerArray = [];
+		z_addMarker(map, 120.704, 28.000, "15:30", iconSta, pointArray, markerArray);
+		z_addMarker(map, 120.709, 27.995, "15:40", 0==1?iconSuc:iconErr, pointArray, markerArray);
+		z_addMarker(map, 120.713, 27.990, "15:50", 1==1?iconSuc:iconErr, pointArray, markerArray);
+		z_addPolyline(map, pointArray);
+		
+		// 点聚合
+		// var markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markerArray});
+	}
+
+	// 标注
+	function z_addMarker(map, lan, lng, locationTime, myIcon, pointArray, markerArray) {
+		var point = new BMap.Point(lan, lng);
+		var marker = new BMap.Marker(point,{icon:myIcon});
+		var label = new BMap.Label(locationTime, {
+			offset : new BMap.Size(25,10)
+		});
+		marker.setLabel(label);
+		map.addOverlay(marker);
+		
+		pointArray.push(point);
+		markerArray.push(marker);
+	}
+	
+	// 线
+	function z_addPolyline(map, pointArray) {
+		var polyline = new BMap.Polyline(pointArray, {
+			strokeColor : "blue",
+			strokeWeight : 4,
+			strokeOpacity : 0.9,
+			strokeStyle : "dashed"
+		});
+		map.addOverlay(polyline);
+	}
+	
+</script>
+</head>
+<body>
+	<div id="mymap" style="width: 800px; height: 600px"></div>
+</body>
+</html>

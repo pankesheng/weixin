@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title></title>
+    <link rel="stylesheet" href="../stylesheets/common.css" />
+    <link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+<body>
+    <div class="place">
+        <span class="label-span">位置：</span>
+        <ul id="place-list" class="place-ul">
+            <li>
+                组件
+            </li>
+        </ul>
+    </div>
+    <div class="body-warp">
+        <div class="mb-10">
+            <p class="mb-10">外框</p>
+            <p>
+                <span class="code">class="panel"</span>本身不带内边距，如需边距加<span class="code">class="p-10"</span>
+            </p>
+        </div>
+        <div class="highlight">
+            <span class="code">class="highlight"</span>
+        </div>
+        <div class="panel p-10">
+            <span class="code">class="panel p-10"</span>
+        </div>
+        <div class="mb-10">
+            <p>提示</p>
+        </div>
+        <div class="alert alert-success mb-10">
+            <span>alert alert-success</span>
+        </div>
+        <div class="alert alert-danger mb-10">
+            <span>alert alert-danger</span>
+        </div>
+        <div class="alert alert-warning mb-10">
+            <span>alert alert-warning</span>
+        </div>
+        <div class="alert alert-info mb-10">
+            <span>alert alert-info</span>
+        </div>
+        <div class="mb-10">
+            <p>标签</p>
+        </div>
+        <div class="mb-10">
+            <label class="label label-primary">label label-primary</label>
+            <label class="label label-success">label label-success</label>
+            <label class="label label-danger">label label-danger</label>
+            <label class="label label-warning">label label-warning</label>
+            <label class="label label-info">label label-info</label>
+        </div>
+        <div class="mb-10">
+            <p>进度条</p>
+        </div>
+        <div class="mb-10">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 60%;">
+                    <div class="sr-only">60%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../ext/jquery/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+    <script>
+        $(function() {
+            $('.form-select').each(function(index, el) {
+               selectbox(this);
+            });
+        });
+    </script>
+</body>
+</html>

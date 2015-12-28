@@ -1,0 +1,110 @@
+@charset 'utf-8';
+@yahei: Microsoft YaHei, '微软雅黑', MicrosoftJhengHei;
+html, body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    background: url('../images/login-bg.png');
+}
+.website-title{
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: SimHei,'黑体';
+    color: #fff;
+    text-shadow: 2px 0px 5px #2f578c;
+}
+.login-panel{
+    width: 420px;
+    padding: 0 15px;
+    text-align: left;
+    font-family: @yahei;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.5);
+    .login-title{
+        height: 57px;
+        line-height: 58px;
+        color: #90befb;
+        font-size: 20px;
+        text-align: center;
+        font-weight: normal;
+        border-bottom: 1px solid #e8e8e8;
+        margin-bottom: 20px;
+    }
+    .login-content{
+        padding: 0 35px;
+    }
+    .login-tip{
+        margin-bottom: 15px;
+        margin-top: -5px;
+        color: #fc4343;
+    }
+    .login-input{
+        width: 348px;
+        height: 40px;
+        border: 1px solid #d0cfcf;
+    }
+    .form-group{
+        position: relative;
+        margin-bottom: 0;
+        padding-bottom: 15px;
+        label{
+            color: #6f6f6f;
+        }
+        .iconfont{
+            position: absolute;
+            top: 9px;
+            left: 10px;
+            color: #d0cfcf;
+        }
+        .placeholder {
+            position: absolute;
+            top: 12px;
+            left: 30px;
+            color: #c8c8c8;
+        }
+    }
+    .form-control{
+        width: 308px;
+        height: 30px;
+        padding-left: 30px;
+        line-height: 30px;
+    }
+    .login-submit{
+        display: block;
+        width: 100%;
+        height: 48px;
+        margin-bottom: 25px;
+        text-align: center;
+        line-height: 48px;
+        font-family: @yahei;
+        font-size: 22px;
+        color: #fff;
+        background-color: #3a84e8;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            text-decoration: none;
+            background-color: #4490f7;
+            color: #fff;
+        }
+        &:active{
+            text-decoration: none;
+            background-color: #3b78e7;
+            color: #fff;
+        }
+    }
+}
+.copyright{
+    width: 420px;
+    margin-top: 10px;
+    text-align: right;
+    a{
+        color: #abcad6;
+        &:hover{
+            color: #fff;
+        }
+    }
+}

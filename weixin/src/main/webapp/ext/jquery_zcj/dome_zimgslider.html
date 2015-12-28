@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+<title>zimgslider--多图片上传显示插件</title>
+
+<script type="text/javascript" src="../jquery/jquery-1.8.1.min.js"></script>
+<link rel="stylesheet" href="jquery.zimgslider.css" />
+<script type="text/javascript" src="jquery.zimgslider.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		// 初始化渲染图片(编辑状态,imgUrls是用英文逗号隔开的图片地址)
+		$("#addOrModify_imgs").zImgslider_init("http://img0.bdstatic.com","/img/image/shouye/xinshouye/lvyou121.jpg,/img/image/shouye/xinshouye/sheying121.jpg",true);
+		
+		// 初始化渲染图片(不可编辑状态,imgUrls是用英文逗号隔开的图片地址)
+		// $("#addOrModify_imgs").zImgslider_init("http://img0.bdstatic.com","/img/image/shouye/xinshouye/lvyou121.jpg,/img/image/shouye/xinshouye/sheying121.jpg");
+	});
+	
+	function uploadSuccess() {
+		// 上传成功后调用(3表示最多3张，如果是单张的就传1，会自动覆盖)
+		$("#addOrModify_imgs").zImgslider_addImg("http://img0.bdstatic.com","/img/image/shouye/xinshouye/chongwu121.jpg",3);
+	}
+	
+	function imgs() {
+		// 获取图片的地址集合(保存时调用，取值后传给后台)
+		alert($("#addOrModify_imgs").zImgslider_getImgUrls("http://img0.bdstatic.com"));
+	}
+</script>
+</head>
+<body>
+<table>
+<tr><td>
+	<div id="addOrModify_imgs"></div>
+</td></tr>
+<tr><td>
+	<button onclick="uploadSuccess();">添加一张</button>
+	<button onclick="imgs();">获取当前照片的URL集合</button>
+</td></tr>
+</table>
+</body>
+</html>

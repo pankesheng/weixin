@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../jquery.mobile.icons-1.4.5.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../theme-classic.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../jquery.mobile.structure-1.4.5.min.css" media="screen" />
+<script type="text/javascript" src="../../jquery/jquery-1.8.1.min.js"></script>
+<script>
+$(document).bind("mobileinit", function() {
+	$.mobile.ajaxEnabled=false;
+});
+</script>
+<script type="text/javascript" src="../jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+var p = 2;// 第一次点击更多时取第二页
+function _more() {
+	$("#button_more").hide();
+	alert("加载第"+p+"页");
+	p = p + 1;
+	$("#button_more").show();
+}
+</script>
+</head>
+<body>
+	<div data-role="page" data-title="瓯海教育网" data-theme="c">
+		<div data-role="header" data-theme="b">
+			<a data-role="button" data-icon="back" data-iconpos="notext" data-rel="back">返回</a>
+			<h1>子栏目</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview">
+				<li><a href="#">
+						<h3>新居民子女就读公办学校需具备条件fsdagfagfdagfdagdfagdfagfdagfdg</h3>
+						<p>[2015-12-12]</p>
+				</a></li>
+				<li><a href="#">
+						<h3>新居民子女就读公办学校需具备条件fsdagfagfdagfdagdfagdfagfdagfdg</h3>
+						<p>[2015-12-12]</p>
+				</a></li>
+				<li><a href="#">
+						<h3>新居民子女就读公办学校需具备条件fsdagfagfdagfdagdfagdfagfdagfdg</h3>
+						<p>[2015-12-12]</p>
+				</a></li>
+				<li><a href="#">
+						<h3>新居民子女就读公办学校需具备条件fsdagfagfdagfdagdfagdfagfdagfdg</h3>
+						<p>[2015-12-12]</p>
+				</a></li>
+				<li><a href="#">
+						<h3>新居民子女就读公办学校需具备条件fsdagfagfdagfdagdfagdfagfdagfdg</h3>
+						<p>[2015-12-12]</p>
+				</a></li>
+			</ul>
+			<br/>
+			<a id="button_more" href="javascript: _more();" data-role="button">更多</a>
+		</div>
+		<div data-role="footer" data-theme="b">
+			<h4>主办单位：温州市瓯海区教育局</h4>
+		</div>
+	</div>
+</body>
+</html>

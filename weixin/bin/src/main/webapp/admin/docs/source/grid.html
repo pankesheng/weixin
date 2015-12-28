@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='grid'>/**
+</span> * @author Ezios
+ * @class grid
+ * @extends jquery-1.8.3
+ * @markdown
+ * #表格插件
+ * 版本 1.5.5 日期 2015-4-3
+ * 配置项详见Config options
+ *
+ * 示例：
+ *
+ *     @example
+ *     var grid = $(&#39;dom&#39;).grid({
+ *         store: {
+ *             url: &#39;&#39;
+ *         },
+ *         columns: []
+ *     });
+ *
+ *     grid.getSelected();
+ *     grid.refresh();
+ *
+ * &lt;p&gt;ajax模式数据示例:&lt;/p&gt;
+ *
+ *      @example
+ *     {
+ *         s: 1,
+ *         d: [],
+ *         total: 0
+ *     }
+ *
+ * 字段可以自定义
+ * s 成功标志
+ * d 数据
+ * total 总数
+ *
+ */
+;!(function($) {
+    &quot;use strict&quot;;
+
+    var Grid = function($dom, config) {
+        var me = this;
+
+        //dom引用
+        this.$me = $dom;
+        //包装div
+        this.$wrapper = $dom.wrap(&#39;&lt;div class=&quot;grid-wrapper&quot;&gt;&lt;/div&gt;&#39;).parent(&#39;.grid-wrapper&#39;);
+        //当前页数
+        this.curPage = 0;
+        //缓存参数
+        this.ajaxParams = &#39;&#39;;
+        //默认配置项
+        this.defaults = {
+<span id='grid-cfg-store'>            /**
+</span>             * @cfg {Object} [store] (required) 数据配置
+             * @cfg {Boolean} [store.autoLoad] 是否自动加载
+             * @cfg {Object} [store.params] 额外参数 固定的额外参数 不会被清除
+             * @cfg {Object} [store.data] 本地数据 url和data都存在时取url
+             * @cfg {String} [store.type] 请求方式 &#39;GET&#39;或&#39;POST&#39; 默认&#39;POST&#39;
+             * @cfg {String} [store.url] 请求地址
+             * @cfg {Number} [store.pagesize] 每页记录数
+             * @cfg {String} [store.totalProperty] 总页数字段名 默认： total
+             * @cfg {String} [store.dataProperty] 数据数组字段名 默认： d
+             * @cfg {String} [store.successProperty] 请求成功标志字段名 默认： s 1代表成功 其他值代表失败 失败时返回的d值将作为提示信息
+             * @cfg {Boolean} [store.sortable] 该列是否允许排序 点击该表头将依次发送 降序、升序、默认等参数
+             *
+             *     降序:/users?sort=account&amp;asc=true&amp;offset=0&amp;limit=10
+             *
+             *     升序:/users?sort=account&amp;asc=false&amp;offset=0&amp;limit=10
+             *
+             *     默认:/users?sort=account&amp;asc=false&amp;offset=0&amp;limit=10
+             */
+            store: {
+                //自动加载
+                autoLoad: true,
+                //请求地址
+                url: &#39;&#39;,
+                //额外参数
+                extraParams: {},
+                //本地数据
+                data: {},
+                //请求方式
+                type: &#39;POST&#39;,
+                //每页多少记录
+                pagesize: 10,
+                //总页数字段名
+                totalProperty: &#39;total&#39;,
+                //数组字段名
+                dataProperty: &#39;d&#39;,
+                //成功标志字段
+                successProperty: &#39;s&#39;,
+                //排序
+                sortable: false
+            },
+<span id='grid-cfg-schema'>            /**
+</span>             * @cfg {Object} [schema] 表格视图
+             * @cfg {String} [schema.displayMode] 显示模式 list--列表模式 thumb--缩略图模式
+             * @cfg {String} [schema.thumbCls] 缩略图模式的样式
+             * @cfg {String} [schema.thumbItemCls] 缩略图模式单元的样式
+             * @cfg {Object} [schema.thumbRenderer] 缩略图模式的渲染函数
+             *     &lt;p&gt;-cellData 单元格数据 当dataIndex属性存在时才有值&lt;/p&gt;
+             *     &lt;p&gt;-rowData 行数据&lt;/p&gt;
+             *     &lt;p&gt;-grid grid对象&lt;/p&gt;
+             *     &lt;p&gt;-cellIndex 列序号&lt;/p&gt;
+             *     &lt;p&gt;-rowIndex 行序号&lt;/p&gt;
+             *
+             *     thumbRenderer: function(rowData, grid, rowIndex){
+             *         console.log(&#39;本行对应的数据 &#39;, rowData);
+             *         console.log(&#39;当前页 &#39;, grid.getCurPage());
+             *         console.log(&#39;行序号&#39;, rowIndex);
+             *     }
+             */
+            schema: {
+                displayMode: &#39;list&#39;,
+                thumbCls: &#39;table-thumb&#39;,
+                thumbItemCls: &#39;thumb-item&#39;
+            },
+<span id='grid-cfg-columns'>            /**
+</span>             * @cfg {Object} [columns] (required) 表格模型
+             * @cfg {String} [columns.title] (required) 表头标题
+             * @cfg {Object} [columns.dataIndex] 数据字段 级联对象请使用 .操作符
+             *
+             *      $(&#39;dom&#39;).grid({
+             *          columns: [{
+             *              dataIndex: &#39;user.info.sex&#39;
+             *          }]
+             *      });
+             * @cfg {Number} [columns.width] 宽度
+             * @cfg {String} [columns.align] 对齐方式 &#39;center&#39;,&#39;left&#39;,&#39;right&#39;，默认：&#39;center&#39;
+             * @cfg {Boolean} [columns.nowrap] 值为true时强制不换行 默认： false
+             * @cfg {String} [columns.totalProperty] 总页数字段名 默认： total
+             * @cfg {Function} [columns.renderer] 渲染函数
+             *      &lt;p&gt;-cellData 单元格数据 当dataIndex属性存在时才有值&lt;/p&gt;
+             *      &lt;p&gt;-rowData 行数据&lt;/p&gt;
+             *      &lt;p&gt;-grid grid对象&lt;/p&gt;
+             *      &lt;p&gt;-cellIndex 列序号&lt;/p&gt;
+             *      &lt;p&gt;-rowIndex 行序号&lt;/p&gt;
+             *
+             *      renderer: function(cellData, rowData, grid, cellIndex, rowIndex){
+             *          console.log(&#39;dataIndex对应的数据 &#39;, cellData);
+             *          console.log(&#39;本行对应的数据 &#39;, rowData);
+             *          console.log(&#39;当前页 &#39;, grid.getCurPage());
+             *          console.log(&#39;列序号 &#39;, cellIndex);
+             *          console.log(&#39;行序号&#39;, rowIndex);
+             *      }
+             * @cfg {Object} [columns.formatter] 格式化
+             *
+             *      columns: [{
+             *          formatter: {
+             *              //长度限制
+             *              length: 10
+             *          }
+             *      }]
+             */
+            columns: [{
+                //标题
+                title: &#39;表头&#39;,
+                //字段
+                dataIndex: &#39;&#39;,
+                //宽度
+                width: &#39;&#39;,
+                //对齐方式
+                align: &#39;center&#39;,
+                //换行
+                nowrap: false
+                //格式化函数
+                // renderer: function() {}
+            }],
+<span id='grid-cfg-tool'>            /**
+</span>             * @cfg {Object} tool 工具
+             * @cfg {Boolean} [tool.checkboxSelect] 值为true时启用单选框
+             * @cfg {Boolean} [tool.tableTip] 值为true时启用提示
+             * @cfg {Boolean} [tool.pagingBar] 值为true时启用分页 排序参数为 偏移值offset 条数limit
+             * @cfg {String} [tool.tableBottomBarCls] 底部工具栏样式
+             * @cfg {String} [tool.pagingCls] 插入分页按钮的DOM元素的class
+             * @cfg {String} [tool.pagingInfoCls] 显示分页信息的DOM元素的class
+             * @cfg {String} [tool.pagingSizeCls] 分页条数设置的DOM元素的class
+             * @cfg {String} [tool.pagingJumpCls] 分页跳转的DOM元素的class
+             * @cfg {String} [tool.pagingContainerHtml] 分页按钮容器的html
+             *     双花括号内为动态内容不可更改，即标签语法，其他html可以随意更改。
+             *
+             *       &lt;div class=&quot;table-bottom-left&quot;&gt;
+             *          &lt;span class=&quot;mr-10&quot;&gt;每页&lt;/span&gt;
+             *          &lt;span class=&quot;page-size mr-10&quot;&gt;
+             *              &lt;select class=&quot;normal-select {{pagingSizeCls}}&quot;&gt;
+             *                  &lt;option value=&quot;10&quot;&gt;10&lt;/option&gt;
+             *                  &lt;option value=&quot;20&quot;&gt;20&lt;/option&gt;
+             *                  &lt;option value=&quot;50&quot;&gt;50&lt;/option&gt;
+             *                  &lt;option value=&quot;100&quot;&gt;100&lt;/option&gt;
+             *              &lt;/select&gt;
+             *          &lt;/span&gt;
+             *          &lt;span class=&quot;mr-10&quot;&gt;条&lt;/span&gt;
+             *          &lt;span class=&quot;{{pagingCls}} mr-10&quot;&gt;&lt;/span&gt;
+             *          &lt;span class=&quot;{{pagingJumpCls}}&quot;&gt;
+             *              &lt;input class=&quot;form-control mr-10 paging-value&quot; type=&quot;text&quot; /&gt;
+             *              &lt;a class=&quot;btn btn-primary btn-go&quot; href=&quot;javascript:void(0);&quot;&gt;GO&lt;/a&gt;
+             *          &lt;/span&gt;
+             *      &lt;/div&gt;
+             * @cfg {String} [tool.pagingInfoContainerHtml] 分页信息容器的html
+             *     双花括号内为动态内容不可更改，即标签语法，其他html可以随意更改。
+             *
+             *      &lt;div class=&quot;page-function table-bottom-right&quot;&gt;
+             *          &lt;span class=&quot;{{pagingInfoCls}}&quot;&gt;&lt;/span&gt;
+             *      &lt;/div&gt;
+             * @cfg {String} [tool.pagingBtnHtml] 页码按钮的html
+             * @cfg {String} [tool.pagingPrevBtnHtml] 上一页按钮的html
+             * @cfg {String} [tool.pagingNextBtnHtml] 下一页按钮的html
+             */
+            tool: {
+                //启用选框
+                checkboxSelect: true,
+                //提示
+                tableTip: true,
+                //分页
+                pagingBar: false,
+                //底部工具栏样式
+                tableBottomBarCls: &#39;table-bottom-bar&#39;,
+                //分页样式
+                pagingCls: &#39;pagination&#39;,
+                //分页信息样式
+                pagingInfoCls: &#39;page-info&#39;,
+                //分页条数设置样式
+                pagingSizeCls: &#39;pagesize-value&#39;,
+                //分页跳转
+                pagingJumpCls: &#39;page-jump&#39;,
+                //分页按钮容器的html
+                pagingContainerHtml: 
+                &#39;&lt;div class=&quot;table-bottom-left&quot;&gt;&#39;+
+                    &#39;&lt;span class=&quot;mr-10&quot;&gt;每页&lt;/span&gt;&#39;+
+                    &#39;&lt;span class=&quot;page-size mr-10&quot;&gt;&#39;+
+                        &#39;&lt;select class=&quot;normal-select {{pagingSizeCls}}&quot;&gt;&#39;+
+                            &#39;&lt;option value=&quot;10&quot;&gt;10&lt;/option&gt;&#39;+
+                            &#39;&lt;option value=&quot;20&quot;&gt;20&lt;/option&gt;&#39;+
+                            &#39;&lt;option value=&quot;50&quot;&gt;50&lt;/option&gt;&#39;+
+                            &#39;&lt;option value=&quot;100&quot;&gt;100&lt;/option&gt;&#39;+
+                        &#39;&lt;/select&gt;&#39;+
+                    &#39;&lt;/span&gt;&#39;+
+                    &#39;&lt;span class=&quot;mr-10&quot;&gt;条&lt;/span&gt;&#39;+
+                    &#39;&lt;span class=&quot;{{pagingCls}} mr-10&quot;&gt;&lt;/span&gt;&#39;+
+                    &#39;&lt;span class=&quot;{{pagingJumpCls}}&quot;&gt;&#39;+
+                        &#39;&lt;input class=&quot;form-control mr-10 paging-value&quot; type=&quot;text&quot; /&gt;&#39;+
+                        &#39;&lt;a class=&quot;btn btn-primary btn-go&quot; href=&quot;javascript:void(0);&quot;&gt;GO&lt;/a&gt;&#39;+
+                    &#39;&lt;/span&gt;&#39;+
+                &#39;&lt;/div&gt;&#39;,
+                //分页信息容器的html
+                pagingInfoContainerHtml:
+                &#39;&lt;div class=&quot;page-function table-bottom-right&quot;&gt;&#39;+
+                    &#39;&lt;span class=&quot;{{pagingInfoCls}}&quot;&gt;&lt;/span&gt;&#39;+
+                &#39;&lt;/div&gt;&#39;,
+                //页码按钮的html
+                pagingBtnHtml: &#39;&lt;a class=&quot;num-page{{cls}}&quot; href=&quot;javascript:void(0);&quot;&gt;{{pageNum}}&lt;/a&gt;\n&#39;,
+                //上一页按钮的html
+                pagingPrevBtnHtml: &#39;&lt;a class=&quot;prev-page{{cls}}&quot; href=&quot;javascript:void(0);&quot;&gt;&amp;nbsp;前页&amp;nbsp;&lt;/a&gt;\n&#39;,
+                //下一页按钮的html
+                pagingNextBtnHtml: &#39;&lt;a class=&quot;next-page{{cls}}&quot; href=&quot;javascript:void(0);&quot;&gt;&amp;nbsp;后页&amp;nbsp;&lt;/a&gt;\n&#39;
+            },
+<span id='grid-cfg-event'>            /**
+</span>             * @cfg {Object} event 事件
+             * @cfg {Function} [event.onGetDataError] 获取数据失败时的处理回调，详见Events下的{@link grid#onGetDataError onGetDataError}
+             */
+            event: {
+<span id='grid-event-onGetDataError'>                /**
+</span>                 * @event onGetDataError
+                 * 获取数据失败时的处理回调
+                 * @param  {Object} json 请求返回的数据
+                 */
+                onGetDataError: function(json){
+                    var message = &#39;&#39;;
+
+                    if(json){
+                        if(json.d){
+                            message = json.d;
+                        }else{
+                            message = json;
+                        }
+                    }else{
+                        message = &#39;获取列表数据失败&#39;;
+                    }
+
+                    if(window.parent.parent.tip){
+                        window.parent.parent.tip(message, &#39;danger&#39;);
+                    }else{
+                        alert(message);
+                    }
+                }
+            }
+        };
+        //数据仓库
+        this.store = new Array();
+        //操作对象
+        this.gridObj = {
+<span id='grid-property-config'>            /**
+</span>             * @property {Object} 配置项
+             *
+             *
+             *     alert(grid.config);
+             */
+            config: config,
+<span id='grid-method-addRecord'>            /**
+</span>             * 添加记录
+             * @param  {Object} data 数据对象
+             *
+             *     @example
+             *     grid.addRecord({
+             *         &quot;_id&quot;: &quot;5518b89dbc547f6c18c98dff&quot;,
+             *         &quot;account&quot;: &quot;123123&quot;,
+             *         &quot;password&quot;: &quot;7c4a8d09ca3762af61e59520943dc26494f8941b&quot;,
+             *         &quot;__v&quot;: 0,
+             *         &quot;phone&quot;: &quot;123&quot;,
+             *         &quot;role&quot;: 2,
+             *         &quot;sex&quot;: &quot;123&quot;,
+             *         &quot;name&quot;: &quot;123123&quot;
+             *     });
+             */
+            addRecord: function(data){
+                me.$me.append(me.generateTableRow(data, me.$me.find(&#39;tr:not(.table-head)&#39;).length));
+                //数据为空时添加数据移除提示信息
+                if(me.store.length === 0){
+                    //渲染表头
+                    me.renderTableHead();
+
+                    //初始化工具
+                    me.initTool();
+                }
+
+                me.store.push({
+                    rowIndex: me.store.length,
+                    data: data
+                });
+                //移除空提示
+                me.tableTip(&#39;hideTip&#39;);
+            },
+<span id='grid-method-refresh'>            /**
+</span>             * 以原有参数刷新表格。
+             */
+            refresh: function() {
+                //载入当前页
+                me.loadPage(me.curPage);
+            },
+<span id='grid-method-load'>            /**
+</span>             * 根据参数重新加载表格，之前的参数将被清除，并重新渲染表头，并返回第一页。
+             * @param  {Object} params 参数对象
+             * @param  {Function} callback 回调函数
+             * -data 返回的数据
+             *
+             *     @example
+             *     grid.load({
+             *         filter: &#39;name&#39;
+             *     }, function(data){});
+             */
+            load: function(params, callback) {
+                me.loadPage(1, params, callback);
+            },
+<span id='grid-method-firstPage'>            /**
+</span>             * 载入第一页。
+             */
+            firstPage: function(){
+                me.loadPage(1);
+            },
+<span id='grid-method-lastPage'>            /**
+</span>             * 载入最后一页。
+             */
+            lastPage: function(){
+                me.loadPage(me.totalPage);
+            },
+<span id='grid-method-prevPage'>            /**
+</span>             * 上一页
+             */
+            prevPage: function(){
+                if(me.curPage !== 1){
+                    me.loadPage(me.curPage - 1);
+                }
+            },
+<span id='grid-method-nextPage'>            /**
+</span>             * 下一页
+             */
+            nextPage: function(){
+                if(me.curPage !== me.totalPage){
+                    me.loadPage(me.curPage + 1);
+                }
+            },
+<span id='grid-method-gotoPage'>            /**
+</span>             * 跳转指定页
+             * @param  {Number} pageNum 页码
+             */
+            gotoPage: function(pageNum){
+                if(typeof pageNum === &#39;number&#39;){
+                    me.loadPage(pageNum);
+                }
+            },
+<span id='grid-method-getCurPage'>            /**
+</span>             * 获取当前页数
+             * @return {Number} 页数
+             */
+            getCurPage: function() {
+                return me.curPage;
+            },
+<span id='grid-method-getTotalPage'>            /**
+</span>             * 获取总页数
+             * @return {Number} 页数
+             */
+            getTotalPage: function() {
+                return me.totalPage;
+            },
+<span id='grid-method-getData'>            /**
+</span>             * 获取数据原型
+             * @return {Object} [description]
+             */
+            getData: function(){
+                return me.data;
+            },
+<span id='grid-method-getDataStore'>            /**
+</span>             * 获取当前表格的数据对象
+             * @return {Object} 数据对象
+             */
+            getDataStore: function(){
+                var array = new Array();
+
+                for(var i = 0; i &lt; me.store.length;i++){
+                    array.push(me.store[i].data);
+                }
+
+                return array;
+            },
+<span id='grid-method-getSelectedData'>            /**
+</span>             * 获取选中行的数据对象。
+             * @param {String} columnName 返回类型 为空返回完整数据数组 有值时返回指定值数组
+             * @return {Array} 数据对象
+             *
+             *     @example
+             *     grid.getSelectedData(&#39;_id&#39;);
+             *     //[&quot;5518b89dbc547f6c18c98dff&quot;, &quot;551b56c11911ce040e0b9887&quot;, &quot;551b59b377886a8c1d20b65e&quot;, &quot;551b64b577886a8c1d20b671&quot;]
+             */
+            getSelectedData: function(columnName) {
+                var selections = me.$me.find(&#39;:checked:not(.selectAll)&#39;);
+                var len = selections.length;
+                var values = new Array();
+
+                if(columnName){
+                    for (var i = 0; i &lt; len; i++) {
+                        var $tr = $(selections[i]).parents(&#39;tr&#39;);
+
+                        if($tr.data(&#39;data&#39;)[columnName]){
+                            values.push($tr.data(&#39;data&#39;)[columnName]);
+                        }
+                    }
+                }else{
+                    for (var i = 0; i &lt; len; i++){
+                        var $tr = $(selections[i]).parents(&#39;tr&#39;);
+
+                        values.push($tr.data(&#39;data&#39;));
+                    }
+                }
+
+                selections.prop(&#39;checked&#39;, false);
+                me.$me.find(&#39;.selectAll&#39;).prop(&#39;checked&#39;, false);
+
+                return values;
+            },
+<span id='grid-method-getSelectedDataString'>            /**
+</span>             * 获取选中行的数据字符串
+             * @param  {String Array} dataIndex 数据字段名 可以为字符串或数组
+             * @return {String}       参数字符串
+             *
+             *     @example
+             *     grid.getSelectedDataString(&#39;name&#39;);//return name=1&amp;name=2&amp;name=3
+             *     grid.getSelectedDataString([&#39;name&#39;, &#39;id&#39;]);//return name=1&amp;name=2&amp;name=3&amp;id=1&amp;id=2
+             *
+             */
+            getSelectedDataString: function(dataIndex){
+                var selections = me.$me.find(&#39;:checked:not(.selectAll)&#39;);
+                var len = selections.length;
+                var values = new Array();
+
+                if(typeof dataIndex === &#39;string&#39;){
+                    for(var i = 0; i &lt; len; i++){
+                        var $tr = $(selections[i]).parents(&#39;tr&#39;);
+
+                        values.push(dataIndex + &#39;=&#39; + $tr.data(&#39;data&#39;)[dataIndex]);
+                    }
+                }else if(typeof dataIndex === &#39;object&#39;){
+                    for(var j = 0, jLen = dataIndex.length; j &lt; jLen; j++){
+                        for(var i = 0; i &lt; len; i++){
+                            var $tr = $(selections[i]).parents(&#39;tr&#39;);
+
+                            values.push(dataIndex[j] + &#39;=&#39; + $tr.data(&#39;data&#39;)[dataIndex[j]]);
+                        }
+                    }
+                }else{
+                    return $.error(&#39;dataIndex must be string&#39;);
+                }
+
+                //取消选择
+                selections.prop(&#39;checked&#39;, false);
+                me.$me.find(&#39;.selectAll&#39;).prop(&#39;checked&#39;, false);
+
+                return values.join(&#39;&amp;&#39;);
+            },
+<span id='grid-method-getRowDataByDom'>            /**
+</span>             * 获取行数据根据行元素
+             * @param  {Dom} dom 该行下的html元素
+             * @return {Object}         数据对象
+             */
+            getRowDataByDom: function(dom) {
+                return $(dom).parents(&#39;tr&#39;).data();
+            },
+<span id='grid-method-getRowDataByIndex'>            /**
+</span>             * 获取行数据根据行序号
+             * @param  {Number} index 序号
+             * @return {Object} 数据对象
+             */
+            getRowDataByIndex: function(index){
+                if(typeof index === &#39;number&#39;){
+                    return me.$me.find(&#39;tr:not(.table-head)&#39;).eq(index).data();
+                }else{
+                    $.error(&#39;arguments must be number&#39;);
+                }
+            },
+<span id='grid-method-updateRecord'>            /**
+</span>             * 更新行
+             * @param  {Object} rowData  行数据
+             * @param  {Number} rowIndex 行序号
+             */
+            updateRecord: function(rowData, rowIndex){
+                var $trs = me.$me.find(&#39;tr:not(.table-head)&#39;);
+
+                for (var i = 0, len = $trs.length; i &lt; len; i++) {
+                    if($($trs[i]).data(&#39;rowIndex&#39;) === rowIndex){
+                        $($trs[i]).after(me.generateTableRow(rowData, rowIndex));
+                        $($trs[i]).remove();
+                        break;
+                    }
+                }
+
+                for (var i = 0, len = me.store.length; i &lt; len; i++) {
+                    if(me.store[i].rowIndex === rowIndex){
+                        me.store[i].data = rowData;
+                        break;
+                    }
+                }
+            },
+<span id='grid-method-selectRecord'>            /**
+</span>             * 选中或取消选中
+             * @param  {Array Number} rowIndex [description]
+             */
+            selectRecord: function(rowIndex){
+                if(me.opts.tool.checkboxSelect){
+                    var $trs = me.$me.find(&#39;tr:not(.table-head)&#39;);
+
+                    if(typeof rowIndex === &#39;object&#39;){
+                        for (var i = rowIndex.length - 1; i &gt;= 0; i--) {
+                            $trs.eq(rowIndex[i]).find(&#39;:checkbox&#39;).trigger(&#39;click&#39;);
+                        };
+                    }else{
+                        $trs.eq(rowIndex).find(&#39;:checkbox&#39;).trigger(&#39;click&#39;);
+                    }
+                }
+            },
+<span id='grid-method-removeRecord'>            /**
+</span>             * 删除行
+             * @param {Array} dataObject 调用get方法返回的数据对象数组 包含rowIndex属性
+             *
+             *     @example
+             *     grid.removeRecord(grid.getSelectedData());
+             */
+            removeRecord: function(dataObject){
+                for(var i = 0, len = dataObject.length; i &lt; len; i++){
+                    if(typeof dataObject[i].rowIndex !== &#39;undefined&#39;){
+                        me.gridObj.removeRecordByRowIndex(dataObject[i].rowIndex);
+                    }
+                }
+            },
+<span id='grid-method-removeRecordByRowIndex'>            /**
+</span>             * 删除行根据行序号
+             * @param {Number} rowIndex 行序号
+             *
+             *     @example
+             *     grid.removeRecordByRowIndex(0);
+             */
+            removeRecordByRowIndex: function(rowIndex){
+                if(typeof rowIndex === &#39;number&#39;){
+                    var $trs = me.$me.find(&#39;tr:not(.table-head)&#39;);
+                    //删除dom
+                    for(var i = 0, len = $trs.length; i &lt; len; i++){
+                        if($($trs[i]).data(&#39;rowIndex&#39;) === rowIndex){
+                            $($trs[i]).remove();
+                            break;
+                        }
+                    }
+                    //删除store里的对象
+                    for(var i = 0, len = me.store.length; i &lt; len; i++){
+                        if(me.store[i].rowIndex === rowIndex){
+                            me.store.splice(i, 1);
+                            break;
+                        }
+                    }
+                }else{
+                    $.error(&#39;arguments must be number&#39;);
+                }
+            },
+<span id='grid-method-switchDisplayMode'>            /**
+</span>             * 切换显示模式
+             * @param  {String} modeName 模式名称
+             *
+             *     @example
+             *     grid.switchDisplayMode(&#39;list&#39;);//列表
+             *     grid.switchDisplayMode(&#39;thumb&#39;);//缩略图
+             */
+            switchDisplayMode: function(modeName){
+                if(modeName === &#39;list&#39; || modeName === &#39;thumb&#39;){
+                    if(me.opts.schema.displayMode !== modeName){
+                        me.opts.schema.displayMode = modeName;
+                        me.gridObj.refresh();
+                    }
+                }else{
+                    $.error(&#39;arguments must between &quot;list&quot; and &quot;thumb&quot;&#39;);
+                }
+            }
+        };
+        //配置项
+        this.opts = $.extend(true, this.defaults, config || {});
+
+        /*事件注册*/
+        //基本
+        this.addListeners(&#39;basic&#39;);
+        //分页
+        if(this.opts.tool.pagingBar){
+            this.generateDom(&#39;tableBottomBar&#39;);
+            this.addListeners(&#39;pagingBar&#39;);
+        }
+
+        if(this.opts.store.autoLoad){
+            this.loadPage(1);
+        }
+    };
+
+<span id='grid-method-loadPage'>    /**
+</span>     * 载入数据
+     * @private
+     * @param  {Number} page   页数
+     * @param  {Object} params 参数
+     */
+    Grid.prototype.loadPage = function(page, params, callback) {
+        var me = this;
+        var timeoutID = &#39;&#39;;
+
+        this.$wrapper.height(this.$wrapper.height());
+        //两秒后检查是否已返回数据
+        timeoutID = setTimeout(function() {
+            if(me.ajaxEndTime !== false &amp;&amp; me.ajaxStartTime === me.ajaxEndTime){
+                //载入提示
+                me.tableTip(&#39;showLoadingTip&#39;);
+            }
+        }, 2000);
+        /* 生成参数 */
+        if(params){
+            this.ajaxParams = {};
+        }
+        this.ajaxParams = $.extend(true, this.ajaxParams, this.opts.store.extraParams || {}, params || {});
+        if(this.opts.tool.pagingBar){
+            this.ajaxParams = $.extend(true, this.ajaxParams, {
+                offset: (page - 1) * this.opts.store.pagesize,
+                limit: this.opts.store.pagesize
+            });
+        }
+        //更新当前页数
+        this.curPage = page;
+        //获取数据
+        this.getData(function(type, json) {
+            //清除
+            me.clean();
+            //移除空提示
+            me.tableTip(&#39;hideTip&#39;);
+            //移除定时器
+            window.clearTimeout(timeoutID);
+
+            if (type === &#39;error&#39;) {
+                /*错误提示*/
+                if (typeof me.opts.event.onGetDataError === &#39;function&#39;) {
+                    me.opts.event.onGetDataError(json);
+                }
+            } else if (type === &#39;timeout&#39;) {
+                /*超时提示*/
+                me.tableTip(&#39;showTimeoutTip&#39;);
+            } else if (type === &#39;success&#39;) {
+                var data = json[me.opts.store.dataProperty];
+
+                if(typeof data === &#39;object&#39; &amp;&amp; data.length){
+                    /*有数据*/
+                    //数据
+                    me.data = json[me.opts.store.dataProperty];
+                    //总数
+                    me.total = json[me.opts.store.totalProperty];
+                    //渲染
+                    me.renderGrid();
+                }else{
+                    //当不是第一页时跳转到上一页
+                    if(me.curPage !== 1){
+                        me.gridObj.prevPage();
+                    }else{
+                        /*空数据提示*/
+                        me.tableTip(&#39;showNoneTip&#39;);
+                    }
+                }
+            }
+
+            me.$wrapper.height(&#39;auto&#39;);
+            //移除载入动画
+            me.tableTip(&#39;hideLoadingTip&#39;);
+
+            if(typeof callback === &#39;function&#39;){
+                callback(json);
+            }
+        });
+    };
+
+    //渲染表格
+    Grid.prototype.renderGrid = function() {
+        if(this.opts.schema.displayMode === &#39;list&#39;){
+            //渲染表头
+            this.renderTableHead();
+            //渲染行
+            this.rendererTableRow();
+        }else{
+            //渲染缩略图模式
+            this.rendererThumb();
+        }
+
+        //初始化工具
+        this.initTool();
+    };
+
+<span id='grid-method-renderTableHead'>    /**
+</span>     * 渲染表头
+     * @private
+     */
+    Grid.prototype.renderTableHead = function() {
+        if (this.$me.find(&#39;thead&#39;).length === 0) {
+            var $thead = this.$me.find(&#39;thead&#39;);
+            var $tr = &#39;&#39;;
+            //已存在表头不再生成
+            if($thead.length === 0){
+                $thead = $(&#39;&lt;thead&gt;&lt;tr class=&quot;table-head&quot;&gt;&lt;/tr&gt;&lt;/thead&gt;&#39;);
+            }
+            var $tr = $thead.children(&#39;.table-head&#39;);
+
+            //移除之前的表头内容
+            $tr.children().remove();
+            //渲染表头单选框
+            if (this.opts.tool.checkboxSelect === true) {
+                $tr.append(&#39;&lt;th class=&quot;checkbox-th&quot;&gt;&lt;input class=&quot;checkbox selectAll&quot; type=&quot;checkbox&quot; /&gt;&lt;/th&gt;&#39;);
+            }
+            //渲染表头
+            for (var i = 0, len = this.opts.columns.length; i &lt; len; i++) {
+                if (this.opts.columns[i].sortable === true) {
+                    //排序表头
+                    var $th = $(&#39;&lt;th class=&quot;sortable&quot;&gt;&#39; + this.opts.columns[i].title + &#39;&lt;/th&gt;&#39;);
+
+                    //渲染图标
+                    $th.append(&#39;&lt;span class=&quot;iconfont normal&quot;&gt;&amp;#xe61e;&lt;/span&gt;&lt;span class=&quot;iconfont sort-icon asc&quot;&gt;&amp;#xe621;&lt;/span&gt;&lt;span class=&quot;iconfont sort-icon desc&quot;&gt;&amp;#xe622;&lt;/span&gt;&#39;);
+
+                    //存储数据
+                    $th.data(this.opts.columns[i]).data({
+                        state: 1
+                    });
+
+                    //侦听筛选事件
+                    this.addListeners(&#39;sort&#39;, $th);
+
+                    $tr.append($th);
+                } else {
+                    //普通表头
+                    $tr.append(&#39;&lt;th&gt;&#39; + this.opts.columns[i].title + &#39;&lt;/th&gt;&#39;);
+                }
+            }
+
+            this.$me.prepend($thead);
+
+            //选框事件
+            if (this.opts.tool.checkboxSelect === true) {
+                this.addListeners(&#39;checkbox&#39;);
+            }
+        }else{
+            this.$me.find(&#39;thead&#39;).show();
+        }
+    };
+
+<span id='grid-method-rendererTableRow'>    /**
+</span>     * 渲染表格行
+     * @private
+     */
+    Grid.prototype.rendererTableRow = function() {
+        for (var i = 0, len = this.data.length; i &lt; len; i++) {
+            this.$me.append(this.generateTableRow(this.data[i], i));
+            this.store.push({
+                rowIndex: i,
+                data: this.data[i]
+            });
+        }
+    };
+
+<span id='grid-method-generateTableRow'>    /**
+</span>     * 生成表格行
+     * @private
+     */
+    Grid.prototype.generateTableRow = function(rowData, rowIndex) {
+        var $tr = $(&#39;&lt;tr&gt;&lt;/tr&gt;&#39;);
+        var columns = this.opts.columns;
+
+        //渲染单选框
+        if (this.opts.tool.checkboxSelect) {
+            $tr.append(&#39;&lt;td&gt;&lt;input class=&quot;checkbox&quot; type=&quot;checkbox&quot; /&gt;&lt;/td&gt;&#39;);
+        }
+
+        for (var j = 0, columnLen = columns.length; j &lt; columnLen; j++) {
+            var $td = $(&#39;&lt;td&gt;&lt;/td&gt;&#39;);
+
+            /*内容*/
+            if (columns[j].renderer) {
+                //渲染回调函数 cellData rowData grid rowIndex cellIndex
+                var renderContent =  columns[j].renderer(this.getDataByDataIndex(columns[j].dataIndex, rowData), rowData, this.gridObj, j, rowIndex);
+
+                $td.append(renderContent);
+            } else {
+                var renderContent = this.getDataByDataIndex(columns[j].dataIndex, rowData);
+                //格式化
+                if (columns[j].formatter) {
+                    //长度限制
+                    if(columns[j].formatter.length &amp;&amp; typeof columns[j].formatter.length === &#39;number&#39;){
+                        if(renderContent &amp;&amp; renderContent.length &gt; columns[j].formatter.length){
+                            $td.attr(&#39;title&#39;, renderContent);
+                            renderContent = renderContent.substring(0, columns[j].formatter.length) + &#39;...&#39;;
+                        }
+                    }
+                }
+
+                $td.append(renderContent);
+            }
+
+            //对齐
+            if (columns[j].align &amp;&amp; (columns[j].align === &#39;left&#39; || columns[j].align === &#39;right&#39;)) {
+                $td.css(&#39;text-align&#39;, columns[j].align);
+            }
+            //宽度
+            if (columns[j].width &amp;&amp; typeof columns[j].width === &#39;number&#39;) {
+                $td.width(columns[j].width);
+            }
+            //换行
+            if (columns[j].nowrap) {
+                $td.css(&#39;white-space&#39;, &#39;nowrap&#39;);
+            }
+
+            //存储数据
+            $.data($td.get(0), {
+                cellIndex: j,
+                data: rowData[columns[j].dataIndex]
+            });
+
+            $tr.append($td);
+        };
+
+        //存储数据
+        $.data($tr.get(0), {
+            rowIndex: rowIndex,
+            data: rowData
+        });
+
+        return $tr;
+    };
+
+    //渲染缩略图模式
+    Grid.prototype.rendererThumb = function() {
+        this.$me.find(&#39;thead&#39;).remove();
+        if (this.$thumb) {
+            this.$thumb.remove();
+        }
+        //初始化对象
+        this.$thumb = $(&#39;&lt;ul class=&quot;&#39; + this.opts.schema.thumbCls + &#39;&quot;&gt;&lt;/ul&gt;&#39;);
+
+        for (var i = 0, len = this.data.length; i &lt; len; i++) {
+            this.generateDom(&#39;thumbItem&#39;, this.data[i], i);
+        }
+
+        if (this.$tableBottomBar) {
+            this.$tableBottomBar.before(this.$thumb);
+        } else {
+            this.$wrapper.append(this.$thumb);
+        }
+    };
+
+    //获取数据
+    Grid.prototype.getData = function(callback) {
+        this.ajaxStartTime = this.ajaxEndTime = new Date().getTime();
+
+        if (this.opts.store.data &amp;&amp; !this.opts.store.url) {
+            this.ajaxEndTime = false;
+            /*返回本地数据*/
+            callback(&#39;success&#39;, this.opts.store.data);
+        } else {
+            /*返回ajax数据*/
+            var me = this;
+            var params = this.ajaxParams;
+            var opts = this.opts;
+            var method = &#39;GET&#39;;
+
+            if(opts.store.type === &#39;GET&#39; || opts.store.type === &#39;POST&#39;){
+                method = opts.store.type;
+            }
+
+            //加随机数防止缓存
+            if(method === &#39;GET&#39;){
+                params._t = new Date().getTime();
+            }
+
+            //同步获取数据
+            $.ajax({
+                url: opts.store.url,
+                type: method,
+                dataType: &#39;json&#39;,
+                data: params,
+                success: function(json){
+                    me.ajaxEndTime = new Date().getTime();
+                    if (json[opts.store.successProperty] == 1) {
+                        //获取成功
+                        callback(&#39;success&#39;, json);
+                    } else {
+                        callback(&#39;error&#39;, json);
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    me.ajaxEndTime = new Date().getTime();
+                    if(textStatus === &#39;timeout&#39;){
+                        callback(&#39;timeout&#39;);
+                    }else{
+                        callback(&#39;error&#39;);
+                    }
+                }
+            });
+        }
+    };
+
+    //获取数据项
+    Grid.prototype.getDataByDataIndex = function(dataIndex, rowData) {
+        if(!dataIndex || typeof dataIndex === &#39;undefined&#39;){
+            return &#39;&#39;;
+        }
+        var indexArray = dataIndex.split(&#39;.&#39;);
+        var data = &#39;&#39;;
+
+        for (var i = 0, len = indexArray.length; i &lt; len; i++) {
+            if(data){
+                data = data[indexArray[i]];
+            }else{
+                data = rowData[indexArray[i]];
+            }
+        };
+
+        return data;
+    };
+
+    //清除数据
+    Grid.prototype.clean = function() {
+        this.$me.find(&#39;tr&#39;).not(&#39;.table-head&#39;).remove();
+        this.$me.find(&#39;.selectAll:checked&#39;).prop(&#39;checked&#39;, false);
+        if(this.$thumb){
+            this.$thumb.remove();
+        }
+        //TO 清除右上角信息
+        $(&#39;.selected-info&#39;).text(&#39;&#39;);
+        if(this.$tableBottomBar){
+            this.$tableBottomBar.hide();
+        }
+    };
+
+    //模版
+    Grid.prototype.tpl = function(tpl, data) {
+        return tpl.replace(/{{(\w*?)}}/g, function ($1, $2) {
+            if(data[$2]){
+                return data[$2];
+            }else{
+                return &#39;&#39;;
+            }
+        });
+    };
+
+    //表格提示
+    Grid.prototype.tableTip = function(type) {
+        if(!this.opts.tool.tableTip){
+            return false;
+        }
+        switch(type){
+            case &#39;showLoadingTip&#39;:
+                this.$me.after(&#39;&lt;div class=&quot;table-tip table-loading&quot;&gt;&lt;/div&gt;&#39;);
+                break;
+            case &#39;showNoneTip&#39;:
+                this.$me.after(&#39;&lt;div class=&quot;table-tip table-none&quot;&gt;&lt;/div&gt;&#39;);
+                break;
+            case &#39;showTimeoutTip&#39;:
+                this.$me.after(&#39;&lt;div class=&quot;table-tip table-timeout&quot;&gt;&lt;/div&gt;&#39;);
+                break;
+            case &#39;hideLoadingTip&#39;:
+                this.$me.nextAll(&#39;.table-loading&#39;).remove();
+                break;
+            case &#39;hideTip&#39;:
+                this.$me.nextAll(&#39;.table-tip&#39;).remove();
+                break;
+        }
+    };
+
+    //初始化工具
+    Grid.prototype.initTool = function() {
+        /*分页*/
+        if (this.opts.tool.pagingBar) {
+            //作用域
+            var $aims = $(&#39;.&#39; + this.opts.tool.pagingCls, this.$tableBottomBar);
+            //引用对象
+            var me = this;
+            //获取前后页按钮
+            var getPrevNextBtn = function(type, hasDisable){
+                var tplHtml = type == &#39;prev&#39; ? me.opts.tool.pagingPrevBtnHtml : me.opts.tool.pagingNextBtnHtml;
+
+                if(hasDisable){
+                    return me.tpl(tplHtml, { cls: &#39; disabled&#39; });
+                }else{
+                    return me.tpl(tplHtml, { cls: &#39;&#39; });
+                }
+            };
+
+            if(this.total &amp;&amp; this.total !== 0){
+                //计算总页数
+                this.totalPage = function(pagesize, total) {
+                    var rem = total % pagesize;
+
+                    if (rem &gt; 0) {
+                        return parseInt(total / pagesize) + 1;
+                    } else {
+                        return parseInt(total / pagesize);
+                    }
+                }(this.opts.store.pagesize, this.total);
+
+                if (!$.isNumeric(this.totalPage)) {
+                    return false;
+                }
+
+                $aims.each(function(index, el) {
+                    var $that = $(this);
+                    //按钮数
+                    var btnNums = 0;
+                    var i = 0;
+                    //获取分页按钮
+                    var getPagingBtn = function(hasOn){
+                        if(hasOn){
+                            return me.tpl(me.opts.tool.pagingBtnHtml, { pageNum: i, cls: &#39; on&#39; });
+                        }else{
+                            return me.tpl(me.opts.tool.pagingBtnHtml, { pageNum: i, cls: &#39;&#39; });
+                        }
+                    };
+                    //清空
+                    $that.html(&#39;&#39;);
+
+                    //当前页数小于等于4
+                    if(me.curPage &lt;= 4){
+                        for(i = 1; i &lt;= me.totalPage &amp;&amp; btnNums &lt; 5; i++){
+                            if (i === me.curPage) {
+                                //当前页
+                                $that.append(getPagingBtn(true));
+                            } else {
+                                //其他页
+                                $that.append(getPagingBtn(false));
+                            }
+                            btnNums++;
+                        }
+                    }else{
+                        //总页数小于当前页数+2
+                        var lessNums =  me.curPage + 2 - me.totalPage;
+
+                        if(lessNums &lt; 0){
+                            lessNums = 0;
+                        }
+
+                        for(i = me.curPage - 2 - lessNums; i &lt;= me.totalPage &amp;&amp; btnNums &lt; 5; i++){
+                            if (i === me.curPage) {
+                                //当前页
+                                $that.append(getPagingBtn(true));
+                            } else {
+                                //其他页
+                                $that.append(getPagingBtn(false));
+                            }
+                            btnNums++;
+                        }
+
+                        //如果起始页大于1
+                        if(i &gt; 1){
+                            $that.prepend(me.tpl(me.opts.tool.pagingBtnHtml, { pageNum: 1, cls: &#39;&#39; })  + &#39;...&#39;);
+                        }
+                    }
+
+                    //如果当前页数小于总页数
+                    if(i &lt; me.totalPage){
+                        $that.append(&#39;...&#39; + me.tpl(me.opts.tool.pagingBtnHtml, { pageNum: me.totalPage, cls: &#39;&#39; }));
+                    }else if( i === me.totalPage){
+                        $that.append(getPagingBtn(false));
+                    }
+
+                    //加入前页
+                    if (me.curPage !== 1) {
+                        $that.prepend(getPrevNextBtn(&#39;prev&#39;, false));
+                    }else{
+                        $that.prepend(getPrevNextBtn(&#39;prev&#39;, true));
+                    }
+
+                    //加入尾页
+                    if (me.curPage !== me.totalPage) {
+                        $that.append(getPrevNextBtn(&#39;next&#39;, false));
+                    }else{
+                        $that.append(getPrevNextBtn(&#39;next&#39;, true));
+                    }
+
+                    //点击事件
+                    me.addListeners(&#39;pageBtn&#39;, $that.find(&#39;a:not(.disabled):not(.on)&#39;));
+                });
+
+                if(this.$tableBottomBar){
+                    //分页信息显示
+                    $(&#39;.&#39; + this.opts.tool.pagingInfoCls, this.$tableBottomBar).html(&#39;当前第 &lt;b&gt;&#39; + this.curPage + &#39;&lt;/b&gt; / &lt;b&gt;&#39; + me.totalPage + &#39;&lt;/b&gt; 页， 共有 &lt;b&gt;&#39; + this.total + &#39;&lt;/b&gt; 条记录&#39;);
+                    //每页显示条数
+                    $(&#39;.&#39; + this.opts.tool.pagingSizeCls, this.$tableBottomBar).val(this.opts.store.pagesize);
+
+                    this.$tableBottomBar.show();
+                }
+            }else if(me.data &amp;&amp; me.data.length){
+                //无总页数的分页
+                $aims.each(function(index, el) {
+                    var $that = $(this);
+                    //清空
+                    $that.html(&#39;&#39;);
+
+                    //加入上一页
+                    if (me.curPage !== 1) {
+                        $that.prepend(getPrevNextBtn(&#39;prev&#39;, false));
+                    }else{
+                        $that.prepend(getPrevNextBtn(&#39;prev&#39;, true));
+                    }
+
+                    //加入下一页
+                    if (me.data.length === me.ajaxParams.limit) {
+                        $that.append(getPrevNextBtn(&#39;next&#39;, false));
+                    }else{
+                        $that.append(getPrevNextBtn(&#39;next&#39;, true));
+                    }
+
+                    //点击事件
+                    me.addListeners(&#39;pageBtn&#39;, $that.find(&#39;a:not(.disabled):not(.on)&#39;));
+                });
+
+                if(this.$tableBottomBar){
+                    //每页显示条数
+                    $(&#39;.&#39; + this.opts.tool.pagingSizeCls, this.$tableBottomBar).val(this.opts.store.pagesize);
+                    //隐藏跳转
+                    $(&#39;.&#39; + this.opts.tool.pagingJumpCls, this.$tableBottomBar).hide();
+
+                    this.$tableBottomBar.show();
+                }
+            }
+        } else {
+            if(this.$tableBottomBar){
+                $(&#39;.&#39; + this.opts.tool.pagingCls, this.$tableBottomBar).html(&#39;&#39;);
+                $(&#39;.&#39; + this.opts.tool.pagingSizeCls, this.$tableBottomBar).hide();
+            }
+        }
+
+        /*其他工具*/
+    };
+
+    //html生成
+    Grid.prototype.generateDom = function(type) {
+        var me = this;
+        var methods = {
+            //生成缩略图模式单元dom
+            thumbItem: function(rowData, index, type){
+                if(rowData){
+                    //内容
+                    var content = &#39;&#39;
+
+                    if(typeof me.opts.schema.thumbRenderer === &#39;function&#39;){
+                        content = me.opts.schema.thumbRenderer(rowData, me.gridObj, index);
+                    }else{
+                        return $.error(&#39;thumb mode need thumbRenderer function to render&#39;);
+                    }
+
+                    var $li = $(&#39;&lt;li class=&quot;&#39; + me.opts.schema.thumbItemCls + &#39;&quot;&gt;&#39; + content + &#39;&lt;/li&gt;&#39;);
+
+                    $li.data(rowData);
+                    me.$thumb.append($li);
+                }
+            },
+            tableBottomBar: function(){
+                if(!this.$tableBottomBar){
+                    var $tableBottomBar = $(&#39;&lt;div class=&quot;&#39; + this.opts.tool.tableBottomBarCls + &#39;&quot;&gt;&lt;/div&gt;&#39;);
+
+                    if(this.opts.tool.pagingBar){
+                        $tableBottomBar
+                            .append(this.tpl(this.opts.tool.pagingContainerHtml, this.opts.tool))
+                            .append(this.tpl(this.opts.tool.pagingInfoContainerHtml, this.opts.tool));
+
+                        me.$wrapper.append($tableBottomBar);
+                        me.$tableBottomBar = $tableBottomBar;
+                    }
+                }
+            }
+        };
+
+        if(methods[type]){
+            methods[type].apply(this, Array.prototype.slice.call(arguments, 1));
+        }
+    };
+
+<span id='grid-method-addListeners'>    /**
+</span>     * 事件侦听器
+     * @private
+     */
+    Grid.prototype.addListeners = function(type) {
+        var me = this;
+        var listeners = {
+            //基本事件
+            basic: function(){
+                //经过效果
+                me.$me.on(&#39;mouseover&#39;, &#39;tr&#39;, function() {
+                    $(this).addClass(&#39;hover&#39;);
+                }).on(&#39;mouseleave&#39;, &#39;tr&#39;, function() {
+                    $(this).removeClass(&#39;hover&#39;);
+                });
+            },
+            //选择框
+            checkbox: function(){
+                //全选选择框
+                me.$me.find(&#39;.selectAll&#39;).bind(&#39;change&#39;, function() {
+                    //全选 反选
+                    me.$me.find(&#39;:checkbox:not(.selectAll)&#39;).prop(&#39;checked&#39;, this.checked);
+                    //更新选中信息
+                    $(&#39;.selected-info&#39;).text(&#39;当前选中 &#39; + me.$me.find(&#39;:checkbox:not(.selectAll):checked&#39;).length + &#39; 条&#39;);
+                    //tr选中效果
+                    this.checked ? me.$me.find(&#39;tr&#39;).addClass(&#39;selected&#39;) : me.$me.find(&#39;tr&#39;).removeClass(&#39;selected&#39;);
+                });
+                me.$me.on(&#39;change&#39;, &#39;:checkbox:not(.selectAll)&#39;, function() {
+                    //触发全选
+                    if ($(&#39;:checkbox:not(.selectAll)&#39;, me.$me).not(&#39;:checked&#39;).length == 0) {
+                        me.$me.find(&#39;.selectAll&#39;).prop(&#39;checked&#39;, true);
+                    } else {
+                        me.$me.find(&#39;.selectAll&#39;).prop(&#39;checked&#39;, false);
+                    }
+                    //更新选中信息
+                    $(&#39;.selected-info&#39;).text(&#39;当前选中 &#39; + me.$me.find(&#39;:checkbox:not(.selectAll):checked&#39;).length + &#39; 条&#39;);
+                    //选中效果
+                    this.checked ? $(this).parents(&#39;tr&#39;).addClass(&#39;selected&#39;) : $(this).parents(&#39;tr&#39;).removeClass(&#39;selected&#39;);
+                });
+            },
+            //分页
+            pagingBar: function(){
+                //更改每页显示
+                $(&#39;.&#39; + me.opts.tool.pagingSizeCls, me.$tableBottomBar).bind(&#39;change&#39;, function(event) {
+                    var val = parseInt($(this).val());
+
+                    me.opts.store.pagesize = val;
+
+                    me.loadPage(1);
+                });
+                //跳转页面
+                $(&#39;.btn-go&#39;, this.$tableBottomBar).bind(&#39;click&#39;, function() {
+                    var pageNum = parseInt($(&#39;.paging-value&#39;, me.$tableBottomBar).val());
+
+                    if($.isNumeric(pageNum)){
+                        if(pageNum &gt;= 1){
+                            if(pageNum &lt;= me.totalPage){
+                                me.loadPage(pageNum);
+                            }else{
+                                me.gridObj.lastPage();
+                            }
+                        }else{
+                            me.gridObj.firstPage();
+                        }
+                    }else{
+                        if(window.parent.parent.tip){
+                            window.parent.parent.tip(&#39;请输入正确的数字&#39;, &#39;danger&#39;);
+                        }else{
+                            alert(&#39;请输入正确的数字&#39;);
+                        }
+                    }
+
+                    $(&#39;.paging-value&#39;, me.$tableBottomBar).val(&#39;&#39;);
+                });
+                //回车跳转
+                $(&#39;.paging-value&#39;, me.$tableBottomBar).bind(&#39;keydown&#39;, function(event){
+                    if(event.keyCode === 13){
+                        $(&#39;.btn-go&#39;, this.$tableBottomBar).trigger(&#39;click&#39;);
+                    }
+                });
+            },
+            //页码
+            pageBtn: function($dom){
+                $dom.bind(&#39;click&#39;, function() {
+                    var type = $.trim($(this).attr(&#39;class&#39;));
+                    var limit = me.opts.store.pagesize;
+
+                    switch (type) {
+                        //首页
+                        case &#39;index-page&#39;:
+                            me.gridObj.firstPage();
+                            break;
+                            //尾页
+                        case &#39;last-page&#39;:
+                            me.gridObj.lastPage();
+                            break;
+                            //前一页
+                        case &#39;prev-page&#39;:
+                            me.gridObj.prevPage();
+                            break;
+                            //后一页
+                        case &#39;next-page&#39;:
+                            me.gridObj.nextPage();
+                            break;
+                            //页码页
+                        case &#39;num-page&#39;:
+                            me.gridObj.gotoPage(parseInt($(this).text()));
+                            break;
+                    }
+                });
+            },
+            //排序
+            sort: function($th){
+                $th.bind(&#39;click&#39;, function() {
+                    var data = $(this).data();
+                    var dataIndex = data.dataIndex;
+
+                    me.ajaxParams = &#39;&#39;;
+
+                    $(&#39;.sortable&#39;, me.$me).not(this).data({
+                        state: 1
+                    });
+                    $(&#39;.sortable&#39;, me.$me).find(&#39;.sort-icon&#39;).hide()
+                        .end().find(&#39;.normal&#39;).not(this).show();
+                    $(this).find(&#39;.normal&#39;).hide();
+
+                    switch (data.state) {
+                        //默认 -- 升序
+                        case 1:
+                            $(this).data({
+                                state: 2
+                            }).find(&#39;.asc&#39;).show();
+
+                            me.loadPage(1, {
+                                sort: dataIndex,
+                                asc: true
+                            });
+
+                            break;
+                            //升序 -- 降序
+                        case 2:
+                            $(this).data({
+                                state: 3
+                            }).find(&#39;.desc&#39;).show();
+
+                            me.loadPage(1, {
+                                sort: dataIndex,
+                                asc: false
+                            });
+
+                            break;
+                            //降序 -- 默认
+                        case 3:
+                            $(this).data({
+                                state: 1
+                            }).find(&#39;.normal&#39;).show();
+
+                            me.loadPage(1);
+
+                            break;
+                    }
+                });
+            }
+        };
+
+        if(listeners[type]){
+            listeners[type].apply(this, Array.prototype.slice.call(arguments, 1));
+        }
+    };
+
+<span id='grid-method-constructor'>    /**
+</span>     * @constructor grid初始化方法
+     * @param  {Object} config 配置项
+     * @return {Object} grid 返回的grid对象
+     */
+    $.fn.grid = function(config) {
+        if (this.length === 0) {
+            return false;
+        }
+
+        var myGrid = new Grid(this, config);
+
+        return myGrid.gridObj;
+    };
+})(jQuery);
+</pre>
+</body>
+</html>

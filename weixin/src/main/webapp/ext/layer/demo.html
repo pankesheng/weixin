@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	
+	<title>layer--弹窗控件</title>
+	
+	<script type="text/javascript" src="../jquery/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="layer.min.js"></script>
+	
+	<script>
+	
+		function z_openIframe(title, width, height, src) {
+			//如果没有附加参数
+			if (src.indexOf('?') == -1) {
+				src += '?n=' + Math.random();
+			} else {
+				src += '&n=' + Math.random();
+			}
+			
+			$.layer({
+				type: 2,// 0：信息框（默认），1：页面层，2：iframe层，3：加载层，4：tips层。
+				maxmin: true,// 是否输出窗口最小化/全屏/还原按钮。 
+				shadeClose: true,// 用来控制点击遮罩区域是否关闭层。
+				title: title,
+				area: [width+'px', height+'px'],
+				iframe: {
+					src: src
+				}
+			});
+		}
+		
+		function test(){
+			z_openIframe('新增', 400, 300, 'http://www.baidu.com/');
+		}
+	
+	</script>
+</head>
+<body>
+
+	<button onclick="test();">弹窗</button>
+
+</body>
+</html>

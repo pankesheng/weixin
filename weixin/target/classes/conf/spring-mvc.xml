@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+http://www.springframework.org/schema/mvc 
+http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<context:property-placeholder location="classpath:conf/application.properties" ignore-unresolvable="true"/> 
+	
+	<context:component-scan base-package="com.weixin.action" />
+	
+	<!-- DefaultAnnotationHandlerMapping(order=0) & AnnotationMethodHandlerAdapter -->
+	<mvc:annotation-driven />
+	
+	<!-- 匹配“/**”，把对静态资源的访问由SimpleUrlHandlerMapping(order=2147483647)转到DefaultServletHttpRequestHandler(Servlet容器)处理 -->
+	<mvc:default-servlet-handler />
+
+	<bean id="systemContextInterceptor" class="com.zcj.web.springmvc.interceptor.SystemContextInterceptor">
+		<property name="pagesizeKey" value="limit"/>
+		<property name="offsetKey" value="start,offset"/>
+		<property name="defaultPagesize" value="20"/>
+		<property name="iframeCrossDomain" value="false"/>
+	</bean>
+	
+	<!-- 拦截器组；按顺序执行；拦截所有请求，包括静态资源的访问 -->
+	<mvc:interceptors>
+		<ref bean="systemContextInterceptor"/>
+    </mvc:interceptors>
+
+	<!-- 全局的异常处理 -->
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView">
+			<value>500.jsp</value>
+		</property>
+		<property name="defaultStatusCode">
+			<value>500</value>
+		</property>
+		<property name="warnLogCategory">
+			<value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>
+		</property>
+	</bean> 
+
+	<!--通用视图解析器-->  
+    <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView"/>
+        <property name="viewNames" value="*jsp" />
+        <property name="prefix" value=""/>
+        <property name="order" value="1"/>
+    </bean>
+    
+    <!-- 配置freeMarker视图解析器 -->  
+    <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="viewNames" value="*ftl" />
+        <property name="contentType" value="text/html; charset=UTF-8"/>
+        <property name="cache" value="true"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+		<property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="order" value="0"/>  
+    </bean>
+	
+	<!-- freemarker config -->
+    <bean id="freemarkerConfig" name="freemarkerConfig" class="com.zcj.util.freemarker.MyFreeMarkerConfigurer"> 
+        <property name="templateLoaderPath" value=""/> 
+        <property name="defaultEncoding" value="UTF-8" /><!-- 指定编码格式 -->
+        <property name="freemarkerVariables">
+			<map>
+                <entry key="contextPath" value="${configuration.contextPath}"></entry>
+                <entry key="sversion" value="2"></entry><!-- WEB静态样式文件和脚本文件的版本号 -->
+			</map>
+		</property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">0</prop><!-- 模版更新时间 -->
+                <prop key="defaultEncoding">UTF-8</prop>
+                <prop key="url_escaping_charset">UTF-8</prop>
+                <prop key="locale">zh_CN</prop>
+                <prop key="boolean_format">true,false</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="time_format">HH:mm:ss</prop>
+                <prop key="number_format">0.######</prop>
+                <prop key="whitespace_stripping">true</prop><!-- 去掉多余的空格 -->
+                <prop key="classic_compatible">true</prop><!-- 变量为空时返回空串 -->
+                <prop key="auto_import">/WEB-INF/ftl/common/index.ftl as z</prop>
+            </props>
+        </property>
+    </bean> 
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/><!-- 表示用来解析request请求的默认编码格式，当没有指定的时候根据Servlet规范会使用默认值ISO-8859-1。当request自己指明了它的编码格式的时候就会忽略这里指定的defaultEncoding。 -->
+		<!-- <property name="maxUploadSize" value="5368709120"/> --><!-- 上传文件大小限制为5G，5*1024*1024*1024，默认是-1表示无限制 -->
+		<!-- <property name="maxInMemorySize" value="4096"/> --><!-- 设置在文件上传时允许写到内存中的最大值，以字节为单位计算，默认是10240。 -->
+		<!-- <property name="uploadTempDir" value="/Downloads/test"/> --><!-- 设置上传文件时的临时目录，默认是Servlet容器的临时目录。 -->
+	</bean>
+	
+</beans>

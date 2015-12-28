@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>视图面板</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span></span>
+	</div>
+	<div class="body-warp clearfix">
+
+		<!-- 默认配置 -->
+		<div id="panelView" class="panel panelview">
+
+		</div>
+
+		<!-- 默认配置后续再传入data -->
+		<div id="panelView2" class="panel panelview">
+
+		</div>
+		<!-- setting自定义配置 -->
+
+		<div id="panelView3" class="panel panelview">
+
+		</div>
+
+		<!-- 可通过html方式初始化预置-->
+		<div id="panelView4" class="panel panelview">
+			<div class="controls clearfix" data-role="controls"><span class="notice">我是按html直接生成的：</span><a class="btn btn-danger btn-large" data-role="no" href="javascript:void(0);">关闭</a><a class="btn btn-success btn-large" data-role="yes" href="javascript:void(0);">选择</a></div>
+			<div class="content clearfix" data-role="content">
+				<div data-role="node" class="node" id="01">刘备<i data-role="remove" class="iconfont">&#xe628;</i></div>
+				<div data-role="node" class="node" id="02">关羽<i data-role="remove" class="iconfont">&#xe628;</i></div>
+				<div data-role="node" class="node" id="03">张飞<i data-role="remove" class="iconfont">&#xe628;</i></div>
+				<div data-role="node" class="node" id="04">赵云<i data-role="remove" class="iconfont">&#xe628;</i></div>
+				<div data-role="node" class="node" id="05">马超<i data-role="remove" class="iconfont">&#xe628;</i></div>
+				<div data-role="node" class="node" id="06">黄忠<i data-role="remove" class="iconfont">&#xe628;</i></div>
+			</div>
+		</div>
+		
+		<div id="panelView5" class="panel panelview">
+
+		</div>
+
+		<table class="table" id="table"></table>
+
+
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/panelview.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		$(function () {
+
+			/*初始化视图面板*/
+			var data = [
+				{
+					"id": "01",
+					"name": "邱柳明"
+				}, {
+					"id": "02",
+					"name": "陈冬敏",
+					"state": "selected",
+				}, {
+					"id": "03",
+				}, {
+					"name": "潘克胜"
+				}, {
+					"id": "05",
+					"name": "朱建伟",
+					"state": "selected",
+				}, {
+					"id": "06",
+					"name": "严听听"
+				}
+	];
+
+
+			//操作示例：可以setting配置的参数，不配置参数，则产生默认行为
+			var setting = {
+				view: {
+
+					//默认启用控制栏
+					enabledControls: true,
+					//默认启用选项移除按钮
+					enabledRemoveIcon: true,
+
+					//自定义内容区html格式
+					nodeFormater: function (nodeData) {
+						//return 每一项的格式
+						return '<span>ID:' + nodeData.id + '/name:' + nodeData.name + '</span>'
+					},
+
+					//自定义控制器html格式
+					controlsFormater: function () {
+
+						var customControls = '<span class="notice">自定义控制器区功能示例：</span><span class="test" data-role="reload">重载测试数据(并关闭移除按钮)</span><span class="test" data-role="loadnew">载入新数据</span><a class="btn btn-danger btn-large" data-role="no" href="javascript:void(0);">清空</a><a class="btn btn-success btn-large" data-role="yes" href="javascript:void(0);">确定</a><br />获取api：<span class="test" data-role="getallnode">获取所有项的Jq对象</span><span class="test" data-role="getselectednode">获取选中项的Jq对象</span><span class="test" data-role="getnodebyid">获取ID为["01","03"]的Jq对象</span><span class="test" data-role="getalldata">获取所有项的data数据</span><span class="test" data-role="getselecteddata">获取选中项的data数据</span><span class="test" data-role="getdatabyid">获取ID为["01","05"]的data数据</span><br />增加api：<span class="test" data-role="add">增加1个</span><span class="test" data-role="addmore">增加多个</span><span class="test" data-role="addfirst">增加到最前面1个</span><br />删除api：<span class="test" data-role="remove">删除01</span><span class="test" data-role="removemore">删除03 05</span><span class="test" data-role="clean">清除所有项</span><br />替换api：<span class="test" data-role="replace">替换01,05</span><span class="test" data-role="replacemore">替换多个</span><br />改变状态api：<span class="test" data-role="select">选中06</span><span class="test" data-role="selectmore">选中3 06</span><span class="test" data-role="cancelselectmore">取消选中3 06</span><span class="test" data-role="cleanselect">清除所有选中</span><span class="test" data-role="setstate">设置状态1个</span><span class="test" data-role="setstatemore">设置状态多个</span><hr><div class="returnresult">返回内容：<br /></div><hr>'
+						return customControls
+					}
+				},
+
+				callback: {
+
+					//全局载入成功事件
+					loadCallback: function ($addNode, $content, $controls, panelO) {
+						//重载测试数据
+						$controls.find("[data-role='reload']").bind("click", function () {
+							var me = this;
+							setting.view.enabledRemoveIcon = false;
+							setting.callback = null;
+							var returnresult = panelO.load(data, setting, function ($addNode, $content, $controls, panelO) {
+								//回调将其放置在控制器后面
+								$controls.after($content)
+								$(me).text("重载测试数据成功")
+								$(me).css("color", "#00f")
+							});
+
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text("返回内容：返回载入成功的Jq对象");
+							$returnresult.append("<br />" + returnresult.text());
+						});
+
+						//载入新数据
+						$controls.find("[data-role='loadnew']").bind("click", function () {
+							var me = this;
+							var reloadData = [
+								{
+									"id": "01",
+									"name": "总经理",
+									"state": "selected",
+
+				}, {
+									"id": "02",
+									"name": "陈后台",
+				}, {
+									"id": "03",
+									"name": "邹后台",
+				}, {
+									id: "04",
+									"name": "潘后台",
+									"state": "selected",
+				}, {
+									"id": "05",
+									"name": "朱设计",
+				}, {
+									"id": "06",
+									"name": "严设计"
+				}, {
+									"id": "07",
+									"name": "莫前端"
+				}, {
+									"id": "08",
+									"name": "许测试",
+									"state": "selected",
+
+				}, {
+									"id": "09",
+									"name": "鹏移动"
+				}
+	];
+							var returnresult = panelO.load(reloadData, {}, function () {
+								//回调将其放置在控制器后面
+								$controls.after($content)
+								$(me).text("重载测试数据成功")
+								$(me).css("color", "#00f")
+							});
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text("返回内容：返回载入成功的Jq对象");
+							$returnresult.append("<br />" + returnresult.text());
+						});
+
+
+						//获取所有项的Jq对象
+						$controls.find("[data-role='getallnode']").bind("click", function () {
+							var me = this;
+							var returnresult = panelO.getAllNode(function ($allNode, panelO) {
+
+								$(me).text("获取所有项的jq对象成功")
+								$(me).css("color", "#00f")
+							});
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text("返回内容：返回所有项的Jq对象");
+							$returnresult.append("<br />" + returnresult.text());
+						});
+
+
+						//获取选中项的文本
+						$controls.find("[data-role='getselectednode']").bind("click", function () {
+							var me = this;
+							var returnresult = panelO.getSelectedNode(function ($selectedNode, panelO) {
+								$(me).text("获取选中项jq对象成功")
+								$(me).css("color", "#00f")
+							});
+
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text("返回内容：返回选中项的Jq对象");
+							$returnresult.append("<br />" + returnresult.text());
+						});
+
+						//获取ID为["01","03"]的Jq对象
+						$controls.find("[data-role='getnodebyid']").bind("click", function () {
+							var me = this;
+							var returnresult = panelO.getNodeById(["01", "03"], function ($selectedNode, panelO) {
+								$(me).text('获取ID为["01","03"]的Jq对象成功')
+								$(me).css("color", "#00f")
+							});
+
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text('返回内容：返回ID为["01","03"]的Jq对象');
+							$returnresult.append("<br />" + returnresult.text());
+						});
+
+
+						//获取所有数据
+						$controls.find("[data-role='getalldata']").bind("click", function () {
+							var me = this;
+							var returnresult = panelO.getAllData(function ($selectedNode, panelO) {
+								$(me).text('获取所有数据成功')
+								$(me).css("color", "#00f")
+							});
+
+							var returnresulthtml = "";
+							for (var i = 0; i < returnresult.length; i++) {
+								for (var j in returnresult[i]) {
+									returnresulthtml += "<span>" + j + ":" + returnresult[i][j] + ",</span>";
+								}
+							}
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text('返回内容：返回所有数据');
+							$returnresult.append("<br />" + returnresulthtml);
+						});
+
+						//获取选中的数据
+						$controls.find("[data-role='getselecteddata']").bind("click", function () {
+							var me = this;
+							var returnresult = panelO.getSelectedData(function ($selectedNode, panelO) {
+								$(me).text('获取选中的数据成功')
+								$(me).css("color", "#00f")
+							});
+
+							var returnresulthtml = "";
+							for (var i = 0; i < returnresult.length; i++) {
+								for (var j in returnresult[i]) {
+									returnresulthtml += "<span>" + j + ":" + returnresult[i][j] + ",</span>";
+								}
+							}
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text('返回内容：返回所有选中的数据');
+							$returnresult.append("<br />" + returnresulthtml);
+						});
+
+
+						//获取ID为["01","05"]的Jq对象
+						$controls.find("[data-role='getdatabyid']").bind("click", function () {
+							var me = this;
+							//可以直接传入id，也可以传入jq对象获取数据
+							var returnresult = panelO.getDataById(panelO.getNodeById(["01", "05"]), function ($selectedNode, panelO) {
+								$(me).text('获取ID为["01","05"]的数据成功')
+								$(me).css("color", "#00f")
+							});
+
+							var returnresulthtml = "";
+							for (var i = 0; i < returnresult.length; i++) {
+								for (var j in returnresult[i]) {
+									returnresulthtml += "<span>" + j + ":" + returnresult[i][j] + ",</span>";
+								}
+							}
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text('返回内容：返回ID为["01","05"]的数据');
+							$returnresult.append("<br />" + returnresulthtml);
+						});
+
+
+						//增加1个
+						$controls.find("[data-role='add']").bind("click", function (event) {
+							var me = this;
+							var returnresult = panelO.addNode({
+								"id": "099",
+								"name": "增加1个"
+							}, null, function ($addNode, panelO) {
+								panelO.setState($addNode, "blue", "{border:1px solid blue;color:blue}");
+								$(me).text("增加1个成功")
+								$(me).css("color", "#00f")
+							});
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text("返回内容：返回新增的Jq对象");
+							$returnresult.append("<br />" + returnresult.text());
+						});
+
+						//增加多个
+						$controls.find("[data-role='addmore']").bind("click", function () {
+							var me = this;
+							var returnresult = panelO.addNode([{
+								"id": "100",
+								"name": "增加多个1"
+							}, {
+								"id": "099",
+								"name": "增加多个2"
+							}], null, function ($addNode, panelO) {
+								panelO.setState($addNode, "aqua", "{border:1px solid aqua;color:aqua}");
+								$(me).text("增加多个成功")
+								$(me).css("color", "#00f")
+							});
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text("返回内容：返回新增的Jq对象");
+							$returnresult.append("<br />" + returnresult.text());
+						});
+
+						//增加到最前面
+						$controls.find("[data-role='addfirst']").bind("click", function () {
+							var me = this;
+							var returnresult = panelO.addNode([{
+								"id": "100",
+								"name": "我在前面"
+							}], 0, function ($addNode, panelO) {
+								panelO.setState($addNode, "pink", "{border:1px solid rgb(182, 110, 207);color:rgb(182, 110, 207)}");
+								$(me).text("增加到最前面成功")
+								$(me).css("color", "#00f")
+							});
+							var $returnresult = panelO.$controls.find(".returnresult");
+							$returnresult.text("返回内容：返回新增的Jq对象");
+							$returnresult.append("<br />" + returnresult.text());
+						});
+
+						//替换05
+						$controls.find("[data-role='replace']").bind("click", function () {
+							var me = this;
+							panelO.replaceNode("05", [{
+								"id": "100",
+								"name": "替换1个"
+							}], function ($removeNode, panelO) {
+								console.log($removeNode)
+								$(me).text("替换05成功")
+								$(me).css("color", "#00f")
+							});
+						});
+
+						//替换01，05
+						$controls.find("[data-role='replacemore']").bind("click", function () {
+							var me = this;
+							panelO.replaceNode(["01", "05"], [{
+								"id": "100",
+								"name": "替换1个"
+							}], function ($removeNode, panelO) {
+								console.log($removeNode)
+								$(me).text("替换01,05成功")
+								$(me).css("color", "#00f")
+							});
+						});
+
+
+
+
+						//删除ID为100(按ID删除)
+						$controls.find("[data-role='remove']").bind("click", function () {
+							var me = this;
+
+							panelO.removeNode("01", function ($removeNode, panelO) {
+								$(me).text("删除ID为01成功")
+								$(me).css("color", "#00f")
+
+							});
+						});
+
+						//删除多个ID为["01","03"](按ID删除)
+						$controls.find("[data-role='removemore']").bind("click", function () {
+							var me = this;
+							panelO.removeNode(["01", "03"], function ($removeNode, panelO) {
+								$(me).text("删除多个ID为['03','05']成功")
+								$(me).css("color", "#00f")
+							});
+						});
+
+						//清除所有
+						$controls.find("[data-role='clean']").bind("click", function () {
+							var me = this;
+							panelO.cleanAllNode(function ($removeNode, panelO) {
+								$(me).text("清除所有成功")
+								$(me).css("color", "#00f")
+							});
+						});
+
+						//选中06
+						$controls.find("[data-role='select']").bind("click", function () {
+							var me = this;
+
+							panelO.selectNode("06", "node selected", function ($selectNode, panelO) {
+								$(me).text("选中06成功")
+								$(me).css("color", "#00f")
+
+							});
+						});
+
+						//选中3,06
+						$controls.find("[data-role='selectmore']").bind("click", function () {
+							var me = this;
+							panelO.selectNode(["3", "06"], "node selected", function ($selectNode, panelO) {
+								$(me).text("选中3,06成功")
+								$(me).css("color", "#00f")
+							});
+						});
+
+
+						//取消选中3,06
+						$controls.find("[data-role='cancelselectmore']").bind("click", function () {
+							var me = this;
+							panelO.cancelSelectedNode(["3", "06"], function ($cancelSelectedNode, panelO) {
+								$(me).text("取消选中3,06成功")
+								$(me).css("color", "#00f")
+							});
+						});
+
+						//取消所有选中
+						$controls.find("[data-role='cleanselect']").bind("click", function () {
+							var me = this;
+							panelO.cleanSelectedNode(function ($cancelSelectedNode, panelO) {
+								$(me).text("取消所有选中成功")
+								$(me).css("color", "#00f")
+							});
+						});
+
+					},
+
+					//选项点击事件
+					nodeOnClick: function ($currentNode, $allNode, panelO) {
+						panelO.selectNode($currentNode.data("data").id, "node selected");
+
+					},
+
+					//移除点击事件
+					removeOnClick: function ($self, $currentNode, $allNode, panelO) {
+						panelO.selectNode($currentNode.data("data").id, "node disabled");
+
+					},
+
+					//默认确定事件
+					yesCallback: function ($self, $allNode, panelO) {
+						$self.text("OK");
+						var d = panelO.getAllData();
+						panelO.$me.append("<div>执行了确定</div>")
+
+					},
+
+					//默认取消事件
+					noCallback: function ($self, $allNode, panelO) {
+						$self.text("Cancel");
+						panelO.cleanAllNode();
+						panelO.$me.append("<div>执行了清空</div>")
+
+					},
+
+				}
+			};
+
+			//例子1：未传入data
+			var panelviewport = $("#panelView").panelview();
+
+			//例子2：传入data
+			//panelviewport2 = $("#panelView2").panelview(data);
+			//OR
+			var panelviewport2 = $("#panelView2").panelview();
+			panelviewport2.load(data);
+
+			//例子3
+			var panelviewport3 = $("#panelView3").panelview(data, setting, function ($addNode, $content, $controls, me) {
+				//实例化成功后的回调
+
+				me.$me.append("<hr /><div>我是载入后的回调：最后的一根救命稻草</div>")
+
+			});
+
+			//例子4
+
+			var panelviewport4 = $("#panelView4").panelview();
+
+			/*初始化表格*/
+			var grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "兰庆伟",
+							"unit": "江南物业",
+							"sex": "男",
+							"phone": "2012030620",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "佟冬蕾",
+							"unit": "滨江物业",
+							"sex": "女",
+							"phone": "2012110417",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "曹宽",
+							"unit": "农业开发公司",
+							"sex": "男",
+							"phone": "2012061025",
+						}],
+						"total": 15
+					}
+				},
+
+				tool: {
+					pagingBar: true
+				},
+				columns: [{
+					title: '字典名称',
+					dataIndex: 'name',
+                }, {
+					title: '字典值',
+					dataIndex: 'unit',
+                }, {
+					title: '项目列表',
+					dataIndex: 'sex'
+                }, {
+					title: '是否系统值',
+					dataIndex: 'role',
+					renderer: function (cellData, rowData) {
+						roleValue = cellData == 2 ? '是' : '否';
+						return '<span class="red">' + roleValue + '</span>';
+					}
+                }, {
+					title: '操作',
+					//width: 300,
+					nowrap: true,
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+
+						//单个按钮
+						var preview = '<a class="btn btn-primary" href="javascript:void(0);" onclick="viewItem(' + rowIndex + ');">预览</a>\n'
+						var edit = '<a class="btn btn-info" href="javascript:void(0);" onclick="editItem(' + rowIndex + ');">编辑</a>\n';
+						var remove = '<a class="btn btn-danger" href="javascript:void(0);" onclick="delItem(' + rowIndex + ');">删除</a>\n';
+
+						return preview + edit + remove
+					}
+         }]
+			});
+
+
+			//例子5:封装表格和面板视图的的联动事件
+			var panelviewport5 = $("#panelView5").panelview();
+
+			gridPanelview(grid, panelviewport5);
+			//
+		});
+
+		//预览事件
+		function viewItem(rowIndex) {
+			showAlert('确认要执行此操作，可能会带来未知的数据异常', function (index) {
+				//layer.close(index);
+			});
+		}
+
+		//编辑事件
+		function editItem(rowIndex) {
+			//var index = showIframe('编辑', './DictBaseSetAdd.html', 800, 352);
+		}
+
+		//删除事件
+		function removeItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../jquery.mobile.icons-1.4.5.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../theme-classic.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../jquery.mobile.structure-1.4.5.min.css" media="screen" />
+<script type="text/javascript" src="../../jquery/jquery-1.8.1.min.js"></script>
+<script>
+$(document).bind("mobileinit", function() {
+	$.mobile.ajaxEnabled=false;
+});
+</script>
+<script type="text/javascript" src="../jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+jQuery(function(){
+	jQuery(window).load(function(){
+		var maxWidth = $(window).width() - 20;
+		$(".zdetail_img img").each(function(i){
+			$(this).parents("p").css({"text-indent": "0"});
+			if (this.width > maxWidth) {
+				$(this).css({"width": "100%", "height": "auto", "display": "block"});
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<div data-role="page" id="detail_jq_page" data-title="瓯海教育网 - 新居民子女就读公办学校需具备条件" data-theme="c">
+		<div data-role="header" data-theme="b">
+			<a data-role="button" data-icon="back" data-iconpos="notext" data-rel="back">返回</a>
+			<h1>瓯海教育网</h1>
+		</div>
+		<div data-role="content">
+			<div class="ui-body ui-body-c ui-corner-all">
+				<h3 align="center">新居民子女就读公办学校需具备条件</h3>
+				<p style="color: #666666">2015-12-12 李某某</p>
+				<font size="4" class="zdetail_img">
+					<IMG border=0 src="http://www.ohedu.net/ewebeditor/sysimage/icon16/doc.gif">关于做好2015年秋季教师资格认定网上报名和现场确认工作的通知.doc
+					<p><img alt="" src="http://www.ohedu.net/ewebeditor/uploadfile/201509/20150923140158848_s.jpg"></p>
+					<p><img alt="" src="http://www.ohedu.net/ewebeditor/uploadfile/201509/20150923140236265_s.jpg"></p>
+					<p align="center" style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-align: justify; line-height: 21px; text-indent: 24pt; margin: 0cm 0cm 0pt; font-family: 'Times New Roman'; font-size: 10.5pt;"><span style="line-height: 24px; font-family: 宋体; background-color: white; font-size: 12pt; background-position: initial initial; background-repeat: initial initial;"><img border="0" align="center" src="http://www.ohedu.net/ewebeditor/uploadfile/201509/20150930180933732_s.jpg" style="width: 100%; height: auto;"></span></p>
+					<p align="center"><img alt="" border="0" src="http://zxx.ohedu.cn/zxxos/gxzxx/uploadfile/2015924101337690.jpg" onload="javascript:if(this.width&gt;screen.width-333)this.width=screen.width-333"><br></p>
+				
+					<!-- JiaThis Button BEGIN -->
+					<div class="jiathis_style_32x32">
+						<a class="jiathis_button_qzone"></a>
+						<a class="jiathis_button_tsina"></a>
+						<a class="jiathis_button_tqq"></a>
+						<a class="jiathis_button_weixin"></a>
+						<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+						<a class="jiathis_counter_style"></a>
+					</div>
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+					<!-- JiaThis Button END -->
+					
+				</font>
+			</div>
+		</div>
+		<div data-role="footer" data-theme="b">
+			<h4>主办单位：温州市瓯海区教育局</h4>
+		</div>
+	</div>
+</body>
+</html>

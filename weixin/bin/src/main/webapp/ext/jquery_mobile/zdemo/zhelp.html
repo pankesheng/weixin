@@ -1,0 +1,198 @@
+<!-- http://www.w3school.com.cn/jquerymobile/ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../jquery.mobile-1.4.5.min.css" media="screen" />
+<script type="text/javascript" src="../../jquery/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../jquery.mobile-1.4.5.min.js"></script>
+<script>
+// 页面已初始化并完善样式设置后发生
+$(document).on("pageinit","#pageone",function(){
+
+	$("p").on("tap",function(){
+		alert("点击了我");
+	});
+
+	$("p").on("taphold",function(){
+		alert("长按了1秒");
+	});
+	
+	$("p").on("swipe",function(){
+		alert("水平滑动了30px");
+	});
+	
+	$("p").on("swipeleft",function(){
+		alert("向左滑动了30px");
+	});
+	
+	$("p").on("swiperight",function(){
+	  	alert("向右滑动了30px");
+	});
+});
+
+$(document).on("scrollstart",function(){
+	// alert("开始滚动！");
+});
+
+$(document).on("scrollstop",function(){
+	// alert("结束滚动！");
+});
+
+// 切换屏幕方向
+$(window).on("orientationchange",function(){
+	if(window.orientation == 0) {
+	  	alert("切换到了竖屏");
+	}
+	else {
+		alert("切换到了横屏");
+	}
+});
+</script>
+</head>
+<body>
+	<div data-role="page" id="pageone" data-title="测试页面">
+	
+		<!-- 页眉
+			data-position="inline|fixed"：页眉的显示方式（默认|固定在顶部）
+			data-fullscreen="true"：透明，需配合data-position="fixed"使用
+		 -->
+		<div data-role="header">
+			<h1>在此处写入标题</h1>
+			
+			<!-- 导航栏（页眉、内容、页脚中都可添加导航栏）
+				data-icon="arrow-l|arrow-r|arrow-u|arrow-d|plus(+)|minus(-)|delete|check(√)|info|forward|refresh|gear|home|back|search|grid|star|alert"：用于<a>标签；设置按钮图标
+				data-iconpos="top|right|bottom|left"：用于<div>标签；设置所有按钮图标的位置
+				class="ui-btn-active ui-state-persist"：用于<a>标签；设置选中状态
+			 -->
+			<div data-role="navbar" data-iconpos="left">
+			  <ul>
+			    <li><a href="#" data-icon="home">首页</a></li>
+			    <li><a href="#" data-icon="search">页面二</a></li>
+			    <li><a href="#" data-icon="info" class="ui-btn-active ui-state-persist">页面3</a></li>
+			   </ul>
+			</div>
+			
+		</div>
+		<div data-role="content">
+		
+			<!-- 打开新页面方式
+				data-rel="back | dialog | external | popup"：后退 | 弹窗(不在历史记录中) | 链接到另一域 | 打开弹出窗口
+				data-transition="flip|flow|pop|slide|slidedown|slidefade|slideup|turn|none"：页面切换效果（翻页|缩小消失|弹窗|滑动|...）
+			 -->
+			<a href="#pagetwo" data-rel="dialog" data-transition="flip">弹出窗口</a>
+			
+			<br/>----------------
+			
+			<!-- 按钮
+				data-corners="false"：按钮不需要圆角
+				data-icon="arrow-l|arrow-r|delete|info|home|back|search|grid|..."：设置按钮的图标
+				data-iconpos="top|right|bottom|left"：设置按钮图标的位置
+				data-iconpos="notext"：按钮只显示图标
+				data-inline="true"：最小宽度（默认占据屏幕的全部宽度）
+				data-mini="true"：改成小型按钮
+				data-rel="back"：后退按钮
+				data-shadow="false"：取消按钮的阴影
+				class="ui-btn-right"：如果只在页眉右侧显示一个按钮，则需要加此属性到按钮标签上
+			 -->
+			<a href="#" data-role="button">按钮</a>
+			
+			<!-- 按钮组
+				data-mini="true"：改成小型按钮
+				data-type="horizontal|vertical"：多个按钮横向|纵向显示
+			 -->
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="#" data-role="button">按钮 1</a>
+				<a href="#" data-role="button">按钮 2</a>
+				<a href="#" data-role="button">按钮 3</a>
+			</div>
+			
+			<br/>----------------
+			
+			<!-- 可折叠
+				data-collapsed="false"：打开折叠
+				data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u"：修改图标
+				data-iconpos="top|right|bottom|left"：设置按钮图标的位置
+				data-inset="false"：去掉圆角
+				data-mini="true"：小尺寸
+			 -->
+			<div data-role="collapsible">
+			  <h1>点击我 - 我可以折叠！</h1>
+			  <p>我是可折叠的内容。</p>
+			</div>
+			
+			<br/>----------------
+			
+			<!-- 可折叠集合
+				data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u"：修改图标
+				data-iconpos="top|right|bottom|left"：设置按钮图标的位置
+				data-inset="false"：去掉所有圆角
+				data-mini="true"：小尺寸
+			 -->
+			<div data-role="collapsible-set" data-inset="false">
+			  <div data-role="collapsible">
+			    <h1>点击我 - 我可以折叠！</h1>
+			    <p>我是被展开的内容。</p>
+			  </div>
+			  <div data-role="collapsible">
+			    <h1>点击我 - 我可以折叠！</h1>
+			    <p>我是被展开的内容。</p>
+			  </div>
+			</div>
+			
+			<br/>----------------
+			
+			<!-- 列表
+				如果需要显示编号，则把ul改成ol
+				如需为列表添加圆角和外边距，请向<ul>元素添加 data-inset="true" 属性
+				如需规定列表分隔符，请向<li>元素添加 data-role="list-divider" 属性
+				如需自动通过首字母添加分隔符，请向<ul>元素添加 data-autodividers="true" 属性
+				如果需要修改图标，请向<li>元素添加 data-icon="arrow-l|arrow-r|delete|info|home|back|search|grid|..." 属性
+				data-filter="true" data-filter-placeholder="请输入姓名"：用于<ul>；提供搜索功能
+				data-filtertext="zou"：用于<li>；搜索时匹配的文本
+			 -->
+			<ul data-role="listview">
+			  <li data-role="list-divider">列表项</li>
+		      <li><a href="#">列表项</a></li>
+		      <li><a href="#">列表项</a></li>
+		      <li data-role="list-divider">列表项</li>
+		      <li><a href="#">列表项</a></li>
+		      <li><a href="#">列表项</a></li>
+		    </ul>
+		    
+		    <br/>----------------
+		    
+		    <!-- 列表内容 -->
+		    <ul data-role="listview"><!-- 如果分列(两个<a>标签)，则添加data-split-icon="gear"用来修改默认图标 -->
+		      <li>
+		      	<a href="#">
+					<img src="http://www.baidu.com/img/bdlogo.gif"/><!-- 图片默认大小：80*80px；可通过属性class="ui-li-icon"改成16*16px -->
+					<h3>第一行</h3>
+					<p><strong>第二行</strong></p>
+					<p>第三行</p>
+					<p class="ui-li-aside"><strong>右边内容</strong></p>
+					<span class="ui-li-count">12</span>
+				</a>
+				<a href="#">查看</a>
+			  </li>
+		    </ul>
+		    
+		    <p>事件测试</p>
+		    <p>事件测试</p>
+		    <p>事件测试</p>
+			
+		</div>
+		<div data-role="footer">
+			<h1>在此处写入页脚文本</h1>
+		</div>
+	</div>
+	
+	<div data-role="page" id="pagetwo">
+		<div data-role="content">
+			<a href="#pageone">回到主页面</a>
+		</div>
+	</div>
+	
+</body>
+</html>
