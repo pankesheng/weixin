@@ -14,6 +14,17 @@ public class Article {
     // 点击图文消息跳转链接  
     private String Url;
     
+    public Article() {
+		// TODO Auto-generated constructor stub
+	}
+	public Article(String title, String description, String picUrl, String url) {
+		super();
+		Title = title;
+		Description = description;
+		PicUrl = picUrl;
+		Url = url;
+	}
+
 
 	public String getTitle() {
 		return Title;

@@ -1,10 +1,16 @@
 package com.weixin.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
+
+import com.weixin.message.resp.Article;
+import com.weixin.message.resp.NewsMessage;
 import com.weixin.message.resp.TextMessage;
 import com.weixin.util.MessageUtil;
 /** 
@@ -36,7 +42,6 @@ public class CoreService {
             // 消息类型  
             String msgType = requestMap.get("MsgType");  
             TextMessage textMessage = new TextMessage();  
-           
             // 文本消息  
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {  
                 respContent = "您发送的是文本消息！"; 
@@ -64,7 +69,22 @@ public class CoreService {
                     // 将文本消息对象转换成xml字符串  
                     respMessage = MessageUtil.textMessageToXml(textMessage);
                 }else if(content.equals("2")){
-                	
+                	// 创建图文消息  
+                    NewsMessage newsMessage = new NewsMessage();  
+                	textMessage.setToUserName(fromUserName);  
+                    textMessage.setFromUserName(toUserName);  
+                    textMessage.setCreateTime(new Date().getTime()); 
+                    textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);  
+                    // 用户发什么QQ表情，就返回什么QQ表情  
+                    textMessage.setContent(content);  
+                    // 将文本消息对象转换成xml字符串  
+                    respMessage = MessageUtil.textMessageToXml(textMessage);
+                    List<Article> articleList = new ArrayList<Article>();
+                    articleList.add(new Article("百度", "2222", "", "http://www.baidu.com"));  
+                    articleList.add(new Article("网易", "2222", "", "http://www.163.com"));  
+                    newsMessage.setArticleCount(articleList.size());  
+                    newsMessage.setArticles(articleList);  
+                    respMessage = MessageUtil.newsMessageToXml(newsMessage);  
                 }
             }  
             // 图片消息  
