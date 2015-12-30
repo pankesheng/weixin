@@ -148,7 +148,6 @@ public class WeixinUtil {
                 
             }  
         }  
-      
         return result;  
     }  
 

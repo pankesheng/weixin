@@ -7,15 +7,14 @@ package com.weixin.message.resp;
  */
 public class MusicMessage extends BaseMessage{
 	 // 音乐  
-    private Music music;
-    
+    private Music Music;
+
 	public Music getMusic() {
-		return music;
+		return Music;
 	}
 
 	public void setMusic(Music music) {
-		this.music = music;
+		Music = music;
 	}
-    
     
 }

@@ -65,16 +65,14 @@ public class CoreService {
                     textMessage.setContent(content);  
                     // 将文本消息对象转换成xml字符串  
                     respMessage = MessageUtil.textMessageToXml(textMessage);  
-                }else if(content.equals("1")){
+                }else if(content.equals("文章")){
                     newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);  
                     List<Article> articleList = new ArrayList<Article>();
-                    articleList.add(new Article("百度", "百度", "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png", "http://www.baidu.com"));  
-                    articleList.add(new Article("谷歌", "谷歌", "http://www.google.cn/landing/cnexp/google-search.png", "http://www.google.cn/")); 
-                    articleList.add(new Article("新浪", "新浪", "http://search.sina.com.cn/images/logo_new.png", "http://search.sina.com.cn/"));
+                    articleList.add(new Article("导体的电阻", "导体的电阻", "http://vodxz.ohedu.net/group1/M01/02/51/CoMME1aCP1yAXg6FAAHB2Gbslpo759.jpg", "http://zk.ohedu.net/course/player.action?subjectId=&courseId=1468362388638720"));
                     newsMessage.setArticleCount(articleList.size());  
                     newsMessage.setArticles(articleList);  
                     respMessage = MessageUtil.newsMessageToXml(newsMessage);  
-                }else if(content.equals("2")){
+                }else if(content.equals("音乐")){
                     MusicMessage musicMessage = new MusicMessage();
                     musicMessage.setToUserName(fromUserName);  
                     musicMessage.setFromUserName(toUserName);  
@@ -84,14 +82,14 @@ public class CoreService {
                     Music music = new Music();
                     music.setTitle("再给我放一首");
                     music.setDescription("再给我放一首");
-                    music.sethQMusicUrl("http://sc.111ttt.com/up/mp3/316747/3DD9D473452F8A6C8CFB771614636B31.mp3");
+                    music.setHQMusicUrl("http://sc.111ttt.com/up/mp3/316747/3DD9D473452F8A6C8CFB771614636B31.mp3");
                     music.setMusicUrl("http://sc.111ttt.com/up/mp3/316747/3DD9D473452F8A6C8CFB771614636B31.mp3");
                     
                     musicMessage.setMusic(music);
                     respMessage = MessageUtil.musicMessageToXml(musicMessage);
                 }else{
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                    textMessage.setContent("功能菜单：\n1、网站链接    2、天气预报");  
+                    textMessage.setContent("暂时只有输入“音乐”，“文章”，以及单个表情的时候才有返回。");  
                     respMessage = MessageUtil.textMessageToXml(textMessage);
                 }
             }  
@@ -164,7 +162,7 @@ public class CoreService {
 	    if (m.matches()) {  
 	        result = true;  
 	    }  
-	    return result;  
+	    return result;
 	}  
 
 }
