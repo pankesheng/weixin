@@ -82,8 +82,10 @@ public class WeixinUtil {
             httpUrlConn.disconnect();  
             jsonObject = JSONObject.fromObject(buffer.toString());  
         } catch (ConnectException ce) {  
+        	System.out.println("Weixin server connection timed out.");
             log.error("Weixin server connection timed out.");  
-        } catch (Exception e) {  
+        } catch (Exception e) { 
+        	System.out.println("https request error:{}"+e);
             log.error("https request error:{}", e);  
         }  
         return jsonObject;  
@@ -112,6 +114,7 @@ public class WeixinUtil {
             } catch (JSONException e) {  
                 accessToken = null;  
                 // 获取token失败  
+                System.out.println("获取token失败 errcode:{} errmsg:{}"+jsonObject.getInt("errcode")+jsonObject.getString("errmsg"));
                 log.error("获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));  
             }  
         }  
@@ -139,8 +142,10 @@ public class WeixinUtil {
       
         if (null != jsonObject) {  
             if (0 != jsonObject.getInt("errcode")) {  
-                result = jsonObject.getInt("errcode");  
+                result = jsonObject.getInt("errcode"); 
+                System.out.println("创建菜单失败 errcode:{} errmsg:{}"+ jsonObject.getInt("errcode")+jsonObject.getString("errmsg"));
                 log.error("创建菜单失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));  
+                
             }  
         }  
       

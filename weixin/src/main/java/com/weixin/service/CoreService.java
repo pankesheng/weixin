@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import com.weixin.message.resp.Article;
+import com.weixin.message.resp.Music;
+import com.weixin.message.resp.MusicMessage;
 import com.weixin.message.resp.NewsMessage;
 import com.weixin.message.resp.TextMessage;
 import com.weixin.util.MessageUtil;
@@ -25,7 +27,6 @@ public class CoreService {
      * @return 
      */  
 	
-	@SuppressWarnings("unused")
 	public static String processRequest(HttpServletRequest request) {
 		String respMessage = null;  
         try {  
@@ -73,6 +74,21 @@ public class CoreService {
                     newsMessage.setArticleCount(articleList.size());  
                     newsMessage.setArticles(articleList);  
                     respMessage = MessageUtil.newsMessageToXml(newsMessage);  
+                }else if(content.equals("2")){
+                    MusicMessage musicMessage = new MusicMessage();
+                    musicMessage.setToUserName(fromUserName);  
+                    musicMessage.setFromUserName(toUserName);  
+                    musicMessage.setCreateTime(new Date().getTime()); 
+                    musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
+                    
+                    Music music = new Music();
+                    music.setTitle("再给我放一首");
+                    music.setDescription("再给我放一首");
+                    music.sethQMusicUrl("http://sc.111ttt.com/up/mp3/316747/3DD9D473452F8A6C8CFB771614636B31.mp3");
+                    music.setMusicUrl("http://sc.111ttt.com/up/mp3/316747/3DD9D473452F8A6C8CFB771614636B31.mp3");
+                    
+                    musicMessage.setMusic(music);
+                    respMessage = MessageUtil.musicMessageToXml(musicMessage);
                 }else{
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
                     textMessage.setContent("功能菜单：\n1、网站链接    2、天气预报");  
@@ -119,11 +135,7 @@ public class CoreService {
                 	String eventKey = requestMap.get("EventKey");
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
                     if(eventKey.equals("11")){
-                    	textMessage.setContent("你点击了菜单--生活助手--天气预报");  
-                    }else if(eventKey.equals("12")){
-                    	textMessage.setContent("你点击了菜单--生活服务--公交查询");
-                    }else if(eventKey.equals("13")){
-                    	textMessage.setContent("你点击了菜单--生活服务--周边搜索");
+                    	textMessage.setContent("");
                     }
                     respMessage = MessageUtil.textMessageToXml(textMessage);
                 }  

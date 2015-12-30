@@ -12,6 +12,7 @@ public class BaseMessage {
     private long CreateTime;  
     // 消息类型（text/music/news）  
     private String MsgType;
+	
 	public String getToUserName() {
 		return ToUserName;
 	}
