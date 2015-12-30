@@ -94,24 +94,37 @@ public class CoreService {
                 }
             }  
             // 图片消息  
-            else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {  
-                respContent = "您发送的是图片消息！";  
-                textMessage.setContent(respContent);  
+            else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
+            	String picUrl = requestMap.get("PicUrl"); 
+            	respContent = "您发送的是图片消息！";  
+                textMessage.setContent(respContent+"(图片地址:"+picUrl+")");
+                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
+                respMessage = MessageUtil.textMessageToXml(textMessage);
             }  
             // 地理位置消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)) {  
-                respContent = "您发送的是地理位置消息！"; 
-                textMessage.setContent(respContent);   
+            	String label = requestMap.get("Label");
+            	String scale = requestMap.get("Scale");
+            	String location_x = requestMap.get("Location_X");
+			    String location_y = requestMap.get("Location_Y");
+            	respContent = "您发送的是地理位置消息！";
+                textMessage.setContent(respContent+"(位置信息："+label+",缩放大小："+scale+",地理纬度："+location_x+",地理经度："+location_y+")");   
+                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
+                respMessage = MessageUtil.textMessageToXml(textMessage);
             }  
             // 链接消息  
-            else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) {  
+            else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) {
                 respContent = "您发送的是链接消息！";  
-                textMessage.setContent(respContent);  
+                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
+                respMessage = MessageUtil.textMessageToXml(textMessage);
             }  
             // 音频消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) {  
+            	String mediaId = requestMap.get("MediaId");
                 respContent = "您发送的是音频消息！";  
                 textMessage.setContent(respContent);  
+                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
+                respMessage = MessageUtil.textMessageToXml(textMessage);
             }  
             // 事件推送  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {  
