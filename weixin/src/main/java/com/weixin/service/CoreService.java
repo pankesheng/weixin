@@ -122,7 +122,7 @@ public class CoreService {
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) {  
             	String mediaId = requestMap.get("MediaId");
                 respContent = "您发送的是音频消息！";  
-                textMessage.setContent(respContent);  
+                textMessage.setContent(respContent+"(媒体id:"+mediaId+")");  
                 textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
                 respMessage = MessageUtil.textMessageToXml(textMessage);
             }  
