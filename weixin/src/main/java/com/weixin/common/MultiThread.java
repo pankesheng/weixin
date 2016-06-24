@@ -3,7 +3,8 @@ import java.io.*;
 //多线程编程
 public class MultiThread    
 {
-    public static void main(String args[])
+    @SuppressWarnings("deprecation")
+	public static void main(String args[])
     {
         System.out.println("我是主线程!");
         //下面创建线程实例thread1

@@ -15,9 +15,9 @@ public class ParameterUtil {
 	public static String appSecret = "f7f6b851edb551403b9bf66e1f41297b";
 	
 	
-	public final static String MCH_ID = "";//商户号
-	public final static String API_KEY = "";//API密钥
-	public final static String SIGN_TYPE = "MD5";//签名加密方式
+	public final static String MCH_ID = "12412412412";//商户号
+	public final static String API_KEY = "4532452345";//API密钥
+	public final static String SIGN_TYPE = "SHA1";//签名加密方式
 	public final static String CERT_PATH = "D:/apiclient_cert.p12";//微信支付证书存放路径地址
 	//微信支付统一接口的回调action
 	public final static String NOTIFY_URL = "http://14.117.25.80:8016/wxweb/config/pay!paySuccess.action";
