@@ -11,7 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.weixin.pojo.SNSUserInfo;
+import com.weixin.pojo.WeChatOauth2Token;
 import com.weixin.service.CoreService;
+import com.weixin.util.AdvancedUtil;
+import com.weixin.util.ParameterUtil;
 import com.weixin.util.SignUtil;
 
 @Controller
@@ -50,5 +54,26 @@ public class WeixinController {
         out.print(respMessage); 
         System.out.println(respMessage);
         out.close();  
-     }  
+    }  
+	
+	@RequestMapping(value="/oauth2")
+	public void oauth2(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("gb2312");
+		response.setCharacterEncoding("gb2312");//[/align][align=left]  // 用户同意授权后，能获取到code
+		String code = request.getParameter("code");//[/align][align=left]  // 用户同意授权
+		if (!"authdeny".equals(code)) {
+			// 获取网页授权access_token
+			WeChatOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken(ParameterUtil.appId, ParameterUtil.appSecret, code);
+			// 网页授权接口访问凭证
+			String accessToken = weixinOauth2Token.getAccessToken();
+			// 用户标识
+			String openId = weixinOauth2Token.getOpenId();
+			// 获取用户信息
+			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken, openId);//[/align][align=left]   // 设置要传递的参数
+			request.setAttribute("snsUserInfo", snsUserInfo);
+		}
+		// 跳转到index2.jsp
+		request.getRequestDispatcher("index2.jsp").forward(request, response);
+	}
+	
 }

@@ -1,4 +1,5 @@
-package com.weixin.pojo;
+package com.weixin.menu;
+
 
 public class Menu {
 	private Button[] button;  

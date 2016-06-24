@@ -1,4 +1,5 @@
-package com.weixin.pojo;
+package com.weixin.menu;
+
 
 /**
  * 一级菜单button

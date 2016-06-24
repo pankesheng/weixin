@@ -19,8 +19,8 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.weixin.menu.Menu;
 import com.weixin.pojo.AccessToken;
-import com.weixin.pojo.Menu;
 
 public class WeixinUtil {
 	private static Logger log = LoggerFactory.getLogger(WeixinUtil.class);  
@@ -108,9 +108,9 @@ public class WeixinUtil {
         // 如果请求成功  
         if (null != jsonObject) {  
             try {  
-                accessToken = new AccessToken();  
-                accessToken.setToken(jsonObject.getString("access_token"));  
-                accessToken.setExpiresIn(jsonObject.getInt("expires_in"));  
+                accessToken = new AccessToken();
+                accessToken.setAccess_token(jsonObject.getString("access_token"));
+                accessToken.setExpires_in(jsonObject.getString("expires_in"));
             } catch (JSONException e) {  
                 accessToken = null;  
                 // 获取token失败  

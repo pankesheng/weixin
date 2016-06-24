@@ -10,8 +10,6 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import com.weixin.message.resp.Article;
-import com.weixin.message.resp.Music;
-import com.weixin.message.resp.MusicMessage;
 import com.weixin.message.resp.NewsMessage;
 import com.weixin.message.resp.TextMessage;
 import com.weixin.util.MessageUtil;
@@ -65,31 +63,16 @@ public class CoreService {
                     textMessage.setContent(content);  
                     // 将文本消息对象转换成xml字符串  
                     respMessage = MessageUtil.textMessageToXml(textMessage);  
-                }else if(content.equals("文章")){
+                }else if(content.equals("导体的电阻")){
                     newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);  
                     List<Article> articleList = new ArrayList<Article>();
                     articleList.add(new Article("导体的电阻", "导体的电阻", "http://vodxz.ohedu.net/group1/M01/02/51/CoMME1aCP1yAXg6FAAHB2Gbslpo759.jpg", "http://zk.ohedu.net/course/player.action?subjectId=&courseId=1468362388638720"));
                     newsMessage.setArticleCount(articleList.size());  
                     newsMessage.setArticles(articleList);  
                     respMessage = MessageUtil.newsMessageToXml(newsMessage);  
-                }else if(content.equals("音乐")){
-                    MusicMessage musicMessage = new MusicMessage();
-                    musicMessage.setToUserName(fromUserName);  
-                    musicMessage.setFromUserName(toUserName);  
-                    musicMessage.setCreateTime(new Date().getTime()); 
-                    musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
-                    
-                    Music music = new Music();
-                    music.setTitle("再给我放一首");
-                    music.setDescription("再给我放一首");
-                    music.setHQMusicUrl("http://sc.111ttt.com/up/mp3/316747/3DD9D473452F8A6C8CFB771614636B31.mp3");
-                    music.setMusicUrl("http://sc.111ttt.com/up/mp3/316747/3DD9D473452F8A6C8CFB771614636B31.mp3");
-                    
-                    musicMessage.setMusic(music);
-                    respMessage = MessageUtil.musicMessageToXml(musicMessage);
                 }else{
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                    textMessage.setContent("暂时只有输入“音乐”，“文章”，以及单个表情的时候才有返回。");  
+                    textMessage.setContent("暂不支持");  
                     respMessage = MessageUtil.textMessageToXml(textMessage);
                 }
             }  

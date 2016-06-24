@@ -1,4 +1,4 @@
-package com.weixin.pojo;
+package com.weixin.menu;
 
 public class Button {
 	private String name ;
