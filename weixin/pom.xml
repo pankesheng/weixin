@@ -244,6 +244,19 @@
 		    <version>1.1</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.3</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.servicemix.bundles</groupId>
+		    <artifactId>org.apache.servicemix.bundles.commons-httpclient</artifactId>
+		    <version>3.1_7</version>
+		</dependency>
+		
+		
 	</dependencies>
 
 </project>

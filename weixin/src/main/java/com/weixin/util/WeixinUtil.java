@@ -90,9 +90,6 @@ public class WeixinUtil {
         }  
         return jsonObject;  
     }  
-    // 获取access_token的接口地址（GET） 限200（次/天）  
-    public final static String access_token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";  
-      
     /** 
      * 获取access_token 
      *  
@@ -103,7 +100,7 @@ public class WeixinUtil {
     public static AccessToken getAccessToken(String appid, String appsecret) {  
         AccessToken accessToken = null;  
       
-        String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);  
+        String requestUrl = ParameterUtil.TOKEN_URL.replace("APPID", appid).replace("APPSECRET", appsecret);  
         JSONObject jsonObject = httpRequest(requestUrl, "GET", null);  
         // 如果请求成功  
         if (null != jsonObject) {  
@@ -120,9 +117,7 @@ public class WeixinUtil {
         }  
         return accessToken;  
     }  
-    // 菜单创建（POST） 限100（次/天）  
-    public static String menu_create_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";  
-      
+
     /** 
      * 创建菜单 
      *  
@@ -134,7 +129,7 @@ public class WeixinUtil {
         int result = 0;  
       
         // 拼装创建菜单的url  
-        String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);  
+        String url = ParameterUtil.MENU_GET_URL.replace("ACCESS_TOKEN", accessToken);  
         // 将菜单对象转换成json字符串  
         String jsonMenu = JSONObject.fromObject(menu).toString();  
         // 调用接口创建菜单  
