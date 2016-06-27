@@ -266,7 +266,6 @@ public class WeixinController {
 		String prepay_id="";
 		try {
 			prepay_id = new GetWxOrderno().getPayNo(createOrderURL, xml);
-			prepay_id="";
 			if(prepay_id.equals("")){
 				request.setAttribute("ErrorMsg", "统一支付接口获取预支付订单出错");
 				response.sendRedirect("/wxpay/payerror.jsp");
