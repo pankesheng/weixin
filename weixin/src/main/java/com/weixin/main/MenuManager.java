@@ -45,7 +45,6 @@ public class MenuManager {
 	     */  
 	    private static Menu getMenu() {  
 	        
-	    	ViewButton appdownbtn = new ViewButton("app下载","http://www.wzzdxx.com/download/11.asp");
 //	    	appid	是	公众号的唯一标识
 //	    	redirect_uri	是	授权后重定向的回调链接地址
 //	    	response_type	是	返回类型，请填写code
@@ -53,12 +52,10 @@ public class MenuManager {
 //	    	state	否	重定向后会带上state参数，开发者可以填写任意参数值
 //	    	#wechat_redirect	否	直接在微信打开链接，可以不填此参数。做页面302重定向时候，必须带此参数
 	    	String redirect_uri = "http%3A%2F%2Fpweixin.tunnel.qydev.com%2Foauth2.ajax";//  : -> %3A      / -> %2F
-	    	ViewButton sqhqbtn = new ViewButton("授权获取1","https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ParameterUtil.appId+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
-	    	
-	    	ViewButton zdxxindex = new ViewButton("舟岛小鲜","http://www.wzzdxx.com/index.html");
+	    	ViewButton getUserInfoBtn = new ViewButton("个人信息","https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ParameterUtil.appId+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
 	    	
 	        Menu menu = new Menu();  
-	        menu.setButton(new Button[] { appdownbtn,sqhqbtn,zdxxindex}); 	  
+	        menu.setButton(new Button[] { getUserInfoBtn}); 	  
 	        return menu;  
 	    }  
 }
