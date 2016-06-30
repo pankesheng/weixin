@@ -1,4 +1,4 @@
-package com.weixin.util;
+package com.weixin.configuration;
 
 /**
  * @ClassName: ParameterUtil
@@ -6,7 +6,7 @@ package com.weixin.util;
  * @author Administrator
  * @date 2015-12-23
  */
-public class ParameterUtil {
+public class WeChatConfiguration {
 	// 与开发模式接口配置信息中的Token保持一致
 	public static String token = "sheng";
 	// 用户标识֤
@@ -60,6 +60,7 @@ public class ParameterUtil {
 	//接口调用上报接口(POST)
 	public final static String REPORT_URL = "https://api.mch.weixin.qq.com/payitil/report";
 	
+	public final static String PAY_ACTION = "http://zdxx.tunnel.qydev.com/wxpay/topay.ajax";
 	
 	
 	// 测试账户关注微信号 

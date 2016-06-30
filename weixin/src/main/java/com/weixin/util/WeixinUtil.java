@@ -19,7 +19,7 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.weixin.menu.Menu;
+import com.weixin.configuration.WeChatConfiguration;
 import com.weixin.pojo.AccessToken;
 
 public class WeixinUtil {
@@ -100,7 +100,7 @@ public class WeixinUtil {
     public static AccessToken getAccessToken(String appid, String appsecret) {  
         AccessToken accessToken = null;  
       
-        String requestUrl = ParameterUtil.TOKEN_URL.replace("APPID", appid).replace("APPSECRET", appsecret);  
+        String requestUrl = WeChatConfiguration.TOKEN_URL.replace("APPID", appid).replace("APPSECRET", appsecret);  
         JSONObject jsonObject = httpRequest(requestUrl, "GET", null);  
         // 如果请求成功  
         if (null != jsonObject) {  
@@ -117,33 +117,4 @@ public class WeixinUtil {
         }  
         return accessToken;  
     }  
-
-    /** 
-     * 创建菜单 
-     *  
-     * @param menu 菜单实例 
-     * @param accessToken 有效的access_token 
-     * @return 0表示成功，其他值表示失败 
-     */  
-    public static int createMenu(Menu menu, String accessToken) {  
-        int result = 0;  
-      
-        // 拼装创建菜单的url  
-        String url = ParameterUtil.MENU_CREATE_URL.replace("ACCESS_TOKEN", accessToken);  
-        // 将菜单对象转换成json字符串  
-        String jsonMenu = JSONObject.fromObject(menu).toString();  
-        // 调用接口创建菜单  
-        JSONObject jsonObject = httpRequest(url, "POST", jsonMenu);  
-      
-        if (null != jsonObject) {  
-            if (0 != jsonObject.getInt("errcode")) {  
-                result = jsonObject.getInt("errcode"); 
-                System.out.println("创建菜单失败 errcode:{} errmsg:{}"+ jsonObject.getInt("errcode")+jsonObject.getString("errmsg"));
-                log.error("创建菜单失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));  
-                
-            }  
-        }  
-        return result;  
-    }  
-
 }

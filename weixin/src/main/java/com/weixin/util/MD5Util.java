@@ -37,5 +37,4 @@ public class MD5Util {
 		}
 		return resultString;
 	}
-	
 }

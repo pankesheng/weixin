@@ -1,4 +1,4 @@
-package com.weixin.util.http;
+package com.weixin.util;
 
 
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class HttpConnect {
             HttpResponse response = new HttpResponse();
             try {
 				client.executeMethod(method);
-				System.out.println("调接口返回的时间:"+(System.currentTimeMillis()-time1));
+//				System.out.println("调接口返回的时间:"+(System.currentTimeMillis()-time1));
 				response.setStringResult(method.getResponseBodyAsString());
 			} catch (HttpException e) {
 				method.releaseConnection();

@@ -1,4 +1,4 @@
-package com.weixin.util.http;
+package com.weixin.util;
 
 
 
@@ -11,7 +11,6 @@ import javax.net.ssl.TrustManager;
 
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
-@SuppressWarnings("deprecation")
 public class MySSLSocketFactory extends SSLSocketFactory{
 	
 	static{

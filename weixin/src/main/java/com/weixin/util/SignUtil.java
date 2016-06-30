@@ -4,6 +4,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import com.weixin.configuration.WeChatConfiguration;
+
 /** 
  * 请求校验工具类 
  * 
@@ -19,7 +21,7 @@ public class SignUtil {
      * @return 
      */  
     public static boolean checkSignature(String signature, String timestamp, String nonce) {  
-        String[] arr = new String[] { ParameterUtil.token, timestamp, nonce };  
+        String[] arr = new String[] { WeChatConfiguration.token, timestamp, nonce };  
         // 将token、timestamp、nonce三个参数进行字典序排序  
         Arrays.sort(arr);  
         StringBuilder content = new StringBuilder();  

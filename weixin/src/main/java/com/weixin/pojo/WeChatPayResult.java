@@ -3,7 +3,7 @@ package com.weixin.pojo;
 public class WeChatPayResult {
 	private String appid;		//微信分配的公众账号ID（企业号corpid即为此appId）
 	private String bankType;	//银行类型，采用字符串类型的银行标识，银行类型见银行列表
-	private String cashFee;		//现金支付金额订单现金支付金额，详见支付金额
+	private Integer cashFee;		//现金支付金额订单现金支付金额，详见支付金额
 	private String feeType;		//货币类型，符合ISO4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
 	private String isSubscribe;	//用户是否关注公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效
 	private String mchId;		//微信支付分配的商户号
@@ -14,7 +14,7 @@ public class WeChatPayResult {
 	private String returnCode;	//SUCCESS/FAIL此字段是通信标识，非交易标识，交易是否成功需要查看result_code来判断
 	private String sign;		//签名，详见签名算法
 	private String timeEnd;		//支付完成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。其他详见时间规则
-	private String totalFee;	//订单总金额，单位为分
+	private Integer totalFee;	//订单总金额，单位为分
 	private String tradeType;	//银行类型，采用字符串类型的银行标识，银行类型见银行列表
 	private String transactionId;//微信支付订单号
 	public String getAppid() {
@@ -29,10 +29,10 @@ public class WeChatPayResult {
 	public void setBankType(String bankType) {
 		this.bankType = bankType;
 	}
-	public String getCashFee() {
+	public Integer getCashFee() {
 		return cashFee;
 	}
-	public void setCashFee(String cashFee) {
+	public void setCashFee(Integer cashFee) {
 		this.cashFee = cashFee;
 	}
 	public String getFeeType() {
@@ -95,10 +95,10 @@ public class WeChatPayResult {
 	public void setTimeEnd(String timeEnd) {
 		this.timeEnd = timeEnd;
 	}
-	public String getTotalFee() {
+	public Integer getTotalFee() {
 		return totalFee;
 	}
-	public void setTotalFee(String totalFee) {
+	public void setTotalFee(Integer totalFee) {
 		this.totalFee = totalFee;
 	}
 	public String getTradeType() {

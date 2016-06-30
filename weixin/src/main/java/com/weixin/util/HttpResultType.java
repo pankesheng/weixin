@@ -1,4 +1,4 @@
-package com.weixin.util.http;
+package com.weixin.util;
 
 /*
  * Alipay.com Inc.
