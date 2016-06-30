@@ -129,7 +129,7 @@ public class WeixinUtil {
         int result = 0;  
       
         // 拼装创建菜单的url  
-        String url = ParameterUtil.MENU_GET_URL.replace("ACCESS_TOKEN", accessToken);  
+        String url = ParameterUtil.MENU_CREATE_URL.replace("ACCESS_TOKEN", accessToken);  
         // 将菜单对象转换成json字符串  
         String jsonMenu = JSONObject.fromObject(menu).toString();  
         // 调用接口创建菜单  

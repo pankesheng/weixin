@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.weixin.menu.Button;
+import com.weixin.menu.ComplexButton;
 import com.weixin.menu.Menu;
 import com.weixin.menu.ViewButton;
 import com.weixin.pojo.AccessToken;
@@ -54,8 +55,12 @@ public class MenuManager {
 	    	String redirect_uri = "http%3A%2F%2Fpweixin.tunnel.qydev.com%2Foauth2.ajax";//  : -> %3A      / -> %2F
 	    	ViewButton getUserInfoBtn = new ViewButton("个人信息","https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ParameterUtil.appId+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
 	    	
+	        ViewButton tqyb = new ViewButton("天气预报", "http://weather.news.sina.com.cn/");
+	        
+	        ComplexButton shzsbtn = new ComplexButton("生活助手",new Button[] {tqyb });  
+
 	        Menu menu = new Menu();  
-	        menu.setButton(new Button[] { getUserInfoBtn}); 	  
+	        menu.setButton(new Button[] { shzsbtn,getUserInfoBtn}); 	  
 	        return menu;  
 	    }  
 }

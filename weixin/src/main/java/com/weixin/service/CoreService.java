@@ -45,11 +45,12 @@ public class CoreService {
             textMessage.setToUserName(fromUserName);  
             textMessage.setFromUserName(toUserName);  
             textMessage.setCreateTime(new Date().getTime()); 
+            textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
             // 创建图文消息  
             NewsMessage newsMessage = new NewsMessage(); 
             newsMessage.setToUserName(fromUserName);  
             newsMessage.setFromUserName(toUserName);  
-            newsMessage.setCreateTime(new Date().getTime()); 
+            newsMessage.setCreateTime(new Date().getTime());
             // 文本消息  
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {  
                 respContent = "您发送的是文本消息！"; 
@@ -58,21 +59,35 @@ public class CoreService {
                 // 判断用户发送的是否是单个QQ表情  
                 if(isQqFace(content)) {  
                     // 回复文本消息  
-                    textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                    // 用户发什么QQ表情，就返回什么QQ表情  
-                    textMessage.setContent(content);  
+                    // 用户发什么QQ表情，就返回什么QQ表情 
+                    respContent = content;
+                    textMessage.setContent(respContent);  
                     // 将文本消息对象转换成xml字符串  
                     respMessage = MessageUtil.textMessageToXml(textMessage);  
-                }else if(content.equals("导体的电阻")){
+                }
+                else if(content.equals("导体的电阻")){
                     newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);  
                     List<Article> articleList = new ArrayList<Article>();
                     articleList.add(new Article("导体的电阻", "导体的电阻", "http://vodxz.ohedu.net/group1/M01/02/51/CoMME1aCP1yAXg6FAAHB2Gbslpo759.jpg", "http://zk.ohedu.net/course/player.action?subjectId=&courseId=1468362388638720"));
                     newsMessage.setArticleCount(articleList.size());  
                     newsMessage.setArticles(articleList);  
                     respMessage = MessageUtil.newsMessageToXml(newsMessage);  
-                }else{
+                }
+                else if(content.startsWith("天气")){
+                	String city = content.substring(2);
+                	if(city==null||"".equals(city)){
+                		respContent = "请输入要查询的城市名称！";
+                		textMessage.setContent(respContent);
+                		respMessage = MessageUtil.textMessageToXml(textMessage);  
+                	}else{
+                		respContent = WeatherService.getWeatherInfo(city);
+                		textMessage.setContent(respContent);
+                		respMessage = MessageUtil.textMessageToXml(textMessage);  
+                	}
+                }
+                else{
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                    textMessage.setContent("暂不支持");  
+                    textMessage.setContent(respContent);  
                     respMessage = MessageUtil.textMessageToXml(textMessage);
                 }
             }  

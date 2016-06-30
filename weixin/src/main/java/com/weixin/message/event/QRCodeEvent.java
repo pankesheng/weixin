@@ -1,4 +1,4 @@
-package com.weixin.event;
+package com.weixin.message.event;
 /**
  * 
  * @Description: 扫描带参数二维码事件

@@ -1,4 +1,4 @@
-package com.weixin.event;
+package com.weixin.message.event;
 
 /**
  * 

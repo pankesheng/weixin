@@ -1,5 +1,6 @@
 package com.weixin.action;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WeChatOauth2Token;
+import com.weixin.pojo.WeChatPayResult;
 import com.weixin.service.CoreService;
 import com.weixin.util.AdvancedUtil;
 import com.weixin.util.GetWxOrderno;
@@ -29,6 +31,7 @@ import com.weixin.util.RequestHandler;
 import com.weixin.util.SHA1Util;
 import com.weixin.util.SignUtil;
 import com.weixin.util.TenpayUtil;
+import com.weixin.util.XMLUtil;
 import com.weixin.util.http.HttpConnect;
 import com.weixin.util.http.HttpResponse;
 
@@ -71,7 +74,7 @@ public class WeixinController {
     }  
 	
 	@RequestMapping(value="/oauth2")
-	public void oauth2(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String oauth2(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
 		request.setCharacterEncoding("gb2312");
 		response.setCharacterEncoding("gb2312");//[/align][align=left]  // 用户同意授权后，能获取到code
 		String code = request.getParameter("code");//[/align][align=left]  // 用户同意授权
@@ -85,9 +88,10 @@ public class WeixinController {
 			// 获取用户信息
 			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken, openId);//[/align][align=left]   // 设置要传递的参数
 			request.setAttribute("snsUserInfo", snsUserInfo);
+			model.addAttribute("snsUserInfo", snsUserInfo);
 		}
+		return "/wxpay/index2.jsp";
 		// 跳转到index2.jsp
-		request.getRequestDispatcher("index2.jsp").forward(request, response);
 	}
 	
 	@RequestMapping(value="/wxpay/oauth2")
@@ -288,5 +292,55 @@ public class WeixinController {
 		String finalsign = reqHandler.createSign(finalpackage);
 		return "redirect:/wxpay/pay.jsp?appid="+appid2+"&timeStamp="+timestamp+"&nonceStr="+nonceStr2+"&package="+packages+"&sign="+finalsign;
 	}
+	
+	@RequestMapping("/wxpay/notify")
+	public void notify(Model model,HttpServletRequest request,HttpServletResponse response,String appid) throws Exception{
+		String inputLine;
+		String notityXml = "";
+		String resXml = "";
+		try {
+			while ((inputLine = request.getReader().readLine()) != null) {
+				notityXml += inputLine;
+			}
+			request.getReader().close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("接收到的报文：" + notityXml);
+		Map m = XMLUtil.doXMLParse(notityXml);
+		WeChatPayResult wpr = new WeChatPayResult();
+		wpr.setAppid(m.get("appid").toString());
+		wpr.setBankType(m.get("bank_type").toString());
+		wpr.setCashFee(m.get("cash_fee").toString());
+		wpr.setFeeType(m.get("fee_type").toString());
+		wpr.setIsSubscribe(m.get("is_subscribe").toString());
+		wpr.setMchId(m.get("mch_id").toString());
+		wpr.setNonceStr(m.get("nonce_str").toString());
+		wpr.setOpenid(m.get("openid").toString());
+		wpr.setOutTradeNo(m.get("out_trade_no").toString());
+		wpr.setResultCode(m.get("result_code").toString());
+		wpr.setReturnCode(m.get("return_code").toString());
+		wpr.setSign(m.get("sign").toString());
+		wpr.setTimeEnd(m.get("time_end").toString());
+		wpr.setTotalFee(m.get("total_fee").toString());
+		wpr.setTradeType(m.get("trade_type").toString());
+		wpr.setTransactionId(m.get("transaction_id").toString());
+		if("SUCCESS".equals(wpr.getResultCode())){
+			//支付成功
+			resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
+			+ "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+			}else{
+			resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
+			+ "<return_msg><![CDATA[报文为空]]></return_msg>" + "</xml> ";
+		}
+		System.out.println("微信支付回调数据结束");
+
+		BufferedOutputStream out = new BufferedOutputStream(
+		response.getOutputStream());
+		out.write(resXml.getBytes());
+		out.flush();
+		out.close();	
+	}
+	
 	
 }
