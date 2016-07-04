@@ -1,24 +1,47 @@
 package com.weixin.action;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.security.KeyStore;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import javax.net.ssl.SSLContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContexts;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.weixin.configuration.WeChatConfiguration;
+import com.weixin.pojo.ReturnHist;
 import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WeChatOauth2Token;
 import com.weixin.pojo.WeChatPayResult;
@@ -29,6 +52,7 @@ import com.weixin.util.GetWxOrderno;
 import com.weixin.util.HttpConnect;
 import com.weixin.util.HttpResponse;
 import com.weixin.util.RequestHandler;
+import com.weixin.util.SDKRuntimeException;
 import com.weixin.util.SHA1Util;
 import com.weixin.util.XMLUtil;
 import com.zcj.util.UtilString;
@@ -48,16 +72,13 @@ public class WeChatPayController {
 													// 用户同意授权
 		if (!"authdeny".equals(code)) {
 			// 获取网页授权access_token
-			WeChatOauth2Token weixinOauth2Token = AdvancedUtil
-					.getOauth2AccessToken(WeChatConfiguration.appId,
-							WeChatConfiguration.appSecret, code);
+			WeChatOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken(WeChatConfiguration.appId,WeChatConfiguration.appSecret, code);
 			// 网页授权接口访问凭证
 			String accessToken = weixinOauth2Token.getAccessToken();
 			// 用户标识
 			String openId = weixinOauth2Token.getOpenId();
 			// 获取用户信息
-			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken,
-					openId);// [/align][align=left] // 设置要传递的参数
+			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken,openId);// [/align][align=left] // 设置要传递的参数
 			request.setAttribute("snsUserInfo", snsUserInfo);
 			model.addAttribute("snsUserInfo", snsUserInfo);
 		}
@@ -75,8 +96,8 @@ public class WeChatPayController {
 		String appid = WeChatConfiguration.appId;
 		String backUri = WeChatConfiguration.PAY_ACTION;
 		orderNo = UtilString.getLongUUID();
-		money = 0.01;
-		descr = "测试商品0001";
+//		money = 0.01;
+//		descr = "测试商品0001";
 		if (orderNo == null) {
 			out.write(ServiceResult.initErrorJson("订单号不能为空!"));
 			return;
@@ -103,16 +124,9 @@ public class WeChatPayController {
 	public String topay(HttpServletRequest request,
 			HttpServletResponse response, String userId, String orderNo,
 			String money, String describe, String code, Model model) {
-		// 网页授权后获取传递的参数
-		// String userId = request.getParameter("userId");
-		// String orderNo = request.getParameter("orderNo");
-		// String money = request.getParameter("money");
-		// String code = request.getParameter("code");
-		// 金额转化为分为单位
 		float sessionmoney = Float.parseFloat(money);
 		String finalmoney = String.format("%.2f", sessionmoney);
 		finalmoney = finalmoney.replace(".", "");
-
 		// 商户相关资料
 		String appid = WeChatConfiguration.appId;
 		String appsecret = WeChatConfiguration.appSecret;
@@ -196,7 +210,7 @@ public class WeChatPayController {
 		packageParams.put("attach", attach);
 		packageParams.put("out_trade_no", out_trade_no);
 		// 这里写的金额为1 分到时修改
-		packageParams.put("total_fee", "1");
+		packageParams.put("total_fee", String.valueOf(total_fee));
 		// packageParams.put("total_fee", "finalmoney");
 		packageParams.put("spbill_create_ip", spbill_create_ip);
 		packageParams.put("notify_url", notify_url);
@@ -313,7 +327,10 @@ public class WeChatPayController {
 	}
 
 	@RequestMapping("refund")
-	public void refund(HttpServletResponse response,String out_trade_no,Double total_fee1,Double refund_fee1) {
+	public void refund(HttpServletResponse response,String out_trade_no,Double total_fee1,Double refund_fee1) throws SDKRuntimeException {
+//		total_fee1 = 1d;
+//		refund_fee1 = 1d;
+//		out_trade_no = "1728854433046528";
 		total_fee1 = total_fee1/100;
 		refund_fee1 = refund_fee1/100;
 		String out_refund_no = UtilString.getUUID();// 退款单号，随机生成 ，但长度应该跟文档一样（32位）(卖家信息校验不一致，请核实后再试)
@@ -330,30 +347,9 @@ public class WeChatPayController {
 		String op_user_id = mch_id;//就是MCHID
 		//微信公众平台："微信支付"--》“商户信息”--》“微信支付商户平台”（登录）--》“API安全”--》“API密钥”--“设置密钥”（设置之后的那个值就是partnerkey，32位）
 		String partnerkey = WeChatConfiguration.API_KEY;
-		SortedMap<String, String> packageParams = new TreeMap<String, String>();
-		packageParams.put("appid", appid);
-		packageParams.put("mch_id", mch_id);
-		packageParams.put("nonce_str", nonce_str);
-		packageParams.put("out_trade_no", out_trade_no);
-		packageParams.put("out_refund_no", out_refund_no);
-		packageParams.put("total_fee", total_fee+"");
-		packageParams.put("refund_fee", refund_fee+"");
-		packageParams.put("op_user_id", op_user_id);
-		
 		RequestHandler reqHandler = new RequestHandler(null, null);
 		reqHandler.init(appid, appsecret, partnerkey);
-		String sign = reqHandler.createSign(packageParams);
-		String xml = "<xml>" + 
-				"<appid>" + appid + "</appid>" + 
-				"<mch_id>" + mch_id + "</mch_id>" + 
-				"<nonce_str>" + nonce_str + "</nonce_str>" + 
-				"<sign><![CDATA[" + sign + "]]></sign>"	+ 
-				"<out_trade_no>" + out_trade_no + "</out_trade_no>"	+ 
-				"<out_refund_no>" + out_refund_no + "</out_refund_no>" + 
-				"<total_fee>" + total_fee + "</total_fee>" + 
-				"<refund_fee>" + refund_fee + "</refund_fee>" + 
-				"<op_user_id>" + op_user_id + "</op_user_id>" + 
-				"</xml>";
+		String xml = ClientCustomSSL.RefundNativePackage(out_trade_no, out_refund_no, String.valueOf(total_fee), String.valueOf(refund_fee), nonce_str,reqHandler);
 		String createOrderURL = WeChatConfiguration.REFUND_URL;//"https://api.mch.weixin.qq.com/secapi/pay/refund";
 		try {
 			String refundResult= ClientCustomSSL.doRefund(createOrderURL, xml);

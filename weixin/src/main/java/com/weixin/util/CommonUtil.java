@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
+import java.util.SortedMap;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -374,12 +375,12 @@ public class CommonUtil {
   
     /**
      * Map 转成xml数据
-     * @param arr
+     * @param nativeObj
      * @return
      */
-    public static String ArrayToXml(HashMap<String, String> arr) {  
+    public static String ArrayToXml(SortedMap<String, String> nativeObj) {  
         String xml = "<xml>";  
-        Iterator<Entry<String, String>> iter = arr.entrySet().iterator();  
+        Iterator<Entry<String, String>> iter = nativeObj.entrySet().iterator();  
         while (iter.hasNext()) {  
             Entry<String, String> entry = iter.next();  
             String key = entry.getKey();  

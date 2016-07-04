@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import javax.net.ssl.SSLContext;
 
@@ -77,10 +79,10 @@ public class ClientCustomSSL {
 	 */
 	public static String CreateNativePackage(String nonceStr,
 			String orderDescribe, String orderNo, String price,
-			String timeStart, String timeExpire) throws SDKRuntimeException {
-		HashMap<String, String> nativeObj = new HashMap<String, String>();
-		nativeObj.put("appid", "见公众账号"); // 公众账号Id
-		nativeObj.put("mch_id", "见邮件"); // 商户号
+			String timeStart, String timeExpire, RequestHandler reqHandler) throws SDKRuntimeException {
+		SortedMap<String, String> nativeObj = new TreeMap<String, String>();
+		nativeObj.put("appid", WeChatConfiguration.appId); // 公众账号Id
+		nativeObj.put("mch_id",WeChatConfiguration.MCH_ID); // 商户号
 		nativeObj.put("nonce_str", nonceStr); // 随机字符串
 		nativeObj.put("body", orderDescribe); // 商品描述
 		nativeObj.put("attach", "tradeno"); // 附加数据
@@ -92,7 +94,7 @@ public class ClientCustomSSL {
 		nativeObj.put("notify_url",WeChatConfiguration.NOTIFY_URL); // 回调通知地址
 		nativeObj.put("trade_type", "NATIVE"); // 交易类型
 
-		String sign = GetBizSign(nativeObj);
+		String sign = reqHandler.createSign(nativeObj);
 
 		nativeObj.put("sign", sign.toUpperCase());
 
@@ -112,8 +114,8 @@ public class ClientCustomSSL {
 	 * @throws SDKRuntimeException
 	 */
 	public static String SearchNativePackage(String transactionId,
-			String outTradeNo, String nonceStr) throws SDKRuntimeException {
-		HashMap<String, String> nativeObj = new HashMap<String, String>();
+			String outTradeNo, String nonceStr, RequestHandler reqHandler) throws SDKRuntimeException {
+		SortedMap<String, String> nativeObj = new TreeMap<String, String>();
 		nativeObj.put("appid", WeChatConfiguration.appId); // 公众账号Id
 		nativeObj.put("mch_id", WeChatConfiguration.MCH_ID);// 商户号
 		nativeObj.put("nonce_str", nonceStr);// 随机字符串
@@ -123,7 +125,7 @@ public class ClientCustomSSL {
 		if (outTradeNo != null && !"".equals(outTradeNo)) {
 			nativeObj.put("out_trade_no", outTradeNo);// 随机字符串
 		}
-		String sign = GetBizSign(nativeObj);
+		String sign = reqHandler.createSign(nativeObj);
 		nativeObj.put("sign", sign.toUpperCase());
 		return CommonUtil.ArrayToXml(nativeObj);
 	}
@@ -135,22 +137,23 @@ public class ClientCustomSSL {
 	 * @param outRefundNo
 	 * @param totalFee
 	 * @param refundFee
+	 * @param reqHandler 
 	 * @return
 	 * @throws SDKRuntimeException
 	 */
 	public static String RefundNativePackage(String outTradeNo,
 			String outRefundNo, String totalFee, String refundFee,
-			String nonceStr) throws SDKRuntimeException {
-		HashMap<String, String> nativeObj = new HashMap<String, String>();
-		nativeObj.put("appid", "见公众账号");// 公众账号Id
-		nativeObj.put("mch_id", "见邮件");// 商户号
+			String nonceStr, RequestHandler reqHandler) throws SDKRuntimeException {
+		SortedMap<String, String> nativeObj = new TreeMap<String, String>();
+		nativeObj.put("appid", WeChatConfiguration.appId);// 公众账号Id
+		nativeObj.put("mch_id", WeChatConfiguration.MCH_ID);// 商户号
 		nativeObj.put("nonce_str", nonceStr);// 随机字符串
 		nativeObj.put("out_trade_no", outTradeNo);// 商户订单号(全局唯一)
 		nativeObj.put("out_refund_no", outRefundNo);// 商户退款单号(全局唯一)
 		nativeObj.put("total_fee", totalFee);// 总金额(单位为分，不能带小数点)
 		nativeObj.put("refund_fee", refundFee);// 退款金额(单位为分，不能带小数点)
-		nativeObj.put("op_user_id", "邮件");
-		String sign = GetBizSign(nativeObj);
+		nativeObj.put("op_user_id", WeChatConfiguration.MCH_ID);
+		String sign = reqHandler.createSign(nativeObj);
 		nativeObj.put("sign", sign.toUpperCase());
 		return CommonUtil.ArrayToXml(nativeObj);
 	}
@@ -167,11 +170,11 @@ public class ClientCustomSSL {
 	 * @return
 	 * @throws SDKRuntimeException
 	 */
-	public static String CreateJsApiPackage(String nonceStr,String orderDescribe,String orderNo,String price,String timeStart,String timeExpire,String openId) throws SDKRuntimeException {  
-		HashMap<String, String> nativeObj = new HashMap<String, String>();  
-		nativeObj.put("appid", "见公众账号");//公众账号Id  
+	public static String CreateJsApiPackage(String nonceStr,String orderDescribe,String orderNo,String price,String timeStart,String timeExpire,String openId, RequestHandler reqHandler) throws SDKRuntimeException {  
+		SortedMap<String, String> nativeObj = new TreeMap<String, String>();
+		nativeObj.put("appid", WeChatConfiguration.appId);//公众账号Id  
 		nativeObj.put("openid", openId);//公众账号Id  
-		nativeObj.put("mch_id", "见邮件");//商户号  
+		nativeObj.put("mch_id", WeChatConfiguration.MCH_ID);//商户号  
 		nativeObj.put("nonce_str", nonceStr);//随机字符串  
 		nativeObj.put("body", orderDescribe);//商品描述  
 		nativeObj.put("attach", "tradeno");//附加数据  
@@ -182,7 +185,7 @@ public class ClientCustomSSL {
 		nativeObj.put("time_expire", timeExpire);//交易结束时间  
 		nativeObj.put("notify_url",WeChatConfiguration.NOTIFY_URL);//通知地址  
 		nativeObj.put("trade_type", "JSAPI");//交易类型  
-		String sign = GetBizSign(nativeObj);  
+		String sign = reqHandler.createSign(nativeObj);
 		nativeObj.put("sign", sign.toUpperCase());  
 		return CommonUtil.ArrayToXml(nativeObj);  
 	}
@@ -199,14 +202,14 @@ public class ClientCustomSSL {
 	 * @return
 	 * @throws SDKRuntimeException
 	 */
-	public static String CreateCloseOrder(String outTradeNo, String nonceStr)
+	public static String CreateCloseOrder(String outTradeNo, String nonceStr, RequestHandler reqHandler)
 			throws SDKRuntimeException {
-		HashMap<String, String> nativeObj = new HashMap<String, String>();
-		nativeObj.put("appid", "见公众账号");// 公众账号Id
-		nativeObj.put("mch_id", "见邮件");// 商户号
+		SortedMap<String, String> nativeObj = new TreeMap<String, String>();
+		nativeObj.put("appid", WeChatConfiguration.appId);// 公众账号Id
+		nativeObj.put("mch_id", WeChatConfiguration.MCH_ID);// 商户号
 		nativeObj.put("out_trade_no", outTradeNo);// 商户订单号(全局唯一)
 		nativeObj.put("nonce_str", nonceStr);// 随机字符串
-		String sign = GetBizSign(nativeObj);
+		String sign = reqHandler.createSign(nativeObj);
 		nativeObj.put("sign", sign.toUpperCase());
 		return CommonUtil.ArrayToXml(nativeObj);
 	}
