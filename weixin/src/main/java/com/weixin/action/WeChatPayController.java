@@ -62,6 +62,13 @@ import com.zcj.web.dto.ServiceResult;
 @RequestMapping(value = "/wxpay")
 public class WeChatPayController {
 	
+	
+	@RequestMapping("/test/index")
+	public String testIndex(Model model){
+		model.addAttribute("orderNo", UtilString.getLongUUID());
+		return "/wxpay/testindex.jsp";
+	}
+	
 	@RequestMapping(value = "/oauth2")
 	public String oauth2(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
