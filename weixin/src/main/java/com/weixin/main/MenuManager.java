@@ -58,12 +58,13 @@ public class MenuManager {
 	        ComplexButton shzsbtn = new ComplexButton("生活助手",new Button[] {tqyb });  
 
 	        ViewButton baidubtn = new ViewButton("百度","http://www.baidu.com");
-	    	ViewButton paymainbtn = new ViewButton("测试支付","http://pweixin.tunnel.qydev.com/wxpay/paymain.ajax");
-	    	String redirect_uri = "http%3A%2F%2Fpweixin.tunnel.qydev.com%2Fwxpay%2Foauth2.ajax";//  : -> %3A      / -> %2F
-	    	ViewButton getUserInfoBtn = new ViewButton("测试授权","https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
-	    	ViewButton refundbtn = new ViewButton("测试退款","http://pweixin.tunnel.qydev.com/wxpay/refund.ajax");
-	    	ViewButton testbtn = new ViewButton("测试入口","http://pweixin.tunnel.qydev.com/wxpay/test/index.ajax");
-	    	ComplexButton cb = new ComplexButton("测试功能", new Button[]{testbtn,getUserInfoBtn,paymainbtn,refundbtn});
+	        ViewButton paymainbtn = new ViewButton("测试支付",WeChatConfiguration.DOMAIN_URL+"/wxpay/paymain.ajax");
+	    	String redirect_uri = WeChatConfiguration.DOMAIN_URL+"/wxpay/oauth2.ajax";//  : -> %3A      / -> %2F
+	    	
+	    	ViewButton getUserInfoBtn = new ViewButton("测试授权","https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri.replaceAll(":", "%3A").replaceAll("/", "%2F")+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
+	    	ViewButton refundbtn = new ViewButton("测试退款",(WeChatConfiguration.DOMAIN_URL+"/wxpay/refund.ajax").replaceAll(":", "%3A").replaceAll("/", "%2F"));
+	    	ViewButton testbtn = new ViewButton("测试入口",(WeChatConfiguration.DOMAIN_URL+"/wxpay/test/index.ajax").replaceAll(":", "%3A").replaceAll("/", "%2F"));
+	    	ComplexButton cb = new ComplexButton("测试功能", new Button[]{getUserInfoBtn,paymainbtn});
 	        
 	        Menu menu = new Menu();  
 	        menu.setButton(new Button[] { shzsbtn,getUserInfoBtn,cb}); 	  

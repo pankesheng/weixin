@@ -71,9 +71,12 @@ public class WeChatPayController {
 	
 	@RequestMapping(value="/oauth")
 	public void oauth(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		String redirect_uri = "http%3A%2F%2Fpweixin.tunnel.qydev.com%2Fwxpay%2Foauth2.ajax";//  : -> %3A      / -> %2F
-    	String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+		String redirect_uri = WeChatConfiguration.DOMAIN_URL+"/wxpay/oauth2.ajax";//  : -> %3A      / -> %2F
+    	String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri.replaceAll(":", "%3A").replaceAll("/", "%2F")+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
 		response.sendRedirect(url);
+//		String redirect_uri = "http%3A%2F%2Fpweixin.tunnel.qydev.com%2Fwxpay%2Foauth2.ajax";//  : -> %3A      / -> %2F
+//    	String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+//		response.sendRedirect(url);
 	}
 	
 	@RequestMapping(value = "/oauth2")

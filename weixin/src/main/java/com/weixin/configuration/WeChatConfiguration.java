@@ -20,7 +20,11 @@ public class WeChatConfiguration {
 	public final static String SIGN_TYPE = "SHA1";//签名加密方式
 	public final static String CERT_PATH = "D:/apiclient_cert.p12";//微信支付证书存放路径地址
 	//微信支付统一接口的回调action
-	public final static String NOTIFY_URL = "http://14.117.25.80:8016/wxweb/config/pay!paySuccess.action";
+	public final static String NOTIFY_URL = "http://pweixin.tunnel.qydev.com/weixin/wxpay/notify.ajax";
+	//真实域名
+	public final static String DOMAIN_URL = "http://pweixin.tunnel.qydev.com/weixin";
+	
+	public final static String PAY_ACTION = "http://pweixin.tunnel.qydev.com/weixin/wxpay/topay.ajax";
 	//微信支付成功支付后跳转的地址
 	public final static String SUCCESS_URL = "http://14.117.25.80:8016/wxweb/contents/config/pay_success.jsp";
 	//oauth2授权时回调action
@@ -59,9 +63,6 @@ public class WeChatConfiguration {
 	public final static String SHORT_URL = "https://api.mch.weixin.qq.com/tools/shorturl";
 	//接口调用上报接口(POST)
 	public final static String REPORT_URL = "https://api.mch.weixin.qq.com/payitil/report";
-	
-	public final static String PAY_ACTION = "http://zdxx.tunnel.qydev.com/wxpay/topay.ajax";
-	
 	
 	// 测试账户关注微信号 
 	public static String focusedAppId="orAn7t3lAMl4PMYkYqC0dcObA-Qk";
