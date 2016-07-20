@@ -44,6 +44,11 @@ public class MessageUtil {
      * 返回消息类型：图文 
      */  
     public static final String RESP_MESSAGE_TYPE_NEWS = "news";  
+    
+    /**
+     * 返回消息类型：多客服系统
+     */
+    public static final String RESP_MESSAGE_TYPE_SERVICE = "transfer_customer_service";
   
     /** 
      * 请求消息类型：文本 

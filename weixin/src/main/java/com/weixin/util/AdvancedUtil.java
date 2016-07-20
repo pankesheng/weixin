@@ -135,11 +135,7 @@ public class AdvancedUtil {
 		public static String makeNewsCustomMessage(String openId,
 				List<Article> articleList) {
 			String jsonMsg = "{\"touser\":\"%s\",\"msgtype\":\"news\",\"news\":{\"articles\":%s}}";
-			jsonMsg = String.format(
-					jsonMsg,
-					openId,
-					JSONArray.fromObject(articleList).toString()
-							.replaceAll("\"", "\\\""));
+			jsonMsg = String.format(jsonMsg,openId,JSONArray.fromObject(articleList).toString().replaceAll("\"", "\\\""));
 			// 将jsonMsg中的picUrl替换为picurl
 			jsonMsg = jsonMsg.replace("picUrl", "picurl");
 			return jsonMsg;

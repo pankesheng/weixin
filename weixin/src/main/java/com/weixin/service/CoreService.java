@@ -51,6 +51,17 @@ public class CoreService {
             newsMessage.setToUserName(fromUserName);  
             newsMessage.setFromUserName(toUserName);  
             newsMessage.setCreateTime(new Date().getTime());
+            if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)||
+        		msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)||
+        		msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)||
+        		msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)||
+        		msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)
+        		)
+            {
+            	textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
+            	respMessage = MessageUtil.textMessageToXml(textMessage);  
+            	return respMessage;  
+            }
             // 文本消息  
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {  
                 respContent = "您发送的是文本消息！"; 
