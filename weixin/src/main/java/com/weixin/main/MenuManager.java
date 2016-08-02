@@ -5,12 +5,13 @@ import org.slf4j.LoggerFactory;
 
 import com.weixin.configuration.WeChatConfiguration;
 import com.weixin.menu.Button;
+import com.weixin.menu.ClickButton;
 import com.weixin.menu.ComplexButton;
 import com.weixin.menu.Menu;
 import com.weixin.menu.ViewButton;
 import com.weixin.pojo.AccessToken;
+import com.weixin.util.AdvancedUtil;
 import com.weixin.util.MenuUtil;
-import com.weixin.util.WeixinUtil;
 
 public class MenuManager {
 	 private static Logger log = LoggerFactory.getLogger(MenuManager.class);  
@@ -22,7 +23,7 @@ public class MenuManager {
 	        String appSecret = WeChatConfiguration.appSecret;  
 	  
 	        // 调用接口获取access_token  
-	        AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);  
+	        AccessToken at = AdvancedUtil.getAccessToken(appId, appSecret);  
 	  
 	        if (null != at) {  
 	            // 调用接口创建菜单  
@@ -54,8 +55,6 @@ public class MenuManager {
 //	    	state	否	重定向后会带上state参数，开发者可以填写任意参数值
 //	    	#wechat_redirect	否	直接在微信打开链接，可以不填此参数。做页面302重定向时候，必须带此参数
 	        ViewButton tqyb = new ViewButton("天气预报", "http://weather.news.sina.com.cn/");
-	        
-	        ComplexButton shzsbtn = new ComplexButton("生活助手",new Button[] {tqyb });  
 
 	        ViewButton baidubtn = new ViewButton("百度","http://www.baidu.com");
 	        ViewButton paymainbtn = new ViewButton("测试支付",WeChatConfiguration.DOMAIN_URL+"/wxpay/paymain.ajax");
@@ -64,10 +63,14 @@ public class MenuManager {
 	    	ViewButton getUserInfoBtn = new ViewButton("测试授权","https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri.replaceAll(":", "%3A").replaceAll("/", "%2F")+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect");
 	    	ViewButton refundbtn = new ViewButton("测试退款",(WeChatConfiguration.DOMAIN_URL+"/wxpay/refund.ajax").replaceAll(":", "%3A").replaceAll("/", "%2F"));
 	    	ViewButton testbtn = new ViewButton("测试入口",(WeChatConfiguration.DOMAIN_URL+"/wxpay/test/index.ajax").replaceAll(":", "%3A").replaceAll("/", "%2F"));
-	    	ComplexButton cb = new ComplexButton("测试功能", new Button[]{getUserInfoBtn,paymainbtn});
+
+	        ComplexButton shzsbtn = new ComplexButton("生活助手",new Button[] {tqyb });  
+	        ComplexButton cb = new ComplexButton("测试功能", new Button[]{getUserInfoBtn,paymainbtn});
+	        
+	        ComplexButton kfComplexButton = new ComplexButton("在线客服",new Button[]{new ClickButton("在线客服", "zxkf")});
 	        
 	        Menu menu = new Menu();  
-	        menu.setButton(new Button[] { shzsbtn,getUserInfoBtn,cb}); 	  
+	        menu.setButton(new Button[] {kfComplexButton }); 	  
 	        return menu;  
 	    }  
 }

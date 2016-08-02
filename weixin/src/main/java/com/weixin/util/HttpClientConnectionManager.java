@@ -1,8 +1,6 @@
 package com.weixin.util;
 
 
-
-
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -46,7 +44,7 @@ public class HttpClientConnectionManager {
 		pmethod.addHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) ");
 		return pmethod;
 	}
-
+	
 	/**
 	 * 模拟浏览器GET提交
 	 * @param url

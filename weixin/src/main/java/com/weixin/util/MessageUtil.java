@@ -15,12 +15,15 @@ import org.dom4j.io.SAXReader;
 
 
 
+
+
 import com.thoughtworks.xstream.XStream;  
 import com.thoughtworks.xstream.core.util.QuickWriter;  
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;  
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;  
 import com.thoughtworks.xstream.io.xml.XppDriver;  
 import com.weixin.message.resp.Article;
+import com.weixin.message.resp.KfMessage;
 import com.weixin.message.resp.MusicMessage;
 import com.weixin.message.resp.NewsMessage;
 import com.weixin.message.resp.TextMessage;
@@ -138,6 +141,16 @@ public class MessageUtil {
         xstream.alias("xml", textMessage.getClass());  
         return xstream.toXML(textMessage);  
     }  
+    
+    /**
+     * 客服消息转换成xml
+     * @param kfMessage
+     * @return
+     */
+    public static String kfMessageToXml(KfMessage kfMessage) {
+    	 xstream.alias("xml", kfMessage.getClass());  
+         return xstream.toXML(kfMessage);  
+	}  
   
     /** 
      * 音乐消息对象转换成xml 
@@ -189,5 +202,6 @@ public class MessageUtil {
                 }  
             };  
         }  
-    });  
+    });
+	
 }

@@ -14,7 +14,6 @@ public class WeChatConfiguration {
 	// 用户标识密钥
 	public static String appSecret = "f7f6b851edb551403b9bf66e1f41297b";
 	
-	
 	public final static String MCH_ID = "12412412412";//商户号
 	public final static String API_KEY = "4532452345";//API密钥
 	public final static String SIGN_TYPE = "SHA1";//签名加密方式
@@ -64,19 +63,24 @@ public class WeChatConfiguration {
 	//接口调用上报接口(POST)
 	public final static String REPORT_URL = "https://api.mch.weixin.qq.com/payitil/report";
 	
-	// 测试账户关注微信号 
-	public static String focusedAppId="orAn7t3lAMl4PMYkYqC0dcObA-Qk";
-	//BAE mysql 数据库名
-	public static String dbName="YgisbLsPKqqhUTCDUPUV";
-	//数据库驱动
-	public static String driver="com.mysql.jdbc.Driver";
-	//BAE上mysql数据库地址
-	public static String host="sqld.duapp.com";
-	//BAE上mysql固定端口号
-	public static String port="4050";
-	//BAE API KEY
-	public static String apiKey="f4a60048526046e2a48102e95b6bc2ea";
-	//BAE Secret Key
-	public static String secretKey="a173a7a750024731bc37f1f353bdfced";
+	/**
+	 * 客服相关
+	 */
+	//获取在线客服列表信息(GET)
+	public final static String KF_ONLINE_LIST_URL = "https://api.weixin.qq.com/cgi-bin/customservice/getonlinekflist?access_token=ACCESS_TOKEN";
+	//获取所有客服账号(GET)
+	public final static String KF_ALL_URL = "https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=ACCESS_TOKEN";
+	//添加客服账号(POST)
+	public final static String KF_ADD_URL = "https://api.weixin.qq.com/customservice/kfaccount/add?access_token=ACCESS_TOKEN";
+	//修改客服账号(POST)
+	public final static String KF_UPDATE_URL = "https://api.weixin.qq.com/customservice/kfaccount/update?access_token=ACCESS_TOKEN";
+	//删除客服账号(GET)
+	public final static String KF_DELETE_URL = "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=ACCESS_TOKEN";
+	//设置客服头像(POST/FORM)
+	public final static String KF_UPLOADHEADIMG_URL = "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=ACCESS_TOKEN&kf_account=KFACCOUNT";
+
+	
+	//发送模板消息
+	public final static String TEMP_SEND_URL = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
 	
 }

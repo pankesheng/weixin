@@ -1,8 +1,5 @@
 package com.weixin.util;
 
-
-
-
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 

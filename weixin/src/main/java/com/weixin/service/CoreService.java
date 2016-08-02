@@ -1,6 +1,5 @@
 package com.weixin.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +8,19 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.weixin.message.resp.Article;
+import com.weixin.configuration.WeChatConfiguration;
+import com.weixin.message.resp.KfMessage;
 import com.weixin.message.resp.NewsMessage;
 import com.weixin.message.resp.TextMessage;
+import com.weixin.message.resp.TransInfo;
+import com.weixin.pojo.AccessToken;
+import com.weixin.pojo.OnLineKf;
+import com.weixin.session.Session;
+import com.weixin.session.SessionList;
+import com.weixin.util.AdvancedUtil;
 import com.weixin.util.MessageUtil;
+import com.weixin.util.QuartzManager;
+import com.weixin.util.WechatApiHelper;
 /** 
  * 核心服务类 
  *  
@@ -46,99 +54,63 @@ public class CoreService {
             textMessage.setFromUserName(toUserName);  
             textMessage.setCreateTime(new Date().getTime()); 
             textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
+            
+            // 创建客服消息
+            KfMessage kfMessage = new KfMessage();  
+            kfMessage.setToUserName(fromUserName);  
+            kfMessage.setFromUserName(toUserName);  
+            kfMessage.setCreateTime(new Date().getTime()); 
+            kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
             // 创建图文消息  
             NewsMessage newsMessage = new NewsMessage(); 
             newsMessage.setToUserName(fromUserName);  
             newsMessage.setFromUserName(toUserName);  
             newsMessage.setCreateTime(new Date().getTime());
-            if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)||
-        		msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)||
-        		msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)||
-        		msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)||
-        		msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)
-        		)
-            {
-            	textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
-            	respMessage = MessageUtil.textMessageToXml(textMessage);  
-            	return respMessage;  
-            }
+            
             // 文本消息  
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {  
-                respContent = "您发送的是文本消息！"; 
-                // 文本消息内容  
-                String content = requestMap.get("Content");  
-                // 判断用户发送的是否是单个QQ表情  
-                if(isQqFace(content)) {  
-                    // 回复文本消息  
-                    // 用户发什么QQ表情，就返回什么QQ表情 
-                    respContent = content;
-                    textMessage.setContent(respContent);  
-                    // 将文本消息对象转换成xml字符串  
-                    respMessage = MessageUtil.textMessageToXml(textMessage);  
-                }
-                else if(content.equals("导体的电阻")){
-                    newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);  
-                    List<Article> articleList = new ArrayList<Article>();
-                    articleList.add(new Article("导体的电阻", "导体的电阻", "http://vodxz.ohedu.net/group1/M01/02/51/CoMME1aCP1yAXg6FAAHB2Gbslpo759.jpg", "http://zk.ohedu.net/course/player.action?subjectId=&courseId=1468362388638720"));
-                    newsMessage.setArticleCount(articleList.size());  
-                    newsMessage.setArticles(articleList);  
-                    respMessage = MessageUtil.newsMessageToXml(newsMessage);  
-                }
-                else if(content.startsWith("天气")){
-                	String city = content.substring(2);
-                	if(city==null||"".equals(city)){
-                		respContent = "请输入要查询的城市名称！";
-                		textMessage.setContent(respContent);
-                		respMessage = MessageUtil.textMessageToXml(textMessage);  
-                	}else{
-                		respContent = WeatherService.getWeatherInfo(city);
-                		textMessage.setContent(respContent);
-                		respMessage = MessageUtil.textMessageToXml(textMessage);  
-                	}
-                }
-                else{
-                    textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                    textMessage.setContent(respContent);  
-                    respMessage = MessageUtil.textMessageToXml(textMessage);
+                String content = requestMap.get("Content");
+                if(SessionList.search(fromUserName, Session.phase_kf)>-1){
+                	OnLineKf kf = (OnLineKf) SessionList.getSession(fromUserName,Session.phase_kf,content);
+	                if(kf!=null){
+	                	if(kf.getAcceped_case()>=kf.getAuto_accept()){
+	                		textMessage.setContent("对不起，该客服接入人员已满，请稍后刷新在线客服列表重新选择。");
+	                		respMessage = MessageUtil.textMessageToXml(textMessage);
+	                	}else{
+		                	kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
+		                	TransInfo transInfo = new TransInfo();
+		                	transInfo.setKfAccount(kf.getKf_account());
+		                	kfMessage.setTransInfo(transInfo);
+		                	QuartzManager.removeJob("phase"+Session.phase_kf+fromUserName);
+		                    respMessage = MessageUtil.kfMessageToXml(kfMessage);
+	                	}
+	                }else{
+	                	textMessage.setContent("您想要接入的客服不存在或请求已超时！");
+	                	SessionList.resetQuartz(fromUserName,Session.phase_kf);
+	                	respMessage = MessageUtil.textMessageToXml(textMessage);
+	                }
                 }
             }  
             // 图片消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
-            	String picUrl = requestMap.get("PicUrl"); 
-            	respContent = "您发送的是图片消息！";  
-                textMessage.setContent(respContent+"(图片地址:"+picUrl+")");
-                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                respMessage = MessageUtil.textMessageToXml(textMessage);
+
             }  
             // 地理位置消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)) {  
-            	String label = requestMap.get("Label");
-            	String scale = requestMap.get("Scale");
-            	String location_x = requestMap.get("Location_X");
-			    String location_y = requestMap.get("Location_Y");
-            	respContent = "您发送的是地理位置消息！";
-                textMessage.setContent(respContent+"(位置信息："+label+",缩放大小："+scale+",地理纬度："+location_x+",地理经度："+location_y+")");   
-                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                respMessage = MessageUtil.textMessageToXml(textMessage);
+
             }  
             // 链接消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) {
-                respContent = "您发送的是链接消息！";  
-                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                respMessage = MessageUtil.textMessageToXml(textMessage);
+
             }  
             // 音频消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) {  
-            	String mediaId = requestMap.get("MediaId");
-                respContent = "您发送的是音频消息！";  
-                textMessage.setContent(respContent+"(媒体id:"+mediaId+")");  
-                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                respMessage = MessageUtil.textMessageToXml(textMessage);
+
             }  
             // 事件推送  
-            else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {  
+            else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
                 // 事件类型  
-                String eventType = requestMap.get("Event");  
+                String eventType = requestMap.get("Event");
                 // 订阅  
                 if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {   
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
@@ -154,8 +126,28 @@ public class CoreService {
                 	// 事件KEY值，与创建自定义菜单时指定的KEY值对应  
                 	String eventKey = requestMap.get("EventKey");
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                    if(eventKey.equals("11")){
-                    	textMessage.setContent("");
+                    if(eventKey.equals("zxkf")){
+                    	StringBuilder sb = new StringBuilder();
+                    	AccessToken at = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+            			String accessToken = at.getAccess_token();
+            			List<OnLineKf> list = AdvancedUtil.getOnLineKfList(accessToken);
+            			if(list!=null && list.size()>0){
+            				sb.append("在线客服列表：\n");
+                        	SessionList.setSeesion(fromUserName,Session.phase_kf);
+            				for (int i = 0; i < list.size(); i++) {
+								OnLineKf obj = list.get(i);
+								String state = "可接入" ;
+								if(obj.getAcceped_case()>=obj.getAuto_accept()){
+									state = "已满";
+								}
+								sb.append((i+1)+"、"+obj.getKf_account()+"("+obj.getKf_id()+")【"+state+"】\n");
+								SessionList.setSeesion(fromUserName,Session.phase_kf,String.valueOf(i+1), obj);
+							}
+            				sb.append("请输入对应的序号（3分钟内有效），接入客服。");
+            			}else{
+            				sb.append("非常抱歉，暂时没有客服人员在线。");
+            			}
+                    	textMessage.setContent(sb.toString());
                     }
                     respMessage = MessageUtil.textMessageToXml(textMessage);
                 }  

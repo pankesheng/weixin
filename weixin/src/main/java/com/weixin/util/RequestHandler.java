@@ -215,7 +215,7 @@ public class RequestHandler {
 	
 
     //输出XML
-	   @SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes")
 	public String parseXML() {
 		   StringBuffer sb = new StringBuffer();
 	       sb.append("<xml>");
