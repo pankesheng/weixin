@@ -14,13 +14,13 @@ import com.weixin.message.resp.NewsMessage;
 import com.weixin.message.resp.TextMessage;
 import com.weixin.message.resp.TransInfo;
 import com.weixin.pojo.AccessToken;
+import com.weixin.pojo.KfInfo;
 import com.weixin.pojo.OnLineKf;
 import com.weixin.session.Session;
 import com.weixin.session.SessionList;
 import com.weixin.util.AdvancedUtil;
 import com.weixin.util.MessageUtil;
 import com.weixin.util.QuartzManager;
-import com.weixin.util.WechatApiHelper;
 /** 
  * 核心服务类 
  *  
@@ -33,6 +33,7 @@ public class CoreService {
      * @return 
      */  
 	
+	@SuppressWarnings("unused")
 	public static String processRequest(HttpServletRequest request) {
 		String respMessage = null;  
         try {  
@@ -71,25 +72,31 @@ public class CoreService {
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {  
                 String content = requestMap.get("Content");
                 if(SessionList.search(fromUserName, Session.phase_kf)>-1){
-                	OnLineKf kf = (OnLineKf) SessionList.getSession(fromUserName,Session.phase_kf,content);
-	                if(kf!=null){
-	                	if(kf.getAcceped_case()>=kf.getAuto_accept()){
-	                		textMessage.setContent("对不起，该客服接入人员已满，请稍后刷新在线客服列表重新选择。");
-	                		respMessage = MessageUtil.textMessageToXml(textMessage);
-	                	}else{
-		                	kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
-		                	TransInfo transInfo = new TransInfo();
-		                	transInfo.setKfAccount(kf.getKf_account());
-		                	kfMessage.setTransInfo(transInfo);
-		                	QuartzManager.removeJob("phase"+Session.phase_kf+fromUserName);
-		                    respMessage = MessageUtil.kfMessageToXml(kfMessage);
-	                	}
-	                }else{
-	                	textMessage.setContent("您想要接入的客服不存在或请求已超时！");
-	                	SessionList.resetQuartz(fromUserName,Session.phase_kf);
-	                	respMessage = MessageUtil.textMessageToXml(textMessage);
-	                }
-                }
+	            	if(content.equals("0") && "random".equals(SessionList.getSession(fromUserName,Session.phase_kf,content))){
+	            		kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
+	                	QuartzManager.removeJob("phase"+Session.phase_kf+fromUserName);
+	                    respMessage = MessageUtil.kfMessageToXml(kfMessage);
+	            	}else{
+		            	OnLineKf kf = (OnLineKf) SessionList.getSession(fromUserName,Session.phase_kf,content);
+		                if(kf!=null){
+	//	                	if(kf.getAcceped_case()>=kf.getAuto_accept()){
+	//	                		textMessage.setContent("对不起，该客服接入人员已满，请稍后刷新在线客服列表重新选择。");
+	//	                		respMessage = MessageUtil.textMessageToXml(textMessage);
+	//	                	}else{
+			                	kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
+			                	TransInfo transInfo = new TransInfo();
+			                	transInfo.setKfAccount(kf.getKf_account());
+			                	kfMessage.setTransInfo(transInfo);
+			                	QuartzManager.removeJob("phase"+Session.phase_kf+fromUserName);
+			                    respMessage = MessageUtil.kfMessageToXml(kfMessage);
+	//	                	}
+		                }else{
+		                	textMessage.setContent("您想要接入的客服不存在或请求已超时！");
+		                	SessionList.resetQuartz(fromUserName,Session.phase_kf);
+		                	respMessage = MessageUtil.textMessageToXml(textMessage);
+		                }
+	            	}
+	            }
             }  
             // 图片消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
@@ -131,19 +138,31 @@ public class CoreService {
                     	AccessToken at = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
             			String accessToken = at.getAccess_token();
             			List<OnLineKf> list = AdvancedUtil.getOnLineKfList(accessToken);
+            			List<KfInfo> kfs = AdvancedUtil.getKfList(accessToken);
             			if(list!=null && list.size()>0){
             				sb.append("在线客服列表：\n");
                         	SessionList.setSeesion(fromUserName,Session.phase_kf);
-            				for (int i = 0; i < list.size(); i++) {
+                        	if(list.size()>1){
+	                        	sb.append("0、随机分配\n");
+								SessionList.setSeesion(fromUserName,Session.phase_kf,String.valueOf(0), "random");
+                        	}
+                        	for (int i = 0; i < list.size(); i++) {
 								OnLineKf obj = list.get(i);
-								String state = "可接入" ;
-								if(obj.getAcceped_case()>=obj.getAuto_accept()){
-									state = "已满";
+								String nickname = obj.getKf_id();
+								for (KfInfo kf : kfs) {
+									if(obj.getKf_account().equals(kf.getKf_account())){
+										nickname = kf.getKf_nick();
+										break;
+									}
 								}
-								sb.append((i+1)+"、"+obj.getKf_account()+"("+obj.getKf_id()+")【"+state+"】\n");
+//								String state = "可接入" ;
+//								if(obj.getAcceped_case()>=obj.getAuto_accept()){
+//									state = "已满";
+//								}
+								sb.append((i+1)+"、"+nickname+"【"+obj.getKf_id()+"】\n");
 								SessionList.setSeesion(fromUserName,Session.phase_kf,String.valueOf(i+1), obj);
 							}
-            				sb.append("请输入对应的序号（3分钟内有效），接入客服。");
+            				sb.append("请输入对应的序号接入客服,3分钟内输入有效。");
             			}else{
             				sb.append("非常抱歉，暂时没有客服人员在线。");
             			}

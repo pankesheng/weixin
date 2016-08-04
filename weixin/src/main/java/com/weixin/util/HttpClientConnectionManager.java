@@ -10,6 +10,7 @@ import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 
+@SuppressWarnings("deprecation")
 public class HttpClientConnectionManager {
 	
 	

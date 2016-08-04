@@ -10,9 +10,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -30,6 +28,7 @@ import com.weixin.configuration.WeChatConfiguration;
 import com.weixin.message.resp.Article;
 import com.weixin.message.resp.Music;
 import com.weixin.pojo.AccessToken;
+import com.weixin.pojo.KfInfo;
 import com.weixin.pojo.OnLineKf;
 import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WeChatGroup;
@@ -60,30 +59,31 @@ public class AdvancedUtil {
 		};
 		System.out.println(result);
 		JSONObject jsonObject = JSONObject.fromObject(result);
-		List<OnLineKf> fkList = new Gson().fromJson(jsonObject.getString("kf_online_list"), new TypeToken<List<OnLineKf>>(){}.getType());
+		List<OnLineKf> fkList = new ArrayList<OnLineKf>();
+		if(jsonObject.containsKey("kf_online_list")){
+			fkList = new Gson().fromJson(jsonObject.getString("kf_online_list"), new TypeToken<List<OnLineKf>>(){}.getType());
+		}
 		return fkList;
 	}
-
+	
 	/**
-	 * 添加客服账号信息
+	 * 获取公众号所有客服人员
 	 * @param accessToken
-	 * @param kf_account
-	 * @param nickname
-	 * @param password
 	 * @return
 	 */
-	public static String addKfAccount(String accessToken,String kf_account,String nickname,String password){
-		String url = WeChatConfiguration.KF_ADD_URL.replace("ACCESS_TOKEN", accessToken);
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("kf_account", kf_account);
-		params.put("nickname", nickname);
-		params.put("password", MD5Util.MD5Encode(password, "UTF-8"));
-		String result = CommonUtil.httpPostRequest(url, params);
+	public static List<KfInfo> getKfList(String accessToken){
+		String url = WeChatConfiguration.KF_ALL_URL.replace("ACCESS_TOKEN", accessToken);
+		String result = CommonUtil.httpGetRequest(url);
 		System.out.println(result);
+//		result = "{\"kf_list\":[{\"kf_account\":\"kf2001@gh_a7ccf31b9f9c\",\"kf_headimgurl\":\"http://mmbiz.qpic.cn/mmbiz/QfooYeGw5iacpapMaCAmAG5ahqjf5ibAQVGFyWmd9W3aO1GPg5KMxzX8NhWdl0eugLksjzibjyXlqnOkuvpicFg9Uw/300?wx_fmt=jpeg\",\"kf_id\":2001,\"kf_nick\":\"测试客服\",\"kf_wx\":\"pankesheng157\"},{\"kf_account\":\"kf2002@gh_a7ccf31b9f9c\",\"kf_headimgurl\":\"http://mmbiz.qpic.cn/mmbiz/QfooYeGw5iacpapMaCAmAG5ahqjf5ibAQVb3tKAyXicC6sq2L6nILmdncFBKeQiaG2JHuHsabibxFYs3iajvyovctYhA/300?wx_fmt=png\",\"kf_id\":2002,\"kf_nick\":\"测试客服2\",\"kf_wx\":\"lisfan\"},{\"kf_account\":\"kf2004@gh_a7ccf31b9f9c\",\"kf_headimgurl\":\"http://mmbiz.qpic.cn/mmbiz/QfooYeGw5iacpapMaCAmAG5ahqjf5ibAQVIbJG48QWkMuD5wic2yYXG1vJsYqRXPIgOKFhbS998giaRu8fBAbXNFuw/300?wx_fmt=png\",\"kf_id\":2004,\"kf_nick\":\"舟岛小鲜\",\"kf_wx\":\"yecool\"}]}";
 		JSONObject jsonObject = JSONObject.fromObject(result);
-		return result;
+		List<KfInfo> kfList = new ArrayList<KfInfo>();
+		if(jsonObject.containsKey("kf_list")){
+			kfList = new Gson().fromJson(jsonObject.getString("kf_list"), new TypeToken<List<KfInfo>>(){}.getType());
+		}
+		return kfList;
 	}
-	
+
 	/**
 	 * @Description: 组装文本客服消息
 	 * @param openId
@@ -948,128 +948,134 @@ public class AdvancedUtil {
 	}
 
 	public static void main(String args[]) {
-		// 获取接口访问凭证
-		String accessToken = CommonUtil.getToken("APPID", "APPSECRET")
-				.getAccessToken();
-
-		/**
-		 * 发送客服消息（文本消息）
-		 */
-		// 组装文本客服消息
-		String jsonTextMsg = makeTextCustomMessage(
-				"oEdzejiHCDqafJbz4WNJtWTMbDcE",
-				"点击查看<a href=\"http://blog.csdn.net/lyq8479\">柳峰的博客</a>");
-		// 发送客服消息
-		sendCustomMessage(accessToken, jsonTextMsg);
-
-		/**
-		 * 发送客服消息（图文消息）
-		 */
-		Article article1 = new Article();
-		article1.setTitle("微信上也能斗地主");
-		article1.setDescription("");
-		article1.setPicUrl("http://www.egouji.com/xiaoq/game/doudizhu_big.png");
-		article1.setUrl("http://resource.duopao.com/duopao/games/small_games/weixingame/Doudizhu/doudizhu.htm");
-		Article article2 = new Article();
-		article2.setTitle("傲气雄鹰\n80后不得不玩的经典游戏");
-		article2.setDescription("");
-		article2.setPicUrl("http://www.egouji.com/xiaoq/game/aoqixiongying.png");
-		article2.setUrl("http://resource.duopao.com/duopao/games/small_games/weixingame/Plane/aoqixiongying.html");
-		List<Article> list = new ArrayList<Article>();
-		list.add(article1);
-		list.add(article2);
-		// 组装图文客服消息
-		String jsonNewsMsg = makeNewsCustomMessage(
-				"oEdzejiHCDqafJbz4WNJtWTMbDcE", list);
-		// 发送客服消息
-		sendCustomMessage(accessToken, jsonNewsMsg);
-
-		/**
-		 * 创建临时二维码
-		 */
-		WeChatQRCode weixinQRCode = createTemporaryQRCode(accessToken, 900,
-				111111);
-		// 临时二维码的ticket
-		System.out.println(weixinQRCode.getTicket());
-		// 临时二维码的有效时间
-		System.out.println(weixinQRCode.getExpireSeconds());
-
-		/**
-		 * 根据ticket换取二维码
-		 */
-		String ticket = "gQEg7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2lIVVJ3VmJsTzFsQ0ZuQ0Y1bG5WAAIEW35+UgMEAAAAAA==";
-		String savePath = "G:/download";
-		// 根据ticket换取二维码
-		getQRCode(ticket, savePath);
-
-		/**
-		 * 获取用户信息
-		 */
-		WeChatUserInfo user = getUserInfo(accessToken,
-				"oEdzejiHCDqafJbz4WNJtWTMbDcE");
-		System.out.println("OpenID：" + user.getOpenId());
-		System.out.println("关注状态：" + user.getSubscribe());
-		System.out.println("关注时间：" + user.getSubscribeTime());
-		System.out.println("昵称：" + user.getNickname());
-		System.out.println("性别：" + user.getSex());
-		System.out.println("国家：" + user.getCountry());
-		System.out.println("省份：" + user.getProvince());
-		System.out.println("城市：" + user.getCity());
-		System.out.println("语言：" + user.getLanguage());
-		System.out.println("头像：" + user.getHeadImgUrl());
-
-		/**
-		 * 获取关注者列表
-		 */
-		WeChatUserList weixinUserList = getUserList(accessToken, "");
-		System.out.println("总关注用户数：" + weixinUserList.getTotal());
-		System.out.println("本次获取用户数：" + weixinUserList.getCount());
-		System.out.println("OpenID列表："
-				+ weixinUserList.getOpenIdList().toString());
-		System.out.println("next_openid：" + weixinUserList.getNextOpenId());
-
-		/**
-		 * 查询分组
-		 */
-		List<WeChatGroup> groupList = getGroups(accessToken);
-		// 循环输出各分组信息
-		for (WeChatGroup group : groupList) {
-			System.out.println(String.format("ID：%d 名称：%s 用户数：%d",
-					group.getId(), group.getName(), group.getCount()));
+		List<KfInfo> kfList = getKfList("23452345");
+		for (KfInfo kfInfo : kfList) {
+			System.out.println(kfInfo.getKf_nick());
 		}
-
-		/**
-		 * 创建分组
-		 */
-		WeChatGroup group = createGroup(accessToken, "公司员工");
-		System.out.println(String.format("成功创建分组：%s id：%d", group.getName(),
-				group.getId()));
-
-		/**
-		 * 修改分组名
-		 */
-		updateGroup(accessToken, 100, "同事");
-
-		/**
-		 * 移动用户分组
-		 */
-		updateMemberGroup(accessToken, "oEdzejiHCDqafJbz4WNJtWTMbDcE", 100);
-
-		/**
-		 * 上传多媒体文件
-		 */
-		WeChatMedia weixinMedia = uploadMedia(accessToken, "voice",
-				"http://localhost:8080/WeChatmpapi/test.mp3");
-		System.out.println(weixinMedia.getMediaId());
-		System.out.println(weixinMedia.getType());
-		System.out.println(weixinMedia.getCreatedAt());
-
-		/**
-		 * 下载多媒体文件
-		 */
-		getMedia(
-				accessToken,
-				"N7xWhOGYSLWUMPzVcGnxKFbhXeD_lLT5sXxyxDGEsCzWIB2CcUijSeQOYjWLMpcn",
-				"G:/download");
+		
+//		
+//		// 获取接口访问凭证
+//		String accessToken = CommonUtil.getToken("APPID", "APPSECRET")
+//				.getAccessToken();
+//
+//		/**
+//		 * 发送客服消息（文本消息）
+//		 */
+//		// 组装文本客服消息
+//		String jsonTextMsg = makeTextCustomMessage(
+//				"oEdzejiHCDqafJbz4WNJtWTMbDcE",
+//				"点击查看<a href=\"http://blog.csdn.net/lyq8479\">柳峰的博客</a>");
+//		// 发送客服消息
+//		sendCustomMessage(accessToken, jsonTextMsg);
+//
+//		/**
+//		 * 发送客服消息（图文消息）
+//		 */
+//		Article article1 = new Article();
+//		article1.setTitle("微信上也能斗地主");
+//		article1.setDescription("");
+//		article1.setPicUrl("http://www.egouji.com/xiaoq/game/doudizhu_big.png");
+//		article1.setUrl("http://resource.duopao.com/duopao/games/small_games/weixingame/Doudizhu/doudizhu.htm");
+//		Article article2 = new Article();
+//		article2.setTitle("傲气雄鹰\n80后不得不玩的经典游戏");
+//		article2.setDescription("");
+//		article2.setPicUrl("http://www.egouji.com/xiaoq/game/aoqixiongying.png");
+//		article2.setUrl("http://resource.duopao.com/duopao/games/small_games/weixingame/Plane/aoqixiongying.html");
+//		List<Article> list = new ArrayList<Article>();
+//		list.add(article1);
+//		list.add(article2);
+//		// 组装图文客服消息
+//		String jsonNewsMsg = makeNewsCustomMessage(
+//				"oEdzejiHCDqafJbz4WNJtWTMbDcE", list);
+//		// 发送客服消息
+//		sendCustomMessage(accessToken, jsonNewsMsg);
+//
+//		/**
+//		 * 创建临时二维码
+//		 */
+//		WeChatQRCode weixinQRCode = createTemporaryQRCode(accessToken, 900,
+//				111111);
+//		// 临时二维码的ticket
+//		System.out.println(weixinQRCode.getTicket());
+//		// 临时二维码的有效时间
+//		System.out.println(weixinQRCode.getExpireSeconds());
+//
+//		/**
+//		 * 根据ticket换取二维码
+//		 */
+//		String ticket = "gQEg7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2lIVVJ3VmJsTzFsQ0ZuQ0Y1bG5WAAIEW35+UgMEAAAAAA==";
+//		String savePath = "G:/download";
+//		// 根据ticket换取二维码
+//		getQRCode(ticket, savePath);
+//
+//		/**
+//		 * 获取用户信息
+//		 */
+//		WeChatUserInfo user = getUserInfo(accessToken,
+//				"oEdzejiHCDqafJbz4WNJtWTMbDcE");
+//		System.out.println("OpenID：" + user.getOpenId());
+//		System.out.println("关注状态：" + user.getSubscribe());
+//		System.out.println("关注时间：" + user.getSubscribeTime());
+//		System.out.println("昵称：" + user.getNickname());
+//		System.out.println("性别：" + user.getSex());
+//		System.out.println("国家：" + user.getCountry());
+//		System.out.println("省份：" + user.getProvince());
+//		System.out.println("城市：" + user.getCity());
+//		System.out.println("语言：" + user.getLanguage());
+//		System.out.println("头像：" + user.getHeadImgUrl());
+//
+//		/**
+//		 * 获取关注者列表
+//		 */
+//		WeChatUserList weixinUserList = getUserList(accessToken, "");
+//		System.out.println("总关注用户数：" + weixinUserList.getTotal());
+//		System.out.println("本次获取用户数：" + weixinUserList.getCount());
+//		System.out.println("OpenID列表："
+//				+ weixinUserList.getOpenIdList().toString());
+//		System.out.println("next_openid：" + weixinUserList.getNextOpenId());
+//
+//		/**
+//		 * 查询分组
+//		 */
+//		List<WeChatGroup> groupList = getGroups(accessToken);
+//		// 循环输出各分组信息
+//		for (WeChatGroup group : groupList) {
+//			System.out.println(String.format("ID：%d 名称：%s 用户数：%d",
+//					group.getId(), group.getName(), group.getCount()));
+//		}
+//
+//		/**
+//		 * 创建分组
+//		 */
+//		WeChatGroup group = createGroup(accessToken, "公司员工");
+//		System.out.println(String.format("成功创建分组：%s id：%d", group.getName(),
+//				group.getId()));
+//
+//		/**
+//		 * 修改分组名
+//		 */
+//		updateGroup(accessToken, 100, "同事");
+//
+//		/**
+//		 * 移动用户分组
+//		 */
+//		updateMemberGroup(accessToken, "oEdzejiHCDqafJbz4WNJtWTMbDcE", 100);
+//
+//		/**
+//		 * 上传多媒体文件
+//		 */
+//		WeChatMedia weixinMedia = uploadMedia(accessToken, "voice",
+//				"http://localhost:8080/WeChatmpapi/test.mp3");
+//		System.out.println(weixinMedia.getMediaId());
+//		System.out.println(weixinMedia.getType());
+//		System.out.println(weixinMedia.getCreatedAt());
+//
+//		/**
+//		 * 下载多媒体文件
+//		 */
+//		getMedia(
+//				accessToken,
+//				"N7xWhOGYSLWUMPzVcGnxKFbhXeD_lLT5sXxyxDGEsCzWIB2CcUijSeQOYjWLMpcn",
+//				"G:/download");
 	}
 }

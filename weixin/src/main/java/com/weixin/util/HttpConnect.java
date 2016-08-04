@@ -26,7 +26,7 @@ public class HttpConnect {
         // 预定接口的返回处理，对特殊字符进行过滤
         public HttpResponse doGetStr(String url) {
     		String CONTENT_CHARSET = "GBK";
-    		long time1 = System.currentTimeMillis();
+//    		long time1 = System.currentTimeMillis();
     		HttpClient client = new HttpClient(connectionManager);  
             client.getHttpConnectionManager().getParams().setConnectionTimeout(30000);  
             client.getHttpConnectionManager().getParams().setSoTimeout(55000);

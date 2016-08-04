@@ -80,6 +80,7 @@ public class WeChatPayController {
 	// orderNo 订单编号
 	// descr 商品描述
 	// money 金额，double类型
+	@SuppressWarnings("deprecation")
 	@RequestMapping("/paymain")
 	public void paymain(HttpServletRequest request,
 			HttpServletResponse response, Long userId, Long orderNo,
@@ -111,6 +112,7 @@ public class WeChatPayController {
 		response.sendRedirect(url);
 	}
 
+	@SuppressWarnings({ "unused", "static-access" })
 	@RequestMapping(value = "/topay")
 	public String topay(HttpServletRequest request,
 			HttpServletResponse response, String userId, String orderNo,
@@ -269,6 +271,7 @@ public class WeChatPayController {
 		return "redirect:/wxpay/pay.jsp?appid=" + appid2 + "&timeStamp=" + timestamp + "&nonceStr=" + nonceStr2 + "&package=" + packages + "&sign=" + finalsign;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("/notify")
 	public void notify(Model model, HttpServletRequest request,
 			HttpServletResponse response, String appid) throws Exception {
@@ -317,6 +320,7 @@ public class WeChatPayController {
 		out.close();
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping("refund")
 	public void refund(HttpServletResponse response,String out_trade_no,Double total_fee1,Double refund_fee1) throws SDKRuntimeException {
 //		total_fee1 = 1d;

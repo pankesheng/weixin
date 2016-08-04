@@ -88,6 +88,7 @@ public class QuartzManager {
 	 * @param jobName
 	 * @param time
 	 */
+	@SuppressWarnings("rawtypes")
 	public static void modifyJobTime(String jobName, String time) {
 		try {
 			Scheduler sched = gSchedulerFactory.getScheduler();
@@ -217,14 +218,14 @@ public class QuartzManager {
 //		System.out.println("【移除定时】开始...");  
 //		QuartzManager.removeJob("test1");  
 //		System.out.println("【移除定时】成功");  
-		Calendar c = Calendar.getInstance();
-		c.setTimeInMillis(System.currentTimeMillis()+10*1000);
-		int month = c.get(Calendar.MONTH)+1;
-		int date = c.get(Calendar.DATE);
-		int hour = c.get(Calendar.HOUR_OF_DAY);
-		int minute = c.get(Calendar.MINUTE);
-		int second = c.get(Calendar.SECOND);
-		String time = second+" "+minute+" "+hour+" "+date+" "+month+" ?";
+//		Calendar c = Calendar.getInstance();
+//		c.setTimeInMillis(System.currentTimeMillis()+10*1000);
+//		int month = c.get(Calendar.MONTH)+1;
+//		int date = c.get(Calendar.DATE);
+//		int hour = c.get(Calendar.HOUR_OF_DAY);
+//		int minute = c.get(Calendar.MINUTE);
+//		int second = c.get(Calendar.SECOND);
+//		String time = second+" "+minute+" "+hour+" "+date+" "+month+" ?";
 //		System.out.println("/n【再次添加定时任务】开始(每10秒输出一次)...")
 //		QuartzManager.addJob("test1", "com.weixin.util.TestJob", "*/10 * * * * ?");  
 //		Thread.sleep(60000);  
