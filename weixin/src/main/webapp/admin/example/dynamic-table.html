@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span>系统管理 - 动态表格</span>
+	</div>
+	<div class="body-warp">
+		<div class="panel filter-block">
+			<form class="form-inline clearfix">
+				<div class="form-group">
+					<input class="form-control" id="search1" type="text" />
+				</div>
+				<div class="form-group">
+					<select class="form-select">
+						<option selected="" value="">下拉菜单</option>
+						<option value="选项1">选项1</option>
+						<option value="选项2">选项2</option>
+						<option value="选项3">选项3</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+
+				</div>
+				<!-- ui-droplist 控制按钮点击弹出框事件 ，若不想整个按钮控制，仅控制箭头，请增加 arrow-droplist和ui-selectbox-icon-->
+				<div class="form-group ui-droplist">
+					<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>纯下拉<i class="ui-selectbox-icon"></i></a>
+					<dl class="ui-selectbox-dropdown ui-droplist-option">
+						<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+						<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+						<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+					</dl>
+				</div>
+
+				<div class="form-group ui-droplist arrow-droplist">
+					<a href="javascript:void(0);" class="btn" id="search-btn">仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+					<dl class="ui-selectbox-dropdown ui-droplist-option">
+						<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+						<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+						<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+					</dl>
+				</div>
+				<div class="right">
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+						</div>
+						<div class="form-group ">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+						</div>
+					</div>
+			</form>
+		</div>
+		<div class="panel filter-block">
+			<form class="form-inline clearfix">
+				<div style="margin-right:700px;">
+					<div class="form-group">
+						<input class="form-control" id="search1" type="text" />
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+
+					</div>
+					<!-- ui-droplist 控制按钮点击弹出框事件 ，若不想整个按钮控制，仅控制箭头，请增加 arrow-droplist和ui-selectbox-icon-->
+					<div class="form-group ui-droplist">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>纯下拉<i class="ui-selectbox-icon"></i></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+
+					<div class="form-group ui-droplist arrow-droplist">
+						<a href="javascript:void(0);" class="btn" id="search-btn">仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+					
+				</div>
+				<div class="fixed-right">
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+					</div>
+					<div class="form-group ">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="panel table-tool-bar">
+			<a class="table-switch switchMode right" data-mode="thumb" title="缩略图模式"><i class="iconfont">&#xe629;</i></a>
+			<a class="table-switch switchMode right selected" data-mode="list" title="列表模式"><i class="iconfont">&#xe63d;</i></a>
+			<a id="add-btn" class="btn" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>新增</a>
+			<a id="mod-btn" class="btn" href="javascript:void(0);"><i class="mod-btn iconfont">&#xe609;</i>编辑</a>
+			<a id="del-btn" class="btn" href="javascript:void(0);"><i class="remove-btn iconfont">&#xe608;</i>删除</a>
+			<div class=" ui-droplist">
+				<a id="add-btn" class="btn btn-filter" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>新增<i class="ui-selectbox-icon"></i></a>
+				<dl class="ui-selectbox-dropdown ui-droplist-option">
+					<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+					<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+					<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+				</dl>
+			</div>
+			<div class=" ui-droplist arrow-droplist">
+				<a href="javascript:void(0);" class="btn" id="search-btn">可加图标仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+				<dl class="ui-selectbox-dropdown ui-droplist-option">
+					<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+					<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+					<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+				</dl>
+			</div>
+		</div>
+		<table class="table" id="table"></table>
+		<div class="pagination" id="pagination"></div>
+	</div>
+	<div id="category" class="hide">
+		<div class="form-wrap">
+			<form class="form-inline">
+				<table class="form-table">
+					<tr>
+						<td>
+							<div class="form-tip alert alert-info">请至少选择一个类别</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="form-checkbox" id="all-type" type="checkbox" />
+							<label for="all-type">全部类别</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="form-checkbox" id="video-type" type="checkbox" />
+							<label for="video-type">视频类</label>
+							<input class="form-checkbox" id="animate-type" type="checkbox" />
+							<label for="animate-type">动画类</label>
+							<input class="form-checkbox" id="text-type" type="checkbox" />
+							<label for="text-type">文本类</label>
+							<input class="form-checkbox" id="courseware-type" type="checkbox" />
+							<label for="courseware-type">课件类</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="btn btn-success btn-large" type="submit" value="提交">
+							<input class="btn btn-danger btn-large" type="button" value="取消">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../ext/zw/src/jquery-epaging.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		$(function () {
+
+
+
+			/*初始化表格*/
+			var grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"account": "admin",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"phone": "123",
+							"role": 2,
+							"sex": "男",
+							"name": "管理员1"
+						}, {
+							"_id": "551b56c11911ce040e0b9887",
+							"name": "123123",
+							"account": "admin1",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"phone": "123123",
+							"__v": 0,
+							"role": 1,
+							"sex": "男"
+						}, {
+							"_id": "551b59b377886a8c1d20b65e",
+							"name": "管理员",
+							"account": "admin12a",
+							"password": "601f1889667efaebb33b8c12572835da3f027f78",
+							"sex": "男",
+							"phone": "电话",
+							"role": 2,
+							"__v": 0
+						}, {
+							"_id": "551b64b577886a8c1d20b671",
+							"name": "asdfasdf",
+							"account": "asdfasdf",
+							"password": "601f1889667efaebb33b8c12572835da3f027f78",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b691677886a8c1d20b683",
+							"name": "",
+							"account": "1231231a",
+							"password": "88ea39439e74fa27c09a4fc0bc8ebe6d00978392",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b6d2177886a8c1d20b687",
+							"name": "asdf",
+							"account": "123123123",
+							"password": "73da7bb9d2a475bbc2ab79da7d4e94940cb9f9d5",
+							"sex": "男",
+							"phone": "3123123",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b8a4877886a8c1d20b698",
+							"name": "",
+							"account": "admin123a",
+							"password": "40bd001563085fc35165329ea1ff5c5ecbdbbeef",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b8ac277886a8c1d20b69c",
+							"name": "",
+							"account": "admin1a",
+							"password": "601f1889667efaebb33b8c12572835da3f027f78",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b8e9c77886a8c1d20b6a0",
+							"name": "",
+							"account": "adfadf",
+							"password": "40bd001563085fc35165329ea1ff5c5ecbdbbeef",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b8ee477886a8c1d20b6a7",
+							"name": "",
+							"account": "123123adfs",
+							"password": "b51f92f87f2d066dc6163aab994990608d5bf73b",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}],
+						"total": 600
+					}
+				},
+				schema: {
+					thumbRenderer: function (rowData, grid, rowIndex) {
+						return '<div class="thumb-content" style="width: 300px;">' +
+							'<a class="thumb-title">瓯海教育OA系统</a>' +
+							'<p class="thumb-section"><b>适用范围</b>：全区</p>' +
+							'<p class="thumb-section"><b>应用类型</b>：系统应用</p>' +
+							'<b>安装人数</b>：123456<b>&nbsp;&nbsp;&nbsp;&nbsp;使用人数</b>：12345' +
+							'<p class="thumb-section"><b>使用状态</b>：启动</p>' +
+							'<p class="thumb-section"><b>应用介绍</b>：这是一段应用介绍霍乱有多种传播途径什</p>' +
+							'<p class="thumb-section thumb-btns"><a class="btn btn-mini btn-primary">编辑</a>\n<a class="btn btn-mini btn-primary">编辑</a>\n<a class="btn btn-mini btn-primary">编辑</a></p>'
+						'</div>';
+					}
+				},
+				tool: {
+					pagingBar: true
+				},
+				columns: [{
+					title: '帐号<i class="iconfont infotips popuptips" title="这里填写你要说明的内容">&#xe644;</i>',
+					dataIndex: 'account',
+					sortable: true,
+					align: 'left',
+					//add 新属性[不换行]，true
+					nowrap: true,
+					renderer: function (cellData) {
+						return '<a href="javascript:void(0);">' + cellData + '</a>';
+					}
+                }, {
+					title: '姓名',
+					dataIndex: 'name',
+					sortable: true,
+					formatter: {
+						length: 2
+					}
+                }, {
+					title: '单位',
+					dataIndex: 'unit'
+                }, {
+					title: '管理员',
+					dataIndex: 'role',
+					renderer: function (cellData, rowData) {
+						return '<span class="red">否</span>';
+					}
+                }, {
+					title: '评委',
+					dataIndex: 'phone',
+					renderer: function (cellData, rowData) {
+						return '<span class="red">否</span>';
+					}
+                }, {
+					title: '操作',
+					//width: 300,
+					nowrap: true,
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+
+						var manage = '<a class="btn btn-primary" href="javascript:void(0);" onclick="setManager(this);">警告框</a>\n';
+						var juage = '<a class="btn btn-primary" href="javascript:void(0);" onclick="setJuage(this);">页面框</a>\n';
+						var preview = '<a class="btn btn-primary" href="javascript:void(0);" onclick="viewItem(' + rowIndex + ');">预览</a>\n'
+						var edit = '<a class="btn btn-info" href="javascript:void(0);" onclick="editItem(' + rowIndex + ');">编辑</a>\n';
+						var remove = '<a class="btn btn-danger" href="javascript:void(0);" onclick="delItem(' + rowIndex + ');">删除</a>\n';
+
+						return manage + juage + preview + edit + remove;
+
+					}
+                }], //add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//事件回调 
+					}
+				}
+			});
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+			//下拉菜单初始化
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+
+			//初始化按钮下拉，require tool.js
+			$('.ui-droplist').dropList();
+
+
+			/*老分页*/
+			$('#pagination').epaging({
+				pagingActiveCls: 'on',
+				store: {
+					total: 1000,
+					offset: 222,
+					limit: 10
+				}
+			});
+
+			//初始化弹出条信息, require tool.js
+			$('.infotips').popupTips();
+
+		}
+
+		/*侦听*/
+		function addListeners() {
+			//新增事件
+			$('#add-btn').bind('click', function () {
+				var index = showIframe('新增', './dialog-form.html', 800, 352);
+			});
+			//修改事件
+			$('#mod-btn').bind('click', function () {
+				//var index = showIframe('编辑', './dynamic-form.html', 800, 352);
+			});
+			//删除事件
+			$('#del-btn').bind('click', function () {
+				//setManager()
+			});
+
+			//视图模式切换
+			$('.switchMode').bind('click', function () {
+				$(this).siblings('.selected').removeClass('selected');
+				$(this).addClass('selected');
+				grid.switchDisplayMode($(this).data('mode'));
+			});
+
+			$('.switchMode').bind('click', function () {
+				$(this).siblings('.selected').removeClass('selected');
+				$(this).addClass('selected');
+				grid.switchDisplayMode($(this).data('mode'));
+			});
+
+		}
+
+		//预览事件
+		function viewItem(rowIndex) {
+			showAlert('确认要执行此操作，可能会带来未知的数据异常', function (index) {
+				//layer.close(index);
+			});
+		}
+
+		//编辑事件
+		function editItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//删除事件
+		function removeItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//警告框事件
+		function setManager(me) {
+			showAlert('确认要执行此操作，可能会带来未知的数据异常', function (index) {
+				layer.close(index);
+			});
+		}
+
+		//页面框事件
+		function setJuage(me) {
+			showDom('标题', '#category', 400, 200);
+		}
+	</script>
+</body>
+
+</html>

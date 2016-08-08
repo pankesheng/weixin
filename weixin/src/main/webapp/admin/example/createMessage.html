@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>写短信</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<style>
+		.uneditable {
+			display: inline-block;
+			height: 20px;
+			padding: 5px 10px;
+			line-height: 20px;
+			color: #555;
+			border: 1px solid #d2d2d2;
+			background-color: #e5e5e5;
+			outline: 0;
+			margin-right: -5px;
+			vertical-align: middle;
+		}
+		
+		.form-post-type {
+			width: 266px;
+		}
+		
+		.form-post-wap {
+			width: 238px;
+		}
+		
+		.alert-info span {
+			color: #f00;
+		}
+		
+		.form-table {
+			float: left;
+		}
+		
+		.address-list-tree {
+			margin-left: 30px;
+			float: left;
+			width: 210px;
+			position: relative;
+		}
+		
+		.search-icon {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			width: 16px;
+			height: 16px;
+			background-image: url(../images/search.jpg);
+			cursor: pointer;
+		}
+		
+		.search-body {
+			height: 387px;
+			overflow: auto;
+			padding: 10px 20px 10px 10px;
+		}
+		
+		.search-box {
+			border-bottom: 1px solid #d2d2d2;
+			margin-bottom: 10px;
+			display: none;
+			position: relative;
+			width: 175px;
+		}
+		
+		.search-box .search-text {
+			width: 90%;
+			height: 20px;
+			line-height: 20px;
+			padding: 5px 0px;
+			color: #555;
+			outline: 0;
+			border: none;
+			background-color: transparent;
+			vertical-align: middle;
+		}
+		
+		.search-box .close-search {
+			position: absolute;
+			top: 10px;
+			right: 2px;
+			width: 9px;
+			height: 9px;
+			background-image: url(../images/search.jpg);
+			background-position: -4px -16px;
+			cursor: pointer;
+		}
+		
+		.list-parent span {
+			cursor: pointer;
+			height: 18px;
+			color: #333;
+			vertical-align: top;
+			display: inline-block;
+		}
+		
+		.list-parent i {
+			line-height: 0;
+			font-size: 0;
+			display: inline-block;
+			width: 13px;
+			height: 14px;
+			margin-right: 3px;
+			margin-top: 2px;
+			vertical-align: top;
+			cursor: pointer;
+			background-color: transparent;
+			background-repeat: no-repeat;
+			background-attachment: scroll;
+			background-image: url("../images/search.jpg");
+			background-position: -2px -25px;
+		}
+		
+		.list-children {
+			padding-left: 16px;
+			padding-right: 10px;
+		}
+		
+		.list-children .form-checkbox,
+		.search-list .form-checkbox {
+			margin-right: 2px;
+			vertical-align: top;
+			margin-top: 6px;
+		}
+		
+		.list-children a,
+		.search-list a {
+			color: #333;
+			margin-top: 2px;
+			display: inline-block;
+			vertical-align: top;
+			*display: inline;
+			*zoom: 1;
+			width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		
+		.list-children li,
+		.search-list li {
+			white-space: nowrap;
+		}
+	</style>
+
+
+
+</head>
+
+<body>
+
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-body">
+
+				<ul class="tabs" data-toggle="tab" role="tab">
+					<li>
+						<a class="tabs-btn selected" href="#tab1">标签页1</a>
+					</li>
+					<li>
+						<a class="tabs-btn" href="#tab2">标签页2</a>
+					</li>
+					<li>
+						<a class="tabs-btn" href="#tab3">标签页3</a>
+					</li>
+				</ul>
+				<div class="tabs-content">
+					<div id="tab1">
+						<form style="width:800px;">
+							<div class="clearfix">
+								<table class="form-table">
+									<tr class="valign-top">
+										<td>
+											<label class="form-label" for="search4">接收人<b class="red">*</b></label>
+										</td>
+										<td>
+											<textarea class="form-textarea" id="search4" name=""></textarea>
+											<br />
+											<span class="form-tip alert alert-info">当前数量&nbsp;<span>0</span>&nbsp;</span>
+											<br />
+											<span class="form-tip alert alert-warning">注：上框中可直接输入手机号码，手机号码间用英文输入法状态下的逗号","隔开</span>
+
+										</td>
+									</tr>
+									<tr class="valign-top">
+										<td>
+											<label class="form-label" for="search4">内容<b class="red">*</b></label>
+										</td>
+										<td>
+											<textarea class="form-textarea" id="search4" name=""></textarea>
+											<br />
+											<span class="form-tip alert alert-info">当前短信内容字数&nbsp;<span>0</span>&nbsp;个</span>
+										</td>
+									</tr>
+									<tr class="valign-top">
+										<td>
+											<label class="form-label" for="search-select">发送方式</label>
+										</td>
+										<td>
+											<div>
+												<input class="form-radio" id="d1" type="radio" name="d1" checked="checked">
+												<label class="mr-10" for="d1">立即发送</label>
+											</div>
+											<div>
+												<input class="form-radio" id="d2" type="radio" name="d1">
+												<label class="mr-10" for="d2">定时发送</label>
+												<input class="form-control date form-post-type" id="search2" type="text">
+											</div>
+										</td>
+									</tr>
+									<tr class="valign-top">
+										<td>
+											<label class="form-label" for="search2">是否WapPush短信</label>
+										</td>
+										<td>
+											<div>
+												<input class="form-radio" id="d3" type="radio" name="d2" checked="checked">
+												<label class="mr-10" for="d3">否</label>
+											</div>
+											<div>
+												<input class="form-radio" id="d4" type="radio" name="d2">
+												<label class="mr-10" for="d4">是</label>
+												<span class="uneditable">HTTP://</span>
+												<input class="form-control form-post-wap" id="search1" type="text" />
+											</div>
+										</td>
+									</tr>
+
+								</table>
+								<div class="panel address-list-tree">
+									<div class="panel-title">
+										<span class="title-text">通讯录</span>
+										<span class="search-icon"></span>
+									</div>
+									<div class="search-body">
+										<div class="search-box">
+											<input type="text" class="search-text" id="search-text" name="search-text" placeholder="请输入搜索单位名称" />
+											<span class="close-search"></span>
+										</div>
+										<div class="list-container">
+											<div class="list-parent" align="left" onclick2="_toShowUl('','unitUl')">
+												<i></i><span>平台通讯录</span></div>
+											<div>
+												<ul class="list-children" id="unitUl">
+													<li>
+
+														<input class="form-checkbox" type="checkbox" value="993167091993600" unitname="瓯海区潘桥东方朝阳幼儿园" name="unitCheck" id="checkUnit993167091993600"><span><a href="javascript:void(0);" onclick2="_toShowUl(993167091993600,'unit');">瓯海区潘桥东方朝阳幼儿园</a></span>
+														<ul id="unit993167091993600"></ul>
+													</li>
+
+													<li>
+
+														<input class="form-checkbox" type="checkbox" value="993166993230848" unitname="瓯海区潘桥中心幼儿园" name="unitCheck" id="checkUnit993166993230848"><span><a href="javascript:void(0);" onclick2="_toShowUl(993166993230848,'unit');">瓯海区潘桥中心幼儿园</a></span>
+														<ul id="unit993166993230848"></ul>
+													</li>
+
+
+
+												</ul>
+											</div>
+
+											<div class="list-parent" align="left" onclick2="_toShowUl('','pubUl')"><i class="list-parent"></i><span>公共通讯录</span></div>
+											<div>
+												<ul id="pubUl" style="display:none">
+
+													<li>
+
+														<input class="form-checkbox" type="checkbox" value="1311263570234368" onchange="checkChange(3,this)" groupname="阿萨德发斯蒂芬" id="checkGroup1311263570234368"><span><a href="javascript:void(0);" onclick2="_toShowUl(1311263570234368,'groupContact');">阿萨德发斯蒂芬</a></span>
+														<ul style="display:none" id="groupContact1311263570234368"></ul>
+													</li>
+
+													<li>
+
+														<input class="form-checkbox" type="checkbox" value="1357938981145600" onchange="checkChange(3,this)" groupname="公共1" id="checkGroup1357938981145600"><span><a href="javascript:void(0);" onclick2="_toShowUl(1357938981145600,'groupContact');">公共1</a></span>
+														<ul style="display:none" id="groupContact1357938981145600"></ul>
+													</li>
+
+												</ul>
+											</div>
+
+											<div class="list-parent" align="left" onclick2="_toShowUl('','perUl')"><i class="list-parent"></i><span>个人通讯录</span></div>
+											<div>
+												<ul id="perUl" style="display:none">
+
+													<li>
+
+														<input class="form-checkbox" type="checkbox" value="1370274015333376" onchange="checkChange(3,this)" groupname="777" id="checkGroup1370274015333376"><span><a href="javascript:void(0);" onclick2="_toShowUl(1370274015333376,'groupContact');">777</a></span>
+														<ul style="display:none" id="groupContact1370274015333376"></ul>
+													</li>
+
+													<li>
+
+														<input class="form-checkbox" type="checkbox" value="1310815281236992" onchange="checkChange(3,this)" groupname="个人通讯录2" id="checkGroup1310815281236992"><span><a href="javascript:void(0);" onclick2="_toShowUl(1310815281236992,'groupContact');">个人通讯录2</a></span>
+														<ul style="display:none" id="groupContact1310815281236992"></ul>
+													</li>
+
+													<li>
+
+														<input class="form-checkbox" type="checkbox" value="1310815135190016" onchange="checkChange(3,this)" groupname="个人通讯录1" id="checkGroup1310815135190016"><span><a href="javascript:void(0);" onclick2="_toShowUl(1310815135190016,'groupContact');">个人通讯录1</a></span>
+														<ul style="display:none" id="groupContact1310815135190016"></ul>
+													</li>
+
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div style="text-align:center;margin-top:20px;">
+								<input class="btn btn-success btn-large" type="submit" value="发送">
+								<input class="btn btn-success btn-large return-btn" data-href="/manager/users" type="button" value="保存为草稿">
+								<input class="btn btn-danger btn-large" type="reset" value="重置">
+							</div>
+						</form>
+
+					</div>
+					<div class="hide" id="tab2">
+						<div class="panel table-tool-bar mt-10">
+							<a href="javascript:void(0);" class="btn right">修改评委</a>
+							<a href="javascript:void(0);" class="btn right mr-10">设置组长</a>
+							<span>评委组：王评委（组长），李评委，赵评委</span>
+						</div>
+						<div class="panel table-tool-bar mt-10">
+							<a href="javascript:void(0);" class="btn right">修改评委</a>
+							<a href="javascript:void(0);" class="btn right mr-10">设置组长</a>
+							<span>评委组：王评委（组长），李评委，赵评委</span>
+						</div>
+					</div>
+					<div class="hide" id="tab3">
+						<div class="panel table-tool-bar mt-10">
+							<a href="javascript:void(0);" class="btn right">修改评委</a>
+							<a href="javascript:void(0);" class="btn right mr-10">设置组长</a>
+							<span>评委组：王评委（组长），李评委，赵评委</span>
+						</div>
+						<div class="panel table-tool-bar mt-10">
+							<a href="javascript:void(0);" class="btn right">修改评委</a>
+							<a href="javascript:void(0);" class="btn right mr-10">设置组长</a>
+							<span>评委组：王评委（组长），李评委，赵评委</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+			/* 初始化控件 */
+			initWidget();
+
+			/* 侦听 */
+			addListeners();
+		});
+
+		/* 初始化控件 */
+		function initWidget() {
+
+			//初始化日期控件
+			laydate({
+				elem: '#search2',
+				event: 'focus'
+			});
+		}
+
+		/* 侦听 */
+		function addListeners() {
+
+			//TODO 尝试封装搜索
+			$(".search-icon").click(function () {
+				if ($(".search-box").is(":hidden")) {
+					$(".search-box").slideDown(200);
+					$(".search-box").find(".search-text").focus();
+				} else {
+					$(".close-search").click();
+				}
+			});
+
+			$(".search-text").keyup(function () {
+				var getValue = $(this).val().replace(/\s/g, "");
+
+				if (getValue.length > 0) {
+					//隐藏原列表
+					$(".list-container").hide();
+
+					var regString = "";
+
+					for (var i = 0; i < getValue.length; i++) {
+						regString += getValue[i] + "+.*";
+					}
+
+					var listChild = $(".list-children li");
+					//判断，搜索框是否已存在
+					var searchList = $(".search-list");
+
+					if (!searchList.length > 0) {
+						searchList = $("<ul class='search-list'></ul>")
+						searchList.appendTo($(".search-body"))
+					}
+					//清空数据
+					searchList.empty();
+					for (var i = 0; i < listChild.length; i++) {
+						var curChildText = $.trim(listChild.eq(i).text());
+						if (curChildText.search(eval("/" + regString + "/g")) >= 0) {
+							searchList.append(listChild.eq(i).clone());
+						};
+					}
+				} else {
+					$(".list-container").show();
+					$(".search-list").empty();
+				}
+			});
+
+			$(".close-search").click(function () {
+				//隐藏搜索框
+				$(".search-box").slideUp(200, function () {
+					//重置搜索文字
+					$(".search-text").val("");
+				});
+				//重置搜索结果
+				$(".list-container").fadeIn(300);
+				$(".search-list").empty();
+			});
+
+			$(".list-children li a").click(function () {
+				var checkbox = $(this).parent().prev();
+				if (!checkbox.is(":checked")) {
+					checkbox.attr("checked", "checked")
+				} else {
+					checkbox.removeAttr("checked")
+				}
+			})
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<style>
+		/*		todo 动画效果*/
+		/* 外包裹样式 */
+		
+		.selectpanel {
+			display: inline-block;
+			vertical-align: middle;
+			*display: inline;
+			*zoom: 1;
+			position: relative;
+			font-family: simsun, serif;
+		}
+		/* 面板视图样式 */
+		
+		.panelviewer {
+			position: relative;
+			z-index: 2;
+			vertical-align: middle;
+			width: 340px;
+			padding: 5px 15px 0 10px;
+			line-height: 25px;
+			text-align: left;
+			background-color: #fff;
+			border: 1px solid #d2d2d2;
+			outline: 0 none;
+			cursor: pointer;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+		}
+		
+		.panelviewer.focus {
+			border: 1px solid #508cf9;
+			outline: 0 none;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6);
+		}
+		
+		.panelviewer li.noitem {
+			position: relative;
+			top: -3px;
+			color: #555;
+		}
+		
+		.panelviewer li.active {
+			float: left;
+			margin: 0px 10px 5px 0px;
+			padding: 2px 5px;
+			height: 14px;
+			line-height: 14px;
+			color: #333;
+			white-space: nowrap;
+			cursor: default;
+			background-color: #eeeeee;
+			border: 1px solid #aaa;
+			border-radius: 3px;
+			box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+		}
+		
+		.panelviewer li.active img {
+			vertical-align: top;
+			height: 14px;
+			margin-right: 3px;
+		}
+		
+		.panelviewer li.active .iconfont {
+			font-size: 14px;
+			cursor: pointer;
+		}
+		
+		.panelviewer li.only {
+			padding: 2px 0px;
+			border: 1px solid transparent;
+			background-color: transparent;
+			box-shadow: none;
+		}
+		
+		.panelviewer li.only img {
+			vertical-align: top;
+			height: 18px;
+			margin-right: 3px;
+			margin-top: -2px;
+		}
+		
+		.panelviewer .panelviewer-icon {
+			position: absolute;
+			right: 4px;
+			top: 50%;
+			margin-top: -2px;
+			border-top: 5px solid #a7a7a7;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-bottom: none;
+			display: block;
+			overflow: hidden;
+			width: 0;
+			height: 0;
+			line-height: 0;
+			font-size: 0;
+		}
+		
+		.panelviewer .panelviewer-icon.active {
+			border-bottom: 5px solid #a7a7a7;
+			border-top: none;
+		}
+		/* 全选按钮样式 */
+		
+		.selectlist b {
+			display: inline-block;
+			vertical-align: middle;
+			*display: inline;
+			*zoom: 1;
+			width: 12px;
+			height: 12px;
+			font-size: 0px;
+			line-height: 0px;
+			background-image: url(../ext/zw/checkbox.jpg);
+			cursor: pointer;
+		}
+		
+		.selectlist .enabled {
+			background-position: 0 -0px;
+		}
+		
+		.selectlist .enabled-all {
+			background-position: 0 -12px;
+		}
+		
+		.selectlist .enabled-part {
+			background-position: 0 -24px;
+		}
+		
+		.selectlist .disabled {
+			background-position: 0 -36px;
+		}
+		
+		.selectlist .disabled-all {
+			background-position: 0 -48px;
+		}
+		
+		.selectlist .single-enabled {
+			background-position: 0 -0px;
+		}
+		
+		.selectlist .single-enabled-all {
+			background-position: 0 -12px;
+		}
+		
+		.selectlist .single-enabled-part {
+			background-position: 0 -24px;
+		}
+		
+		.selectlist .single-disabled {
+			background-position: 0 -36px;
+		}
+		
+		.selectlist .single-disabled-all {
+			background-position: 0 -48px;
+		}
+		/* 下拉结构样式 */
+		
+		.droplist {
+			display: none;
+			position: absolute;
+			z-index: 1;
+			left: 0px;
+			top: auto;
+			overflow-x: hidden;
+			overflow-y: auto;
+			width: 365px;
+			height: auto;
+			text-align: left;
+			background-color: #fff;
+			border: 1px solid #dcdcdc;
+			box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+		}
+		
+		.droplist .checkall {
+			height: 26px;
+			line-height: 26px;
+			padding: 4px 10px 2px 12px;
+		}
+		
+		.droplist li {
+			height: 26px;
+			line-height: 26px;
+			padding: 8px 10px;
+		}
+		
+		.droplist li.active:hover,
+		.droplist li.active,
+		.droplist li.active:hover a,
+		.droplist li.active a {
+			background-color: #3870F3;
+			color: #fff;
+		}
+		
+		.droplist li:hover,
+		.droplist li:hover a {
+			background: #eee;
+			cursor: pointer;
+		}
+		
+		.droplist li a {
+			display: inline-block;
+			vertical-align: middle;
+			color: #000
+		}
+		
+		.droplist li img {
+			vertical-align: middle;
+			height: 26px;
+			margin-right: 8px
+		}
+		/* 树结构样式 */
+		
+		.treelist {
+			width: 345px;
+			padding: 5px 10px;
+			background-color: #fff;
+			border: 1px solid #d2d2d2;
+		}
+		
+		.treelist b {
+			margin-right: 3px;
+		}
+		/*.treelist li {
+			height: 26px;
+			line-height: 26px;
+			border-bottom: 1px solid red;
+		}
+		
+		.treelist li.active:hover,
+		.treelist li.active,
+		.treelist li.active:hover a,
+		.treelist li.active a {
+			background-color: #3870F3;
+			color: #fff;
+		}
+		
+		.treelist li:hover,
+		.treelist li:hover a {
+			background: #eee;
+			cursor: pointer;
+		}
+		
+		.treelist li a {
+			color: #000
+		}
+		
+		.treelist li img {
+			float: left;
+			height: 14px;
+			margin-top: 6px;
+			margin-right: 4px
+		}*/
+		
+		.treelist-label {
+			/*background-color: #eeedec;*/
+			color: #333;
+		}
+		
+		.treelist-parent {
+			display: none;
+		}
+		
+		.treelist-parent.active {
+			display: block;
+		}
+		
+		.treelist-parent li {
+			/*TODO 列表项可以指定固定宽度*/
+			color: #444;
+		}
+		/*同时以修正IE不支持子元素选择器 JS实现 li选中时，子元素span on 子元素 show */
+		
+		.treelist-label {
+			position: relative;
+			display: block;
+			padding: 3px 0px;
+			line-height: 14px;
+			height: 14px;
+			font-size: 0px;
+		}
+		
+		.treelist-label .child-arrow {
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 3px;
+			border-top: 4px solid #333;
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-bottom: none;
+			overflow: hidden;
+			width: 0;
+			height: 0;
+			line-height: 0;
+			font-size: 0;
+		}
+		
+		.treelist-label .child-arrow:hover {
+			border-top: 4px solid #000;
+		}
+		
+		.treelist-label a,
+		.treelist-label label {
+			vertical-align: middle;
+			line-height: 14px;
+			font-size: 12px;
+		}
+		
+		.treelist-label a label {
+			cursor: pointer;
+		}
+		/*		.treelist-parent span.on,
+		.treelist-child span.on {
+			position: relative;
+			z-index: 2;
+			background-color: #fff;
+			border-color: #d2d2d2;
+		}*/
+		
+		.treelist-label img {
+			vertical-align: middle;
+			height: 14px;
+			margin-right: 2px;
+		}
+		
+		.treelist-parent,
+		.treelist-child {
+			padding-left: 16px;
+			/*position: absolute;
+			z-index: 1;
+			left: 0px;
+			margin-top: -1px;
+			width: 345px;
+			padding: 6px 10px;
+			background-color: #fff;
+			border: 1px solid #d2d2d2;
+			display: none;*/
+		}
+		
+		.treelist-child {
+			display: none;
+		}
+		
+		.treelist-child-1 {
+			display: none;
+		}
+		
+		.treelist-child-2 {
+			display: none;
+		}
+		
+		.treelist-child-3 {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<div class="form-group">
+						<label class="form-label" for="search1">所在地区<b class="red">*</b></label>
+						<input class="form-control " readonly="readonly" id="search1" type="text" />
+
+					</div>
+					<div class="form-group">
+						<label class="form-label" for="selectpanel">选择图标<b class="red">*</b></label>
+						<input class="form-control selectpanel" readonly="readonly" id="selectpanel" type="text" />
+
+
+
+					</div>
+					<div class="form-group">
+						<label class="form-label" for="search2">出生日期</label>
+						<input class="form-control date" id="search2" type="text" />
+						<span class="form-tip alert alert-success">账户名由数字和字母组成 长度为4-10字符</span>
+					</div>
+					<div class="form-group button-group">
+						<input class="btn btn-success btn-large" type="submit" value="提交">
+						<input class="btn btn-danger btn-large" type="reset" value="重置">
+						<input class="btn btn-danger btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/selectPanel.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script>
+		$(function () {
+
+			//初始化
+			initTablePage();
+
+			/*
+				数据结构
+				
+				"state":"s",
+				"total":"",//数据总量
+				"data": [
+							{
+								"id": "00",
+								"value": "ohjyj",
+								"name": "鹿城教育局",
+								"open": true,折叠/展开状态,默认true
+								"select":true,项选中状态,默认false
+								"formatter:function(){},格式化输出
+								"eventType": "click",子项事件行为
+								"childs":[ //子类数据
+									{
+										"id": "01",
+										"value": "zjs",
+										"name": "浙江省",
+										"select": true,																	"formatter:"function(){}",格式化输出
+										"childs":[{}]
+									}
+								]
+							}
+				]
+				"selectedId":[],//选中状态数组，会覆盖data数据设置的select状态
+				
+				"contWidth":"auto",//自定义宽度，默认XX?
+				"contHeight":"auto",//自定义外框高度，默认auto
+				"childWidth":"auto",//统一子项宽度，微调
+				"eventType": "click",//事件行为
+				"callback":function(){}//回调函数
+				TODO 样式：全选与非全选不同的表现方式
+			*/
+
+			var c = $("#selectpanel").selectpanel();
+			//侦听事件
+			$(".btn-danger").click(function () {
+				console.log(c.getSelectedData())
+				return false;
+			})
+			addListeners();
+
+		});
+
+		/*初始化各项设置*/
+		function initTablePage() {
+			//下拉菜单初始化
+			$('.form-select').each(function (index, el) {
+				treelist(this);
+			});
+
+			laydate({
+				elem: '#search2',
+				event: 'focus'
+			});
+		}
+
+		/*侦听*/
+		function addListeners() {
+			//新增事件
+			$('#add-btn').bind('click', function () {
+				var index = showIframe('新增', './dialog-form.html', 800, 352);
+			});
+			//修改事件
+			$('#mod-btn').bind('click', function () {
+				//var index = showIframe('编辑', './dynamic-form.html', 800, 352);
+			});
+			//删除事件
+			$('#del-btn').bind('click', function () {
+				//setManager()
+			});
+
+			//视图模式切换
+			$('.switchMode').bind('click', function () {
+				$(this).siblings('.selected').removeClass('selected');
+				$(this).addClass('selected');
+				grid.switchDisplayMode($(this).data('mode'));
+			});
+		}
+
+		//弹出内联DOM框
+		function setJuage(me) {
+			showDom('标题', '#category', 400, 200);
+		}
+
+		//单项编辑
+		function editItem(rowIndex) {
+			//var data = grid.getRowDataByIndex(rowIndex).data;
+			var index = showIframe('编辑', './dialog-form.html', 800, 352);
+		}
+
+		//警告框
+		function setManager(me) {
+			showAlert('确认要执行此操作，可能会带来未知的数据异常', function (index) {
+				layer.close(index);
+			});
+		}
+	</script>
+
+</body>
+
+</html>

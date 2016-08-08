@@ -1,0 +1,124 @@
+.page-collection-show .icons-container {
+  margin: 0 auto;
+}
+.page-collection-show .icons-container .collection-form {
+  margin: 80px 0;
+  text-align: center;
+}
+.page-collection-show .icons-container .collection-form .input_box {
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  padding: 6px 9px 6px 73px;
+  line-height: 24px;
+  width: 250px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.page-collection-show .icons-container .collection-form .input-wrap {
+  position: relative;
+}
+.page-collection-show .icons-container .collection-form .input-wrap:before {
+  font-family: 'ifont';
+  content: '\e615';
+  font-size: 14px;
+  position: absolute;
+  left: 54px;
+  top: -3px;
+  color: #c5c5c5;
+}
+.page-collection-show .icons-container .collection-form .secret-logo {
+  font-size: 160px;
+  color: #e9e9ea;
+  text-align: center;
+}
+.page-collection-show .icons-container .collection-form .ux-valid .error {
+  color: #f40;
+}
+.page-collection-show .icons-container .pannel {
+  margin-top: 50px;
+}
+.page-collection-show .icons-container .pannel .title {
+  color: #adadad;
+  position: relative;
+}
+.page-collection-show .icons-container .pannel .title .msg {
+  float: left;
+  background-color: #fff;
+}
+.page-collection-show .icons-container .pannel .title .msg span.count {
+  margin: 0 10px;
+}
+.page-collection-show .icons-container .pannel .title .msg span.status {
+  height: 18px;
+  line-height: 18px;
+  width: 65px;
+  text-align: center;
+  border-radius: 30px;
+  color: #fff;
+  margin: 0 12px;
+  display: inline-block;
+}
+.page-collection-show .icons-container .pannel .title .msg span.reject {
+  background-color: #ff4200;
+}
+.page-collection-show .icons-container .pannel .title .msg span.pending {
+  background-color: #ff9d00;
+}
+.page-collection-show .icons-container .pannel .title .msg span.fulfilled {
+  background-color: #159b00;
+}
+.page-collection-show .icons-container .pannel .title .line {
+  border-top: 1px solid #f6f6f7;
+  width: 100%;
+  margin-top: 9px;
+}
+.page-collection-show .icons-container .pannel .reason {
+  color: #ff4200;
+  margin-top: 10px;
+}
+.page-collection-show .icons-container .pannel .font-lists {
+  margin-top: 30px;
+}
+.page-collection-show .icons-container .pannel .font-lists li {
+  width:60px;
+  height: 60px;
+  float: left;
+  overflow: hidden;
+  text-align: center;
+  padding: 12px 8px 7px;
+	border: 1px solid #d2d2d2;
+	margin: 5px;
+}
+.page-collection-show .icons-container .pannel .font-lists li div.iconfont {
+  font-size: 32px;
+  line-height: 100px;
+  color: #737383;
+}
+.page-collection-show .icons-container .pannel .font-lists li .name {
+  margin-top: 10px;
+}
+.page-collection-show .icons-container .pannel .font-lists li .operate {
+  display: none;
+  margin-top: 10px;
+}
+.page-collection-show .icons-container .pannel .font-lists li .operate a.iconfont {
+  color: #222343;
+  background-color: #e8e9ec;
+  text-decoration: none;
+  line-height: 24px;
+  width: 32px;
+  display: inline-block;
+  border-radius: 2px;
+}
+.page-collection-show .icons-container .pannel .font-lists li .operate a.selected {
+  color: #ff4400;
+}
+.page-collection-show .icons-container .pannel .font-lists li .operate a .like {
+  margin: 0 5px;
+}
+.page-collection-show .icons-container .pannel .font-lists li:hover .operate {
+  display: block;
+}
+.page-collection-show .icons-container .fulfilled-pannel .font-lists li div.iconfont {
+  cursor: pointer;
+}

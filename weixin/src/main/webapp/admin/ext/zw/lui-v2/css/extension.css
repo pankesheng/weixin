@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* CSS Document */
+/*==================================================
+    * @name CSS 扩展UI
+    * @author 莫胜利/lisfan Cell：18072152020/WeChat：448182355
+    * @version - v1.0#2016-01-27
+==================================================*/
+/* 分页组件 */
+/* line 15, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+.ext-pagination {
+  padding-top: 60px;
+  padding-bottom: 50px;
+  font-size: 12px; }
+  /* line 19, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+  .ext-pagination .paging-num {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    height: 28px;
+    margin: 0 2px;
+    padding: 0 10px;
+    line-height: 26px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    background-color: #f5f5f5;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+    /* line 44, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+    .ext-pagination .paging-num:hover,
+    .ext-pagination .paging-num.selected {
+      border-color: #366dd1;
+      background-color: #fff;
+      color: #366dd1; }
+    /* line 50, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+    .ext-pagination .paging-num.disabled {
+      opacity: .65;
+      filter: alpha(opacity=65);
+      cursor: default; }
+    /* line 58, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+    .ext-pagination .paging-num.next-paging,
+    .ext-pagination .paging-num.prev-paging,
+    .ext-pagination .paging-num.first-paging,
+    .ext-pagination .paging-num.last-paging {
+      width: auto;
+      padding: 0px 10px;
+      color: #fff;
+      border-color: #366dd1;
+      background-color: #366dd1; }
+    /* line 68, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+    .ext-pagination .paging-num.next-paging:hover,
+    .ext-pagination .paging-num.prev-paging:hover,
+    .ext-pagination .paging-num.first-paging:hover,
+    .ext-pagination .paging-num.last-paging:hover {
+      border-color: #255dc3;
+      background-color: #255dc3; }
+  /* line 73, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+  .ext-pagination .paging-jump {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1; }
+    /* line 79, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+    .ext-pagination .paging-jump .jump {
+      height: 30px;
+      color: #555;
+      border: 1px solid #d2d2d2;
+      background-color: #fff; }
+  /* line 86, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+  .ext-pagination .paging-limit {
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1; }
+    /* line 92, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+    .ext-pagination .paging-limit .limit {
+      height: 30px;
+      color: #555;
+      border: 1px solid #d2d2d2;
+      background-color: #fff; }
+  /* line 99, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+  .ext-pagination .paging-container {
+    float: left; }
+  /* line 102, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+  .ext-pagination .paging-info {
+    line-height: 30px;
+    float: right; }
+    /* line 105, /Users/lisfan/快盘/work/后台管理系统/ext/zw/lui/css/extension.scss */
+    .ext-pagination .paging-info em {
+      font-weight: bold; }
+
+/*# sourceMappingURL=extension.css.map */

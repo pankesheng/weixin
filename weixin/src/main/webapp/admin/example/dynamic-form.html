@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">动态表单</span><i class="iconfont infotips popuptips" title="这里可以进行解释说明">&#xe644;</i>
+			</div>
+
+			<div class="panel-body">
+				<!-- 简单展示时可以直接使用title属性设置解释说明 -->
+				<!-- 自定义展示时可以通过data-showtips绑定要展示的html元素元素 -->
+				<div>解释说明<i class="iconfont infotips showtips" data-tipsid='#ccc' title="这里可以进行解释说明">&#xe644;</i></div>
+				<div id="ccc" class="showtips-alert alert alert-success mb-10"><span><i class="iconfont">&#xe624;</i>这里可以进行解释说明</span><span class="tips-close"><i class="iconfont">&#xe628;</i></span></div>
+				<form>
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label" for="search1">必须且为数字<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" data-check="must|n" type="text" />
+								<span class="form-tip alert alert-info">必须且为数字</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search2">手机<i class="iconfont  infotips popuptips" title="这里可以进行解释说明">&#xe644;</i></label>
+							</td>
+							<td>
+								<input class="form-control" id="search2" data-check="must|mobile" type="text" />
+								<span class="form-tip alert alert-info">必须且为手机</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">身份证</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="must|idcard" type="text" />
+								<span class="form-tip alert alert-info">必须且为身份证</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">最大长度</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="max-len: 10" name="max" type="text" />
+								<span class="form-tip alert alert-info">最大长度10</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">最大字符长度（区分汉字）</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="max-char-len: 10" name="max" type="text" />
+								<span class="form-tip alert alert-info">最大字符长度10</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">最小长度</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="min-len: 5" name="max" type="text" />
+								<span class="form-tip alert alert-info">最小长度10</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">最小字符长度（区分汉字）</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="min-char-len: 10" name="max" type="text" />
+								<span class="form-tip alert alert-info">最小字符长度10</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">相同值</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="fit: max" type="text" />
+								<span class="form-tip alert alert-info">必须值相同</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">范围限制</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="scope: 1-2" type="text" />
+								<span class="form-tip alert alert-info">范围1-2</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">url</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="url" type="text" />
+								<span class="form-tip alert alert-info">url</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">ip</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="ip" type="text" />
+								<span class="form-tip alert alert-info">ip</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">电子邮箱</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="email" type="text" />
+								<span class="form-tip alert alert-info">电子邮箱</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+
+								<input id="submit-btn" class="btn btn-success btn-large" type="submit" value="提交">
+								<input id="reset-btn" class="btn btn-danger btn-large" type="reset" value="重置">
+								<input id="return-btn" class="btn btn-default btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript" src="../ext/zw/check.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		$(function () {
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+			//初始化弹出条信息, require tool.js
+			$('.infotips').popupTips();
+
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+		function addListeners(argument) {
+			$('form').bind('submit', function (event) {
+				event.preventDefault();
+
+				$(this).check();
+			});
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span>系统管理 - 动态表格</span>
+	</div>
+	<div class="body-warp">
+		<div class="panel filter-block">
+			<form class="form-inline">
+				<div class="form-group">
+					<a href="javascript:void(0);" class="btn" id="relevanceStudent"><i class="iconfont">&#xe61b;</i>关联孩子</a>
+				</div>
+			</form>
+		</div>
+
+		<table class="table" id="table"></table>
+	</div>
+
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../ext/zw/src/jquery-epaging.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		$(function () {
+
+
+
+			/*初始化表格*/
+			var grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"account": "admin",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"phone": "123",
+							"role": 2,
+							"sex": "男",
+							"name": "管理员1"
+						}, {
+							"_id": "551b56c11911ce040e0b9887",
+							"name": "123123",
+							"account": "admin1",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"phone": "123123",
+							"__v": 0,
+							"role": 1,
+							"sex": "男"
+						}, {
+							"_id": "551b59b377886a8c1d20b65e",
+							"name": "管理员",
+							"account": "admin12a",
+							"password": "601f1889667efaebb33b8c12572835da3f027f78",
+							"sex": "男",
+							"phone": "电话",
+							"role": 2,
+							"__v": 0
+						}, {
+							"_id": "551b64b577886a8c1d20b671",
+							"name": "asdfasdf",
+							"account": "asdfasdf",
+							"password": "601f1889667efaebb33b8c12572835da3f027f78",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b691677886a8c1d20b683",
+							"name": "",
+							"account": "1231231a",
+							"password": "88ea39439e74fa27c09a4fc0bc8ebe6d00978392",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b6d2177886a8c1d20b687",
+							"name": "asdf",
+							"account": "123123123",
+							"password": "73da7bb9d2a475bbc2ab79da7d4e94940cb9f9d5",
+							"sex": "男",
+							"phone": "3123123",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b8a4877886a8c1d20b698",
+							"name": "",
+							"account": "admin123a",
+							"password": "40bd001563085fc35165329ea1ff5c5ecbdbbeef",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b8ac277886a8c1d20b69c",
+							"name": "",
+							"account": "admin1a",
+							"password": "601f1889667efaebb33b8c12572835da3f027f78",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b8e9c77886a8c1d20b6a0",
+							"name": "",
+							"account": "adfadf",
+							"password": "40bd001563085fc35165329ea1ff5c5ecbdbbeef",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}, {
+							"_id": "551b8ee477886a8c1d20b6a7",
+							"name": "",
+							"account": "123123adfs",
+							"password": "b51f92f87f2d066dc6163aab994990608d5bf73b",
+							"sex": "男",
+							"phone": "",
+							"role": 1,
+							"__v": 0
+						}],
+						"total": 600
+					}
+				},
+				tool: {
+					pagingBar: true
+				},
+				columns: [{
+					title: '名称',
+					dataIndex: 'account',
+					sortable: true,
+					align: 'left',
+					//add 新属性[不换行]，true
+					nowrap: true,
+					renderer: function (cellData) {
+						return '<a href="javascript:void(0);">' + cellData + '</a>';
+					}
+                }, {
+					title: '班级',
+					dataIndex: 'name',
+					sortable: true,
+					formatter: {
+						length: 2
+					}
+                }, {
+					title: '学校',
+					dataIndex: 'unit'
+                }, {
+					title: '班主任',
+					dataIndex: 'role',
+					renderer: function (cellData, rowData) {
+						return '<span class="red">否</span>';
+					}
+                }, {
+					title: '电话',
+					dataIndex: 'phone',
+					renderer: function (cellData, rowData) {
+						return '<span class="red">否</span>';
+					}
+                }, {
+					title: '关系',
+					//width: 300,
+					nowrap: true,
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						var remove = '<a class="btn btn-danger" href="javascript:void(0);" onclick="delItem(' + rowIndex + ');">移除</a>\n';
+
+						return remove;
+
+					}
+                }], //add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//事件回调 
+					}
+				}
+			});
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+
+		}
+
+		/*侦听*/
+		function addListeners() {
+			//关联孩子
+			$("#relevanceStudent").bind("click", function () {
+				//popupLayer(content, title, size, btn, yesCallback, cancelCallback, successCallback)
+				popupLayer("user02.html");
+			})
+
+		}
+
+
+		//删除事件
+		function removeItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+	</script>
+</body>
+
+</html>

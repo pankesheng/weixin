@@ -40,7 +40,7 @@ public class MenuUtil {
         // 调用接口创建菜单  
         JSONObject jsonObject = CommonUtil.httpsRequest(url, "POST", jsonMenu);  
       
-        if (null != jsonObject) {  
+        if (null != jsonObject) {
             if (0 != jsonObject.getInt("errcode")) {  
                 result = jsonObject.getInt("errcode"); 
                 System.out.println("创建菜单失败 errcode:{} errmsg:{}"+ jsonObject.getInt("errcode")+jsonObject.getString("errmsg"));

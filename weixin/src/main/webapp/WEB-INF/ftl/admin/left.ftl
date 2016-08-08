@@ -10,29 +10,6 @@
     <div class="left-menu">
         <div class="left-menu-title">${(login_info.realname)!}</div>
         <div class="left-menu-list">
-            <#-- <div class="left-menu-first-node">
-                <div class="first-title">
-                    <div class="text">一级菜单</div>
-                </div>
-                <div class="first-children" style="display: block;">
-                    <div class="left-menu-second-node">
-                        <div class="second-title active">
-                            <i class="icon"></i>
-                            <a href="javascript:void(0);" class="text navigation" target="rightFrame">二级菜单</a>
-                        </div>
-                        <ul class="menu-son" style="display: block;">
-                            <li class="">
-                                <i class="li-icon"></i>
-                                <a href="#" class="navigation" target="rightFrame">三级菜单</a>
-                            </li>
-                            <li>
-                                <i class="li-icon"></i>
-                                <a href="#" class="navigation" target="rightFrame">三级菜单</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
     <script type="text/javascript" src="${contextPath}/ext/jquery/jquery-1.8.1.min.js"></script>

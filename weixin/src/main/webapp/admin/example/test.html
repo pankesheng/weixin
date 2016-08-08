@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<div id="selectboxInnerPanelview4" class="panel-body panelview selectbox-inner-panelview">
+					</div>
+					<div id="selectbox4" class="panel-body selectbox">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/panelview.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+
+	<script>
+		$(function () {
+			logDebug = true;
+
+			var d = _filterArguments([0, "0", "6"], ["string", "number"])
+
+			var a = d[0] || 1;
+			var b = d[1]!=undefined?d[1] : 5;
+			log(a)
+			log(b)
+			$("#popup").click(function () {
+				$("#selectPanelview").click()
+			})
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+
+
+		function addListeners(argument) {
+
+		}
+	</script>
+</body>
+
+</html>

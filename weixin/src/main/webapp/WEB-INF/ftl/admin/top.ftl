@@ -194,7 +194,7 @@
 
 			//changes 当用户更改浏览器窗口大小时，重新对图片区进行计算，并排列图标
 			//初次进入首页时，设置选中的顶部菜单：1.默认首页进入，选中首页，2.由未知链接跳转传入参数选定
-			$('#iconBar').zwbam('initTopMenu', '${contextPath}/index/menutop.ajax?t=<@z.z_now />');
+			//$('#iconBar').zwbam('initTopMenu', '${contextPath}/index/menutop.ajax?t=<@z.z_now />');
 
 
 			//右侧用户中心弹出框事件

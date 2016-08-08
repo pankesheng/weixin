@@ -42,21 +42,6 @@ public class ZwPageResult {
 			}
 		}
 	}
-	
-	public static String converByServiceResult2(ServiceResult sr) {
-		ZwPageResult obj = new ZwPageResult();
-		if (sr.success()) {
-			Page p = (Page) sr.getD();
-			obj = new ZwPageResult(sr.getS(), p.getRows(), p.getTotal());
-			return ServiceResult.GSON_D.toJson(obj);
-		} else {
-			if (sr.getD() != null) {
-				return "{\"s\":" + sr.getS() + ",\"d\":\"" + String.valueOf(sr.getD()) + "\"}";
-			} else {
-				return "{\"s\":" + sr.getS() + "}";
-			}
-		}
-	}
 
 	public int getS() {
 		return s;

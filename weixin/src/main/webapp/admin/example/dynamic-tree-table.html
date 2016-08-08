@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>基础设置 - 数据字典</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span></span>
+	</div>
+	<div class="body-warp clearfix">
+		<!-- tree-list 树导航 tree-content树内容-->
+		<!-- tree-list 树列表两种展现方式 -->
+		<!-- 1.美观滚动条，固定宽度，展开超过长度时省略号表示，悬浮显示全部文字提示，可自定义固定宽度 ,必在要素：嵌套在DIV里，tree-list-scroll类名，nicescroll插件及初始化（初始化时请放置于最后），封装函数createTreeScroll()-->
+		<div class="tree-list-scroll ztree panel p-10">
+			<ul id="treeList">
+			</ul>
+		</div>
+		<!-- 1.浏览器默认滚动条，根据右侧树列表项长度自动调整右侧内容区尺寸,必在要素：tree-list类名，封装函数createTree()-->
+		<!--<ul id="treeList" class="tree-list ztree panel p-10">
+			</ul>-->
+		<div id="treeContent" class="tree-content">
+			<div class="panel filter-block">
+				<form class="form-inline clearfix">
+					<div class="form-group">
+						<input class="form-control" id="search1" type="text" />
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group" style="text-align:left;">
+						<div>
+							<input class="form-control " id="search50" data-check="must|n" type="text" autocomplete="off" />
+							<div id="droplist50" class="droplist hide close-popup">
+								<div class="content clearfix" data-role="content">
+									<div data-role="node" data-id="01" class="node"><span class="name" title="莫胜利">莫胜利1</span></div>
+									<div data-role="node" data-id="02" class="node"><span class="name" title="莫胜利">莫胜利2</span></div>
+									<div data-role="node" data-id="03" class="node"><span class="name" title="莫胜利">莫胜利3</span></div>
+									<div data-role="node" data-id="04" class="node"><span class="name" title="莫胜利">莫胜利4</span></div>
+									<div data-role="node" data-id="05" class="node"><span class="name" title="莫胜利">莫胜利5</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+
+					</div>
+					<!-- ui-droplist 控制按钮点击弹出框事件 ，若不想整个按钮控制，仅控制箭头，请增加 arrow-droplist和ui-selectbox-icon-->
+					<div class="form-group ui-droplist">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>纯下拉<i class="ui-selectbox-icon"></i></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+
+					<div class="form-group ui-droplist arrow-droplist">
+						<a href="javascript:void(0);" class="btn" id="search-btn">仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+				</form>
+			</div>
+			<div class="panel filter-block">
+				<form class="form-inline clearfix">
+					<div style="margin-right:700px;">
+						<div class="form-group">
+							<input class="form-control" id="search1" type="text" />
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+
+						</div>
+						<!-- ui-droplist 控制按钮点击弹出框事件 ，若不想整个按钮控制，仅控制箭头，请增加 arrow-droplist和ui-selectbox-icon-->
+						<div class="form-group ui-droplist">
+							<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>纯下拉<i class="ui-selectbox-icon"></i></a>
+							<dl class="ui-selectbox-dropdown ui-droplist-option">
+								<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+								<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+								<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+							</dl>
+						</div>
+
+						<div class="form-group ui-droplist arrow-droplist">
+							<a href="javascript:void(0);" class="btn" id="search-btn">仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+							<dl class="ui-selectbox-dropdown ui-droplist-option">
+								<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+								<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+								<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="fixed-right">
+						<div class="form-group">
+							<input class="form-control" id="search1" type="text" />
+						</div>
+						<div class="form-group">
+							<select class="form-select">
+								<option selected="" value="">下拉菜单</option>
+								<option value="选项1">选项1</option>
+								<option value="选项2">选项2</option>
+								<option value="选项3">选项3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel table-tool-bar">
+				<a class="table-switch switchMode right" data-mode="thumb" title="缩略图模式"><i class="iconfont">&#xe629;</i></a>
+				<a class="table-switch switchMode right selected" data-mode="list" title="列表模式"><i class="iconfont">&#xe63d;</i></a>
+
+				<a id="add-btn" class="btn" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>新增</a>
+				<a id="mod-btn" class="btn" href="javascript:void(0);"><i class="mod-btn iconfont">&#xe609;</i>编辑</a>
+				<a id="del-btn" class="btn" href="javascript:void(0);"><i class="remove-btn iconfont">&#xe608;</i>删除</a>
+
+				<div class="ui-droplist">
+					<a id="add-btn" class="btn" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>新增<i class="ui-selectbox-icon"></i></a>
+					<dl class="ui-selectbox-dropdown ui-droplist-option">
+						<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+						<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+						<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+					</dl>
+				</div>
+				<div class="ui-droplist arrow-droplist">
+					<a href="javascript:void(0);" class="btn" id="search-btn">可加图标仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+					<dl class="ui-selectbox-dropdown ui-droplist-option">
+						<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+						<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+						<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+					</dl>
+				</div>
+			</div>
+			<div id="panelView" class="panel panelview"></div>
+			<table class="table" id="table"></table>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/layer/layer.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../ext/zw/src/jquery-epaging.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/zTree/js/jquery.ztree.core-3.5.min.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<link rel="stylesheet" href="../ext/zTree/css/zTreeStyle/zTree.css" type="text/css">
+	<script type="text/javascript" src="../ext/zw/lui/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/droplist.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/panelview.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+
+	<script>
+		var grid
+		$(function () {
+
+
+			/*初始化表格*/
+			grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "01",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "年级生",
+							"unit": "grade",
+							"sex": "小学生,初中生,高中生,大学生,研究生,博士",
+							"phone": "2012051224",
+						}, {
+							"_id": "02",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "性别",
+							"unit": "sex",
+							"sex": "男,女,未知",
+							"phone": "2012120214",
+						}, {
+							"_id": "03",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "参赛组",
+							"unit": "group",
+							"sex": "视频组,音频组,动画组,平面组",
+							"phone": "2012120718",
+						}, {
+							"_id": "04",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "刘化峰",
+							"unit": "农业开发公司",
+							"sex": "男",
+							"phone": "2012060120",
+						}, {
+							"_id": "05",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "沙丽珊",
+							"unit": "油区教育处",
+							"sex": "女",
+							"phone": "2012020817",
+						}, {
+							"_id": "06",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "王志会",
+							"unit": "油区教育处",
+							"sex": "男",
+							"phone": "2012020914",
+						}, {
+							"_id": "07",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "姜波",
+							"unit": "扶余采油厂",
+							"sex": "男",
+							"phone": "2012041210",
+						}, {
+							"_id": "08",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "王昕",
+							"unit": "红岗采油厂",
+							"sex": "男",
+							"phone": "2012021226",
+						}, {
+							"_id": "09",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "彭莉",
+							"unit": "通信公司",
+							"sex": "女",
+							"phone": "2012121014",
+						}, {
+							"_id": "10",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "米云龙",
+							"unit": "前郭矿区",
+							"sex": "男",
+							"phone": "2012070121",
+						}, {
+							"_id": "11",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "秦勤",
+							"unit": "油区教育处",
+							"sex": "男",
+							"phone": "2012022620",
+						}, {
+							"_id": "12",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "许华",
+							"unit": "储运销售公司",
+							"sex": "男",
+							"phone": "2012130406",
+						}, {
+							"_id": "13",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "兰庆伟",
+							"unit": "江南物业",
+							"sex": "男",
+							"phone": "2012030620",
+						}, {
+							"_id": "14",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "佟冬蕾",
+							"unit": "滨江物业",
+							"sex": "女",
+							"phone": "2012110417",
+						}, {
+							"_id": "15",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "曹宽",
+							"unit": "农业开发公司",
+							"sex": "男",
+							"phone": "2012061025",
+						}],
+						"total": 15
+					}
+				},
+
+				tool: {
+					pagingBar: true
+				},
+				columns: [{
+					title: '字典名称<i class="iconfont popuptips" title="这里填写你要说明的内容">&#xe646;</i></a>',
+					dataIndex: 'name',
+                }, {
+					title: '字典值',
+					dataIndex: 'unit',
+                }, {
+					title: '项目列表',
+					dataIndex: 'sex'
+                }, {
+					title: '是否系统值',
+					dataIndex: 'role',
+					renderer: function (cellData, rowData) {
+						roleValue = cellData == 2 ? '是' : '否';
+						return '<span class="red">' + roleValue + '</span>';
+					}
+                }, {
+					title: '操作',
+					//width: 300,
+					nowrap: true,
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						//注意，初始化各类控件(initWidge())的操作要放在最后
+
+						//文字型下拉按钮html样式：整个纯下拉 请增加 table-droplist 样式
+						var controls3 = '<a href="javascript:void(0);" class="btn liketext btn-primary" id="search-btn">点我试试<i class="ui-selectbox-icon"></i></a>';
+						var link3 = '<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>';
+						var preview3 = '<dd class="ui-selectbox-option" onclick="viewItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>预览</dd>';
+						var edit3 = '<dd class="ui-selectbox-option" onclick="editItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>编辑</dd>';
+						var remove3 = '<dd class="ui-selectbox-option" onclick="delItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>删除</dd>';
+
+						var containerHtml3 = '<div class="ui-droplist table-droplist">' + controls3 + '<dl class="ui-selectbox-dropdown ui-droplist-option">' + link3 + preview3 + edit3 + remove3 + '</dl></div>\n';
+
+						//文字型下拉按钮html样式2：只有右边箭头下拉 请增加 table-droplist 样式
+						var controls4 = '<a href="javascript:void(0);" class="btn liketext btn-success" id="search-btn">仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>';
+						var link4 = '<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>';
+						var preview4 = '<dd class="ui-selectbox-option" onclick="viewItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>预览</dd>';
+						var edit4 = '<dd class="ui-selectbox-option" onclick="editItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>编辑</dd>';
+						var remove4 = '<dd class="ui-selectbox-option" onclick="delItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>删除</dd>';
+
+						var containerHtml4 = '<div class="ui-droplist arrow-droplist table-droplist">' + controls4 + '<dl class="ui-selectbox-dropdown ui-droplist-option">' + link4 + preview4 + edit4 + remove4 + '</dl></div>\n';
+
+						//下拉按钮html样式：整个纯下拉 请增加 table-droplist 样式
+						var controls = '<a href="javascript:void(0);" class="btn btn-primary" id="search-btn"><i class="iconfont">&#xe619;</i>点我试试<i class="ui-selectbox-icon"></i></a>';
+						var link = '<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>';
+						var preview = '<dd class="ui-selectbox-option" onclick="viewItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>预览</dd>';
+						var edit = '<dd class="ui-selectbox-option" onclick="editItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>编辑</dd>';
+						var remove = '<dd class="ui-selectbox-option" onclick="delItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>删除</dd>';
+
+						var containerHtml = '<div class="ui-droplist table-droplist">' + controls + '<dl class="ui-selectbox-dropdown ui-droplist-option">' + link + preview + edit + remove + '</dl></div>\n';
+
+						//下拉按钮html样式2：只有右边箭头下拉 请增加 table-droplist 样式
+						var controls2 = '<a href="javascript:void(0);" class="btn btn-success" id="search-btn">仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>';
+						var link2 = '<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>';
+						var preview2 = '<dd class="ui-selectbox-option" onclick="viewItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>预览</dd>';
+						var edit2 = '<dd class="ui-selectbox-option" onclick="editItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>编辑</dd>';
+						var remove2 = '<dd class="ui-selectbox-option" onclick="delItem(' + rowIndex + ');"><i class="remove-btn iconfont">&#xe608;</i>删除</dd>';
+
+						var containerHtml2 = '<div class="ui-droplist arrow-droplist table-droplist">' + controls2 + '<dl class="ui-selectbox-dropdown ui-droplist-option">' + link2 + preview2 + edit2 + remove2 + '</dl></div>\n';
+
+						//单个按钮
+						var preview = '<a class="btn btn-primary" href="javascript:void(0);" onclick="viewItem(' + rowIndex + ');">预览</a>\n'
+						var edit = '<a class="btn btn-info" href="javascript:void(0);" onclick="editItem(' + rowIndex + ');">编辑</a>\n';
+						var remove = '<a class="btn btn-danger" href="javascript:void(0);" onclick="delItem(' + rowIndex + ');">删除</a>\n';
+
+						return containerHtml3 + containerHtml4 + containerHtml + containerHtml2 + preview + edit + remove
+					}
+         }]
+			});
+
+			var panelviewport = $("#panelView").panelview();
+
+			gridPanelview([grid, panelviewport]);
+
+			//初始化树（树的初始化要放在最后）
+			initTree();
+
+			/* 初始化控件 */
+			initWidget();
+
+
+
+
+
+			/*侦听*/
+			addListener();
+
+			//提供5个方法
+			//addItem(index, value, data) 视图区增加一项
+			//removeItem(index) 视图区移除一项
+			//cleanAll() 清空视图区
+			//getData() 获取视图区数据
+			//getDataByIndex(index) 获取视图区指定位置数据
+
+		});
+
+
+
+		/*初始化树*/
+		function initTree() {
+
+			//初始化树
+			var setting = {
+
+			};
+
+			var zNodes = [{
+					name: "所有字典",
+					open: true,
+					children: [
+						{
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						},
+						{
+							name: "办学性质",
+
+						},
+						{
+							name: "性别",
+						},
+				]
+				}, {
+					name: "所有字典",
+					open: true,
+					children: [
+						{
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						},
+						{
+							name: "办学性质",
+
+						},
+						{
+							name: "性别",
+						},
+				]
+				}, {
+					name: "所有字典",
+					open: true,
+					children: [
+						{
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						},
+						{
+							name: "办学性质",
+
+						},
+						{
+							name: "性别",
+						},
+				]
+				}, {
+					name: "所有字典",
+					open: true,
+					children: [
+						{
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						},
+						{
+							name: "办学性质",
+
+						},
+						{
+							name: "性别",
+						},
+				]
+				}, {
+					name: "所有字典",
+					open: true,
+					children: [
+						{
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						}, {
+							name: "单位锭虹夺三基类型",
+							children: [
+								{
+									name: "叶子基震点12震点12震点12震点",
+									children: [
+										{
+											name: "叶子节点苦角苦基无苦角苦基无苦角苦基无苦角苦基无苦角苦基无可奈何无可奈何无可奈何无可奈何节震左"
+										},
+										{
+											name: "叶子节点122"
+										},
+										{
+											name: "叶子节点123"
+										},
+										{
+											name: "叶子节点124"
+										}
+						]
+								},
+								{
+									name: "叶子节点122"
+								},
+								{
+									name: "叶子节点123"
+								},
+								{
+									name: "叶子节点124"
+								}
+						]
+
+						},
+						{
+							name: "办学性质",
+
+						},
+						{
+							name: "性别",
+						},
+				]
+				}
+		];
+			//全局性树列，默认使用id名为#treeList；树内容区默认使用ID名使用#treeContent，两者绑定，折叠展开树列时，树内容自适应窗口布局
+			//当一个页面出现多个树列时，其他树列使用非#treeList名称，如果*还想*绑定树内容自适应窗口，请在setting里的view里绑定treeContentId的ID名称
+			//
+			/*
+						var treeObj = $("#treeList").createTree(setting, zNodes);
+			*/
+			var treeObj = $("#treeList").createTreeScroll(setting, zNodes);
+			//选中第一个子树
+			//treeObj.selectNode(treeObj.getNodes()[0].children[0]);
+
+			//#5 查询对象节点上绑定的其他字段 搜索msl
+			dropO50 = $("#droplist50").droplist({
+				view: {
+					enabledMultiple: true
+				}
+			});
+			$("#search50").searchDroplist(dropO50, "value");
+
+		}
+
+
+		/*初始化控件*/
+		function initWidget() {
+
+			//下拉菜单初始化
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+
+			//初始化按钮下拉, require tool.js
+			$('.ui-droplist').dropList();
+
+			//初始化弹出条信息, require tool.js
+			$('.popuptips').popupTips();
+
+			//初始化树滚动条
+			$('.tree-list-scroll').niceScroll({
+				cursorcolor: '#7db7fb',
+				cursorwidth: '6px',
+				cursorborderradius: 2,
+				autohidemode: true,
+				background: '#d0d0d0',
+				cursoropacitymin: 1,
+				cursorborder: 'none',
+				horizrailenabled: true
+			});
+		}
+
+		/*侦听*/
+		function addListener() {
+			//新增事件
+			$('#add-btn').bind('click', function () {
+				/*	var index = showIframe('新增', './DictBaseSetAdd.html', 800, 352);*/
+				console.log(panelviewport.getItemById("01"));
+			});
+			//修改事件
+			$('#mod-btn').bind('click', function () {
+				//var index = showIframe('编辑', './DictBaseSetAdd.html', 800, 352);
+				console.log(panelviewport.getAllItem("01"));
+
+
+			});
+			//删除事件
+			$('#del-btn').bind('click', function () {
+				//setManager()
+			});
+		}
+
+		//预览事件
+		function viewItem(rowIndex) {
+			showAlert('确认要执行此操作，可能会带来未知的数据异常', function (index) {
+				//layer.close(index);
+			});
+		}
+
+		//编辑事件
+		function editItem(rowIndex) {
+			//var index = showIframe('编辑', './DictBaseSetAdd.html', 800, 352);
+		}
+
+		//删除事件
+		function removeItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+	</script>
+</body>
+
+</html>

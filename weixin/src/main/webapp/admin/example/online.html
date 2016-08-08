@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/online.css" />
+</head>
+
+<body>
+	<div class="online wrapper">
+		<div class="header">
+			<span class="e-clock">15:28:36</span>&nbsp;当前在线：<em>28</em>&nbsp;人<a href="javascript:void(0);" class="btn btn-primary btn-freshen"><i class="iconfont">&#xe623;</i>刷新</a>
+		</div>
+		<div class="content">
+			<div class="toolbar clearfix">
+				<div class="order">
+					<div class=" ui-droplist">
+						<a id="add-btn" class="btn liketext" href="javascript:void(0);">新增<i class="ui-selectbox-icon"></i></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option" style="min-width: 66px; display: none;">
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank">按关注时间排序</a></dd>
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank">按最近更新排序</a></dd>
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank">按粉丝数排序</a></dd>
+						</dl>
+					</div>
+				</div>
+				<div class="search">
+					<label for="name">姓名:</label>
+					<input class="text" type="text" name="name" id="name" />
+					<label for="unit">单位:</label>
+					<input class="text" type="text" name="unit" id="unit" />
+					<label for="phone">手机号码:</label>
+					<input class="text" pattern="[0-9]{11}" type="text" name="phone" id="phone" />
+					<a href="javascript:void(0);" class="btn btn-large btn-primary btn-search"><i class="iconfont">&#xe61b;</i>搜索</a>
+				</div>
+			</div>
+			<div class="info-card-list clearfix">
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role teacher"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-mutual"><i class="iconfont">&#xe649;</i>互相关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role student"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-not"><i class="iconfont">&#xe619;</i>关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role parent"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-on"><i class="iconfont">&#xe64a;</i>已关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role teacher"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-off">取消关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role teacher"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-mutual"><i class="iconfont">&#xe649;</i>互相关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role student"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-not"><i class="iconfont">&#xe619;</i>关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role parent"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-on"><i class="iconfont">&#xe64a;</i>已关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role teacher"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-off">取消关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role teacher"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-mutual"><i class="iconfont">&#xe649;</i>互相关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role student"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-not"><i class="iconfont">&#xe619;</i>关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role parent"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-on"><i class="iconfont">&#xe64a;</i>已关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role teacher"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-off">取消关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role teacher"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-mutual"><i class="iconfont">&#xe649;</i>互相关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role student"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-not"><i class="iconfont">&#xe619;</i>关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role parent"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-on"><i class="iconfont">&#xe64a;</i>已关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+				<div class="node">
+					<div class="node-container clearfix">
+						<div class="avator">
+							<div class="image"><img src="../images/avatar.png" alt="头像" title="邓超" /></div>
+						</div>
+						<div class="info">
+							<div class="info-container">
+								<div class="imp"><em class="name">邓超</em><span class="nickname">(啊脆酥)</span><span class="role teacher"></span>
+								</div>
+								<div>
+									<span class="interest">关注：139</span>
+									<span class="fans">粉丝：4049</span>
+								</div>
+								<div>
+									单位：瓯海中学
+								</div>
+								<div>
+									身份：学生
+								</div>
+								<div>
+									分类：小学音乐
+								</div>
+								<div>
+									手机号码：13587526884
+								</div>
+								<div>
+									IP地址：192.168.1.114
+								</div>
+							</div>
+						</div>
+						<div class="follow">
+							<a href="javascript:void(0);" class="btn btn-default btn-interest-off">取消关注</a>
+							<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div>
+					</div>
+
+
+				</div>
+			</div>
+			<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+			<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+			<script type="text/javascript" src="../ext/zw/grid.js"></script>
+			<script type="text/javascript" src="../ext/zw/src/jquery-epaging.js"></script>
+			<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+			<script type="text/javascript" src="../javascripts/tool.js"></script>
+			<script>
+				$(function () {
+
+					/* 初始化控件 */
+					initWidget();
+
+					/*侦听*/
+					addListeners();
+
+				});
+
+				/*初始化控件*/
+				function initWidget() {
+					//初始化按钮下拉，require tool.js
+					$('.ui-droplist').dropList();
+
+
+
+				}
+
+				/*侦听*/
+				function addListeners() {
+					//已关注和互相关注事件：取消关注
+					$(".btn-interest-on,.btn-interest-mutual").each(function () {
+						//暂存原html内容和原样式和现按钮宽度
+
+						var oriHtml = $(this).html();
+						var oriClass = $(this).attr("class");
+						var oriWidth = $(this).width();
+
+
+						$(this).hover(function () {
+							$(this).text("取消关注");
+							$(this).attr("class", "btn btn-default btn-interest-off");
+							$(this).css("width", oriWidth);
+						}, function () {
+
+							$(this).attr("class", oriClass);
+							$(this).html(oriHtml);
+						})
+					})
+				}
+			</script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="form-wrap">
+		<div class="mb-10">
+			<span class="alert alert-info multiple-form-info">1/10</span>
+			<span class="btn btn-primary">上一条</span>
+			<span class="btn btn-primary">下一条</span>
+		</div>
+		<form>
+			<table class="form-table">
+				<tr>
+					<td>
+						<label class="form-label" for="search1">综合查询<b class="red">*</b></label>
+					</td>
+					<td>
+						<input class="form-control error-input" id="search1" type="text" />
+						<span class="form-tip alert alert-info">账户名由数字和字母组成 长度为4-10字符</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label class="form-label" for="search1">综合查询<b class="red">*</b></label>
+					</td>
+					<td>
+						<input class="form-control error-input" id="search1" type="text" />
+						<span class="form-tip alert alert-info">账户名由数字和字母组成 长度为4-10字符</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label class="form-label" for="search-select">查询条件<b class="red">*</b></label>
+					</td>
+					<td>
+						<select class="form-select" id="search-select">
+							<option value="">请选择条件</option>
+							<option>按名称</option>
+							<option>按身份</option>
+							<option>按时间</option>
+						</select>
+						<span class="form-tip alert alert-danger">账户名由数字和字母组成 长度为4-10字符</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label class="form-label" for="search2">出生日期</label>
+					</td>
+					<td>
+						<input class="form-control date" id="search2" type="text" />
+						<span class="form-tip alert alert-success">账户名由数字和字母组成 长度为4-10字符</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label class="form-label">出生日期</label>
+					</td>
+					<td>
+						<input class="form-radio" id="d1" type="radio" name="d1" />
+						<label class="mr-10" for="d1">1991-03-29</label>
+						<input class="form-radio" id="d2" type="radio" name="d1" />
+						<label class="mr-10" for="d2">1991-03-29</label>
+						<input class="form-checkbox" id="d3" type="checkbox" />
+						<label class="mr-10" for="d3">1991-03-29</label>
+					</td>
+				</tr>
+				<!-- textarea加这个类 保持label对齐 -->
+				<tr class="valign-top">
+					<td>
+						<label class="form-label" for="search4">综合查询</label>
+					</td>
+					<td>
+						<textarea class="form-textarea" id="search4" name=""></textarea>
+						<span class="form-tip alert alert-warning">账户名由数字和字母组成 长度为4-10字符</span>
+					</td>
+				</tr>
+				<tr>
+					<!-- 空内容的td 保持间距 -->
+					<td>
+						<label class="form-label">&nbsp;</label>
+					</td>
+					<td>
+						<input class="btn btn-success btn-large" type="submit" value="提交">
+						<input class="btn btn-danger btn-large" type="reset" value="重置">
+						<input class="btn  btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+
+	<script>
+		$(function () {
+			initWidget()
+		});
+
+		/* 初始化控件 */
+		function initWidget() {
+			// 文本域统计字数 require tool.js
+			// 字数统计以html里设置的maxLength为最高优先级，参数无法覆盖它
+			$("textarea").wordCount("5");
+
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+			laydate({
+				elem: '#search2',
+				event: 'focus'
+			});
+		}
+	</script>
+</body>
+
+</html>

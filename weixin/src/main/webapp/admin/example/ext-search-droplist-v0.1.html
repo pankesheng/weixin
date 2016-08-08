@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>下拉列表（可过滤数据）</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<link rel="stylesheet" href="../ext/zw/lui-v2.1/css/extension.css" />
+
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-body">
+				<!-- 简单展示时可以直接使用title属性设置解释说明 -->
+				<!-- 自定义展示时可以通过data-showtips绑定要展示的html元素元素 -->
+				<form class="field-container">
+					<span class="headline">包裹框<i class="iconfont infotips showtips" data-tipsid='#ccc' title="这里可以进行解释说明">&#xe644;</i></span>
+					<div id="ccc" class="showtips-alert alert alert-success mb-10"><span><i class="iconfont">&#xe624;</i>这里可以进行解释说明</span><span class="tips-close"><i class="iconfont">&#xe628;</i></span></div>
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0101<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input id="searchFilter0101" class="form-control" type="text" autocomplete="off" />
+									<div id="droplist0101" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">禁用</span></td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0102<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input id="searchFilter0102" class="form-control" type="text" autocomplete="off" />
+									<div id="droplist0102" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">单选</span></td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0103<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input id="searchFilter0103" class="form-control" type="text" autocomplete="off" />
+									<div id="droplist0103" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">多选</span></td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0104<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input id="searchFilter0104" class="form-control" type="text" autocomplete="off" value="占位的人,刘备" />
+									<div id="droplist0104" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">已存在默认值+多选</span></td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0105<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input id="searchFilter0105" class="form-control" type="text" autocomplete="off" value="占位的人,刘备" />
+									<div id="droplist0105" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">已存在默认值+单选+异步加载数据</span></td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0106<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input id="searchFilter0106" class="form-control" type="text" autocomplete="off" value="" />
+									<div id="droplist0106" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">多选+更改分割符号为,中文逗号"，"</span></td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0106<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input id="searchFilter0107" class="form-control" type="text" autocomplete="off" value="" />
+									<div id="droplist0107" class="ext-droplist hide com-popuper">
+										<div class="ext-content clearfix clear" data-role="content">
+											<div class="ext-node-container" data-role="node-container" style="display: block;">
+												<div class="ext-node ext-node-0" data-role="node"><span class="name" title="刘备">刘备</span></div>
+											</div>
+											<div class="ext-node-container" data-role="node-container">
+												<div class="ext-node ext-node-0 selected" data-role="node"><span class="name" title="曹操">曹操</span></div>
+											</div>
+											<div class="ext-node-container" data-role="node-container">
+												<div class="ext-node ext-node-0 selected" data-role="node"><span class="name" title="孙权">孙权</span></div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+			</div>
+			</td>
+			<td><span class="form-tip alert alert-info">静态加载</span></td>
+			</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/luicontroller-advance.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/panelview.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/droplist.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/extension.js"></script>
+	<script>
+		$(function () {
+			var setting = {
+				store: {
+					data: [
+						{
+							name: "刘备",
+							checked: true,
+						},
+						{
+							name: "曹操",
+							selected: true,
+				},
+						{
+							name: "孙权",
+				}, {
+							name: "司马懿",
+				}, {
+							name: "关羽",
+							selected: true,
+				}, {
+							name: "张飞",
+				}, {
+							name: "赵云",
+				}, {
+							name: "马超",
+				}, {
+							name: "黄忠",
+				},
+
+		]
+				},
+				view: {}
+			}
+
+
+			//#01 纯下拉列表示例
+			var setting0101 = $.extend(true, {}, setting);
+			var setting0102 = $.extend(true, {}, setting);
+			var setting0103 = $.extend(true, {}, setting);
+			var setting0104 = $.extend(true, {}, setting);
+			var setting0105 = $.extend(true, {}, setting);
+			var setting0106 = $.extend(true, {}, setting);
+			var setting0107 = $.extend(true, {}, setting);
+			var setting0108 = $.extend(true, {}, setting);
+			var setting0110 = $.extend(true, {}, setting);
+
+			//#0101 禁用
+
+			setting0101.view.enabled = false;
+
+			drop0101 = $("#droplist0101").droplist(setting0101);
+
+			EXT.SearchFilter({
+				trigger: drop0101,
+				viewer: "#searchFilter0101"
+			});
+
+
+			//#0102 单选
+
+			setting0102.view.selectedMultiple = false;
+
+			drop0102 = $("#droplist0102").droplist(setting0102);
+
+			EXT.SearchFilter({
+				trigger: drop0102,
+				viewer: "#searchFilter0102"
+			});
+
+			//#0103 多选
+
+			setting0103.view.selectedMultiple = true;
+
+			drop0103 = $("#droplist0103").droplist(setting0103);
+
+			EXT.SearchFilter({
+				trigger: drop0103,
+				viewer: "#searchFilter0103"
+			});
+
+			//#0104 已有默认值(多选)+异步加载
+
+
+			setting0104.view.selectedMultiple = true;
+
+			drop0104 = $("#droplist0104").droplist(setting0104);
+
+			EXT.SearchFilter({
+				trigger: drop0104,
+				viewer: "#searchFilter0104"
+			});
+
+
+			//#0105 已有默认值(单选)
+
+			setting0105.async = {};
+			setting0105.async.enabled = true;
+			setting0105.async.url = "data-100.json";
+
+			drop0105 = $("#droplist0105").droplist(setting0105);
+
+			EXT.SearchFilter({
+				trigger: drop0105,
+				viewer: "#searchFilter0105"
+			})
+
+			//#0107 多选+更改分割符号为,中文逗号"，"
+			setting0106.view.selectedMultiple = true;
+			setting0106.view.splitSymbol = "，";
+			setting0106.callback = {}
+			setting0106.callback.hidePopuper = function (self) {
+				output(self.getSelectedData()[0])
+			};
+			drop0106 = $("#droplist0106").droplist(setting0106);
+
+			EXT.SearchFilter({
+				trigger: drop0106,
+				viewer: "#searchFilter0106"
+			});
+
+			//#0107 静态加载
+			setting0107.store.data = [];
+			setting0107.view.selectedMultiple = true;
+			drop0107 = $("#droplist0107").droplist(setting0107);
+
+			EXT.SearchFilter({
+				trigger: drop0107,
+				viewer: "#searchFilter0107"
+			});
+
+
+			//优化性能，查询延迟几秒钟再执行(避免连续输入，连续触发)
+			//#0107 多选时强制要求是否强制要求选项内 //删除
+
+			/*			setting0107.view.mustOwn = true;
+
+						drop0107 = $("#droplist0107").droplist(setting0107);
+
+						EXT.SearchFilter({
+							trigger: drop0107,
+							viewer: "#searchFilter0107"
+						});*/
+
+			//#0108 搜索 绑定在数据上的其他数据(不搜索节点文本)
+
+			/*setting0108.view.filterKey = true;
+			setting0108.view.filterMode = true;*/
+
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+
+
+		}
+
+
+		function addListeners(argument) {
+
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<title>电子播报 - 电子播报管理 - 编辑</title>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span>电子播报 - 电子播报管理 - 编辑</span>
+	</div>
+	<div class="body-warp">
+		<form>
+			<div class="panel">
+
+				<div class="panel-title">
+					<i class="form-icon"></i>
+					<span class="title-text">播出设备和时间</span>
+				</div>
+				<div class="panel-body">
+					<table class="form-table">
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">标题<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<label class="form-label">播出设备<b class="red">*</b></label>
+							</td>
+							<td>
+								<ul class="form-option-group clearfix">
+									<li class="form-option-list form-option-list-all">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">全选</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">254【一（1）班】</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">设备651254【一（1）班】</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">设备1254【一）班】</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">设备1254【一（】</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">设备51254【一）班】</label>
+									</li>
+
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="start-date">开始播出时间<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control date" id="start-date" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="end-date">结束播出时间</label>
+							</td>
+							<td>
+								<input class="form-control date" id="end-date" type="text" />
+							</td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-title">
+					<i class="form-icon"></i>
+					<span class="title-text">播出内容</span>
+				</div>
+				<div class="panel-body">
+					<div class="form-choice-area">
+						<div class="form-choice-head">
+							<input class="form-radio" id="editType-upload" type="radio" name="editType" />本地上传播放内容压缩包</div>
+						<table class="form-table">
+
+							<tr>
+								<td>
+									<label class="form-label">上传文件</label>
+								</td>
+								<td>
+									<input id="upload" type="file" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="form-label">&nbsp;</label>
+								</td>
+								<td>
+									<div class="form-text"><a href="###" target="_blank" title="点击查看已上传的页面">已上传的页面：【点击查看】</a></div>
+									<div class="form-text"><a class="red" href="###" target="_blank" title="查看压缩包标准">查看压缩包标准</a></div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="form-choice-area">
+						<div class="form-choice-head">
+							<input class="form-radio" id="editType-online" type="radio" name="editType" />在线选择模板并在线编辑播放内容</div>
+						<div class="form-display">
+							<!--<div class="form-display-row">
+								<div class="form-label form-label-input">表单<b class="red">*</b></div>
+								<div class="form-content">
+									<input class="form-control date" id="end-date" type="text">
+								</div>
+							</div>-->
+							<div class="form-display-row">
+								<div class="form-label">选择模板<b class="red">*</b></div>
+								<div class="form-content">
+									<ul class="form-display-gallery clearfix ">
+
+										<li class="form-option-list">
+											<input class="form-radio" id="d1" type="radio" name="d1">
+											<label class="mr-10" for="d1">2条文本信息+3个素材文件</label>
+											<img src="01.png">
+										</li>
+										<li class="form-option-list">
+											<input class="form-radio" id="d1" type="radio" name="d1">
+											<label class="mr-10" for="d1">2条文本信息+3个素材文件</label>
+											<img src="01.png">
+
+										</li>
+										<li class="form-option-list">
+											<input class="form-radio" id="d1" type="radio" name="d1">
+											<label class="mr-10" for="d1">2条文本信息+3个素材文件</label> <img src="01.png">
+
+										</li>
+										<li class="form-option-list">
+											<input class="form-radio" id="d1" type="radio" name="d1">
+											<label class="mr-10" for="d1">2条文本信息+3个素材文件</label> <img src="01.png">
+
+										</li>
+
+									</ul>
+								</div>
+							</div>
+							<div class="form-display-row">
+								<div class="form-label form-label-input">播出内容<b class="red">*</b></div>
+								<div class="form-content">
+									<div class=" table-tool-bar">
+										播出文本信息：
+										<a class="btn" href="javascript:void(0);"><i class="mod-btn iconfont">&#xe62f;</i>选择</a>
+										<a class="btn" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>新增</a>
+
+									</div>
+									<table class="table" id="table"></table>
+									<div class="table-tool-bar">
+										播出素材文件：
+										<a class="btn" href="javascript:void(0);"><i class="mod-btn iconfont">&#xe62f;</i>选择</a>
+										<a class="btn" href="javascript:void(0);"><i class="add-btn iconfont">&#xe636;</i>新上传</a><a class="btn" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>添加外部链接</a>
+
+									</div>
+									<table class="table" id="table2"></table>
+								</div>
+
+							</div>
+							<div class="form-display-row">
+								<div class="form-label form-label-input">&nbsp;</div>
+								<div class="form-content">
+									<div class="form-display-button">
+										<input class="btn btn-success btn-large" type="submit" value="提交">
+										<input class="btn btn-danger btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../ext/layer/layer.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../ext/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		var grid = {};
+		$(function () {
+			initTablePage();
+
+			/*初始化表格*/
+			grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"content": "在线编辑",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"content": "本地上传",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"content": "在线编辑",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"content": "在线编辑",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"content": "在线编辑",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"content": "在线编辑",
+						}],
+						"total": 600
+					}
+				},
+
+				tool: {
+					enableSerialNumber: true,
+					checkboxSelect: false,
+					pagingBar: false
+				},
+				columns: [{
+					title: '标题',
+					dataIndex: 'title',
+					//add 新属性[不换行]，true
+					nowrap: true,
+
+                }, {
+					title: '内容',
+					dataIndex: 'content',
+
+                }, {
+					title: '操作',
+					//width: 300,
+					nowrap: true,
+					renderer: function (cellData, rowData) {
+						var remove = '<a class="btn btn-danger" href="javascript:void(0);" onclick="delItem(this);">删除</a>\n';
+
+						return '<div style="overflow:hidden;margin:0 auto;">' + remove + '</div>';
+
+
+					}
+                }],
+				//add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//将上下午课时，加一条线区分
+
+						/*that.$me.find("tr:nth-child(4) td").css({
+							"borderBottomColor":"#ddd",
+							"borderBottomWidth":"3px"
+						})*/
+					}
+				}
+			});
+
+			grid = $('#table2').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"filename": "学校风采.png",
+							"source": "本地",
+							"filetype": "图片",
+							"size": "200*150",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"filename": "效果.jpg",
+							"source": "本地",
+							"filetype": "图片",
+							"size": "200*150",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"filename": "公告1.mp4",
+							"source": "本地",
+							"filetype": "视频",
+							"size": "200*150",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"filename": "动画.swf",
+							"source": "本地",
+							"filetype": "flash",
+							"size": "200*150",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"filename": "abc.png",
+							"source": "外部链接",
+							"filetype": "图片",
+							"size": "200*150",
+						}],
+						"total": 600
+					}
+				},
+				tool: {
+					enableSerialNumber: true,
+					checkboxSelect: false,
+					pagingBar: false
+				},
+				columns: [{
+					title: '文件名',
+					dataIndex: 'filename',
+
+                }, {
+					title: '来源',
+					dataIndex: 'source'
+                }, {
+					title: '文件类型',
+					dataIndex: 'filetype',
+					renderer: function (cellData) {
+						if (cellData == "班会") {
+							return '<span class="red">' + cellData + '</span>'
+						} else {
+							return cellData
+						}
+					}
+                }, {
+					title: '尺寸',
+					dataIndex: 'size',
+
+                }, {
+					title: '操作',
+					//width: 300,
+					nowrap: true,
+					renderer: function (cellData, rowData) {
+						var preview = '<a class="btn btn-primary" href="javascript:void(0);" onclick="viewItem(this);">预览</a>\n'
+
+						var remove = '<a class="btn btn-danger" href="javascript:void(0);" onclick="delItem(this);">删除</a>\n';
+
+						return '<div style="overflow:hidden;margin:0 auto;">' + preview + remove + '</div>';
+
+					}
+                }],
+				//add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//将上下午课时，加一条线区分
+
+						/*that.$me.find("tr:nth-child(4) td").css({
+							"borderBottomColor":"#ddd",
+							"borderBottomWidth":"3px"
+						})*/
+					}
+				}
+			});
+
+			/*侦听*/
+			addListeners();
+		});
+		/*初始化*/
+		function initTablePage() {
+			//初始化日期
+			laydate({
+				elem: '#start-date',
+				event: 'focus',
+				istime: true,
+				format: 'YYYY-MM-DD hh:mm:ss'
+			});
+			laydate({
+				elem: '#end-date',
+				event: 'focus',
+				istime: true,
+				format: 'YYYY-MM-DD hh:mm:ss'
+			});
+
+			//延迟加载修复chrome下崩溃的bug
+			setTimeout(function () {
+				$('#upload').uploadify({
+					//swf地址
+					swf: '../ext/uploadify/uploadify.swf',
+					//上传路径
+					uploader: '/img/upload',
+					//文件后缀名限制
+					fileTypeExts: '*.jpg;*.jpeg;*.png;',
+					//是否启用多文件上传
+					multi: false,
+					//按钮样式
+					buttonClass: 'btn btn-primary no-padding',
+					//文件name
+					fileObjName: 'file',
+					//宽度
+					width: 110,
+					//高度
+					height: 30,
+					//文件选择框显示的类型名称
+					fileTypeDesc: '图片',
+					//按钮上的文字
+					buttonText: '选择压缩包文件',
+					//成功上传事件
+					onUploadSuccess: function (file, data, response) {}
+				});
+			}, 10);
+
+		}
+
+		/*侦听*/
+		function addListeners() {
+			//新增事件
+			$('#add-btn').bind('click', function () {
+				//var index = showIframe('编辑', './dynamic-form.html', 800, 352);
+				//window.location.href = './syllabus-modify.html';
+			});
+
+			//搜索事件
+			$('#search-btn').bind('click', function () {
+				//var index = showIframe('基本设置 - 课程表管理 - EXCEL导入', './syllabus-import.html', 440, 188);
+			});
+		}
+
+
+		//预览事件
+		function viewItem(me) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//下架事件
+		function offItem(me) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//发布事件
+		function onItem(me) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//编辑事件
+		function editItem(me) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//删除事件
+		function removeItem(me) {
+			//showDom('标题', '#category', 400, 200);
+		}
+	</script>
+</body>
+
+</html>

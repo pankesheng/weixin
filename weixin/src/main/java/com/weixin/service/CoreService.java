@@ -21,6 +21,7 @@ import com.weixin.session.SessionList;
 import com.weixin.util.AdvancedUtil;
 import com.weixin.util.MessageUtil;
 import com.weixin.util.QuartzManager;
+import com.weixin.util.WechatApiHelper;
 /** 
  * 核心服务类 
  *  
@@ -135,10 +136,12 @@ public class CoreService {
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
                     if(eventKey.equals("zxkf")){
                     	StringBuilder sb = new StringBuilder();
-                    	AccessToken at = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-            			String accessToken = at.getAccess_token();
-            			List<OnLineKf> list = AdvancedUtil.getOnLineKfList(accessToken);
-            			List<KfInfo> kfs = AdvancedUtil.getKfList(accessToken);
+                    	AccessToken accessToken = WeChatConfiguration.accessToken;
+                        if(accessToken==null){
+                        	accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+                        }
+                    	List<OnLineKf> list = AdvancedUtil.getOnLineKfList(accessToken.getAccess_token());
+            			List<KfInfo> kfs = AdvancedUtil.getKfList(accessToken.getAccess_token());
             			if(list!=null && list.size()>0){
             				sb.append("在线客服列表：\n");
                         	SessionList.setSeesion(fromUserName,Session.phase_kf);

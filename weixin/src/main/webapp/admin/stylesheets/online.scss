@@ -1,0 +1,232 @@
+@charset 'utf-8';
+.online.wrapper {
+	//width: 1016px;
+	margin: 0 auto;
+	padding: 0 20px;
+	.header {
+		padding: 15px 0;
+		height: 24px;
+		margin: 0 8px;
+		border-bottom: 1px solid #d8d7d7;
+		em {
+			color: #fb4a7a;
+			font-weight: bold;
+		}
+		.e-clock {
+			padding-left: 18px;
+			background-image: url(../images/online-icon.png);
+			background-repeat: no-repeat;
+		}
+		.btn-freshen {
+			margin-left: 6px;
+			padding: 4px 10px;
+			line-height: 14px;
+			font-size: 14px;
+		}
+	}
+	.online-content {
+		.toolbar {
+			margin: 0 8px;
+			padding: 12px 0;
+			font-family: 'Microsoft YaHei', '微软雅黑', 'MicrosoftJhengHei';
+			.order {
+				float: left;
+				&.active {
+					display: block;
+				}
+				ul {
+					display: none;
+				}
+				.liketext {
+					font-size: 14px;
+				}
+			}
+			.search {
+				float: right;
+				label {
+					margin-left: 10px;
+				}
+				.text {
+					width: 120px;
+					height: 20px;
+					padding: 4px 10px;
+					/* line-height: 20px; */
+					color: #555;
+					border: 1px solid #d2d2d2;
+					background-color: #fff;
+					outline: 0;
+					vertical-align: middle;
+				}
+				.btn-search {
+					margin-left: 10px;
+					line-height: 16px;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+	.info-card-list {
+		position: relative;
+		.node {
+			float: left;
+			margin-bottom: 16px;
+			width: 50%;
+			font-family: 'Microsoft YaHei', '微软雅黑', 'MicrosoftJhengHei';
+			.node-container {
+				position: relative;
+				padding: 16px;
+				margin: 0 8px;
+				background-color: #f2f2f5;
+			}
+			.avator {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 50px;
+				padding: 0 16px;
+				.image {
+					margin-top: 46px;
+					width: 50px;
+					height: 50px;
+					overflow: hidden;
+					border-radius: 50%;
+					box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1)
+				}
+			}
+			.info {
+				position: relative;
+				margin-left: 66px;
+				.info-container {
+					border-left: 1px solid #d9d9d9;
+					padding-left: 16px;
+					color: #4b4b4b;
+					div {
+						line-height: 22px;
+					}
+					.imp {
+						margin-bottom: 4px;
+						color: #333;
+						font-size: 14px;
+						.name {
+							display: inline-block;
+							vertical-align: middle;
+							*display: inline;
+							*zoom: 1;
+							font-weight: bold;
+						}
+						.nickname {
+							display: inline-block;
+							vertical-align: middle;
+							*display: inline;
+							*zoom: 1;
+						}
+						.role {
+							display: inline-block;
+							vertical-align: top;
+							*display: inline;
+							*zoom: 1;
+							margin-left: 4px;
+							background-image: url(../images/online-icon.png);
+							&.parent {
+								margin-top: 3px;
+								width: 21px;
+								height: 16px;
+								background-position: 0 -14px;
+							}
+							&.student {
+								margin-top: 2px;
+								width: 15px;
+								height: 17px;
+								background-position: 0 -30px;
+							}
+							&.teacher {
+								margin-top: 1px;
+								width: 13px;
+								height: 19px;
+								background-position: 0 -47px;
+							}
+						}
+					}
+					.interest {
+						margin-right: 6px;
+						&:after {
+							content: "";
+							border-right: 1px solid #d9d9d9;
+							padding-left: 10px;
+							display: inline-block;
+							width: 0px;
+							height: 12px;
+							position: relative;
+							top: 2px;
+						}
+					}
+				}
+			}
+			.follow {
+				position: absolute;
+				right: 16px;
+				top: 16px;
+				.btn-message {
+					margin-left: 4px;
+					&:hover {
+						color: #fff;
+						background-color: #48A348;
+						border: 1px solid #368B36;
+					}
+				}
+				.btn-interest-not {
+					.iconfont {
+						color: #d9534f;
+					}
+				}
+				.btn-interest-on {
+					.iconfont {
+						color: #5bc0de;
+						font-weight: bold;
+					}
+				}
+				.btn-interest-mutual {
+					.iconfont {
+						color: #5bc0de;
+						font-weight: bold;
+					}
+				}
+				.btn-interest-off {
+					color: #fff;
+					background-color: #d9534f;
+					border: 1px solid #d43f3a;
+				}
+			}
+		}
+	}
+}
+
+@media screen and(max-width:850px) {
+	.online.wrapper {
+		.info-card-list {
+			.node {
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media screen and(min-width:1350px) {
+	.online.wrapper {
+		.info-card-list {
+			.node {
+				width: 33.333%;
+			}
+		}
+	}
+}
+
+@media screen and(min-width:1700px) {
+	.online.wrapper {
+		.info-card-list {
+			.node {
+				width: 25%;
+			}
+		}
+	}
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>级联下拉列表示例</title>
+    <link rel="stylesheet" href="../stylesheets/common.css" />
+    <link rel="stylesheet" href="../stylesheets/table.css" />
+    <link rel="stylesheet" href="../ext/zw/lui-v2.1/css/extension.css" />
+
+</head>
+
+<body>
+    <div class="place">
+        <span class="label-span">位置：</span>
+        <ul id="place-list" class="place-ul">
+            <li>
+                首页
+            </li>
+        </ul>
+    </div>
+    <div class="body-warp">
+
+
+        <div class="panel" style="">
+            <div class="panel-body">
+                <form class="field-container">
+                    <span class="headline">包裹框<i class="iconfont infotips showtips" data-tipsid='#ccc' title="这里可以进行解释说明">&#xe644;</i></span>
+                    <div id="ccc" class="showtips-alert alert alert-success mb-10"><span><i class="iconfont">&#xe624;</i>这里可以进行解释说明</span><span class="tips-close"><i class="iconfont">&#xe628;</i></span></div>
+                    <table class="form-table">
+
+                        <tr>
+                            <td>
+                                <label class="form-label" for="search1">#0201<b class="red">*</b></label>
+                            </td>
+                            <td>
+                                <div class="clearfix clear">
+                                    <div style="float:left;margin-right:10px;">
+                                        <div id="panelview0201" class="ext-select-panelview   com-viewer">
+                                        </div>
+                                        <div id="droplist0201" class="ext-droplist hide com-popuper">
+                                        </div>
+                                    </div>
+                                    <div style="float:left;margin-right:10px;">
+                                        <div id="panelview0202" class="ext-select-panelview com-viewer">
+                                        </div>
+                                        <div id="droplist0202" class="ext-droplist hide com-popuper">
+                                        </div>
+                                    </div>
+                                    <div style="float:left;margin-right:10px;">
+                                        <div id="panelview0203" class="ext-select-panelview com-viewer">
+                                        </div>
+                                        <div id="droplist0203" class="ext-droplist hide com-popuper">
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="form-tip alert alert-info">禁用</span></td>
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/common.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/luicontroller-advance.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/panelview.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/droplist.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/extension.js"></script>
+    <script>
+        $(function () {
+            var setting = {
+                store: {
+                    data: [
+                        {
+                            id: 0,
+                            name: "浙江省",
+						},
+                        {
+                            id: 1,
+
+                            name: "江苏省",
+				}
+		]
+                },
+                view: {}
+            }
+
+            //#02
+            var setting0201 = $.extend(true, {}, setting);
+            var setting0202 = $.extend(true, {}, setting);
+            var setting0203 = $.extend(true, {}, setting);
+
+
+            //#0201 禁用
+
+            setting0201.callback = {};
+            setting0201.callback.selectNode = function ($node, nodeData, self) {
+                
+                log(1111)
+                
+                //重设配置，并进行过滤节点
+                setting0202.view.enabled = true;
+                setting0202.view.updateConfig = true;
+                //重载
+                drop0202.load(setting0202);
+                //先列表2的显示所有节点
+                drop0202.showAllNode();
+                //取消所有选中状态
+/*
+                drop0202.getSelectedNode().trigger("click");
+*/
+                
+                //过滤出指定节点
+                drop0202.filterNode(nodeData.id, "pid");
+                //重新实例化扩展插件
+                EXT.Viewer({
+                    trigger: drop0202,
+                    viewer: panel0202
+                })
+
+            }
+            panel0201 = $("#panelview0201").panelview();
+            drop0201 = $("#droplist0201").droplist(setting0201);
+            //封装UI
+            EXT.Viewer({
+                trigger: drop0201,
+                viewer: panel0201
+            })
+
+            //#0202  单选
+            setting0202.view.enabled = false;
+
+            setting0202.store.data = [{
+                id: 11,
+                name: "杭州市",
+                pid: 0,
+            }, {
+                id: 12,
+                name: "温州市",
+                pid: 0,
+            }, {
+                id: 13,
+                name: "台州市",
+                pid: 0,
+            }, {
+                id: 21,
+                name: "苏州市",
+                pid: 1,
+            }, {
+                id: 22,
+                name: "南通市",
+                pid: 1,
+            }, {
+                id: 23,
+                name: "盐城市",
+                pid: 1,
+            }];
+
+            panel0202 = $("#panelview0202").panelview();
+            drop0202 = $("#droplist0202").droplist(setting0202);
+
+            //封装UI
+            Extension.Viewer({
+                trigger: drop0202,
+                viewer: panel0202
+            })
+
+            //#0203  多选+异步加载
+            setting0203.view.enabled = false;
+            setting0203.store.data = [{
+                id: 121,
+                name: "鹿城区",
+                pid: 12,
+            }, {
+                id: 122,
+                name: "瑞安市",
+                pid: 12,
+            }, {
+                id: 111,
+                name: "江滨区",
+                pid: 11,
+            }, {
+                id: 112,
+                name: "上城区",
+                pid: 11,
+            }];
+            panel0203 = $("#panelview0203").panelview();
+            drop0203 = $("#droplist0203").droplist(setting0203);
+
+            //封装插件
+            //当两个插件配置产生逻辑性的冲突时，以trigger插件的配置为准，比如视图插件是单选，而触发插件是多选，则最终配置是多选
+            EXT.Viewer({
+                trigger: drop0203,
+                viewer: panel0203
+            })
+
+
+
+
+
+            /* 初始化控件 */
+            initWidget();
+
+            /*侦听*/
+            addListeners();
+
+        });
+
+        /*初始化控件*/
+        function initWidget() {}
+
+        function addListeners(argument) {
+            $('form').submit(function () {
+
+            });
+        }
+    </script>
+</body>
+
+</html>

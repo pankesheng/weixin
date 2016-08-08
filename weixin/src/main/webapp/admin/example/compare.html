@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<!--todo js 判断左右两侧是否相同，如不同则醒目显示-->
+<!--todo js 图片点击当前页面100%或适应屏幕显示-->
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+
+</head>
+
+<body>
+	<div class="body-warp">
+		<div class="panel p-10">
+			<ul class="tabs" data-toggle="tab" role="tab">
+				<li>
+					<a class="tabs-btn selected" href="#tab1">商家管理--审核</a>
+				</li>
+			</ul>
+			<div class="tabs-content">
+				<div class="article panel-body compare">
+					<form>
+						<table class="compare_table">
+							<colgroup>
+								<col width="20%" />
+								<col width="40%" />
+								<col width="40%" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<td>&nbsp;</td>
+									<td class="heading">原始数据</td>
+									<td class="heading">有<span class="modify">变动</span>的数据</td>
+								</tr>
+
+								<tr>
+									<td colspan="3" class="area heading field_heading">商家信息</td>
+								</tr>
+								<tr>
+									<td class="field">商家地址：</td>
+									<td>
+										<p>浙江省温州市瑞安市周湖新村6幢一单元301室</p><img src="../useless/images/map.png"></td>
+									<td>
+										<p>浙江省温州市瑞安市周湖新村6幢一单元301室<span class="modify">浙江省温州市瑞安市周湖新村6幢一单元301室浙江省温州市瑞安市周湖新村6幢一单元301室浙江省温州市瑞安市周湖新村6幢一单元301室</span></p><img src="../useless/images/map.png">
+									</td>
+								</tr>
+
+								<tr>
+									<td class="field">营业时间：</td>
+									<td>
+										<p>早8点 ~ 晚6点，节假日休息</p>
+									</td>
+									<td>
+										<p>早<span class="modify">10</span>点 ~ 晚<span class="modify">8</span>点，<span class="modify">星期日休息</span></p>
+									</td>
+								</tr>
+								<tr>
+									<td class="field">联系电话：</td>
+									<td>
+										<p>0577-65800697</p>
+									</td>
+									<td>
+										<p>0577-<span class="modify">65817507</span></p>
+									</td>
+								</tr>
+								<tr>
+									<td class="field">营业执照：</td>
+									<td>
+										<img src="../useless/images/bl.jpg" />
+									</td>
+									<td>
+										<img src="../useless/images/bl.jpg" />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="divide">&nbsp;</td>
+
+								</tr>
+								<tr>
+									<td colspan="3" class="area heading field_heading">负责人信息</td>
+								</tr>
+								<tr>
+									<td class="field">负责人：</td>
+									<td>
+										<p>莫胜利</p>
+									</td>
+									<td>
+										<p><span class="modify">邹崇锦</span></p>
+									</td>
+								</tr>
+								<tr>
+									<td class="field">手机号码：</td>
+									<td>
+										<p>18072152020</p>
+									</td>
+									<td>
+										<p><span class="modify">15868707979</span></p>
+									</td>
+								</tr>
+								<tr>
+									<td class="field">银行卡：</td>
+									<td>
+										<p>中国建设银行</p>
+									</td>
+									<td>
+										<p>中国建设银行</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="field">银行卡号：</td>
+									<td>
+										<p>4367421420327117974</p>
+									</td>
+									<td>
+										<p><span class="modify">6222021203029688719</span></p>
+									</td>
+								</tr>
+								<tr>
+									<td class="field">身份证：</td>
+									<td>
+										<img src="../useless/images/id.jpg" />
+									</td>
+									<td>
+										<img src="../useless/images/id.jpg" />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="divide">&nbsp;</td>
+
+								</tr>
+								<tr>
+									<td colspan="3" class="area heading field_heading">店面信息</td>
+								</tr>
+								<tr>
+									<td class="field">店面图片：</td>
+									<td><img src="../useless/images/show.jpg" />
+										<br /><img src="../useless/images/show.jpg" />
+										<br /><img src="../useless/images/show.jpg" />
+									</td>
+									<td>
+										<img src="../useless/images/show.jpg" />
+										<br /><img src="../useless/images/show.jpg" />
+										<br /><img src="../useless/images/show.jpg" />
+									</td>
+								</tr>
+								<tr>
+									<td class="field notice">不通过理由：</td>
+									<td colspan="2">
+										<textarea class="form-textarea" name="unpass" id="unpass"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div>
+							<input class="btn btn-success btn-large" type="button" value="审核通过">
+							<input class="btn btn-danger btn-large" type="button" value="不通过">
+							<input class="btn btn-danger btn-large" type="button" value="返回">
+						</div>
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

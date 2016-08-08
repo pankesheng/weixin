@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>应用身份管理 - 应用管理</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：应用身份管理 - 应用管理</span>
+		<span></span>
+	</div>
+	<div class="body-warp">
+
+		<div class="panel table-tool-bar">
+		
+			<a id="add-btn" class="btn" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>新增</a>
+			
+		</div>
+		<table class="table" id="table"></table>
+	</div>
+	
+	<script type="text/javascript" src="../ext/jquery/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/layer/layer.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../ext/zw/src/jquery-epaging.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script type="text/javascript" src="../javascripts/jquery-lisfan.js"></script>
+	<script>
+		var grid = {};
+		$(function () {
+
+			/*初始化表格*/
+			grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "刘铁",
+							"unit": "新民采油厂",
+							"sex": "男",
+							"phone": "2012051224",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "吕册",
+							"unit": "吉林油田总医院",
+							"sex": "女",
+							"phone": "2012120214",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "王彦苏",
+							"unit": "吉林油田总医院",
+							"sex": "女",
+							"phone": "2012120718",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "刘化峰",
+							"unit": "农业开发公司",
+							"sex": "男",
+							"phone": "2012060120",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "沙丽珊",
+							"unit": "油区教育处",
+							"sex": "女",
+							"phone": "2012020817",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "王志会",
+							"unit": "油区教育处",
+							"sex": "男",
+							"phone": "2012020914",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "姜波",
+							"unit": "扶余采油厂",
+							"sex": "男",
+							"phone": "2012041210",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "王昕",
+							"unit": "红岗采油厂",
+							"sex": "男",
+							"phone": "2012021226",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "彭莉",
+							"unit": "通信公司",
+							"sex": "女",
+							"phone": "2012121014",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "米云龙",
+							"unit": "前郭矿区",
+							"sex": "男",
+							"phone": "2012070121",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "秦勤",
+							"unit": "油区教育处",
+							"sex": "男",
+							"phone": "2012022620",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "许华",
+							"unit": "储运销售公司",
+							"sex": "男",
+							"phone": "2012130406",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "兰庆伟",
+							"unit": "江南物业",
+							"sex": "男",
+							"phone": "2012030620",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "佟冬蕾",
+							"unit": "滨江物业",
+							"sex": "女",
+							"phone": "2012110417",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"role": 2,
+							"account": "admin",
+							"name": "曹宽",
+							"image":"www.baidu.com",
+							"unit": "农业开发公司",
+							"sex": "男",
+							"phone": "2012061025",
+						}],
+						"total": 15
+					}
+				},
+				tool: {
+					pagingBar: true
+				},
+				columns: [{
+					title: '应用名称',
+					dataIndex: 'image',
+					align: 'left',
+					renderer: function (cellData) {
+						return '<a href="javascript:void(0);">' + cellData + '</a>';
+					}
+                }, {
+					title: '操作',
+					//width: 300,
+					nowrap: true,
+					/*					renderer: function () {
+											//外部嵌套div修复ie6定宽下换行
+											return '<div style="overflow:hidden;margin:0 auto;"><a class="btn btn-primary" href="javascript:void(0);" onclick="setManager(this);">警告框</a>\n<a class="btn btn-primary" href="javascript:void(0);" onclick="setJuage(this);">页面框</a>\n</div>';
+										}*/
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						var content = '<a class="btn btn-primary" href="javascript:void(0);" onclick="editItem(' + rowIndex + ');" >编辑</a>\n<a class="btn btn-danger" href="javascript:void(0);" onclick="setManager(' + rowIndex + ');">删除</a>\n';
+						return '<div style="overflow:hidden;margin:0 auto;">' + content + '</div>';
+					}
+                }]
+			});
+			/*侦听*/
+			addListeners();
+		});
+
+		/*初始化各项设置*/
+		function initTablePage() {
+			//下拉菜单初始化
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+		}
+
+		/*侦听*/
+		function addListeners() {
+			//新增事件
+			$('#add-btn').bind('click', function () {
+				var index = showIframe('新增', './dialog-form.html', 800, 352);
+			});
+			//修改事件
+			$('#mod-btn').bind('click', function () {
+				//var index = showIframe('编辑', './dynamic-form.html', 800, 352);
+			});
+			//删除事件
+			$('#del-btn').bind('click', function () {
+				//setManager()
+			});
+
+			//视图模式切换
+			$('.switchMode').bind('click', function () {
+				$(this).siblings('.selected').removeClass('selected');
+				$(this).addClass('selected');
+				grid.switchDisplayMode($(this).data('mode'));
+			});
+		}
+
+		//弹出内联DOM框
+		function setJuage(me) {
+			showDom('标题', '#category', 400, 200);
+		}
+
+		//单项编辑
+		function editItem(rowIndex) {
+			//var data = grid.getRowDataByIndex(rowIndex).data;
+			var index = showIframe('编辑', './dialog-form.html', 800, 352);
+		}
+
+		//警告框
+		function setManager(me) {
+			showAlert('确认要执行此操作，可能会带来未知的数据异常', function (index) {
+				layer.close(index);
+			});
+		}
+	</script>
+</body>
+
+</html>

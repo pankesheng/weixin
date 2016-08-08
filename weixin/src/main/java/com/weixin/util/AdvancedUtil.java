@@ -211,12 +211,10 @@ public class AdvancedUtil {
 		log.info("消息内容：{}", jsonMsg);
 		boolean result = false;
 		// 拼接请求地址
-		String requestUrl = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN";
+		String requestUrl =WeChatConfiguration.KF_MESSAGE_CUSTOM_SEND_URL;//"https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN";
 		requestUrl = requestUrl.replace("ACCESS_TOKEN", accessToken);
 		// 发送客服消息
-		JSONObject jsonObject = CommonUtil.httpsRequest(requestUrl, "POST",
-				jsonMsg);
-
+		JSONObject jsonObject = CommonUtil.httpsRequest(requestUrl, "POST",jsonMsg);
 		if (null != jsonObject) {
 			int errorCode = jsonObject.getInt("errcode");
 			String errorMsg = jsonObject.getString("errmsg");
@@ -227,7 +225,6 @@ public class AdvancedUtil {
 				log.error("客服消息发送失败 errcode:{} errmsg:{}", errorCode, errorMsg);
 			}
 		}
-
 		return result;
 	}
 
@@ -253,7 +250,7 @@ public class AdvancedUtil {
 				accessToken = new AccessToken();
 				accessToken.setAccess_token(jsonObject
 						.getString("access_token"));
-				accessToken.setExpires_in(jsonObject.getString("expires_in"));
+				accessToken.setExpires_in(jsonObject.getInt("expires_in"));
 			} catch (JSONException e) {
 				accessToken = null;
 				// 获取token失败

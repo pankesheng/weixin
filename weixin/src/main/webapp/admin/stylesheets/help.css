@@ -1,0 +1,453 @@
+@charset "UTF-8";
+/* line 2, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+.help-container {
+  overflow: hidden;
+  counter-reset: section;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Microsoft YaHei, '微软雅黑', MicrosoftJhengHei; }
+  /* line 9, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-container .transition {
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease; }
+
+/* line 18, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+.help-logo-container {
+  height: 88px;
+  background-color: #366dd1; }
+  /* line 22, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-logo-container .help-logo {
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 16px; }
+  /* line 27, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-logo-container .web-logo {
+    padding-left: 20px;
+    vertical-align: top;
+    padding-right: 20px; }
+  /* line 32, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-logo-container .web-title {
+    display: none;
+    /*display: inline-block;*/
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+    font-size: 28px;
+    font-weight: bold;
+    padding-right: 10px;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 2px 0px 5px #000; }
+  /* line 45, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-logo-container .help-title {
+    border-left: 1px solid #fff;
+    padding-left: 20px;
+    line-height: 62px;
+    font-size: 28px;
+    font-family: Microsoft YaHei, '微软雅黑', MicrosoftJhengHei;
+    color: #fff; }
+
+/* line 55, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+.help-nav {
+  position: absolute;
+  width: 244px;
+  margin-right: 6px; }
+  /* line 60, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-nav .nav-list .nav-item {
+    display: block;
+    height: 54px;
+    line-height: 54px;
+    color: #366dd1;
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: none;
+    border-left: 4px solid transparent; }
+    /* line 70, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-nav .nav-list .nav-item.nav-active,
+    .help-nav .nav-list .nav-item:hover {
+      background-color: #e7f5ff;
+      border-left: 4px solid #2684c2; }
+    /* line 74, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-nav .nav-list .nav-item .nav-icon {
+      display: inline-block;
+      vertical-align: top;
+      *display: inline;
+      *zoom: 1;
+      font-size: 0px;
+      width: 15px;
+      height: 15px;
+      margin-top: 20px;
+      margin-left: 70px;
+      margin-right: 10px;
+      background-image: url(../images/help-icon.gif);
+      background-position: 0px 0px;
+      background-repeat: no-repeat; }
+
+/* line 93, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+.help-content {
+  margin-left: 250px;
+  padding-left: 56px;
+  padding-right: 96px;
+  border-left: 1px solid #e5e5e5;
+  font-size: 14px; }
+  /* line 99, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-content .back-help {
+    display: inline-block;
+    line-height: 30px;
+    height: 30px;
+    padding-top: 20px;
+    text-decoration: none;
+    color: #4aa1f3;
+    cursor: pointer; }
+    /* line 107, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-content .back-help .back-icon {
+      display: inline-block;
+      vertical-align: top;
+      *display: inline;
+      *zoom: 1;
+      width: 14px;
+      height: 14px;
+      margin-top: 8px;
+      margin-right: 2px;
+      background-image: url(../images/help-guide.png);
+      background-position: 0 0;
+      background-repeat: no-repeat; }
+    /* line 120, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-content .back-help:hover {
+      margin-left: -10px;
+      color: #366dd1; }
+      /* line 123, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-content .back-help:hover .back-icon {
+        background-position: 0 -14px; }
+  /* line 128, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-content .article-title {
+    padding-top: 15px;
+    height: 54px;
+    line-height: 54px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #366dd1;
+    border-bottom: 1px solid #e5e5e5; }
+  /* line 138, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-content .help-question .help-list {
+    margin-top: 36px;
+    margin-bottom: 36px;
+    overflow: hidden; }
+    /* line 142, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-content .help-question .help-list .title {
+      font-size: 22px;
+      line-height: 36px;
+      font-weight: bold; }
+      /* line 146, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-content .help-question .help-list .title a {
+        color: #333; }
+    /* line 150, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-content .help-question .help-list .summary {
+      margin-top: 4px;
+      line-height: 30px;
+      color: #333;
+      max-height: 90px;
+      overflow: hidden;
+      text-align: justify; }
+      /* line 157, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-content .help-question .help-list .summary.detail {
+        max-height: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-top: 1px solid #d2d4d4;
+        cursor: pointer;
+        background-color: #f2f8fc; }
+    /* line 168, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-content .help-question .help-list .view {
+      display: inline-block;
+      line-height: 36px;
+      color: #4aa1f3;
+      cursor: pointer;
+      margin-left: -11px;
+      text-decoration: none; }
+      /* line 175, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-content .help-question .help-list .view .open-icon {
+        display: inline-block;
+        vertical-align: top;
+        *display: inline;
+        *zoom: 1;
+        width: 10px;
+        height: 10px;
+        margin-top: 14px;
+        margin-left: 3px;
+        background-image: url(../images/help-guide.png);
+        background-position: 0 -28px;
+        background-repeat: no-repeat; }
+      /* line 188, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-content .help-question .help-list .view:hover {
+        color: #366dd1;
+        margin-left: 0px; }
+        /* line 191, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+        .help-content .help-question .help-list .view:hover .open-icon {
+          background-position: 0 -38px; }
+    /* line 196, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-content .help-question .help-list .active {
+      margin-left: 0px; }
+      /* line 198, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-content .help-question .help-list .active:hover {
+        color: #366dd1;
+        margin-left: -11px; }
+    /* line 203, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-content .help-question .help-list .symbol {
+      font-weight: normal;
+      font-family: simsun;
+      margin-right: 4px; }
+
+/* line 212, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+.info {
+  line-height: 30px;
+  color: #999; }
+  /* line 216, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .info .time time {
+    margin-right: 5px; }
+  /* line 220, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .info .author {
+    margin-left: 5px; }
+  /* line 223, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .info .organ {
+    margin-left: 5px; }
+
+/* line 228, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+.help-top {
+  position: fixed;
+  right: 20px;
+  bottom: 0px;
+  margin-bottom: 100px;
+  margin-left: 727px;
+  width: 50px;
+  height: 50px;
+  background-image: url(../images/help-top.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  cursor: pointer; }
+  /* line 240, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-top:hover {
+    background-position: 0 -50px; }
+
+/* line 245, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+.help-catalog {
+  position: absolute;
+  width: 244px;
+  margin-right: 6px; }
+  /* line 249, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-catalog .catalog-title {
+    font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    color: #366dd1;
+    text-align: center;
+    background-color: #e7f5ff;
+    border-bottom: 2px solid #2684c2;
+    margin-bottom: 10px; }
+    /* line 258, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-catalog .catalog-title .catalog-icon {
+      display: inline-block;
+      vertical-align: top;
+      *display: inline;
+      *zoom: 1;
+      font-size: 0px;
+      width: 15px;
+      height: 15px;
+      margin-top: 14px;
+      margin-left: 0px;
+      margin-right: 6px;
+      background-image: url(../images/help-icon.gif);
+      background-position: 0 0;
+      background-repeat: no-repeat; }
+  /* line 274, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-catalog ul {
+    overflow: hidden;
+    padding-left: 6px;
+    background-image: url(../images/catalog-line.png);
+    background-position: -26px 0px;
+    background-repeat: repeat-y; }
+  /* line 281, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-catalog .catalog-list {
+    margin-bottom: 6px;
+    line-height: 22px;
+    position: relative; }
+    /* line 285, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-catalog .catalog-list .catalog-item {
+      display: block;
+      color: #666;
+      font-size: 14px;
+      padding: 0 15px;
+      font-weight: normal;
+      text-align: justify;
+      text-decoration: none;
+      border-left: 2px solid transparent; }
+      /* line 294, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-catalog .catalog-list .catalog-item:before {
+        counter-increment: section;
+        content: counter(section) ". "; }
+    /* line 299, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-catalog .catalog-list .list-icon {
+      position: absolute;
+      left: 4px;
+      top: 7px;
+      font-size: 0px;
+      width: 7px;
+      height: 6px;
+      margin-left: 0px;
+      margin-right: 0px;
+      background-image: url(../images/catalog-line.png);
+      background-position: 0 0;
+      background-repeat: no-repeat;
+      text-indent: -20px; }
+    /* line 313, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-catalog .catalog-list.active .catalog-item {
+      font-weight: bold;
+      color: #000; }
+    /* line 317, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-catalog .catalog-list:hover .catalog-item {
+      transform: translateX(10px);
+      color: #366dd1; }
+    /* line 322, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-catalog .catalog-list.active .list-icon,
+    .help-catalog .catalog-list:hover .list-icon {
+      background-position: 0 -6px; }
+
+/* line 328, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+.help-article {
+  margin-left: 250px;
+  padding-right: 56px; }
+  /* line 331, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-article .place {
+    margin-top: 10px;
+    border-bottom: none; }
+    /* line 334, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-article .place a {
+      color: #333; }
+      /* line 336, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-article .place a:hover {
+        color: #4aa1f3; }
+  /* line 341, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-article .article-title {
+    padding-top: 15px;
+    text-align: center;
+    color: #333;
+    height: 34px;
+    line-height: 34px;
+    border-bottom: none; }
+  /* line 349, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-article .article-info {
+    font-size: 12px;
+    text-align: center;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 4px; }
+  /* line 355, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-article .article-content {
+    padding: 10px 0 50px; }
+    /* line 357, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-article .article-content p {
+      word-break: break-word;
+      color: #333;
+      font-size: 14px;
+      margin: 20px 0;
+      text-indent: 2em;
+      line-height: 26px; }
+    /* line 365, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-article .article-content img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto; }
+
+@media screen and (max-width: 801px) {
+  /* line 374, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-container {
+    max-width: 100%;
+    margin-top: 0px; }
+  /* line 378, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-nav {
+    max-width: 100%;
+    min-width: 380px;
+    margin-right: 0px;
+    position: relative !important;
+    top: 0px !important;
+    width: auto;
+    margin-top: 30px;
+    padding-left: 56px;
+    padding-right: 56px;
+    font-size: 0px; }
+    /* line 389, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-nav .nav-list {
+      display: inline-block;
+      width: 33%; }
+      /* line 392, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+      .help-nav .nav-list .nav-item {
+        display: block;
+        height: 54px;
+        line-height: 54px;
+        color: #366dd1;
+        font-size: 16px;
+        font-weight: normal;
+        text-decoration: none;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        text-align: center;
+        text-indent: -22px; }
+        /* line 405, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+        .help-nav .nav-list .nav-item.nav-active,
+        .help-nav .nav-list .nav-item:hover {
+          background-color: #e7f5ff;
+          border-left: none;
+          border-bottom: 2px solid #2684c2; }
+        /* line 410, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+        .help-nav .nav-list .nav-item .nav-icon {
+          margin-left: 25px; }
+  /* line 416, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-content {
+    min-width: 380px;
+    margin-left: 0px;
+    padding-right: 56px; }
+    /* line 420, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-content .article-title {
+      padding-top: 20px; }
+  /* line 424, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-top {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    margin: 0 auto; }
+  /* line 430, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-catalog {
+    width: auto;
+    margin-right: 0px;
+    position: relative !important;
+    top: 0px !important; }
+    /* line 435, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+    .help-catalog ul {
+      padding-left: 15px;
+      background-position: -17px; } }
+
+@media screen and (min-width: 1300px) {
+  /* line 444, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-logo-container .help-logo {
+    max-width: 1400px; }
+  /* line 448, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-container {
+    max-width: 1400px; }
+  /* line 451, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-catalog {
+    width: 304px; }
+  /* line 455, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-article {
+    margin-left: 310px; }
+  /* line 458, /Users/lisfan/快盘/work/后台管理系统/stylesheets/help.scss */
+  .help-top {
+    margin-left: 1037px;
+    left: auto;
+    right: auto; } }
+
+/*# sourceMappingURL=help.css.map */

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：弹出选择框（html直接输出）<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="selectPanelview10" class="select-panelview">
+								</div>
+								<div id="selectbox10" class="panel-body selectbox">
+									<div class="content clearfix" data-role="content">
+										<div data-role="node" data-index="1" data-id="SelectBox24072319890130" class="node selected" data-state="selected">
+											<a href="javascript:void(0);" title="主智平课台"><img src="../images/icon/icon3.png" alt="主智平课台" title="主智平课台"><span class="name" title="主智平课台">主智平课台</span></a><span class="iconfont icon-state"></span></div>
+										<div data-role="node" data-index="2" data-id="SelectBox24072319890130" class="node selected" data-state="selected">
+											<a href="javascript:void(0);" title="主智平课台"><img src="../images/icon/icon3.png" alt="主智平课台" title="主智平课台"><span class="name" title="主智平课台">主智平课台</span></a><span class="iconfont icon-state"></span></div>
+										<div data-role="node" data-index="3" data-id="SelectBox24072319890130" class="node selected" data-state="selected">
+											<a href="javascript:void(0);" title="主智平课台"><img src="../images/icon/icon3.png" alt="主智平课台" title="主智平课台"><span class="name" title="主智平课台">主智平课台</span></a><span class="iconfont icon-state"></span></div>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：弹出选择框（单选）美化滚动条<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="selectPanelview" class="select-panelview">
+								</div>
+								<div id="droplistContainer3" class="hide">
+									<div id="selectbox" class=" panel-body selectbox">
+									</div>
+								</div>
+								<a href="javascript:void(0);" class="btn btn-primary" id="popup"><i class="iconfont">&#xe61b;</i>选择父单位</a>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：弹出选择框（多选）<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="selectPanelview2" class="select-panelview">
+								</div>
+								<div id="selectbox2" class="hide panel-body selectbox">
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：弹出选择框（多选加内部选中提示）<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="selectPanelview3" class="select-panelview">
+								</div>
+								<div id="popupSelectbox3" class="hide">
+									<div id="selectboxInnerPanelview3" class="panel-body panelview selectbox-inner-panelview">
+									</div>
+									<div id="selectbox3" class="panel-body selectbox">
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：选择框列表展示(最大可选设置为5个)<b class="red">*</b></label>
+							</td>
+							<td>
+			</div>
+			<div id="selectboxInnerPanelview4" class="panel-body panelview selectbox-inner-panelview">
+			</div>
+			<div id="selectbox4" class="panel-body selectbox">
+			</div>
+			</td>
+			</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/tree.js"></script>
+
+	<script>
+		$(function () {
+			logDebug = true;
+
+			var def = {
+				setting: {
+					store: {
+						data: [{
+							id: "01",
+							name: "莫胜利",
+							value: "msl",
+							open:true,
+							isParent:true,
+							pid
+							children:[]
+						}]
+					}
+				}
+			}
+
+
+		})
+
+
+
+		/* 初始化控件 */
+		initWidget();
+
+		/*侦听*/
+		addListeners();
+
+		$("#popup").click(function () {
+		$("#selectPanelview").click()
+		})
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+
+
+		function addListeners(argument) {
+
+		}
+	</script>
+</body>
+
+</html>

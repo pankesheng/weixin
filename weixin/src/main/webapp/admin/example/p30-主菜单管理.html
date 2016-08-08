@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>申请课题修改课题</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<style>
+		.zcdgl {
+			border: none;
+		}
+		
+		.zcdgl.editMode .name {
+			margin-right: 89px;
+		}
+		
+		.zcdgl .ext-move-tools {
+			position: absolute;
+			right: 10px;
+		}
+		
+		.zcdgl .ext-move-up,
+		.zcdgl .ext-move-down {}
+		
+		.zcdgl .ext-node .action {
+			visibility: hidden;
+			width: 20px;
+			text-align: center;
+			opacity: 0.8;
+			vertical-align: middle;
+			display: inline-block;
+			text-indent: 0px;
+		}
+		
+		.zcdgl .ext-node .action:hover {
+			opacity: 1
+		}
+		
+		.zcdgl .iconfont {
+			position: relative;
+			font-size: 12px;
+			line-height: 1.5;
+		}
+		
+		.zcdgl .ext-move-up .iconfont,
+		.zcdgl .ext-move-down .iconfont {
+			color: #48A348;
+		}
+		
+		.zcdgl .ext-remove .iconfont {
+			color: #d9534f;
+		}
+		
+		.zcdgl .ext-add .iconfont {
+			color: #5bc0de;
+		}
+		
+		.zcdgl .ext-first-node .ext-move-up .iconfont {
+			color: silver;
+		}
+		
+		.zcdgl .ext-last-node .ext-move-down .iconfont {
+			color: silver;
+		}
+		
+		.zcdgl.editMode .action {
+			visibility: visible;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">课题成员<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+
+									<div id="treeContainer" style="border: 1px solid #DCDCDC;width:367px;">
+										<!--  -->
+										<div id="tree" class="zcdgl ext-treelist">
+										</div>
+									</div>
+								</div>
+								<div id="xuanze" style="display:none;">
+									<select name="xuanze2" id="xuanze2">
+										<option value="1">1条数据</option>
+										<option value="2">2条数据</option>
+										<option value="3">3条数据</option>
+										<option value="4">4条数据</option>
+									</select>
+									<a id="quedingzengjia">确定增加</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<!-- 空内容的td 保持间距 -->
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input id="shengcheng" class="btn btn-success btn-large" type="button" value="根据栏目顺序自动生成">
+								<input id="bianji" class="btn btn-danger btn-large" type="button" value="编辑">
+								<input id="liulan" class="btn  btn-large return-btn" data-href="/manager/users" type="button" value="网站浏览">
+								<input id="baocun" class="btn btn-success btn-large" type="button" value="保存" style="display:none">
+								<input id="chongzhi" class="btn btn-danger btn-large" type="button" value="重置" style="display:none">
+								<input id="xinzeng" class="btn  btn-large" type="button" value="新增主菜单" style="display:none">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/luicontroller-advance.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/tree.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/panelview.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/extension.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+	<script>
+		$(function () {
+
+			initPage();
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+
+		}
+
+
+		function initPage() {
+			var setting = {
+				store: {
+					data: [
+						{
+							id: "1",
+							name: "瓯海教育局瓯育局",
+							value: "ohjyj",
+							expand: true, //是否展开
+							sortId: 1,
+							//state: "selected",
+							children: [{
+									id: "101",
+									name: "成长小学",
+									value: "ohxx",
+									expand: true, //是否展开
+									sortId: 13,
+									expand: true, //是否展开
+
+									children: [{
+											id: "10101",
+											name: "莫胜利",
+											value: "msl",
+											sortId: 2,
+											expand: true, //是否展开
+
+											children: [{
+													id: "102011",
+													name: "潘鹏飞",
+													value: "ppf",
+													sortId: 11,
+
+				},
+												{
+													id: "102012",
+													name: "许凤平",
+													value: "xfp",
+													sortId: 5,
+
+				}, {
+													id: "103031",
+													name: "朱建伟",
+													value: "zjw",
+													sortId: 4,
+
+				}]
+				},
+										{
+											id: "10102",
+											name: "潘克胜",
+											value: "pks",
+											sortId: 6
+
+				}, {
+											id: "10103",
+											name: "严听听",
+											value: "ytt",
+											sortId: 4
+
+				}]
+				},
+								{
+									id: "102",
+									name: "奋强中学",
+									value: "fqzx",
+									//state: "selected",
+									expand: true, //是否展开
+									sortId: 2,
+
+									children: [{
+											id: "10201",
+											name: "潘鹏飞",
+											value: "ppf",
+											sortId: 11,
+
+				},
+										{
+											id: "10202",
+											name: "许凤平",
+											value: "xfp",
+											sortId: 5,
+
+				}, {
+											id: "10303",
+											name: "朱建伟",
+											value: "zjw",
+											sortId: 4,
+
+				}]
+				},
+								{
+									id: "103",
+									name: "自立高中",
+									value: "zlgz",
+									expand: true, //是否展开
+									sortId: 3,
+
+									children: [{
+											id: "10301",
+											name: "陈冬敏",
+											value: "cdm",
+											sortId: 333,
+
+				},
+										{
+											id: "10302",
+											name: "邹崇景",
+											value: "zcj",
+											sortId: 222,
+
+				}]
+				}],
+						},
+						{
+							id: "2",
+							name: "鹿城教育局",
+							value: "ohjyj",
+							sortId: 6,
+						},
+						{
+							id: "3",
+							name: "龙湾教育局",
+							value: "ohjyj",
+							sortId: 4,
+						},
+		]
+				},
+
+				view: {
+					enabledSelectMode: false, //关闭选中模式
+					autoRefresh: true, //自动刷新节点数据
+					nodeFormater: function (nodeData) {
+						return "<div><span class='name'>" + nodeData.name + "(原始排序号：" + nodeData.sortId + ")" + "</span></div>"
+					}
+				},
+				callback: {
+					loadCallback: function ($addNode, obj) {
+						obj.sortNode("sortId", "asc");
+
+						obj.$content.undelegate("[data-role='moveUper']", "click.nodeMoveUp");
+						obj.$content.delegate("[data-role='moveUper']", "click.nodeMoveUp", function (event) {
+							stopPropagation(event);
+							obj.config.action.nodeMoveUp($(this), obj);
+						});
+
+						obj.$content.undelegate("[data-role='moveDowner']", "click.nodeMoveDown");
+						obj.$content.delegate("[data-role='moveDowner']", "click.nodeMoveDown", function (event) {
+							stopPropagation(event);
+							obj.config.action.nodeMoveDown($(this), obj);
+						});
+
+						obj.$content.undelegate("[data-role='remove']", "click.nodeRemove");
+						obj.$content.delegate("[data-role='remove']", "click.nodeRemove", function (event) {
+							stopPropagation(event);
+							obj.config.action.removeNode($(this), obj);
+						});
+
+						obj.$content.undelegate("[data-role='add']", "click.nodeAdd");
+						obj.$content.delegate("[data-role='add']", "click.nodeAdd", function (event) {
+							stopPropagation(event);
+							obj.config.action.addNode($(this), obj);
+						});
+
+						//双击展开停止冒泡
+						obj.$content.undelegate("[data-role='moveUper'],[data-role='moveDowner'],[data-role='remove'],[data-role='add']", "dblclick.expandNode");
+						obj.$content.delegate("[data-role='moveUper'],[data-role='moveDowner'],[data-role='remove'],[data-role='add']", "dblclick.expandNode", function (event) {
+							stopPropagation(event);
+						});
+
+						/*obj.$content.undelegate("[data-role='node']", "mouseenter.focusNode");
+						obj.$content.delegate("[data-role='node']", "mouseenter.focusNode", function (event) {
+							stopPropagation(event);
+							obj.config.action.focusNode($(this), obj);
+						});
+
+						obj.$content.undelegate("[data-role='node']", "mouseleave.blurNode");
+						obj.$content.delegate("[data-role='node']", "mouseleave.blurNode", function (event) {
+							stopPropagation(event);
+							obj.config.action.blurNode($(this), obj);
+						});*/
+					},
+					nodeCallback: function ($currentNode, currentData, obj) {
+						var $control = $("<span class='ext-move-tools'></span>")
+						var $moveUp = $("<span class='ext-move-up action' data-role='moveUper' title='上移'><i class='iconfont'>&#xe64b;</i></span>");
+						var $moveDown = $("<span class='ext-move-down action' data-role='moveDowner' title='下移'><i class='iconfont'>&#xe64c;</i></span>");
+						var $add = $("<span class='ext-add action' data-role='add' title='新增子菜单'><i class='iconfont'>&#xe63f;</i></span>");
+						var $remove = $("<span class='ext-remove action' data-role='remove' title='删除菜单'><i class='iconfont'>&#xe61d;</i></span>");
+						//$currentNode.ren(".name").eq(0).append($moveUp).append($moveDown);
+						$currentNode.prepend($control);
+						$control.append($remove)
+							//只为根节点创建新增
+						if (currentData.level === 0) {
+							$control.append($add);
+						}
+						$control.append($moveUp).append($moveDown);
+
+					},
+
+				},
+				action: {
+					//节点获得焦点
+					focusNode: function ($currentNode, obj) {
+						$currentNode.addClass("active");
+					},
+					//节点失去焦点
+					blurNode: function ($currentNode, obj) {
+						$currentNode.removeClass("active");
+					},
+					//移除节点（仅隐藏，隐藏该节点，及其子节点，为隐藏节点增加一个标记）
+					removeNode: function ($remove, obj) {
+						var $currentNode = obj.getNodeById($remove.closest("[data-role='node']"));
+						$currentNode.addClass("waiting-remove");
+						var currentData = obj.getDataById($currentNode);
+
+						obj._noder._getNodeContainer($currentNode).hide();
+						obj._noder._getNodeChildContent($currentNode).hide();
+						//移除时还需查看是否还存在兄弟节点，如果不存在，则父节点的开关要关闭
+						var $siblingsNode = obj.getSiblingsNode($currentNode);
+						if ($siblingsNode.filter(":visible").length <= 0) {
+							//不存在
+							obj._switcher._getSwitcher(obj.getParentNode($currentNode)).hide();
+						}
+					},
+					//增加节点
+					addNode: function ($add, obj) {
+						var $currentNode = obj.getNodeById($add.closest("[data-role='node']"));
+						var currentData = obj.getDataById($currentNode);
+						var $ChildNode = obj.getChildrenNode($currentNode, true);
+						obj.addNode([{
+							name: "连插2条模拟插入",
+							sortId: currentData.sortId + $ChildNode.length + 1,
+							newlySortId: currentData.sortId + $ChildNode.length + 1
+						}, {
+							name: "连插2条模拟插入",
+							sortId: currentData.sortId + $ChildNode.length + 2,
+							newlySortId: currentData.sortId + $ChildNode.length + 3
+						}], $currentNode)
+						obj.expandNode($currentNode);
+						//重排
+						tree.sortNode("sortId", "asc");
+					},
+
+					//节点上移
+					nodeMoveUp: function ($nodeMove, obj) {
+						var $currentNode = obj.getNodeById($nodeMove.closest("[data-role='node']"))
+						var currentData = obj.getDataById($currentNode);
+
+						//如果当前节点是首节点，则不执行事件
+						if (currentData.isFirstNode) {
+							return false;
+						}
+
+						//取得同节点
+						var $siblingsNode = obj.getSiblingsNode($currentNode, true);
+						var currentIndex = $siblingsNode.index($currentNode);
+						//取得上一个兄弟元素节点和数据
+						var $prevNode = $siblingsNode.eq(currentIndex - 1);
+						var prevNodeData = obj.getDataById($prevNode);
+
+						//obj.config.action.blurNode($currentNode, obj);
+						//将双方排序的序号数据交换暂存到自已新的newlySortId字段里
+						var currentSortId = currentData.newlySortId;
+						var prevSortId = prevNodeData.newlySortId;
+						obj.replaceNodeData($currentNode, "newlySortId", prevSortId);
+						obj.replaceNodeData($prevNode, "newlySortId", currentSortId);
+
+						obj.replaceNode($currentNode, $prevNode, true);
+					},
+					//节点下移
+					nodeMoveDown: function ($nodeMove, obj) {
+						var $currentNode = obj.getNodeById($nodeMove.closest("[data-role='node']"))
+						var currentData = obj.getDataById($currentNode);
+						//如果当前节点是首节点，则不执行事件
+
+						if (currentData.isLastNode) {
+							return false;
+						}
+
+						//取得同节点
+						var $siblingsNode = obj.getSiblingsNode($currentNode, true);
+						var currentIndex = $siblingsNode.index($currentNode);
+						//取得上一个兄弟元素节点和数据
+						var $nextNode = $siblingsNode.eq(currentIndex + 1);
+						var nextNodeData = obj.getDataById($nextNode);
+
+						//将双方排序的序号数据交换暂存到自已新的newlySortId字段里
+						var currentSortId = currentData.newlySortId;
+						var nextSortId = nextNodeData.newlySortId;
+
+						obj.replaceNodeData($currentNode, "newlySortId", nextSortId);
+						obj.replaceNodeData($nextNode, "newlySortId", currentSortId);
+						obj.replaceNode($currentNode, $nextNode, true);
+						//obj.config.action.blurNode($currentNode, obj);
+					},
+					//点击编辑会复制一份当前的sortId到新字段newlySortId里
+					cloneSortId: function ($node, obj) {
+						obj.addNodeData($node, "newlySortId", function (index, data) {
+							return data["sortId"];
+						});
+					},
+					//更新排序序号
+					updateSortId: function ($node, obj) {
+						//将暂存的新排序字段newlySortId替换sortId，并删除newlySortId
+						obj.replaceNodeData($node, "sortId", function (index, data) {
+							return data["newlySortId"];
+						});
+					}
+				}
+			}
+
+			//示例：示例：选择框列表展示(最大可选设置为5个）*  
+			tree = $("#tree").tree(setting);
+			nc = $('#treeContainer').niceScroll({
+				cursorcolor: '#7db7fb',
+				cursorwidth: '6px',
+				cursorborderradius: 2,
+				autohidemode: true,
+				background: '#d0d0d0',
+				cursoropacitymin: 1,
+				cursorborder: 'none',
+				horizrailenabled: false,
+			});
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+		function addListeners(argument) {
+			var $liulan = $("#liulan");
+			var $shengcheng = $("#shengcheng");
+			var $bianji = $("#bianji");
+			var $baocun = $("#baocun");
+			var $chongzhi = $("#chongzhi");
+			var $xinzeng = $("#xinzeng");
+
+			//编辑事件
+			$bianji.click(function () {
+				tree.$me.addClass("editMode");
+				var $allNode = tree.getAllNode();
+				$allNode.addClass("active");
+				$shengcheng.hide();
+				$bianji.hide();
+				$liulan.hide();
+
+				$baocun.show();
+				$chongzhi.show();
+				$xinzeng.show();
+				//将暂存的新排序字段newlySortId替换sortId，并删除newlySortId
+				tree.config.action.cloneSortId(tree.getAllNode(), tree);
+			});
+
+
+			//保存事件
+			$baocun.click(function () {
+				//将暂存的新排序字段newlySortId替换sortId，并删除newlySortId
+				tree.config.action.updateSortId(tree.getAllNode(), tree);
+
+				tree.$me.removeClass("editMode");
+
+				$bianji.show();
+				$shengcheng.show();
+				$liulan.show();
+
+				$baocun.hide();
+				$chongzhi.hide();
+				$xinzeng.hide();
+
+				var $removeNode = tree.getAllNode().filter(".waiting-remove");
+				tree.removeNode($removeNode);
+
+			});
+			//重置事件
+			$chongzhi.click(function () {
+				//让隐藏的节点显示
+				tree._noder._getNodeContainer(tree.getAllNode()).show();
+				//让隐藏的节点子内容区显示
+				tree._noder._getNodeChildContent(tree.getAllNode()).removeAttr("style");
+				//重新排序
+				tree.sortNode("sortId", "asc");
+				
+			});
+
+			//暂存要增加的节点目标
+			var waitAddNode;
+			
+			$xinzeng.click(function () {
+				//模拟要增加的节点是102
+				//奋强中学(原始排序号：2)
+				waitAddNode = tree.getNodeById("102");
+
+				//模拟查请求后得到的数据
+				$("#xuanze").show();
+				$("#xuanze").css({
+					display: "block",
+					position: "fixed",
+					top: '50%',
+					left: '50%',
+					width: "300px",
+					height: "100px",
+					backgroundColor: "#fff",
+					border: "5px solid pink"
+				});
+			});
+
+			$("#quedingzengjia").click(function () {
+				//$("#xuanze2").val()
+
+				//模拟得到的的数据
+				var data = [{
+						name: "连插2条模拟插入",
+						sortId: 1,
+						newlySortId: 1,
+					}, {
+						name: "连插2条模拟插入",
+						sortId: 10,
+						newlySortId: 10
+					}]
+					//
+
+				tree.addNode(data, waitAddNode);
+						tree.sortNode("sortId", "asc");
+
+			});
+
+		}
+	</script>
+</body>
+
+</html>

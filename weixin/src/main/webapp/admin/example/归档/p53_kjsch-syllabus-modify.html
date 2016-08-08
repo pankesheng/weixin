@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<title>基本设置 - 课程表管理 - 编辑</title>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span>基本设置 - 课程表管理 - 编辑</span>
+	</div>
+	<div class="body-warp">
+
+		<form class="form-label" name="syllabus" id="syllabus">
+			<table class="table" id="table"></table>
+			<div class="form-group" style="">
+				<input id="submit-btn" class="btn btn-success btn-large" type="submit" value="保存">
+				<input id="reset-btn" class="btn btn-danger btn-large" type="reset" value="清空">
+				<input id="return-btn" class="btn btn-default btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		var gridData;
+		var grid = {};
+
+		$(function () {
+			initTablePage();
+
+			gridData = {
+				"s": 1,
+				"d": [{
+					"classesId": 1401737669517312,
+					"schtimeId": 1401810177957888,
+					"xka": "语文",
+					"rklsa": "白老师",
+					"xkb": "数学",
+					"rklsb": "安老师",
+					"xkc": "音乐",
+					"rklsc": "而老师",
+					"xkd": "自然",
+					"rklsd": "杜老师",
+					"xke": "音乐",
+					"rklse": "而老师",
+					"schtime": {
+						"nums": "第一节",
+						"btimehour": 8,
+						"btimeminu": 10,
+						"etimehour": 8,
+						"etimeminu": 50,
+						"btime": "08:10",
+						"etime": "08:50",
+						"id": 1401810177957888,
+						"ctime": "2015-11-12 15:30:55",
+						"utime": "2015-11-12 15:30:55"
+					},
+					"id": 1401884254429184,
+					"ctime": "2015-11-12 16:46:16",
+					"utime": "2015-11-12 16:46:16"
+						}, {
+					"classesId": 1401737669517312,
+					"schtimeId": 1401813048926208,
+					"xka": "数学",
+					"rklsa": "安老师",
+					"xkb": "自然",
+					"rklsb": "杜老师",
+					"xkc": "化学",
+					"rklsc": "陈老师",
+					"xkd": "音乐",
+					"rklsd": "而老师",
+					"xke": "自然",
+					"rklse": "杜老师",
+					"schtime": {
+						"nums": "第二节",
+						"btimehour": 9,
+						"btimeminu": 0,
+						"etimehour": 9,
+						"etimeminu": 40,
+						"btime": "09:00",
+						"etime": "09:40",
+						"id": 1401813048926208,
+						"ctime": "2015-11-12 15:33:50",
+						"utime": "2015-11-12 15:35:56"
+					},
+					"id": 1401884254429185,
+					"ctime": "2015-11-12 16:46:16",
+					"utime": "2015-11-12 16:46:16"
+						}, {
+					"classesId": 1401737669517312,
+					"schtimeId": 1401815640465408,
+					"xka": "化学",
+					"rklsa": "陈老师",
+					"xkb": "音乐",
+					"rklsb": "而老师",
+					"xkc": "音乐",
+					"rklsc": "而老师",
+					"xkd": "自然",
+					"rklsd": "杜老师",
+					"xke": "数学",
+					"rklse": "安老师",
+					"schtime": {
+						"nums": "第三节",
+						"btimehour": 9,
+						"btimeminu": 50,
+						"etimehour": 10,
+						"etimeminu": 30,
+						"btime": "09:50",
+						"etime": "10:30",
+						"id": 1401815640465408,
+						"ctime": "2015-11-12 15:36:28",
+						"utime": "2015-11-12 15:36:28"
+					},
+					"id": 1401884254429186,
+					"ctime": "2015-11-12 16:46:16",
+					"utime": "2015-11-12 16:46:16"
+						}, {
+					"classesId": 1401737669517312,
+					"schtimeId": 1401815853228032,
+					"xka": "数学",
+					"rklsa": "安老师",
+					"xkb": "音乐",
+					"rklsb": "而老师",
+					"xkc": "化学",
+					"rklsc": "陈老师",
+					"xkd": "音乐",
+					"rklsd": "而老师",
+					"xke": "音乐",
+					"rklse": "而老师",
+					"schtime": {
+						"nums": "第四节",
+						"btimehour": 10,
+						"btimeminu": 40,
+						"etimehour": 11,
+						"etimeminu": 20,
+						"btime": "10:40",
+						"etime": "11:20",
+						"id": 1401815853228032,
+						"ctime": "2015-11-12 15:36:41",
+						"utime": "2015-11-12 15:36:41"
+					},
+					"id": 1401884254429187,
+					"ctime": "2015-11-12 16:46:16",
+					"utime": "2015-11-12 16:46:16"
+						}, {
+					"classesId": 1401737669517312,
+					"schtimeId": 1401816104296448,
+					"xka": "音乐",
+					"rklsa": "而老师",
+					"xkb": "化学",
+					"rklsb": "陈老师",
+					"xkc": "数学",
+					"rklsc": "安老师",
+					"xkd": "数学",
+					"rklsd": "安老师",
+					"xke": "化学",
+					"rklse": "陈老师",
+					"schtime": {
+						"nums": "第五节",
+						"btimehour": 13,
+						"btimeminu": 0,
+						"etimehour": 13,
+						"etimeminu": 40,
+						"btime": "13:00",
+						"etime": "13:40",
+						"id": 1401816104296448,
+						"ctime": "2015-11-12 15:36:56",
+						"utime": "2015-11-12 15:36:56"
+					},
+					"id": 1401884254429188,
+					"ctime": "2015-11-12 16:46:16",
+					"utime": "2015-11-12 16:46:16"
+						}, {
+					"classesId": 1401737669517312,
+					"schtimeId": 1401816528527360,
+					"xka": "自然",
+					"rklsa": "杜老师",
+					"xkb": "数学",
+					"rklsb": "安老师",
+					"xkc": "化学",
+					"rklsc": "陈老师",
+					"xkd": "自然",
+					"rklsd": "杜老师",
+					"xke": "音乐",
+					"rklse": "而老师",
+					"schtime": {
+						"nums": "第六节",
+						"btimehour": 13,
+						"btimeminu": 50,
+						"etimehour": 14,
+						"etimeminu": 20,
+						"btime": "13:50",
+						"etime": "14:20",
+						"id": 1401816528527360,
+						"ctime": "2015-11-12 15:37:22",
+						"utime": "2015-11-12 15:37:22"
+					},
+					"id": 1401884254429189,
+					"ctime": "2015-11-12 16:46:16",
+					"utime": "2015-11-12 16:46:16"
+						}, {
+					"classesId": 1401737669517312,
+					"schtimeId": 1401816737865728,
+					"xka": "数学",
+					"rklsa": "安老师",
+					"xkb": "语文",
+					"rklsb": "白老师",
+					"xkc": "化学",
+					"rklsc": "陈老师",
+					"xkd": "化学",
+					"rklsd": "陈老师",
+					"xke": "数学",
+					"rklse": "安老师",
+					"schtime": {
+						"nums": "第七节",
+						"btimehour": 14,
+						"btimeminu": 30,
+						"etimehour": 19,
+						"etimeminu": 10,
+						"btime": "14:30",
+						"etime": "19:10",
+						"id": 1401816737865728,
+						"ctime": "2015-11-12 15:37:35",
+						"utime": "2015-11-12 15:37:35"
+					},
+					"id": 1401884254429190,
+					"ctime": "2015-11-12 16:46:16",
+					"utime": "2015-11-12 16:46:16"
+						}],
+				"total": 7
+			};
+			/*初始化表格*/
+			grid = $('#table').grid({
+				store: {
+					data: gridData
+				},
+				schema: {
+					thumbRenderer: function (rowData, grid, rowIndex) {
+						return '<div class="thumb-content" style="width: 300px;">' +
+							'<a class="thumb-title">瓯海教育OA系统</a>' +
+							'<p class="thumb-section"><b>适用范围</b>：全区</p>' +
+							'<p class="thumb-section"><b>应用类型</b>：系统应用</p>' +
+							'<b>安装人数</b>：123456<b>&nbsp;&nbsp;&nbsp;&nbsp;使用人数</b>：12345' +
+							'<p class="thumb-section"><b>使用状态</b>：启动</p>' +
+							'<p class="thumb-section"><b>应用介绍</b>：这是一段应用介绍霍乱有多种传播途径什</p>' +
+							'<p class="thumb-section thumb-btns"><a class="btn btn-mini btn-primary">编辑</a>\n<a class="btn btn-mini btn-primary">编辑</a>\n<a class="btn btn-mini btn-primary">编辑</a></p>'
+						'</div>';
+					}
+				},
+				tool: {
+					pagingBar: false
+				},
+				columns: [{
+					title: '课时',
+					nowrap: true,
+					renderer: function (cellData, rowData) {
+						return '<span style="color:#508cf9;font-weight:bold">' + rowData.schtime.nums + '</span>';
+					}
+                }, {
+					title: '星期一',
+					dataIndex: 'monday',
+					renderer: function (cellData, rowData) {
+						return '<input  type="text" name="xka" id="xka" class="real-mod-input" value="' + rowData.xka + '" />&nbsp;/&nbsp;<input  type="text" name="rklsa" id="rklsa" class="real-mod-input" value="' + rowData.rklsa + '" />';
+					}
+
+                }, {
+					title: '星期二',
+					dataIndex: 'tuesday',
+					renderer: function (cellData, rowData) {
+						return '<input  type="text" name="xkb" id="xkb" class="real-mod-input" value="' + rowData.xkb + '" />&nbsp;/&nbsp;<input  type="text" name="rklsb" id="rklsb" class="real-mod-input" value="' + rowData.rklsb + '" />';
+					}
+                }, {
+					title: '星期三',
+					dataIndex: 'wednesday',
+					renderer: function (cellData, rowData) {
+						return '<input  type="text" name="xkc" id="xkc" class="real-mod-input" value="' + rowData.xkc + '" />&nbsp;/&nbsp;<input  type="text" name="rklsc" id="rklsc" class="real-mod-input" value="' + rowData.rklsc + '" />';
+					}
+                }, {
+					title: '星期四',
+					dataIndex: 'thursday',
+					renderer: function (cellData, rowData) {
+						return '<input  type="text" name="xkd" id="xkd" class="real-mod-input" value="' + rowData.xkd + '" />&nbsp;/&nbsp;<input  type="text" name="rklsd" id="rklsd" class="real-mod-input" value="' + rowData.rklsd + '" />';
+					}
+
+                }, {
+					title: '星期五',
+					dataIndex: 'friday',
+					renderer: function (cellData, rowData) {
+						return '<input  type="text" name="xke" id="xke" class="real-mod-input" value="' + rowData.xke + '" />&nbsp;/&nbsp;<input  type="text" name="rklse" id="rklse" class="real-mod-input" value="' + rowData.rklse + '" />';
+					}
+
+
+                }],
+				//add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//增加编辑提示一栏
+						var rowWeek = that.$me.find("tbody tr:nth-child(1)");
+						var addRowHtml = "<td>&nbsp;</td><td>&nbsp;</td>"
+						for (var i = 2; i < rowWeek.find("td").length; i++) {
+							addRowHtml += "<td>学科/任课老师</td>"
+
+						}
+						rowWeek.before("<tr>" + addRowHtml + "</tr>")
+
+						//将上下午课时，加一条线区分
+
+						/*that.$me.find("tr:nth-child(4) td").css({
+							"borderBottomColor":"#ddd",
+							"borderBottomWidth":"3px"
+						})*/
+					}
+				}
+			});
+			/*侦听*/
+			addListeners();
+		});
+		/*初始化*/
+		function initTablePage() {
+
+		}
+
+		/*侦听*/
+		function addListeners() {
+			//保存事件
+			$('#submit-btn').onsubmit = function () {
+
+
+				//获取修改过的数据，封装成json格式
+				var modArray = getTableData("#table");
+				var modJson = {
+					"d": []
+				};
+
+				for (var i = 0; i < modArray.length; i++) {
+					modJson.d[i] = {};
+					for (var j = 0; j < modArray[i].length; j++) {
+						var name = modArray[i][j].name;
+						var value = modArray[i][j].value;
+						modJson.d[i][name] = value;
+					}
+				};
+
+			};
+
+
+			function getTableData(tableId) {
+				var $table = $(tableId);
+				var $tableTr = $table.find("tr");
+
+				//封装数据，将一行当中所有的文本域全部保存到一个对象数据里
+				//封装为一个二维码组，二维保存该行name/value值 对象
+				var modArray = [];
+				//跳过标题行
+				for (var i = 1; i < $tableTr.length; i++) {
+
+					var $modInput = $tableTr.eq(i).find("input:text");
+					modArray[i - 1] = [];
+
+					for (var j = 0; j < $modInput.length; j++) {
+						//获取名称与值的对：文本元素，名称要正确
+						var name = $modInput.eq(j).attr("name");
+						var value = $modInput.eq(j).val();
+						modArray[i - 1][j] = {
+							"name": name,
+							"value": value
+						}
+					}
+				}
+
+				return modArray;
+			};
+			var formerData = getTableData('#table');
+
+			//清空事件
+			$('#reset-btn').bind('click', function (event) {
+
+				//原生支持 reset事件，如果为按钮类型为button则使用下面的语句
+/*				var $table = $('#table');
+				var $tableTr = $table.find("tr");
+				
+				for (var i = 0; i < formerData.length; i++) {
+
+					for (var j = 0; j < formerData[i].length; j++) {
+						//查找当前行的数据
+						var name = formerData[i][j].name;
+						var value = formerData[i][j].value;
+						//查找当前名称表单元素
+						$tableTr.eq(i + 1).find("input[name='" + name + "']").val(value);
+					}
+				}*/
+
+			});
+
+			//返回事件
+			$('#return-btn').bind('click', function () {
+				window.location.href = 'XXX';
+			});
+		}
+	</script>
+</body>
+
+</html>

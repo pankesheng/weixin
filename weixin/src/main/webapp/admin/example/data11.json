@@ -1,0 +1,25 @@
+{
+	"total": 24562,
+	"s": 1,
+	"data": [{
+		"id": 111,
+		"name": "莫胜利",
+		"value": "msl",
+		"open": true,
+		"children": "data22.json"
+	}, {
+		"id": 222,
+		"name": "陈冬敏",
+		"value": "cdm",
+		"open": true,
+		"children": [{
+			"id": 333,
+			"name": "许凤平",
+			"value": "xfp"
+	}, {
+			"id": 444,
+			"name": "测试人员",
+			"value": "csry"
+	}]
+	}]
+}

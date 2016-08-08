@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+
+</head>
+
+<body>
+
+	<div class="body-warp">
+		<div class="panel">
+
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">上级单位<b class="red">*</b></label>
+							</td>
+							<td>
+								<select class="form-select" id="org-type">
+									<option value="">请选择条件</option>
+									<option>按名称</option>
+									<option>按身份</option>
+									<option>按时间</option>
+								</select>
+								<div id="selectfather">选择父单位</div>
+								
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="select-parent">上级单位<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="select-parent" type="text" value="" data-check="must" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">单位类别<b class="red">*</b></label>
+							</td>
+							<td>
+								<select class="form-select" id="org-type">
+									<option value="">请选择条件</option>
+									<option>按名称</option>
+									<option>按身份</option>
+									<option>按时间</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">二级分类<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="cxselect">
+									<select class=" level01" disabled="disabled" data-first-title="选择区县"></select>
+									<select class=" level02" disabled="disabled" data-first-title="选择区"></select>
+									<select class=" level03" disabled="disabled" data-first-title="选择县"></select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">办学性质</label>
+							</td>
+							<td>
+								<select class="form-select" id="org-type">
+									<option value="">请选择条件</option>
+									<option>按名称</option>
+									<option>按身份</option>
+									<option>按时间</option>
+								</select>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input class="btn btn-success btn-large" type="submit" value="保存">
+								<input class="btn btn-danger btn-large" type="reset" value="重置">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+
+	<script type="text/javascript" src="../ext/zw/check.js"></script>
+	<script type="text/javascript" src="../ext/cxselect/jquery.cxselect.js"></script>
+	<script type="text/javascript" src="../ext/zTree/js/jquery.ztree.core-3.5.min.js"></script>
+	<script type="text/javascript" src="../ext/zTree/js/jquery.ztree.excheck-3.5.min.js"></script>
+	<link rel="stylesheet" href="../ext/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+	<script type="text/javascript" src="../ext/layer/layer.min.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script type="text/javascript" src="../ext/zw/popupselectbox.js"></script>
+	<script>
+		$(function () {
+
+			/* 初始化控件 */
+			initWidget();
+			/*侦听*/
+			addListeners();
+
+		});
+
+	
+
+
+		/*初始化控件*/
+		function initWidget() {
+
+			var cxSelectSetting = {
+				//url:'js/cityData.min.json',
+				selects: ['level01', 'level02', 'level03'],
+				nodata: 'none',
+				url: [
+					{
+						'v': '1',
+						'n': '第一级 >',
+						's': [
+							{
+								'v': '2',
+								'n': '第二级 >',
+								's': [
+									{
+										'v': '3',
+										'n': '第三级 >',
+										's': [
+											{
+												'v': '4',
+												'n': '第四级 >',
+												's': [
+													{
+														'v': '5',
+														'n': '第五级 >',
+														's': [
+															{
+																'v': '6',
+																'n': '第六级 >'
+															}
+            ]
+													}
+          ]
+											}
+        ]
+									}
+      ]
+							}
+    ]
+					},
+					{
+						'v': 'test number',
+						'n': '测试数字',
+						's': [
+							{
+								'v': 'text',
+								'n': '文本类型',
+								's': [
+									{
+										'v': '4',
+										'n': '4'
+									},
+									{
+										'v': '5',
+										'n': '5'
+									},
+									{
+										'v': '6',
+										'n': '6'
+									},
+									{
+										'v': '7',
+										'n': '7'
+									},
+									{
+										'v': '8',
+										'n': '8'
+									},
+									{
+										'v': '9',
+										'n': '9'
+									},
+									{
+										'v': '10',
+										'n': '10'
+									}
+      ]
+							},
+							{
+								'v': 'number',
+								'n': '数值类型',
+								's': [
+									{
+										'v': 11,
+										'n': 11
+									},
+									{
+										'v': 12,
+										'n': 12
+									},
+									{
+										'v': 13,
+										'n': 13
+									},
+									{
+										'v': 14,
+										'n': 14
+									},
+									{
+										'v': 15,
+										'n': 15
+									},
+									{
+										'v': 16,
+										'n': 16
+									},
+									{
+										'v': 17,
+										'n': 17
+									}
+      ]
+							}
+    ]
+					},
+					{
+						'v': 'test boolean',
+						'n': '测试 Boolean 类型',
+						's': [
+							{
+								'v': true,
+								'n': true
+							},
+							{
+								'v': false,
+								'n': false
+							}
+    ]
+					},
+					{
+						v: 'test quotes',
+						n: '测试属性不加引号',
+						s: [
+							{
+								v: 'quotes',
+								n: '引号'
+							}
+    ]
+					},
+					{
+						v: 'test other',
+						n: '测试奇怪的值',
+						s: [
+							{
+								v: '[]',
+								n: '数组（空）'
+							},
+							{
+								v: [1, 2, 3],
+								n: '数组（数值）'
+							},
+							{
+								v: ['a', 'b', 'c'],
+								n: '数组（文字）'
+							},
+							{
+								v: new Date(),
+								n: '日期'
+							},
+							{
+								v: new RegExp('\\d+'),
+								n: '正则对象'
+							},
+							{
+								v: /\d+/,
+								n: '正则直接量'
+							},
+							{
+								v: {},
+								n: '对象'
+							},
+							{
+								v: document.getElementById('custom_data'),
+								n: 'DOM'
+							},
+							{
+								v: null,
+								n: 'Null'
+							},
+							{
+								n: '未设置 value'
+							}
+    ]
+					},
+					{
+						'v': '',
+						'n': '无子级'
+					}
+  ],
+			}
+
+			//初始化级联下拉菜单
+			$('#cxselect').cxSelect(cxSelectSetting);
+
+			//初始化独立下拉菜单
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+		}
+
+		function addListeners() {
+			$("#selectfather").click(function () {
+				showDom('组织管理', '#category', 600, 400);
+			})
+		}
+	</script>
+</body>
+
+</html>

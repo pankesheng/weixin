@@ -1,0 +1,56 @@
+{
+	"total": 10,
+	"s": 1,
+	"data": [{
+		"name": "测试数据1",
+		"selected": true
+	}, {
+		"name": "测试数据2",
+		"checked": true
+	}, {
+		"name": "测试数据3",
+		"disabled": true
+	}, {
+		"name": "测试数据4",
+		"expanded": true,
+		"children": [{
+				"name": "测试子数据41",
+				"selected": true
+			}, {
+				"name": "测试子数据42",
+				"checked": true
+			}, {
+				"name": "测试子数据43",
+				"selected": true
+			}, {
+				"name": "测试子数据44",
+				"checked": true
+			}, {
+				"name": "测试子数据45",
+				"disabled": true
+			}, {
+				"name": "测试子数据46",
+				"checked": true,
+				"selected": true
+			}
+		]
+	}, {
+		"name": "测试数据5",
+		"selected": true
+	}, {
+		"name": "测试数据6",
+		"checked": true
+	}, {
+		"name": "测试数据7",
+		"disabled": true
+	}, {
+		"name": "测试数据8",
+		"selected": true
+	}, {
+		"name": "测试数据9",
+		"checked": true
+	}, {
+		"name": "测试数据10",
+		"disabled": true
+	}]
+}

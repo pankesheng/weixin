@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页-按钮
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<span class="title-text">特殊按钮</span>
+			</div>
+			<div class="panel-body">
+				<div class="mt-10 mb-10">查询模块按钮：<span class="code">class="btn"</span>包含在div<span class="code">class="filter-block"</span>中</div>
+				<div class="panel filter-block">
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn"><i class="iconfont">&#xe61b;</i>查询</a>
+						<a href="javascript:void(0);" class="btn"><i class="iconfont">&#xe61a;</i>重置</a>
+						<!-- ui-droplist 控制按钮点击弹出框事件 ，若不想整个按钮控制，仅控制箭头，请增加 arrow-droplist和ui-selectbox-icon-->
+						<div class=" ui-droplist">
+							<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>纯下拉<i class="ui-selectbox-icon"></i></a>
+							<dl class="ui-selectbox-dropdown ui-droplist-option">
+								<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+								<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+								<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+							</dl>
+						</div>
+
+						<div class=" ui-droplist arrow-droplist">
+							<a href="javascript:void(0);" class="btn" id="search-btn">仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+							<dl class="ui-selectbox-dropdown ui-droplist-option">
+								<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+								<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+								<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+							</dl>
+						</div>
+					</div>
+
+				</div>
+				<div class="mt-10 mb-10">表格菜单按钮：<span class="code">class="btn"</span>包含在div<span class="code">class="table-tool-bar"</span>中</div>
+				<div class="panel table-tool-bar">
+					<div class=" ui-droplist">
+						<a id="add-btn" class="btn liketext" href="javascript:void(0);">新增<i class="ui-selectbox-icon"></i></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+					<div class="ui-droplist arrow-droplist">
+						<a href="javascript:void(0);" class="btn liketext" id="search-btn">可加图标仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+					<div class=" ui-droplist">
+						<a id="add-btn" class="btn btn-filter" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>新增<i class="ui-selectbox-icon"></i></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+		
+					<div class=" ui-droplist arrow-droplist">
+						<a href="javascript:void(0);" class="btn" id="search-btn">可加图标仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe619;</i>新增</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe609;</i>编辑</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe608;</i>删除</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe61a;</i>撤消</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe62e;</i>复制</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe62f;</i>预览</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe636;</i>上传</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe637;</i>下载</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe635;</i>云下载</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe613;</i>导入</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe612;</i>导出</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe638;</i>短信</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe63a;</i>退回</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe63c;</i>发送</a>
+					<a class="btn" href="javascript:void(0);"><i class="iconfont">&#xe63b;</i>默认</a>
+				</div>
+			</div>
+		</div>
+		<div class="panel" style="width:300px;float:left;margin-right:50px;">
+			<div class="panel-title">
+				<span class="title-text">默认样式</span>
+			</div>
+			<div class="panel-body">
+				<div class="code mt-10 mb-10">class="btn btn-default btn-mini"</div>
+				<a class="btn btn-default">默认样式</a>
+				<div class="code mt-10 mb-10">class="btn btn-primary"</div>
+				<a class="btn btn-primary">首选项</a>
+				<div class="code mt-10 mb-10">class="btn btn-success"</div>
+				<a class="btn btn-success">成功</a>
+				<div class="code mt-10 mb-10">class="btn btn-info"</div>
+				<a class="btn btn-info">一般信息</a>
+				<div class="code mt-10 mb-10">class="btn btn-warning"</div>
+				<a class="btn btn-warning">警告</a>
+				<div class="code mt-10 mb-10">class="btn btn-danger"</div>
+				<a class="btn btn-danger">危险</a>
+			</div>
+		</div>
+		<div class="panel" style="width:300px;float:left;margin-right:50px;">
+			<div class="panel-title">
+				<span class="title-text">禁用</span>
+			</div>
+			<div class="panel-body">
+				<div class="code mt-10 mb-10">class="btn btn-default btn-mini disabled"</div>
+				<a class="btn btn-default disabled">默认样式</a>
+				<div class="code mt-10 mb-10">class="btn btn-primary disabled"</div>
+				<a class="btn btn-primary disabled">首选项</a>
+				<div class="code mt-10 mb-10">class="btn btn-success disabled"</div>
+				<a class="btn btn-success disabled">成功</a>
+				<div class="code mt-10 mb-10">class="btn btn-info disabled"</div>
+				<a class="btn btn-info disabled">一般信息</a>
+				<div class="code mt-10 mb-10">class="btn btn-warning disabled"</div>
+				<a class="btn btn-warning disabled">警告</a>
+				<div class="code mt-10 mb-10">class="btn btn-danger disabled"</div>
+				<a class="btn btn-danger disabled">危险</a>
+			</div>
+		</div>
+		<div class="panel" style="width:300px;float:left;margin-right:50px;">
+			<div class="panel-title">
+				<span class="title-text">小按钮</span>
+			</div>
+			<div class="panel-body">
+				<div class="code mt-10 mb-10">class="btn btn-default btn-mini"</div>
+				<a class="btn btn-default btn-mini">默认样式</a>
+				<div class="code mt-10 mb-10">class="btn btn-primary btn-mini"</div>
+				<a class="btn btn-primary btn-mini">首选项</a>
+				<div class="code mt-10 mb-10">class="btn btn-success btn-mini"</div>
+				<a class="btn btn-success btn-mini">成功</a>
+				<div class="code mt-10 mb-10">class="btn btn-info btn-mini"</div>
+				<a class="btn btn-info btn-mini">一般信息</a>
+				<div class="code mt-10 mb-10">class="btn btn-warning btn-mini"</div>
+				<a class="btn btn-warning btn-mini">警告</a>
+				<div class="code mt-10 mb-10">class="btn btn-danger btn-mini"</div>
+				<a class="btn btn-danger btn-mini">危险</a>
+			</div>
+		</div>
+
+		<div class="panel" style="width:300px;float:left;margin-right:50px;">
+			<div class="panel-title">
+				<span class="title-text">大按钮</span>
+			</div>
+			<div class="panel-body">
+				<div class="code mt-10 mb-10">class="btn btn-default btn-large"</div>
+				<a class="btn btn-default btn-large">默认样式</a>
+				<div class="code mt-10 mb-10">class="btn btn-primary btn-large"</div>
+				<a class="btn btn-primary btn-large">首选项</a>
+				<div class="code mt-10 mb-10">class="btn btn-success btn-large"</div>
+				<a class="btn btn-success btn-large">成功</a>
+				<div class="code mt-10 mb-10">class="btn btn-info btn-large"</div>
+				<a class="btn btn-info btn-large">一般信息</a>
+				<div class="code mt-10 mb-10">class="btn btn-warning btn-large"</div>
+				<a class="btn btn-warning btn-large">警告</a>
+				<div class="code mt-10 mb-10">class="btn btn-danger btn-large"</div>
+				<a class="btn btn-danger btn-large">危险</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		$(function () {
+			//初始化按钮下拉，require tool.js
+			$('.ui-droplist').dropList();
+		});
+	</script>
+</body>
+
+</html>

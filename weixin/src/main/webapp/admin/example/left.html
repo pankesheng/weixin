@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/index.css" />
+</head>
+
+<body>
+	<div class="left-menu">
+		<div class="left-menu-title"><a href="#">后台管理系统示例</a></div>
+		<div class="left-menu-top">
+			<ul>
+				<li class="left-menu-top-btn">
+					<i class="icon">
+              <img src="../images/top-icon-1.png" width="18" height="18">
+          </i>
+					<!-- data-path是存放右侧的路径的 href要对应 -->
+					<a class="navigation" href="start.html" target="rightFrame">首页</a>
+				</li>
+			</ul>
+		</div>
+		<div class="left-menu-list">
+			<div class="left-menu-first-node">
+				<div class="first-title">
+					<div class="text">一级菜单</div>
+				</div>
+				<div class="first-children" style="display: block;">
+					<div class="left-menu-second-node">
+						<div class="second-title active">
+							<i class="icon"></i>
+							<a href="javascript:void(0);" class="text navigation" target="rightFrame">二级菜单</a>
+						</div>
+						<ul class="menu-son" style="display: block;">
+							<li class="">
+								<i class="li-icon"></i>
+								<a href="./table.html" class="navigation" target="rightFrame">列表页</a>
+							</li>
+							<li>
+								<i class="li-icon"></i>
+								<a href="./form.html" class="navigation" target="rightFrame">表单页</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+	<!--[if lt IE 8]>
+    <script type="text/javascript" src="../ext/DD_belatedPNG/DD_belatedPNG.js"></script>
+    <script>
+        DD_belatedPNG.fix('.first-icon, .right-arrow, background, background');
+    </script>
+    <![endif]-->
+	<script type="text/javascript" src="../javascripts/jquery-zwbam.js"></script>
+	<script>
+		//add 新增，通过url参数初始化，mode显示默认的折叠模式,?mode=mini&title=智课&jump=true&go=good
+		//
+		$(function () {
+			//滚动条初始化
+			$('.left-menu').niceScroll({
+				cursorcolor: '#7db7fb',
+				cursorwidth: '6px',
+				cursorborderradius: 2,
+				autohidemode: true,
+				background: '#d0d0d0',
+				cursoropacitymin: 1,
+				cursorborder: 'none',
+				horizrailenabled: false
+			});
+			/*菜单生成
+			 * $('.left-menu-list').zwbam('initMenu', 第二个参数)
+			 * 第二个参数可以为 json对象 或 菜单json请求地址
+			 */
+			$('.left-menu-list').zwbam('initMenu', {
+				//加载完毕后执行
+				onCompleted: function () {
+
+					//根据链接参数，设置左侧菜单高亮，且右侧框架跳转
+					var paramobj = $.fn.zwbam('getUrlParams', parent.parent.location.search);
+					if (paramobj.go) {
+						var $a = $('.left-menu').find('a[data-id="' + paramobj.go + '"]');
+
+						if ($a.length) {
+							$a.trigger('click');
+							window.parent.frames['rightFrame'].location.href = $a.attr('href');
+							//展现左侧菜单到指定菜单项
+							$a.parents(".menu-son").show().prev().addClass("selected").parents(".first-children").show().prev().addClass("selected");
+						}
+					}
+					/*                    $('.left-menu').niceScroll({
+					                        cursorcolor: '#7db7fb',
+					                        cursorwidth: '6px',
+					                        cursorborderradius: 2,
+					                        autohidemode: true,
+					                        background: '#d0d0d0',
+					                        cursoropacitymin: 1,
+					                        cursorborder: 'none',
+					                        horizrailenabled: false
+					                    });*/
+				},
+				data: {
+					"d": [{
+						name: "插件文档",
+						url: "#",
+						"open": true,
+						"childs": [{
+							"name": "grid",
+							"id": "gird",
+
+							"url": "../docs/index.html#!/api/grid"
+                            }, {
+							"name": "check",
+
+							"url": "../docs/index.html#!/api/check"
+                            }, {
+							"name": "LUI-API文档（整理中）",
+
+							"url": "./lui-api.html"
+                            }]
+                        }, {
+						"name": "示例页",
+						"url": "#",
+						"open": true,
+						"childs": [{
+							"name": "动态示例页",
+							"url": "#",
+							"open": true,
+
+							"childs": [{
+								"name": "表格页",
+								"url": "./dynamic-table.html",
+
+                            }, {
+								"name": "表单页",
+								"url": "./dynamic-form.html",
+
+                            }]
+                        }, {
+							"name": "样式组件",
+							"url": "#",
+							"open": true,
+							"childs": [{
+								"name": "排版样式",
+								"url": "./typography.html"
+                            }, {
+								"name": "基础样式",
+								"url": "./basestyle.html"
+                            }, {
+								"name": "按钮样式",
+								"id": "an",
+								"url": "./buttons.html"
+                            }, {
+								"name": "字体图标",
+								"url": "../fonts/demo.html"
+                            }]
+                        }, {
+							"name": "功能插件",
+							"url": "#",
+							"open": true,
+							"childs": [
+								{
+									"name": "分页插件",
+									"id": "ls",
+									"url": "./pagination.html"
+                            },
+								{
+									"name": "弹出框选择页",
+									"id": "ls",
+									"url": "./selectbox-1.1.html"
+                            }, {
+									"name": "输入下拉提示与搜索",
+									"url": "./search-droplist-1.1.html"
+                            }, {
+									"name": "新下拉列表",
+									"url": "./droplist-1.1.html"
+                            }, {
+									"name": "更换头像模板",
+									"url": "./avatar.html"
+                            }
+												 , {
+									"name": "tip提示",
+									"url": "./tips.html"
+                            }, {
+									"name": "树组件zTree和表格按钮下拉",
+									"url": "./dynamic-tree-table.html"
+                            }, {
+									"name": "面板视图",
+									"url": "./panelview-1.2.html"
+                            }]
+                        }, {
+							"name": "模板页",
+							"url": "#",
+							"open": true,
+							"childs": [{
+									"name": "表格页",
+									"url": "./table.html"
+                            }, {
+									"name": "表单页",
+									"url": "./form-table.html"
+                            }, {
+									"name": "弹窗表单页",
+									"url": "./dialog-form.html"
+                            }, {
+									"name": "标签页",
+									"url": "./tabs.html"
+                            }, {
+									"name": "标签页2",
+									"url": "./tabs2.html"
+                            }, {
+									"name": "列表页",
+									"url": "./list.html"
+                            }, {
+									"name": "比较页",
+									"id": "compare",
+									"url": "./compare.html"
+                            }, {
+									"name": "文章列表",
+									"url": "./help.html"
+                            }, {
+									"name": "文单详情页",
+									"url": "./detail.html"
+                            }, {
+									"name": "文章页",
+									"url": "./article.html"
+                            },
+								{
+									"name": "提示页",
+									"url": "./info.html"
+                            }, {
+									"name": "404",
+									"url": "./404.html"
+                            }, {
+									"name": "帮助页",
+									"url": "./help.html"
+                            }, {
+									"name": "详情页",
+									"url": "./detail.html"
+                            }, {
+									"name": "在线人数页",
+									"url": "./online.html"
+                            }, {
+									"name": "系统维护",
+									"url": "./maintenance.html"
+                            }
+							]
+                        }]
+                    }]
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

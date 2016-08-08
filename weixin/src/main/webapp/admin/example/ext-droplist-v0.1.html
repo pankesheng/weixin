@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>下拉列表示例</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<link rel="stylesheet" href="../ext/zw/lui-v2.1/css/extension.css" />
+
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+
+
+		<div class="panel" style="">
+			<div class="panel-body">
+				<form class="field-container">
+					<span class="headline">包裹框<i class="iconfont infotips showtips" data-tipsid='#ccc' title="这里可以进行解释说明">&#xe644;</i></span>
+					<div id="ccc" class="showtips-alert alert alert-success mb-10"><span><i class="iconfont">&#xe624;</i>这里可以进行解释说明</span><span class="tips-close"><i class="iconfont">&#xe628;</i></span></div>
+					<table class="form-table">
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例1：纯下拉列表<b class="red">*</b></label>
+							</td>
+							<td>
+								<div class="clearfix">
+
+									<div class="left" style="margin-right:20px;">
+										#0101 选中模式单选：
+										<div id="droplist0101" class="ext-droplist">
+										</div>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0102 选中模式多选：
+										<div id="droplist0102" class="ext-droplist">
+										</div>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0103 选中模式多选（最多选中2个）：
+
+										<div id="droplist0103" class="ext-droplist">
+										</div>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0104 勾选模式单选：
+										<div id="droplist0104" class="ext-droplist">
+										</div>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0105 勾选模式多选：
+										<div id="droplist0105" class="ext-droplist">
+										</div>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0106 勾选模式多选+选中模式禁用：
+
+										<div id="droplist0106" class="ext-droplist">
+										</div>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0107 勾选模式多选（最多选中2个）+选中模式启用+选中即勾选模式
+										<div id="droplist0107" class="ext-droplist">
+										</div>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0108 静态化HTML加载(选中模式单选+勾选模式多选)
+										<div id="droplist0108" class="ext-droplist">
+											<div class="ext-content clearfix clear" data-role="content">
+												<div class="ext-node-container" data-role="node-container">
+													<div class="ext-node" data-role="node" data-selected><span class="name" title="刘备">刘备</span></div>
+												</div>
+												<div class="ext-node-container" data-role="node-container">
+													<div class="ext-node" data-role="node" data-checked><span class="name" title="曹操">曹操</span></div>
+												</div>
+												<div class="ext-node-container" data-role="node-container">
+													<div class="ext-node" data-role="node" data-disabled><span class="name" title="孙权">孙权</span></div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0109 基于select元素初始化（可额外再传入配置）
+										<select class="form-select" id="droplist0109" size="4" multiple>
+											<optgroup label="请选择条件">
+
+												<option>刘备</option>
+												<option selected>司马懿</option>
+												<option disabled>孙权</option>
+												<option>曹操</option>
+											</optgroup>
+										</select>
+									</div>
+									<div class="left" style="margin-right:20px;">
+										#0110 禁用（事件之类不可用）
+										<div id="droplist0110" class="ext-droplist">
+										</div>
+									</div>
+
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0201<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="panelview0201" class="ext-select-panelview  form-control com-viewer">
+									</div>
+									<div id="droplist0201" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">禁用</span></td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0202<b class="red">*</b></label>
+							</td>
+
+							<td>
+								<div>
+									<div id="panelview0202" class="ext-select-panelview com-viewer">
+									</div>
+									<div id="droplist0202" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">单选+未指定宽度（会有一个最小宽度）</span></td>
+
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0203<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="panelview0203" class="ext-select-panelview  form-control com-viewer">
+									</div>
+									<div id="droplist0203" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">多选+异步加载数据</span></td>
+						</tr>
+
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0204<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="panelview0204" class="ext-select-panelview  form-control com-viewer">
+									</div>
+									<div id="droplist0204" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">勾选模式启用(单选)+选中模式禁用+启用“选中即勾选”模式</span></td>
+
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0205<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="panelview0205" class="ext-select-panelview  form-control com-viewer">
+									</div>
+									<div id="droplist0205" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">勾选模式启用(多选，最多2项)+选中模式禁用</span></td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0206<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="panelview0206" class="ext-select-panelview  form-control com-viewer">
+									</div>
+									<div id="droplist0206" class="ext-droplist hide com-popuper">
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">勾选模式启用(多选)+选中模式也启用，同时会自动启用“选中即勾选”模式</span></td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">#0207<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="panelview0207" class="ext-select-panelview  form-control com-viewer">
+									</div>
+									<div id="droplist0207" class="ext-droplist hide com-popuper">
+										<div class="ext-content clearfix clear" data-role="content">
+											<div class="ext-node-container" data-role="node-container">
+												<div class="ext-node ext-node-0 ext-checkbox selected" data-role="node"><span class="name" title="刘备">刘备</span></div>
+											</div>
+											<div class="ext-node-container" data-role="node-container">
+												<div class="ext-node ext-node-0 ext-checkbox" data-selected data-role="node"><span class="name" title="曹操">曹操</span></div>
+											</div>
+											<div class="ext-node-container" data-role="node-container">
+												<div class="ext-node ext-node-0 ext-checkbox" data-role="node"><span class="name" title="孙权">孙权</span></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td><span class="form-tip alert alert-info">HTML静态加载（单选）关闭弹窗时自动执行回调,无论是否为手动关闭弹窗</span></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/luicontroller-advance.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/panelview.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/droplist.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/extension.js"></script>
+	<script>
+		$(function () {
+			var setting = {
+				store: {
+					data: [
+						{
+							name: "刘备",
+							value: "msl",
+							checked: true,
+						},
+						{
+							name: "曹操",
+							value: "cdm",
+							selected: true
+				},
+						{
+							name: "孙权",
+							value: "yfp",
+				}
+		]
+				},
+				view: {}
+			}
+
+
+
+			//#01 纯下拉列表示例
+			var setting0101 = $.extend(true, {}, setting);
+			var setting0102 = $.extend(true, {}, setting);
+			var setting0103 = $.extend(true, {}, setting);
+			var setting0104 = $.extend(true, {}, setting);
+			var setting0105 = $.extend(true, {}, setting);
+			var setting0106 = $.extend(true, {}, setting);
+			var setting0107 = $.extend(true, {}, setting);
+			var setting0108 = $.extend(true, {}, setting);
+			var setting0110 = $.extend(true, {}, setting);
+			var setting0111 = $.extend(true, {}, setting);
+
+			//#0101 选中模式单选
+
+			drop0101 = $("#droplist0101").droplist(setting0101);
+
+			//#0102 选中模式多选
+
+			setting0102.view.selectedMultiple = true;
+
+			drop0102 = $("#droplist0102").droplist(setting0102);
+
+			//#0103 选中模式多选（最多选中2个）
+
+			setting0103.view.selectedMultiple = true;
+			setting0103.view.selectedSize = 2;
+
+			drop0103 = $("#droplist0103").droplist(setting0103);
+
+			//#0104 勾选模式单选+选中模式启用
+
+			setting0104.view.enabledCheckMode = true;
+
+			drop0104 = $("#droplist0104").droplist(setting0104);
+
+			//#0105 勾选模式多选+选中模式启用
+
+			setting0105.view.enabledCheckMode = true;
+			setting0105.view.checkedMultiple = true;
+
+			drop0105 = $("#droplist0105").droplist(setting0105);
+
+			//#0106 勾选模式单选+选中模式禁用
+
+			setting0106.view.enabledCheckMode = true;
+			setting0106.view.enabledSelectMode = false;
+
+			drop0106 = $("#droplist0106").droplist(setting0106);
+
+			//#0107 勾选模式多选（最多勾选2个）+选中模式禁用+开启“选中即勾选”模式
+
+			setting0107.view.enabledCheckMode = true;
+			setting0107.view.checkedMultiple = true;
+			setting0107.view.enabledSelectMode = false;
+			setting0107.view.selectIsCheck = true;
+			setting0107.view.checkedSize = 2;
+
+			drop0107 = $("#droplist0107").droplist(setting0107);
+
+			//#0108 静态化HTML加载(选中模式单选+勾选模式多选)
+			//静态化不支持加载数据，若有数据会清除原html内容
+
+			setting0108.store.data = [];
+
+			setting0108.view.enabledCheckMode = true;
+			setting0108.view.checkedMultiple = true;
+
+			drop0108 = $("#droplist0108").droplist(setting0108);
+
+			//#0109 基于select元素初始化（可额外再传入配置）
+
+			drop0109 = $("#droplist0109").droplist();
+
+			//#0110 禁用（事件等不可用）
+
+			setting0110.view.enabled = false;
+
+			drop0110 = $("#droplist0110").droplist(setting0110);
+
+
+			//#02
+			var setting0201 = $.extend(true, {}, setting);
+			var setting0202 = $.extend(true, {}, setting);
+			var setting0203 = $.extend(true, {}, setting);
+			var setting0204 = $.extend(true, {}, setting);
+			var setting0205 = $.extend(true, {}, setting);
+			var setting0206 = $.extend(true, {}, setting);
+			var setting0207 = $.extend(true, {}, setting);
+			var setting0208 = $.extend(true, {}, setting);
+			var setting0209 = $.extend(true, {}, setting);
+
+
+			//#0201 禁用
+
+			setting0201.view.enabled = false;
+
+			panel0201 = $("#panelview0201").panelview();
+			drop0201 = $("#droplist0201").droplist(setting0201);
+
+			//封装UI
+			EXT.Viewer({
+				trigger: drop0201,
+				viewer: panel0201
+			})
+
+			//#0202  单选
+			panel0202 = $("#panelview0202").panelview();
+			drop0202 = $("#droplist0202").droplist(setting0202);
+
+			//封装UI
+			Extension.Viewer({
+				trigger: drop0202,
+				viewer: panel0202
+			})
+
+			//#0203  多选+异步加载
+
+			setting0203.async = {};
+			setting0203.async.enabled = true;
+			setting0203.async.url = "data-10.json";
+			setting0203.view.selectedMultiple = true;
+
+			panel0203 = $("#panelview0203").panelview();
+			drop0203 = $("#droplist0203").droplist(setting0203);
+
+			//封装插件
+			//当两个插件配置产生逻辑性的冲突时，以trigger插件的配置为准，比如视图插件是单选，而触发插件是多选，则最终配置是多选
+			EXT.Viewer({
+				trigger: drop0203,
+				viewer: panel0203
+			})
+
+			//#0204  （勾选模式启用(单选)+选中模式禁用）
+
+			setting0204.view.enabledSelectMode = false;
+			setting0204.view.enabledCheckMode = true;
+			setting0204.view.checkIsSelect = true;
+
+			panel0204 = $("#panelview0204").panelview();
+			drop0204 = $("#droplist0204").droplist(setting0204);
+
+			//封装UI
+			EXT.Viewer({
+				trigger: drop0204,
+				viewer: panel0204
+			})
+
+
+			//#0205  （勾选模式启用(多选，最多2项)+选中模式禁用）
+
+			setting0205.view.enabledSelectMode = false;
+			setting0205.view.enabledCheckMode = true;
+			setting0205.view.checkedMultiple = true;
+			setting0205.view.checkedSize = 2;
+
+			panel0205 = $("#panelview0205").panelview();
+			drop0205 = $("#droplist0205").droplist(setting0205);
+
+			//封装UI
+			EXT.Viewer({
+				trigger: drop0205,
+				viewer: panel0205
+			})
+
+			//#0206  （勾选模式启用(多选)+选中模式也启用）
+			//当同时开启选中模式和勾选模式时，会自动启用选择即勾选模式
+
+			setting0206.view.selectedMultiple = true;
+			setting0206.view.enabledCheckMode = true;
+
+			panel0206 = $("#panelview0206").panelview();
+			drop0206 = $("#droplist0206").droplist(setting0206);
+
+			//封装UI
+			EXT.Viewer({
+				trigger: drop0206,
+				viewer: panel0206
+			})
+
+
+			//#0207 HTML静态加载(单选)，关闭弹窗时自动执行回调
+
+			setting0207.store.data = [];
+			setting0207.view.selectedMultiple = false;
+			setting0207.callback = {}
+			setting0207.callback.hidePopuper = function (self) {
+				output(self.getSelectedData()[0])
+			};
+
+			panel0207 = $("#panelview0207").panelview();
+			drop0207 = $("#droplist0207").droplist(setting0207);
+
+			//封装UI
+			EXT.Viewer({
+				trigger: drop0207,
+				viewer: panel0207
+			})
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {}
+
+		function addListeners(argument) {
+			$('form').submit(function () {
+
+			});
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>申请课题修改课题</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label" for="search1">课题项目<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control " id="search1" type="text" />
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">课题名称<b class="red">*</b></label>
+							</td>
+							<td>
+								<span class="form-hint">HTTP://</span>
+								<!-- TODO 可考虑用JS自动设置宽度(放弃)，目前手动form-control默认总宽为346px 用审查元素查看提示文本所占的总宽，相减-->
+								<input style="width:281px" class="form-control" id="search1" type="text" />
+								<span class="form-tip alert alert-info">提示文本</span>
+							</td>
+						</tr>
+						<!-- textarea加这个类 保持label对齐 -->
+						<tr class="valign-top">
+							<td>
+								<label class="form-label" for="search4">课题内容</label>
+							</td>
+							<td>
+								<textarea class="form-textarea" id="search4" name=""></textarea>
+								<span class="form-tip alert alert-warning">警告提示</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">课题成员<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="panelview" class="select-panelview ext-viewer">
+									</div>
+									<div id="treeContainer" class="hide ext-close-popup" style="">
+										<div id="tree" class="ext-treelist hide ext-close-popup">
+										</div>
+									</div>
+									<!--<div id="treeContainer" class="hide ext-close-popup" style="max-height:228px;">
+										<div id="tree" class="ext-treelist hide ext-close-popup">
+										</div>
+									</div>-->
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">课题成员<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="panelview2" class="select-panelview ext-viewer">
+									</div>
+									<div id="treeContainer2" class=" ext-close-popup" style="max-height:228px;">
+										<div id="tree2" class="ext-treelist  ext-close-popup">
+										</div>
+									</div>
+									<!--<div id="treeContainer" class="hide ext-close-popup" style="max-height:228px;">
+										<div id="tree" class="ext-treelist hide ext-close-popup">
+										</div>
+									</div>-->
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<!-- 空内容的td 保持间距 -->
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input class="btn btn-success btn-large" type="submit" value="提交">
+								<input class="btn btn-danger btn-large" type="reset" value="重置">
+								<input class="btn  btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/luicontroller-advance.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/tree.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/panelview.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/extension.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+	<script>
+		$(function () {
+
+			initPage();
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+
+		}
+
+
+		function initPage() {
+			var setting = {
+				store: {
+					data: [
+						{
+							id: "1",
+							name: "瓯海教育局",
+							value: "ohjyj",
+							expand: true, //是否展开
+							state: "selected",
+							children: [{
+									id: "101",
+									name: "成长小学",
+									value: "ohxx",
+									expand: true, //是否展开
+									children: [{
+											id: "10101",
+											name: "莫胜利",
+											value: "msl",
+										
+										children: [{
+											id: "10111101",
+											name: "莫胜利",
+											value: "msl",
+											children: [{
+											id: "101211101",
+											name: "工",
+											value: "msl",
+				},
+										{
+											id: "1010111112",
+											name: "潘克胜",
+											value: "pks",
+				}, {
+											id: "101144103",
+											name: "严听听",
+											value: "ytt",
+				}]
+				},
+										{
+											id: "10101112",
+											name: "潘克胜",
+											value: "pks",
+				}, {
+											id: "1011103",
+											name: "严听听",
+											value: "ytt",
+				}]
+				},
+										{
+											id: "10102",
+											name: "潘克胜",
+											value: "pks",
+				}, {
+											id: "10103",
+											name: "严听听",
+											value: "ytt",
+				}]
+				},
+								{
+									id: "102",
+									name: "奋强中学",
+									value: "fqzx",
+									state: "selected",
+									expand: false, //是否展开
+									children: [{
+											id: "10201",
+											name: "潘鹏飞",
+											value: "ppf",
+				},
+										{
+											id: "10202",
+											name: "许凤平",
+											value: "xfp",
+				}, {
+											id: "10303",
+											name: "朱建伟",
+											value: "zjw",
+				}]
+				},
+								{
+									id: "103",
+									name: "自立高中",
+									value: "zlgz",
+									expand: true, //是否展开
+									children: [{
+											id: "10301",
+											name: "陈冬敏",
+											value: "cdm",
+				},
+										{
+											id: "10302",
+											name: "邹崇景",
+											value: "zcj",
+				}]
+				}],
+						},
+						{
+							id: "2",
+							name: "鹿城教育局",
+							value: "ohjyj",
+							children: "data.json",
+						},
+		]
+				},
+				view: {
+					enabledFilter: true,
+					enabledMultiple: true
+				}
+			}
+
+
+			//_transformData(setting.store.data);
+			var panelSetting = {
+				view: {
+					enabledControl: false
+				},
+			}
+
+			//示例：示例：选择框列表展示(最大可选设置为5个）*  
+			tree = $("#tree").tree(setting);
+			panel = $("#panelview").panelview(panelSetting);
+			nc = $('#treeContainer').niceScroll({
+				cursorcolor: '#7db7fb',
+				cursorwidth: '6px',
+				cursorborderradius: 2,
+				autohidemode: true,
+				background: '#d0d0d0',
+				cursoropacitymin: 1,
+				cursorborder: 'none',
+				horizrailenabled: false,
+			});
+			//	SelectBoxPanelview([tree, panel]);
+			tree2 = $("#tree2").tree(setting);
+			panel2 = $("#panelview2").panelview(panelSetting);
+			nc2 = $('#treeContainer2').niceScroll({
+				cursorcolor: '#7db7fb',
+				cursorwidth: '6px',
+				cursorborderradius: 2,
+				autohidemode: true,
+				background: '#d0d0d0',
+				cursoropacitymin: 1,
+				cursorborder: 'none',
+				horizrailenabled: false,
+			});
+
+
+			EXT.Viewer({
+				selector: tree,
+				viewer: panel,
+				nicescroll: nc
+			});
+			Extension.Viewer({
+				selector: tree2,
+				viewer: panel2,
+				nicescroll: nc2
+			});
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+		function addListeners(argument) {
+			$("#searchButton").click(function () {
+				log(tree.sortNode(tree.getAllNode(2), "value"));
+			});
+			$("#searchButton2").click(function () {
+				tree.addNode({
+					"id": "00000111",
+					"name": "msl"
+				}, tree.getNodeById("10102"), 2)
+				log(tree.getDataById("10102").expand)
+				tree.replaceNodeData(tree.getNodeById("10102"), "expand", true);
+				log(tree.getDataById("10102").expand)
+			});
+		}
+	</script>
+</body>
+
+</html>

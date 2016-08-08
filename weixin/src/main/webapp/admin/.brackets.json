@@ -1,0 +1,8 @@
+{
+    "jscodehints.detectedExclusions": [
+        "G:/SVN/Html/前端库/后台系统初版/html/ext/zw/test/unit/selectSpec.js",
+        "G:/SVN/Html/前端库/后台系统初版/html/ext/zw/lui-v2/js/tree.js",
+        "G:/SVN/Html/前端库/后台系统初版/html/ext/zw/lui-v2/js/selectbox.js",
+        "G:/SVN/Html/前端库/后台系统初版/html/ext/zw/lui-v2/js/luicontroller-advance.js"
+    ]
+}

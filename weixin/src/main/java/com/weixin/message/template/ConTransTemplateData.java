@@ -5,7 +5,7 @@ public class ConTransTemplateData {
 	private TemplateData keynote1;
 	private TemplateData keynote2;
 	private TemplateData keynote3;
-	private String remark;
+	private TemplateData remark;
 	
 	public TemplateData getFirst() {
 		return first;
@@ -31,11 +31,10 @@ public class ConTransTemplateData {
 	public void setKeynote3(TemplateData keynote3) {
 		this.keynote3 = keynote3;
 	}
-	public String getRemark() {
+	public TemplateData getRemark() {
 		return remark;
 	}
-	public void setRemark(String remark) {
+	public void setRemark(TemplateData remark) {
 		this.remark = remark;
 	}
-	
 }

@@ -1,5 +1,7 @@
 package com.weixin.configuration;
 
+import com.weixin.pojo.AccessToken;
+
 /**
  * @ClassName: ParameterUtil
  * @Description: 常量类
@@ -13,6 +15,8 @@ public class WeChatConfiguration {
 	public static String appId = "wx4beaf827cc97a96d";
 	// 用户标识密钥
 	public static String appSecret = "f7f6b851edb551403b9bf66e1f41297b";
+	//储存接口令牌 accessToken 由于accesstoken每天只能获取2000次，为了节省次数在项目启动的时候获取一次存储下来在即将失效的时候重新获取
+	public static AccessToken accessToken ;
 	
 	public final static String MCH_ID = "12412412412";//商户号
 	public final static String API_KEY = "4532452345";//API密钥
@@ -78,9 +82,19 @@ public class WeChatConfiguration {
 	public final static String KF_DELETE_URL = "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=ACCESS_TOKEN";
 	//设置客服头像(POST/FORM)
 	public final static String KF_UPLOADHEADIMG_URL = "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=ACCESS_TOKEN&kf_account=KFACCOUNT";
-
+	//发送客服消息(POST)
+	public final static String KF_MESSAGE_CUSTOM_SEND_URL = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN";
 	
 	//发送模板消息
 	public final static String TEMP_SEND_URL = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
+
+	/**
+	 *  用户相关
+	 */
+	//获取用户列表信息(GET)  默认从头开始拉取 每次最多10000条，在获取下一批的时候 添加参数&next_openid=NEXT_OPENID 
+	public final static String USER_LIST_URL = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN";
+	
+	
+	
 	
 }

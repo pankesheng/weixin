@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>申请课题修改课题</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<style>
+		.zcdgl {
+			border: none;
+		}
+		
+		.zcdgl .ext-move-up,
+		.zcdgl .ext-move-down {}
+		
+		.zcdgl .ext-node .ext-move-tools {
+			display: none;
+		}
+		
+		.zcdgl.editMode .ext-node .ext-move-tools {
+			display: inherit;
+		}
+		
+		.zcdgl .ext-node .action {
+			display: inline-block;
+			width: 20px;
+			text-align: center;
+			opacity: 0.8;
+			text-indent: 0px;
+		}
+		
+		.zcdgl .ext-node .action:hover {
+			opacity: 1
+		}
+		
+		.zcdgl .iconfont {
+			position: relative;
+			font-size: 12px;
+			line-height: 1.5;
+		}
+		
+		.zcdgl .ext-move-up .iconfont,
+		.zcdgl .ext-move-down .iconfont {
+			color: #48A348;
+		}
+		
+		.zcdgl .ext-remove .iconfont {
+			color: #d9534f;
+		}
+		
+		.zcdgl .ext-add .iconfont {
+			color: #5bc0de;
+		}
+		
+		.zcdgl .ext-content > .ext-node-container:first-child > .ext-node .ext-move-up .iconfont {
+			color: silver;
+		}
+		
+		.zcdgl .ext-content > .ext-node-container:last-child > .ext-node .ext-move-down .iconfont {
+			color: silver;
+		}
+		
+		.zcdgl .ext-child-content > .ext-node-container:first-child > .ext-node .ext-move-up .iconfont {
+			color: silver;
+		}
+		
+		.zcdgl .ext-child-content > .ext-node-container:last-child > .ext-node .ext-move-down .iconfont {
+			color: silver;
+		}
+		/*		.zcdgl .ext-first-node .ext-move-up .iconfont {
+			color: silver;
+		}
+		
+		.zcdgl .ext-last-node .ext-move-down .iconfont {
+			color: silver;
+		}*/
+	</style>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">课题成员<b class="red">*</b></label>
+							</td>
+							<td>
+								<div style="border: 1px solid #DCDCDC;width:367px;max-height:400px;overflow:auto">
+									<div id="tree" class="zcdgl ext-treelist" style="border:none">
+									</div>
+								</div>
+								<div id="xuanze" style="display:none;">
+									<select name="xuanze2" id="xuanze2">
+										<option value="1">1条数据</option>
+										<option value="2">2条数据</option>
+										<option value="3">3条数据</option>
+										<option value="4">4条数据</option>
+									</select>
+									<a id="quedingzengjia">确定增加</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<!-- 空内容的td 保持间距 -->
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input id="shengcheng" class="btn btn-success btn-large" type="button" value="根据栏目顺序自动生成">
+								<input id="bianji" class="btn btn-danger btn-large" type="button" value="编辑">
+								<input id="liulan" class="btn  btn-large return-btn" data-href="/manager/users" type="button" value="网站浏览">
+								<input id="baocun" class="btn btn-success btn-large" type="button" value="保存" style="display:none">
+								<input id="chongzhi" class="btn btn-danger btn-large" type="button" value="重置" style="display:none">
+								<input id="xinzeng" class="btn  btn-large" type="button" value="新增主菜单" style="display:none">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/luicontroller-advance.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/tree.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/ext-tree-menu-manager.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/extension.js"></script>
+	<script>
+		$(function () {
+
+			initPage();
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+
+		}
+
+
+		function initPage() {
+
+
+			//异步加载
+			/*var setting = {
+					async: {
+						enabled: true,
+						url: "data-100.json"
+					}
+				}*/
+			//动态数据加载
+			var setting = {
+				store: {
+					data: [
+						{
+							name: "瓯海教育局瓯育局",
+							value: "ohjyj",
+							expanded: true,
+							children: [{
+									name: "成长小学",
+									value: "ohxx",
+									children: [{
+											name: "莫胜利",
+											value: "msl",
+											children: [{
+													name: "潘鹏飞",
+													value: "ppf",
+
+						},
+												{
+													name: "许凤平",
+													value: "xfp",
+
+						}, {
+													name: "朱建伟",
+													value: "zjw",
+
+						}]
+						},
+										{
+											name: "潘克胜",
+											value: "pks",
+
+						}, {
+											name: "严听听",
+											value: "ytt",
+
+						}]
+						},
+								{
+									name: "奋强中学",
+									value: "fqzx",
+									children: [{
+											name: "潘鹏飞",
+											value: "ppf",
+
+						},
+										{
+											name: "许凤平",
+											value: "xfp",
+
+						}, {
+											name: "朱建伟",
+											value: "zjw",
+
+						}]
+						},
+								{
+									name: "自立高中",
+									value: "zlgz",
+									children: [{
+											name: "陈冬敏",
+											value: "cdm",
+
+						},
+										{
+											name: "邹崇景",
+											value: "zcj",
+
+						}]
+						}]
+								},
+						{
+							name: "鹿城教育局",
+							value: "ohjyj",
+								},
+						{
+							name: "龙湾教育局",
+							value: "ohjyj",
+								}
+							]
+				},
+				view: {
+					//节点按钮是否可见
+					//若存在nodeBtnCallback回调，此处无视
+					/*nodeBtns: {
+						remove: true,
+						add: false,
+						up: true,
+						down: true
+					}*/
+				},
+				callback: {
+					immediateAddNode: function ($node, self) {
+
+						/*						layer.confirm('确认重新生成？', function () {
+													var post = {};
+													post.id = "1578673548943360";
+													$.post("/tcms/website/generatead.do?_s=ohyx", post, function (data) {
+														if (data.s == 1) {
+															alert("操作成功！");
+															window.document.location.reload();
+														} else {
+															z_alert_layer(data.d);
+														}
+													}, "json");
+												});*/
+
+
+						//$node 当前节点，data 取得数据
+
+						//增加节点
+						self.config.action.addNode($node, data, self);
+					},
+					/*
+					nodeBtnCallback: function ($toolsContent, $btns, self) {
+						//示例
+						log($toolsContent)
+						log($btns.$up)
+						$toolsContent.append("<span>按钮1</span>");
+						$toolsContent.append($btns.$up);
+						$toolsContent.append($btns.$add);
+						$toolsContent.append($btns.$remove);
+						$toolsContent.append($btns.$down);
+						$toolsContent.append("<span>按钮2</span>");
+
+					}
+					*/
+				}
+			}
+
+
+			tree = $("#tree").menuManager(setting);
+		}
+
+		function addListeners(argument) {
+			var $liulan = $("#liulan");
+			var $shengcheng = $("#shengcheng");
+			var $bianji = $("#bianji");
+			var $baocun = $("#baocun");
+			var $chongzhi = $("#chongzhi");
+			var $xinzeng = $("#xinzeng");
+
+			//编辑事件
+			$bianji.click(function () {
+				//进入编辑模式，显示出操作菜单
+				tree.$me.addClass("editMode");
+				var $allNode = tree.getAllNode();
+				$allNode.addClass("active");
+				$shengcheng.hide();
+				$bianji.hide();
+				$liulan.hide();
+
+				$baocun.show();
+				$chongzhi.show();
+				$xinzeng.show();
+
+				//复制内置排序ID（内置排序ID字段为_orderId，底层字段，不能更改它）
+				tree.config.action.cloneCloneId($allNode, tree);
+			});
+
+
+			//保存事件
+			$baocun.click(function () {
+				//tree.refreshNode(tree.getAllNode())
+				//将暂存的新排序字段newlyorderId替换orderId，并删除newlyorderId
+				//tree.config.action.updateorderId(tree.getAllNode(), tree);
+
+				/*	tree.$me.removeClass("editMode");
+
+					$bianji.show();
+					$shengcheng.show();
+					$liulan.show();
+
+					$baocun.hide();
+					$chongzhi.hide();
+					$xinzeng.hide();*/
+
+				//移除所有所有可删除节点
+				var $removeNode = tree.getAllNode().filter(".waiting-remove");
+				tree.removeNode($removeNode);
+
+				//返回排序后的数据
+				log(tree.getAllData());
+
+			});
+
+			//重置事件
+			$chongzhi.click(function () {
+
+				tree.config.action.restoreNode(tree);
+			});
+
+
+			//模拟新增加↓
+			//暂存要增加的节点目标
+			var $waitAddNode;
+
+			$xinzeng.click(function () {
+				//模拟要增加的节点是第一个节点
+
+				//模拟查请求后得到的数据
+				$("#xuanze").show();
+				$("#xuanze").css({
+					display: "block",
+					position: "fixed",
+					top: '50%',
+					left: '50%',
+					width: "300px",
+					height: "100px",
+					backgroundColor: "#fff",
+					border: "5px solid pink"
+				});
+			});
+
+			$("#quedingzengjia").click(function () {
+				//$("#xuanze2").val()
+
+				//模拟得到的的数据
+				var data = [{
+					name: "连插2条模拟插入",
+					orderId: 1,
+					}, {
+					name: "连插2条模拟插入",
+					orderId: 10,
+					}]
+
+				tree.config.action.addNode($waitAddNode, data, tree);
+
+			});
+
+		}
+	</script>
+</body>
+
+</html>

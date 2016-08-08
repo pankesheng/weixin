@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+
+/*==================================================
+    * @name CSS 扩展UI
+    * @author 莫胜利/lisfan Cell：18072152020/WeChat：448182355
+    * @version - v1.0#2016-01-27
+==================================================*/
+
+
+/* 分页组件 */
+
+.ext-pagination {
+	padding-top: 60px;
+	padding-bottom: 50px;
+	font-size: 12px;
+	.paging-num {
+		display: inline-block;
+		vertical-align: middle;
+		*display: inline;
+		*zoom: 1;
+		height: 28px;
+		margin: 0 2px;
+		padding: 0 10px;
+		line-height: 26px;
+		text-decoration: none;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		color: #333;
+		background-color: #f5f5f5;
+		text-align: center;
+		white-space: nowrap;
+		cursor: pointer;
+		touch-action: manipulation;
+		-ms-touch-action: manipulation;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-o-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		&:hover,
+		&.selected {
+			border-color: #366dd1;
+			background-color: #fff;
+			color: #366dd1;
+		}
+		&:active {}
+		&.disabled {
+			opacity: .65;
+			filter: alpha(opacity=65);
+			cursor: default
+		}
+		&.next-paging,
+		&.prev-paging,
+		&.first-paging,
+		&.last-paging {
+			width: auto;
+			padding: 0px 10px;
+			color: #fff;
+			border-color: #366dd1;
+			background-color: #366dd1
+		}
+		&.next-paging:hover,
+		&.prev-paging:hover,
+		&.first-paging:hover,
+		&.last-paging:hover {
+			border-color: #255dc3;
+			background-color: #255dc3;
+		}
+	}
+	.paging-jump {
+		margin-left: 10px;
+		display: inline-block;
+		vertical-align: middle;
+		*display: inline;
+		*zoom: 1;
+		.jump {
+			height: 30px;
+			color: #555;
+			border: 1px solid #d2d2d2;
+			background-color: #fff;
+		}
+	}
+	.paging-limit {
+		margin-right: 10px;
+		display: inline-block;
+		vertical-align: middle;
+		*display: inline;
+		*zoom: 1;
+		.limit {
+			height: 30px;
+			color: #555;
+			border: 1px solid #d2d2d2;
+			background-color: #fff;
+		}
+	}
+	.paging-container {
+		float: left;
+	}
+	.paging-info {
+		line-height: 30px;
+		float: right;
+		em {
+			font-weight: bold;
+		}
+	}
+}

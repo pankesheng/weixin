@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+
+
+		<div class="panel" style="width:700px;margin-right:50px;float:left;">
+			<div class="panel-body">
+				<!-- 简单展示时可以直接使用title属性设置解释说明 -->
+				<!-- 自定义展示时可以通过data-showtips绑定要展示的html元素元素 -->
+				<form class="field-container">
+					<span class="headline">包裹框<i class="iconfont infotips showtips" data-tipsid='#ccc' title="这里可以进行解释说明">&#xe644;</i></span>
+					<div id="ccc" class="showtips-alert alert alert-success mb-10"><span><i class="iconfont">&#xe624;</i>这里可以进行解释说明</span><span class="tips-close"><i class="iconfont">&#xe628;</i></span></div>
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label" for="search1">禁用<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input class="form-control " id="search" data-check="must|n" type="text" autocomplete="off" />
+									<div id="droplist" class="droplist hide close-popup">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">输入下拉列表（精确搜索）单选:输入"莫[空格]利"<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input class="form-control " id="search2" data-check="must|n" type="text" autocomplete="off" />
+									<div id="droplist2" class="droplist hide close-popup">
+									</div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">输入下拉列表（精确搜索）多选<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input class="form-control " id="search3" data-check="must|n" type="text" autocomplete="off" />
+									<div id="droplist3" class="droplist hide close-popup">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">输入下拉列表（模糊搜索）:输入"莫利"<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input class="form-control " id="search4" data-check="must|n" type="text" autocomplete="off" />
+									<div id="droplist4" class="droplist hide close-popup">
+									</div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">输入下拉列表（精确搜索）:输入"msl"<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input class="form-control " id="search5" data-check="must|n" type="text" autocomplete="off" />
+									<div id="droplist5" class="droplist hide close-popup">
+									</div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">美化滚动条<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input class="form-control " id="search6" data-check="must|n" type="text" autocomplete="off" />
+									<div id="droplistContainer6" class="hide close-popup" style="max-height:216px;">
+										<div id="droplist6" class="droplist hide close-popup">
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">输入下拉列表（精确搜索）单选:输入"莫[空格]利"<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<input class="form-control " id="search50" data-check="must|n" type="text" autocomplete="off" />
+									<div id="droplist50" class="droplist hide close-popup">
+										<div class="content clearfix" data-role="content">
+											<div data-role="node" data-id="01" class="node"><span class="name" title="莫胜利">莫胜利</span></div>
+									
+											<div data-role="node" data-id="02" class="node selected" data-state="selected"><span class="name" title="莫胜利">东</span></div>
+										
+											<div data-role="node" data-id="04" class="node"><span class="name" title="莫胜利">邹</span></div>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/droplist.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/panelview.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+	<script>
+		$(function () {
+			var setting = {
+				store: {
+					data: [
+						{
+							id: "01",
+							name: "莫胜利",
+							value: "msl",
+						},
+						{
+							id: "02",
+							name: "陈东敏",
+							value: "cdm",
+							image: "../images/icon/icon2.png",
+				},
+						{
+							id: "03",
+							name: "许凤平",
+							value: "yfp",
+							image: "../images/icon/icon3.png",
+							state: "disabled"
+				}, {
+							id: "04",
+							name: "严听听",
+							value: "ytt",
+
+						},
+						{
+							id: "05",
+							name: "邹崇锦",
+							value: "zcj",
+							image: "../images/icon/icon5.png",
+
+						},
+						{
+							id: "06",
+							name: "潘克胜",
+							value: "pks",
+							image: "../images/icon/icon6.png",
+						},
+						{
+							id: "07",
+							name: "鹏飞",
+							value: "pf",
+							image: "../images/icon/icon7.png",
+						},
+						{
+							id: "08",
+							name: "酱油1",
+							value: "jy",
+							image: "../images/icon/icon8.png",
+						},
+						{
+							id: "09",
+							name: "酱油2",
+							value: "jy2",
+							image: "../images/icon/icon9.png",
+						},
+						{
+							id: "10",
+							name: "酱油3",
+							value: "jy3",
+							image: "../images/icon/icon10.png",
+						},
+						{
+							id: "11",
+							name: "酱油4",
+							value: "jy4",
+							image: "../images/icon/icon11.png",
+						}, {
+							id: "21",
+							name: "莫胜利",
+							value: "msl",
+							image: "../images/icon/icon1.png",
+						},
+						{
+							id: "22",
+							name: "陈东敏",
+							value: "cdm",
+							image: "../images/icon/icon2.png",
+				},
+						{
+							id: "23",
+							name: "许凤平",
+							value: "yfp",
+							image: "../images/icon/icon3.png",
+							state: "disabled"
+				}, {
+							id: "24",
+							name: "严听听",
+							value: "ytt",
+							image: "../images/icon/icon4.png",
+							state: "selected",
+
+
+						},
+						{
+							id: "25",
+							name: "邹崇锦",
+							value: "zcj",
+							image: "../images/icon/icon5.png",
+							state: "selected",
+
+						},
+						{
+							id: "26",
+							name: "潘克胜",
+							value: "pks",
+							image: "../images/icon/icon6.png",
+						},
+						{
+							id: "27",
+							name: "鹏飞",
+							value: "pf",
+							image: "../images/icon/icon7.png",
+						},
+						{
+							id: "28",
+							name: "酱油1",
+							value: "jy",
+							image: "../images/icon/icon8.png",
+						},
+						{
+							id: "29",
+							name: "酱油2",
+							value: "jy2",
+							image: "../images/icon/icon9.png",
+						},
+						{
+							id: "30",
+							name: "酱油3",
+							value: "jy3",
+							image: "../images/icon/icon10.png",
+						},
+						{
+							id: "31",
+							name: "酱油4",
+							value: "jy4",
+							image: "../images/icon/icon11.png",
+						}, {
+							id: "41",
+							name: "莫胜利",
+							value: "msl",
+							image: "../images/icon/icon1.png",
+						},
+						{
+							id: "42",
+							name: "陈东敏",
+							value: "cdm",
+							image: "../images/icon/icon2.png",
+				},
+						{
+							id: "43",
+							name: "许凤平",
+							value: "yfp",
+							image: "../images/icon/icon3.png",
+							state: "disabled"
+				}, {
+							id: "44",
+							name: "严听听",
+							value: "ytt",
+							image: "../images/icon/icon4.png",
+
+						},
+						{
+							id: "45",
+							name: "邹崇锦",
+							value: "zcj",
+							image: "../images/icon/icon5.png",
+						},
+						{
+							id: "46",
+							name: "潘克胜",
+							value: "pks",
+							image: "../images/icon/icon6.png",
+						},
+						{
+							id: "47",
+							name: "鹏飞",
+							value: "pf",
+							image: "../images/icon/icon7.png",
+						},
+						{
+							id: "48",
+							name: "酱油1",
+							value: "jy",
+							image: "../images/icon/icon8.png",
+						},
+						{
+							id: "49",
+							name: "酱油2",
+							value: "jy2",
+							image: "../images/icon/icon9.png",
+						},
+						{
+							id: "50",
+							name: "酱油3",
+							value: "jy3",
+							image: "../images/icon/icon10.png",
+						},
+						{
+							id: "51",
+							name: "酱油4",
+							value: "jy4",
+							image: "../images/icon/icon11.png",
+						},
+		]
+				},
+				view: {
+					//主要显示:image，只显示图片，标题作为图片title属性
+					//主要显示:text，只显示文本，忽略图片
+					//主要显示:all，即(先）显示图片，也显示文本
+					mainShow: "all",
+					//启用多选
+					enabledMultiple: false,
+				},
+				/*callback: {
+					nodeOnClick: function () {
+					}
+				}*/
+			}
+
+
+			var setting2 = $.extend(true, {}, setting);
+			setting2.view.enabled = false;
+
+			var setting3 = $.extend(true, {}, setting);
+			setting3.view.enabledMultiple = true;
+
+			/*//实例化下拉列表
+			dropO = $("#droplist").droplist(setting);
+
+			//滚动条初始化(需要好看的滚动条时，需要对droplist对象进包裹并设置最大值高度 <div id="droplistContainer" class="hide" style="max-height:216px;">)
+			ncO = $('#droplistContainer').niceScroll({
+				cursorcolor: '#7db7fb',
+				cursorwidth: '6px',
+				cursorborderradius: 2,
+				autohidemode: true,
+				background: '#d0d0d0',
+				cursoropacitymin: 1,
+				cursorborder: 'none',
+				horizrailenabled: false,
+			});
+			//需要滚动条插件的初始化
+			//$("#search1").searchDroplist([dropO,ncO], "all", true);
+			//第二个参数，表示要查询的数据字段，无参则表示，默认查name字段，all表示所有都查
+			//第三个参数，表示匹配模式，默认会精确匹配false，开启true时为模糊匹配,
+			//如搜索【莫利】，模糊匹配能搜索到莫胜利，而精确匹配无法搜索到
+			//如搜索【莫 利】 模糊和精确都可搜索到 莫胜利
+
+			//封装搜索与下拉列表
+			$("#search1").searchDroplist([dropO, ncO]);*/
+
+			//#1 禁用
+			dropO = $("#droplist").droplist(setting2);
+			$("#search").searchDroplist(dropO);
+
+			//#2 单选
+			dropO2 = $("#droplist2").droplist(setting);
+			$("#search2").searchDroplist(dropO2);
+
+			//#3 多选
+			dropO3 = $("#droplist3").droplist(setting3);
+			$("#search3").searchDroplist(dropO3);
+
+			//#4 模糊查询 【如输入莫利，可搜索到莫胜利】
+			dropO4 = $("#droplist4").droplist(setting);
+			$("#search4").searchDroplist(dropO4, "name", true);
+
+			//#5 查询对象节点上绑定的其他字段 搜索msl
+			dropO5 = $("#droplist5").droplist(setting);
+			$("#search5").searchDroplist(dropO5, "value");
+
+			//#6 美化滚动条
+			dropO6 = $("#droplist6").droplist(setting);
+			ncO6 = $('#droplistContainer6').niceScroll({
+				cursorcolor: '#7db7fb',
+				cursorwidth: '6px',
+				cursorborderradius: 2,
+				autohidemode: true,
+				background: '#d0d0d0',
+				cursoropacitymin: 1,
+				cursorborder: 'none',
+				horizrailenabled: false,
+			});
+			$("#search6").searchDroplist([dropO6, ncO6]);
+
+
+			//#5 查询对象节点上绑定的其他字段 搜索msl
+			dropO50 = $("#droplist50").droplist({view:{enabledMultiple:true}});
+			$("#search50").searchDroplist(dropO50, "value");
+
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+
+
+		}
+
+
+		function addListeners(argument) {
+
+		}
+	</script>
+</body>
+
+</html>

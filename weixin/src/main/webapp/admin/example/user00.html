@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页 - 标签页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-body">
+				<div class="tabs2">
+					<div class="node selected" id="01" data-target="#tab1">
+						账号信息
+					</div>
+					<div class="node" id="02" data-target="#tab2">
+						个人信息
+					</div>
+					<div class="node" id="03" data-target="#tab3">
+						教师信息
+					</div>
+					<div class="node" id="04" data-target="#tab4">
+						学生信息
+					</div>
+					<div class="node" id="05" data-target="#tab5">
+						家长信息
+					</div>
+					<div class="node" id="06" data-target="#tab6">
+						应用信息
+					</div>
+					<div class="node" id="07" data-target="#tab7">
+						任课班级信息
+					</div>
+				</div>
+				<div class="tabs-content ">
+					<div id="tab1">
+						<form id="form1">
+							<table class="form-table">
+
+								<tr>
+									<td>
+										<label class="form-label" for="search1">所在单位<b class="red">*</b></label>
+									</td>
+									<td>
+										<input class="form-control" id="search1" type="text" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search1">姓名<b class="red">*</b></label>
+									</td>
+									<td>
+										<input class="form-control" id="search1" type="text" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search-select">性别<b class="red">*</b></label>
+									</td>
+									<td>
+										<select class="form-select" id="search-select">
+											<option value="">请选择性别</option>
+											<option>男</option>
+											<option>女</option>
+											<option>未知</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label">身份</label>
+									</td>
+									<td>
+										<ul class="form-option-group clearfix">
+											<li class="form-option-list">
+												<input class="form-radio" id="d1" type="checkbox" name="d1" />
+												<label class="mr-10" for="d1">教师</label>
+											</li>
+											<li class="form-option-list">
+												<input class="form-radio" id="d1" type="checkbox" name="d1" />
+												<label class="mr-10" for="d1">家长</label>
+											</li>
+											<li class="form-option-list">
+												<input class="form-radio" id="d1" type="checkbox" name="d1" />
+												<label class="mr-10" for="d1">教练</label>
+											</li>
+											<li class="form-option-list">
+												<input class="form-radio" id="d1" type="checkbox" name="d1" />
+												<label class="mr-10" for="d1">评委</label>
+											</li>
+											<li class="form-option-list">
+												<input class="form-radio" id="d1" type="checkbox" name="d1" />
+												<label class="mr-10" for="d1">审核者</label>
+											</li>
+											<li class="form-option-list">
+												<input class="form-radio" id="d1" type="checkbox" name="d1" />
+												<label class="mr-10" for="d1">行政人员</label>
+											</li>
+											<li class="form-option-list">
+												<input class="form-radio" id="d1" type="checkbox" name="d1" />
+												<label class="mr-10" for="d1">其它</label>
+											</li>
+										</ul>
+									</td>
+									<td><span class="form-tip alert alert-info">最少选择一个</span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search1">教育网短号</label>
+									</td>
+									<td>
+										<input class="form-control" id="search1" type="text" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search1">QQ号码</label>
+									</td>
+									<td>
+										<input class="form-control" id="search1" type="text" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search1">邮箱</label>
+									</td>
+									<td>
+										<input class="form-control" id="search1" type="text" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search2">出生日期</label>
+									</td>
+									<td>
+										<input class="form-control date" id="search2" type="text" />
+									</td>
+								</tr>
+								<tr class="valign-top">
+									<td>
+										<label class="form-label" for="search4">个人简介</label>
+									</td>
+									<td>
+										<textarea class="form-textarea" id="search4" name=""></textarea>
+										<span class="form-tip alert alert-info">请填写您的职称，所获荣誉，头衔，工作履历等</span>
+									</td>
+								</tr>
+
+
+								<tr>
+									<!-- 空内容的td 保持间距 -->
+									<td>
+										<label class="form-label">&nbsp;</label>
+									</td>
+									<td>
+										<input class="btn btn-success btn-large" type="submit" value="提交">
+										<input class="btn btn-danger btn-large" type="reset" value="重置">
+										<input class="btn btn-danger btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<div class="hide" id="tab2">
+						<form id="form2">
+							<table class="form-table">
+								<tr>
+									<td>
+										<label class="form-label" for="search1">关联的学生<b class="red">*</b></label>
+									</td>
+									<td>
+										<div class="form-text">xx学生</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search1">监护人<b class="red">*</b></label>
+									</td>
+									<td>
+										<input class="form-control" id="search1" type="text" />
+									</td>
+									<td><a href="javascript:void(0);" class="btn btn-primary" id="selectGuardian"><i class="iconfont">&#xe61b;</i>选择监护人</a></td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search-select">与学生关系<b class="red">*</b></label>
+									</td>
+									<td>
+										<select class="form-select" id="search-select">
+											<option value="">请选择性别</option>
+											<option>母亲</option>
+											<option>父亲</option>
+											<option>亲戚</option>
+										</select>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label class="form-label" for="search1">工作单位</label>
+									</td>
+									<td>
+										<input class="form-control" id="search1" type="text" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="form-label" for="search1">现居住地址</label>
+									</td>
+									<td>
+										<input class="form-control" id="search1" type="text" />
+									</td>
+								</tr>
+
+								<tr>
+									<!-- 空内容的td 保持间距 -->
+									<td>
+										<label class="form-label">&nbsp;</label>
+									</td>
+									<td>
+										<input class="btn btn-success btn-large" type="submit" value="提交">
+										<input class="btn btn-danger btn-large" type="reset" value="重置">
+										<input class="btn btn-danger btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+									</td>
+								</tr>
+							</table>
+							<div id="popupLayer" style="overflow:hidden;" class="hide">
+								<table class="table" id="table"></table>
+							</div>
+						</form>
+					</div>
+					<div class="hide" id="tab3">
+						<div class="panel filter-block">
+							<form class="form-inline">
+								<div class="form-group">
+									<a href="javascript:void(0);" class="btn" id="relevanceStudent"><i class="iconfont">&#xe61b;</i>关联孩子</a>
+								</div>
+							</form>
+						</div>
+
+						<table class="table" id="table2"></table>
+					</div>
+					<div class="hide" id="tab4">
+						4444
+					</div>
+					<div class="hide" id="tab5">
+						5555
+					</div>
+					<div class="hide" id="tab6">
+						6666 </div>
+					<div class="hide" id="tab7">
+						777
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		$(function () {
+
+
+			var setting = {
+				//若配置了data值，则以data值为准，未配置以html形式，html格式请符合要求
+				store: {
+				/*	data: [{
+						id: "01",
+						target: "#tab1",
+						name: "学生信息",
+						state: "selected"
+					}, {
+						id: "02",
+						target: "#tab2",
+						name: "教师信息",
+					}, {
+						id: "03",
+						target: "#tab3",
+						name: "家长信息",
+					}]*/
+				},
+				view: {
+
+				},
+				callback: {
+					nodeOnClick: function ($currentNode, currentData) {
+						console.log($currentNode)
+						console.log(currentData)
+					}
+				}
+			}
+
+			$(".tabs2").tabs(setting);
+			var config = {
+					store: {
+						data: {
+							"s": 1,
+							"d": [{
+								"_id": "5518b89dbc547f6c18c98dff",
+								"account": "admin",
+								"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+								"__v": 0,
+								"phone": "123",
+								"role": 2,
+								"sex": "男",
+								"name": "管理员1"
+							}, {
+								"_id": "551b56c11911ce040e0b9887",
+								"name": "123123",
+								"account": "admin1",
+								"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+								"phone": "123123",
+								"__v": 0,
+								"role": 1,
+								"sex": "男"
+							}, {
+								"_id": "551b59b377886a8c1d20b65e",
+								"name": "管理员",
+								"account": "admin12a",
+								"password": "601f1889667efaebb33b8c12572835da3f027f78",
+								"sex": "男",
+								"phone": "电话",
+								"role": 2,
+								"__v": 0
+							}, {
+								"_id": "551b64b577886a8c1d20b671",
+								"name": "asdfasdf",
+								"account": "asdfasdf",
+								"password": "601f1889667efaebb33b8c12572835da3f027f78",
+								"sex": "男",
+								"phone": "",
+								"role": 1,
+								"__v": 0
+							}, {
+								"_id": "551b691677886a8c1d20b683",
+								"name": "",
+								"account": "1231231a",
+								"password": "88ea39439e74fa27c09a4fc0bc8ebe6d00978392",
+								"sex": "男",
+								"phone": "",
+								"role": 1,
+								"__v": 0
+							}, {
+								"_id": "551b6d2177886a8c1d20b687",
+								"name": "asdf",
+								"account": "123123123",
+								"password": "73da7bb9d2a475bbc2ab79da7d4e94940cb9f9d5",
+								"sex": "男",
+								"phone": "3123123",
+								"role": 1,
+								"__v": 0
+							}, {
+								"_id": "551b8a4877886a8c1d20b698",
+								"name": "",
+								"account": "admin123a",
+								"password": "40bd001563085fc35165329ea1ff5c5ecbdbbeef",
+								"sex": "男",
+								"phone": "",
+								"role": 1,
+								"__v": 0
+							}, {
+								"_id": "551b8ac277886a8c1d20b69c",
+								"name": "",
+								"account": "admin1a",
+								"password": "601f1889667efaebb33b8c12572835da3f027f78",
+								"sex": "男",
+								"phone": "",
+								"role": 1,
+								"__v": 0
+							}, {
+								"_id": "551b8e9c77886a8c1d20b6a0",
+								"name": "",
+								"account": "adfadf",
+								"password": "40bd001563085fc35165329ea1ff5c5ecbdbbeef",
+								"sex": "男",
+								"phone": "",
+								"role": 1,
+								"__v": 0
+							}, {
+								"_id": "551b8ee477886a8c1d20b6a7",
+								"name": "",
+								"account": "123123adfs",
+								"password": "b51f92f87f2d066dc6163aab994990608d5bf73b",
+								"sex": "男",
+								"phone": "",
+								"role": 1,
+								"__v": 0
+							}],
+							"total": 1000
+						}
+					},
+					tool: {
+						pagingBar: true
+					},
+					columns: [{
+						title: '帐号',
+						dataIndex: 'account',
+						sortable: true
+                }, {
+						title: '姓名',
+						dataIndex: 'name',
+						sortable: true
+                }, {
+						title: '单位',
+						dataIndex: 'unit'
+                }, {
+						title: '管理员',
+						dataIndex: 'role',
+						renderer: function (cellData, rowData) {
+							return '<span class="red">否</span>';
+						}
+                }, {
+						title: '评委',
+						dataIndex: 'phone',
+						renderer: function (cellData, rowData) {
+							return '<span class="red">否</span>';
+						}
+                }, {
+						title: '操作',
+						width: 300,
+						renderer: function () {
+							//外部嵌套div修复ie6定宽下换行
+							return '<div style="width:300px;overflow:hidden;"><a class="btn btn-primary" href="javascript:void(0);" onclick="setManager(this);">警告框</a>\n<a class="btn btn-primary" href="javascript:void(0);" onclick="setJuage(this);">页面框</a>\n</div>';
+						}
+                }]
+				}
+				/*初始化表格*/
+			grid = $('#table1').grid(config);
+			$('#table2').grid(config);
+			$('#table3').grid(config);
+		});
+	</script>
+</body>
+
+</html>

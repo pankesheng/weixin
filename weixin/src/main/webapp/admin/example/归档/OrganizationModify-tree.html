@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+
+	<style>
+		/*		.tree-select-list {
+					position: relative;
+			width: 200px;
+			min-height: 730px;
+			margin-right: 10px;
+			overflow-y: auto;
+			overflow-x: hidden;
+			background-color: pink;
+		}
+		
+		.tree-select-list li ul {
+			padding: 0px!important;
+		}
+		
+		.tree-select-list ul:after {
+			content: ".";
+			display: block;
+			height: 0;
+			visibility: hidden;
+			clear: both;
+		}
+		
+		.tree-select-list li li {
+			padding-left: 12px;
+		}
+		
+		.tree-select-list li li ul {
+			display: block;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.tree-select-list li span {
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		*/
+		
+		.select-tree {
+			position: relative;
+		}
+		
+		.tree-select-list {
+			display: none;
+			position: absolute;
+			outline: 0px;
+			top: auto;
+			left: 0;
+			min-width: 100%;
+			z-index: 1024;
+		}
+		
+		.tree-select-list.limit-width {
+			width: 400px;
+		}
+		
+		.tree-select-list li {
+			margin: 0;
+			white-space: nowrap;
+			cursor: pointer;
+			color: hsl(0, 0%, 20%);
+			background: hsla(0, 0%, 0%, 0);
+			outline: 0 none;
+		}
+		
+		.tree-select-list li span.button.switch {
+			display: none;
+		}
+		
+		.tree-select-list li a {
+			padding: 8px 10px;
+			color: hsl(0, 0%, 20%);
+			display: block;
+			text-decoration: none;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		
+		.tree-select-list.multipleSize li a {
+			color: #bbb
+		}
+		
+		.tree-select-list.multipleSize li .icon-image {
+			opacity: 0.5
+		}
+		
+		.tree-select-list li a:hover {
+			background: #eee;
+		}
+		
+		.tree-select-list li span {
+			vertical-align: middle;
+		}
+		
+		.tree-select-list li .icon-image {
+			height: 20px;
+			margin-right: 4px;
+			vertical-align: middle;
+		}
+		
+		.tree-select-list li .icon-text {
+			vertical-align: middle;
+		}
+		
+		.tree-select-list a .button {
+			line-height: 0;
+			margin: 0;
+			width: 21px;
+			height: 20px;
+			display: inline-block;
+			vertical-align: top;
+			border: 0 none;
+			cursor: pointer;
+			outline: none;
+			margin-left: -12px;
+			background-color: transparent;
+			background-repeat: no-repeat;
+			background-attachment: scroll;
+			/*background-image: url("./img/zTreeStandard.png");
+	*background-image: url("./img/zTreeStandard.gif")*/
+			background-image: url("../images/tree-select-list.png");
+			*background-image: url("../images/tree-select-list.gif");
+		}
+		
+		.tree-select-list a .ico_close {
+			background-position: 12px 7px;
+		}
+		
+		.tree-select-list a .ico_open {
+			background-position: -3px 7px;
+		}
+		
+		.tree-select-list a .ico_docu {
+			display: none;
+		}
+		
+		.tree-select-list a.curSelectedNode,
+		.tree-select-list a.curSelectedNode:hover {
+			background: hsl(222, 89%, 59%)!important;
+			color: hsl(0, 100%, 100%)!important;
+		}
+		
+		.tree-select-list a.curSelectedNode .ico_close,
+		.tree-select-list a.curSelectedNode:hover .ico_close {
+			background-position: 12px -8px;
+		}
+		
+		.tree-select-list a.curSelectedNode .ico_open,
+		.tree-select-list a.curSelectedNode:hover .ico_open {
+			background-position: -3px -8px;
+		}
+		
+		.tree-select-list li a.curSelectedNode .icon-image {
+			opacity: 1!important;
+		}
+		
+		.tree-select-list li li {
+			padding-left: 10px;
+		}
+		
+		.tree-select-list li li a {
+			margin-right: 10px;
+		}
+		
+		.tree-select-list li span.button.chk {
+			display: inline-block;
+			width: 13px;
+			height: 13px;
+			margin: 0 5px 0 0;
+			vertical-align: middle;
+			line-height: 0;
+			outline: none;
+			cursor: pointer;
+			border: 0 none;
+			background-color: transparent;
+			background-repeat: no-repeat;
+			background-attachment: scroll;
+			background-image: url("../images/zTreeStandard.png");
+			*background-image: url("../images/zTreeStandard.gif")
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_false_full {
+			background-position: 0 0
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_false_full_focus {
+			background-position: 0 -14px
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_false_part {
+			background-position: 0 -28px
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_false_part_focus {
+			background-position: 0 -42px
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_false_disable {
+			background-position: 0 -56px
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_true_full {
+			background-position: -14px 0
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_true_full_focus {
+			background-position: -14px -14px
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_true_part {
+			background-position: -14px -28px
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_true_part_focus {
+			background-position: -14px -42px
+		}
+		
+		.tree-select-list li span.button.chk.checkbox_true_disable {
+			background-position: -14px -56px
+		}
+		
+		.tree-select-list li span.button.chk.radio_false_full {
+			background-position: -28px 0
+		}
+		
+		.tree-select-list li span.button.chk.radio_false_full_focus {
+			background-position: -28px -14px
+		}
+		
+		.tree-select-list li span.button.chk.radio_false_part {
+			background-position: -28px -28px
+		}
+		
+		.tree-select-list li span.button.chk.radio_false_part_focus {
+			background-position: -28px -42px
+		}
+		
+		.tree-select-list li span.button.chk.radio_false_disable {
+			background-position: -28px -56px
+		}
+		
+		.tree-select-list li span.button.chk.radio_true_full {
+			background-position: -42px 0
+		}
+		
+		.tree-select-list li span.button.chk.radio_true_full_focus {
+			background-position: -42px -14px
+		}
+		
+		.tree-select-list li span.button.chk.radio_true_part {
+			background-position: -42px -28px
+		}
+		
+		.tree-select-list li span.button.chk.radio_true_part_focus {
+			background-position: -42px -42px
+		}
+		
+		.tree-select-list li span.button.chk.radio_true_disable {
+			background-position: -42px -56px
+		}
+		
+		form .tree-select-list-panel {
+			width: 365px;
+		}
+		
+		.tree-select-list-panel {
+			-webkit-user-select: none;
+			user-select: none;
+			position: relative;
+			display: inline-block;
+			padding: 0;
+			text-align: left;
+			border: 1px solid hsl(120, 1%, 86%);
+			background-color: hsl(0, 100%, 100%);
+			vertical-align: middle;
+			cursor: pointer;
+			outline: 0 none;
+			line-height: 32px;
+			min-height: 32px;
+		}
+		
+		.tree-select-list-panel:hover {
+			border: 1px solid #508cf9;
+		}
+		
+		.tree-select-list-panel-focus {
+			border: 1px solid #508cf9;
+			outline: 0 none;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(80, 140, 249, .6);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(80, 140, 249, .6);
+		}
+		
+		.tree-select-list-panel ul {
+			height: 100%;
+			padding: 6px 0 0 5px;
+		}
+		
+		.tree-select-list-panel .panel-placeholder {
+			padding: 0 0 0 10px;
+			margin-right: 15px;
+			font-size: 12px;
+			color: hsl(0, 0%, 33%);
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		
+		.tree-select-list-panel .panel-single {
+			padding: 0 0 0 10px;
+			margin-right: 15px;
+			font-size: 12px;
+			color: hsl(0, 0%, 33%);
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			height: 32px;
+			line-height: 32px;
+		}
+		
+		.tree-select-list-panel .panel-single .icon-image {
+			height: 20px;
+			margin-right: 4px;
+			vertical-align: top;
+			margin-top: 6px;
+		}
+		
+		.tree-select-list-panel .panel-single .icon-text {}
+		
+		.tree-select-list-panel .panel-viewport-header {
+			display: none;
+		}
+		
+		.tree-select-list-panel .panel-viewport-item {
+			float: left;
+			margin: 0 5px 6px 0;
+			padding: 2px 5px;
+			border: 1px solid hsl(0, 0%, 67%);
+			max-width: 100%;
+			border-radius: 3px;
+			background-color: hsl(0, 0%, 93%);
+			background-size: 100% 19px;
+			background-repeat: repeat-x;
+			background-clip: padding-box;
+			box-shadow: 0 0 2px hsl(0, 100%, 100%) inset, 0 1px 0 hsla(0, 0%, 0%, 0.05);
+			color: hsl(0, 0%, 20%);
+			line-height: 13px;
+			white-space: nowrap;
+			cursor: default;
+		}
+		
+		.tree-select-list-panel .ui-selectbox-icon {
+			position: absolute;
+			right: 4px;
+			top: 50%;
+			margin-top: -2px;
+			border-top: 5px solid hsl(0, 0%, 65%);
+			border-left: 5px dashed hsla(0, 0%, 0%, 0);
+			border-right: 5px dashed hsla(0, 0%, 0%, 0);
+			border-bottom: 0 none;
+			display: block;
+			width: 0;
+			height: 0;
+			overflow: hidden;
+			line-height: 0;
+			font-size: 0;
+		}
+		
+		.tree-select-list-panel.ui-selectbox-open {
+			background-color: hsl(36, 29%, 97%);
+		}
+		
+		.tree-select-list-panel.ui-selectbox-open .ui-selectbox-icon {
+			margin-top: -3px;
+			border-top: 0 none;
+			border-bottom: 5px solid hsl(0, 0%, 65%);
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="body-warp">
+		<div class="panel">
+
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">上级单位<b class="red">*</b></label>
+							</td>
+							<td>
+								<!-- 树选择列表 -->
+								<!-- 树选择列表视图面板，默认自动生成，如需另外绑定则配置树参数，html里通过 data-mode是绑定与之相关的模式，-->
+								<!--<div id="panelViewport" data-mode="tree" class="tree-select-list-panel panel-viewport">
+										<div class="panel-placeholder">请选择</div>
+										<i class="ui-selectbox-icon"></i>
+									</div>-->
+								<ul id="treeSelectList" class="tree-select-list ui-selectbox-dropdown">
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">上级单位<b class="red">*</b></label>
+							</td>
+							<td>
+								<select class="form-select" id="org-type">
+									<option value="">请选择条件</option>
+									<option>按名称</option>
+									<option>按身份</option>
+									<option>按时间</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="select-parent">上级单位<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="select-parent" type="text" value="" data-check="must" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">单位类别<b class="red">*</b></label>
+							</td>
+							<td>
+								<select class="form-select" id="org-type">
+									<option value="">请选择条件</option>
+									<option>按名称</option>
+									<option>按身份</option>
+									<option>按时间</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">二级分类<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="cxselect">
+									<select class=" level01" disabled="disabled" data-first-title="选择区县"></select>
+									<select class=" level02" disabled="disabled" data-first-title="选择区"></select>
+									<select class=" level03" disabled="disabled" data-first-title="选择县"></select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="org-type">办学性质</label>
+							</td>
+							<td>
+								<select class="form-select" id="org-type">
+									<option value="">请选择条件</option>
+									<option>按名称</option>
+									<option>按身份</option>
+									<option>按时间</option>
+								</select>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input class="btn btn-success btn-large" type="submit" value="保存">
+								<input class="btn btn-danger btn-large" type="reset" value="重置">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+
+	<script type="text/javascript" src="../ext/zw/check.js"></script>
+	<script type="text/javascript" src="../ext/cxselect/jquery.cxselect.js"></script>
+	<script type="text/javascript" src="../ext/zTree/js/jquery.ztree.core-3.5.min.js"></script>
+	<script type="text/javascript" src="../ext/zTree/js/jquery.ztree.excheck-3.5.min.js"></script>
+	<link rel="stylesheet" href="../ext/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+	<script type="text/javascript" src="../ext/layer/layer.min.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script type="text/javascript" src="../ext/zw/popupselectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/panelviewport.js"></script>
+
+	<script>
+		$(function () {
+
+
+			//初始化树（树的初始化要放在最后）
+			initTree();
+			/* 初始化控件 */
+			initWidget();
+			/*侦听*/
+			addListeners();
+		});
+
+		/*初始化树*/
+		function initTree() {
+
+			var zTreeObj;
+			//初始化树
+			var setting = {
+
+				/*			//数据关键词字段配置
+								data: {
+									key: {
+										//add 可以像ztree 节点数据保存节点名称一样，也可以保存图片关键词了，默认为image
+										image: "image",
+										//add 所有子项的总数，默认total
+										total: "total",
+										//add 直接子项的总数，默认count
+										count: "count"
+									}
+								},*/
+
+				//显示效果
+				view: {
+					//add 在不开启选框模式的情况下，高亮的选择模式，默认为单选
+					//如果同时开启选框和高亮多选，将以选框为主，忽略高亮
+					enableMultiple: true,
+					//add 是否开启自动创建视图面板，默认为开启
+					//不开启时，创建视图面板，再绑定到树上面
+					enabledPanel: true,
+					//多选时限制最大选择数目，默认不限制
+					multipleSize: null
+				},
+
+				//选框模式
+				check: {
+					enable: false,
+					//开启选择模式后，多选checkbox|单选|radio，默认单选
+					chkStyle: "checkbox",
+				},
+			};
+
+			var zNodes = [
+				{
+					//todo 默认选中状态
+					name: "掌网科技，我有链接",
+					image: "../images/icon/icon2.png",
+					url: "http://www.baidu.com",
+					open: true,
+					total: 900,
+					count: 2,
+					children: [
+						{
+							name: "设计组",
+							open: true,
+
+							children: [
+								{
+									name: "严听听",
+									image: "../images/icon/icon3.png",
+
+									open: true,
+									children: [
+										{
+											name: "我是她的大徒弟"
+										},
+										{
+											name: "二师兄",
+											image: "../images/icon/icon4.png",
+
+										},
+										{
+											name: "三师弟"
+										},
+										{
+											name: "小白"
+										}
+						]
+								},
+								{
+									name: "朱建伟",
+									image: "../images/icon/icon5.png",
+
+								}
+						]
+
+						},
+						{
+							name: "技术组",
+							open: true,
+
+							children: [
+								{
+									name: "陈冬敏",
+
+								},
+								{
+									name: "潘克胜",
+
+								},
+								{
+									name: "邹崇锦",
+
+								}
+						]
+						},
+						{
+							name: "测试组",
+							children: [
+								{
+									name: "许凤平",
+
+								}
+						]
+						},
+				]
+				}, {
+					name: "职业打杂公司",
+					open: true,
+					children: [
+						{
+							name: "前端组",
+							children: [
+								{
+									name: "莫胜利",
+
+								},
+								{
+									name: "替补位"
+								}
+						]
+
+						},
+
+				]
+				},
+		];
+
+			//单一的结构
+			var zNodes2 = [
+				{
+					name: "智课",
+					image: "../images/icon/icon2.png",
+					total: 900,
+				},
+				{
+					name: "主平台",
+					image: "../images/icon/icon3.png",
+				},
+				{
+					name: "评比",
+					image: "../images/icon/icon4.png",
+				},
+				{
+					name: "评价",
+					image: "../images/icon/icon5.png",
+				},
+				{
+					name: "信息",
+					image: "../images/icon/icon6.png",
+				},
+				{
+					name: "资讯",
+					image: "../images/icon/icon7.png",
+				}, {
+					name: "信息",
+					image: "../images/icon/icon8.png",
+				}, {
+					name: "组织",
+					image: "../images/icon/icon9.png",
+				}, {
+					name: "权限",
+					image: "../images/icon/icon10.png",
+				}, {
+					name: "图片",
+					image: "../images/icon/icon11.png",
+				}, {
+					name: "视频",
+					image: "../images/icon/icon12.png",
+				},
+		];
+			//全局性树列，默认使用id名为#treeList；树内容区默认使用ID名使用#treeContent，两者绑定，折叠展开树列时，树内容自适应窗口布局
+			//当一个页面出现多个树列时，其他树列使用非#treeList名称，如果*还想*绑定树内容自适应窗口，请在setting里的view里绑定treeContentId的ID名称
+			//
+			/*
+						var treeObj = $("#treeList").createTree(setting, zNodes);
+			*/
+			zTreeObj = $("#treeSelectList").createTreeSelectList(setting, zNodes);
+
+			/*			var panelviewport = $("#panelViewport").panelviewport(zTreeObj, function (that) {
+							//选区默认不可见，点击多选框后，才可见，以下语句默认使选区可见
+							that.$me.show()
+						});*/
+
+			//选中第一个子树
+			//treeObj.selectNode(treeObj.getNodes()[0].children[0]);
+
+		}
+
+
+		/*初始化控件*/
+		function initWidget() {
+
+			var cxSelectSetting = {
+				//url:'js/cityData.min.json',
+				selects: ['level01', 'level02', 'level03'],
+				nodata: 'none',
+				url: [
+					{
+						'v': '1',
+						'n': '第一级 >',
+						's': [
+							{
+								'v': '2',
+								'n': '第二级 >',
+								's': [
+									{
+										'v': '3',
+										'n': '第三级 >',
+										's': [
+											{
+												'v': '4',
+												'n': '第四级 >',
+												's': [
+													{
+														'v': '5',
+														'n': '第五级 >',
+														's': [
+															{
+																'v': '6',
+																'n': '第六级 >'
+															}
+            ]
+													}
+          ]
+											}
+        ]
+									}
+      ]
+							}
+    ]
+					},
+					{
+						'v': 'test number',
+						'n': '测试数字',
+						's': [
+							{
+								'v': 'text',
+								'n': '文本类型',
+								's': [
+									{
+										'v': '4',
+										'n': '4'
+									},
+									{
+										'v': '5',
+										'n': '5'
+									},
+									{
+										'v': '6',
+										'n': '6'
+									},
+									{
+										'v': '7',
+										'n': '7'
+									},
+									{
+										'v': '8',
+										'n': '8'
+									},
+									{
+										'v': '9',
+										'n': '9'
+									},
+									{
+										'v': '10',
+										'n': '10'
+									}
+      ]
+							},
+							{
+								'v': 'number',
+								'n': '数值类型',
+								's': [
+									{
+										'v': 11,
+										'n': 11
+									},
+									{
+										'v': 12,
+										'n': 12
+									},
+									{
+										'v': 13,
+										'n': 13
+									},
+									{
+										'v': 14,
+										'n': 14
+									},
+									{
+										'v': 15,
+										'n': 15
+									},
+									{
+										'v': 16,
+										'n': 16
+									},
+									{
+										'v': 17,
+										'n': 17
+									}
+      ]
+							}
+    ]
+					},
+					{
+						'v': 'test boolean',
+						'n': '测试 Boolean 类型',
+						's': [
+							{
+								'v': true,
+								'n': true
+							},
+							{
+								'v': false,
+								'n': false
+							}
+    ]
+					},
+					{
+						v: 'test quotes',
+						n: '测试属性不加引号',
+						s: [
+							{
+								v: 'quotes',
+								n: '引号'
+							}
+    ]
+					},
+					{
+						v: 'test other',
+						n: '测试奇怪的值',
+						s: [
+							{
+								v: '[]',
+								n: '数组（空）'
+							},
+							{
+								v: [1, 2, 3],
+								n: '数组（数值）'
+							},
+							{
+								v: ['a', 'b', 'c'],
+								n: '数组（文字）'
+							},
+							{
+								v: new Date(),
+								n: '日期'
+							},
+							{
+								v: new RegExp('\\d+'),
+								n: '正则对象'
+							},
+							{
+								v: /\d+/,
+								n: '正则直接量'
+							},
+							{
+								v: {},
+								n: '对象'
+							},
+							{
+								v: document.getElementById('custom_data'),
+								n: 'DOM'
+							},
+							{
+								v: null,
+								n: 'Null'
+							},
+							{
+								n: '未设置 value'
+							}
+    ]
+					},
+					{
+						'v': '',
+						'n': '无子级'
+					}
+  ],
+			}
+
+			//初始化级联下拉菜单
+			$('#cxselect').cxSelect(cxSelectSetting);
+
+			//初始化独立下拉菜单
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+		}
+
+		function addListeners() {
+			$("#selectfather").click(function () {
+				showDom('组织管理', '#category', 600, 400);
+			})
+		}
+	</script>
+</body>
+
+</html>

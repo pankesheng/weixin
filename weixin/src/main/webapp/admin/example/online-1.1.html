@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/online.css" />
+</head>
+
+<body>
+	<div class="online wrapper">
+		<div class="header">
+			<span class="e-clock">15:28:36</span>&nbsp;当前在线：<em>28</em>&nbsp;人<a href="javascript:void(0);" class="btn btn-primary btn-freshen"><i class="iconfont">&#xe623;</i>刷新</a>
+		</div>
+		<div class="online-content">
+			<div class="toolbar clearfix">
+				<div class="order">
+					<div class=" ui-droplist">
+						<a id="add-btn" class="btn liketext" href="javascript:void(0);">新增<i class="ui-selectbox-icon"></i></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option" style="min-width: 66px; display: none;">
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank">按关注时间排序</a></dd>
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank">按最近更新排序</a></dd>
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank">按粉丝数排序</a></dd>
+						</dl>
+					</div>
+				</div>
+				<div class="search">
+					<label for="name">姓名:</label>
+					<input class="text" type="text" name="name" id="name" />
+					<label for="unit">单位:</label>
+					<input class="text" type="text" name="unit" id="unit" />
+					<label for="phone">手机号码:</label>
+					<input class="text" pattern="[0-9]{11}" type="text" name="phone" id="phone" />
+					<a href="javascript:void(0);" class="btn btn-large btn-primary btn-search"><i class="iconfont">&#xe61b;</i>搜索</a>
+				</div>
+			</div>
+			<div class="info-card-list clearfix" id="builder">
+
+
+			</div>
+			<div id="Pagination" class="pagination">
+
+			</div>
+		</div>
+		<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="../ext/zw/lui/common.js"></script>
+		<script type="text/javascript" src="../ext/zw/lui/luicontroller.js"></script>
+		<script type="text/javascript" src="../ext/zw/lui/pagination.js"></script>
+		<script type="text/javascript" src="../ext/zw/lui/builder.js"></script>
+		<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+		<script>
+			$(function () {
+				//开启控制台测试输出
+				logDebug = true;
+
+				var builderSetting = {
+					key: {
+						dataKey: "d"
+					},
+					async: {
+						enabled: true,
+						url: "data.json"
+					},
+					view: {
+						nodeFormater: function (nodeData, nodeIndex) {
+
+							//这段代码请自已按条件写！
+							/*<!-- 文章短触发JS,文单过长时输出链接 -->
+					<span class="view transition"><b class="symbol">&gt;</b>展开详情</span>
+					<!--<a class="view transition" href="###">查看详情</a>-->*/
+
+							//0 = student = 学生, 1 = parent = 家长, 2 = teacher = 高级教师
+							var roleClass = ["student", "parent", "teacher"];
+							var roleName = ["学生", "家长", "高级教师"];
+
+							//0 = 关注, 1 = 已关注, 2 = 互相关注
+
+							var followName = ["关注", "已关注", "互相关注"];
+
+							var followHtml
+							if (nodeData.onlinefollow == 0) {
+								followHtml = '<a href="javascript:void(0);" class="btn btn-default btn-interest-not"><i class="iconfont">&#xe619;</i>关注</a>'
+							} else if (nodeData.onlinefollow == 1) {
+								followHtml = '<a href="javascript:void(0);" class="btn btn-default btn-interest-on"><i class="iconfont">&#xe64a;</i>已关注</a>'
+							} else if (nodeData.onlinefollow == 2) {
+								followHtml = '<a href="javascript:void(0);" class="btn btn-default btn-interest-mutual"><i class="iconfont">&#xe649;</i>互相关注</a>'
+							}
+
+							return '<div><div class="node-container clearfix"><div class="avator"><div class="image"><img src="' + nodeData.onlineavatar + '" alt="头像" title="' + nodeData.onlineuserName + '" /></div></div><div class="info"><div class="info-container"><div class="imp"><em class="name">' + nodeData.onlineuserName + '</em><span class="nickname">(' + nodeData.onlinenickName + ')</span><span class="role ' + roleClass[nodeData.onlinerole] + '"></span></div><div><span class="interest">关注：' + nodeData.onlineinterestCount + '</span><span class="fans">粉丝：' + nodeData.onlinefansCount + '</span></div><div>单位：' + nodeData.onlineuserDeptName + '</div><div>身份：' + roleName[nodeData.onlinerole] + '</div><div>分类：' + nodeData.onlinecatalogName + '</div><div>手机号码：' + nodeData.onlinephone + '</div><div>IP地址：' + nodeData.onlineip + '</div></div></div><div class="follow">' + followHtml + '<a href="javascript:void(0);" class="btn btn-default btn-message">发短信</a></div></div></div>';
+						}
+					},
+				}
+
+				builderO = $("#builder").builder(builderSetting, function ($addNode, builderObj) {
+
+					//初始化内容后，再初始化分页配置
+					var pagingSetting = {
+						store: {
+							//从页面请求数据从获得总文章数量
+							total: builderObj.config.store.total,
+						},
+						view: {
+							//关闭限制树选择
+							//enabledPageLimit: false
+						},
+						callback: {
+							nodeClick: function ($currentNode, currentData, pagingObj) {
+								if (currentData.state != "disabled") {
+									//加载方式1：静态测试请求资讯内容
+									//builderObj.load("data2.json")
+									//加载方式2：持续加载
+									builderObj.load("data2.json", true)
+
+									/*								//post请求
+																	var ajaxSetup = {
+																		enabled: true,
+																		url: "data2.json",
+																		type: "post",
+																		//请求查询条件
+																		data: {
+																			//查询位置
+																			offset: (currentData.pageNum - 1) * pagingObj.config.view.pagingSize,
+																			limit: pagingObj.config.view.limit
+																		}
+																	};
+																	
+																	//测试：查看请求的查询条件参数是否有传入
+																	builderObj.config.callback.asyncBeforeSendCallback=function(jqXHR, ajaxSetup){
+																		log(jqXHR)
+																		log(ajaxSetup)
+																	}
+
+																	//覆盖原ajax配置
+																	$.extend(true, builderObj.config.async, ajaxSetup);
+																	//发起请求，载入数据
+																	builderObj.load(ajaxSetup);*/
+								}
+							},
+							jumpChange: function (jumpNum, pagingO) {
+								builderObj.load("data2.json")
+									//代码参考nodeClick
+							},
+							limitChange: function (limitSize, pagingO) {
+								builderObj.load("data2.json")
+									//代码参考nodeClick
+
+							}
+
+						}
+					}
+					pagingO = $("#Pagination").pagination(pagingSetting);
+				});
+
+
+				/* 初始化控件 */
+				initWidget();
+
+				/*侦听*/
+				addListeners();
+
+			});
+
+			/*初始化控件*/
+			function initWidget() {
+				//初始化按钮下拉，require tool.js
+				$('.ui-droplist').dropList();
+			}
+
+			/*侦听*/
+			function addListeners() {
+				//已关注和互相关注事件：取消关注
+
+				//暂存原html内容和原样式和现按钮宽度
+
+				var oriHtml, oriClass, oriWidth;
+
+				$("#builder").delegate(".btn-interest-on,.btn-interest-mutual", "mouseenter mouseleave", function (e) {
+					var type = e.type;
+					if (type == "mouseleave") {
+						$(this).removeClass("btn-interest-off");
+						$(this).html(oriHtml);
+					} else if (type == "mouseenter") {
+						oriHtml = $(this).html();
+						oriClass = $(this).attr("class");
+						oriWidth = $(this).width();
+						$(this).text("取消关注");
+						$(this).addClass("btn-interest-off");
+						$(this).css("width", oriWidth);
+					}
+
+				})
+			}
+		</script>
+</body>
+
+</html>

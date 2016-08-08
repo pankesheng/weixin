@@ -1,0 +1,2940 @@
+@charset "UTF-8";
+/* 重置 */
+/* line 36, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0; }
+
+/* line 41, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+body {
+  font: 12px/1.5 Tahoma, "宋体", Arial, Helvetica, sans-serif; }
+
+/* line 45, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* line 51, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+fieldset,
+img {
+  border: 0; }
+
+/* line 63, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal; }
+
+/* line 69, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+ol,
+ul {
+  list-style: none; }
+
+/* line 73, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+h1 {
+  font-size: 36px;
+  font-weight: bold; }
+
+/* line 78, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+h2 {
+  font-size: 30px;
+  font-weight: bold; }
+
+/* line 83, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+h3 {
+  font-size: 24px;
+  font-weight: bold; }
+
+/* line 88, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+h4 {
+  font-size: 18px;
+  font-weight: bold; }
+
+/* line 93, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+h5 {
+  font-size: 14px;
+  font-weight: bold; }
+
+/* line 98, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+h6 {
+  font-size: 12px;
+  font-weight: bold; }
+
+/* line 104, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+q:before,
+q:after {
+  content: ''; }
+
+/* line 109, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+abbr,
+acronym {
+  border: 0; }
+
+/* line 114, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+a,
+a:focus {
+  text-decoration: none;
+  color: #366dd1;
+  outline: none; }
+
+/* line 120, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+a:hover {
+  color: #fb1454;
+  text-decoration: underline; }
+
+/* line 125, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both; }
+
+/* line 133, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.clearfix {
+  *zoom: 1; }
+
+/* line 137, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.em {
+  color: #508cf9; }
+
+/* line 141, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.hide {
+  display: none; }
+
+/* line 145, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.left {
+  float: left; }
+
+/* line 149, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.right {
+  float: right; }
+
+/* line 153, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.p-10 {
+  padding: 10px; }
+
+/* line 157, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ml-10 {
+  margin-left: 10px; }
+
+/* line 161, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.mt-10 {
+  margin-top: 10px; }
+
+/* line 165, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.mr-10 {
+  margin-right: 10px; }
+
+/* line 169, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.mb-0 {
+  margin-bottom: 0px; }
+
+/* line 173, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.mb-10 {
+  margin-bottom: 5px; }
+
+/* line 177, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.mb-10 {
+  margin-bottom: 10px; }
+
+/* line 181, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.display-block {
+  display: block; }
+
+/* line 185, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.badge {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  min-width: 10px;
+  padding: 5px 7px;
+  margin: 0 5px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #777;
+  border-radius: 4px; }
+
+/* 标签 */
+/* line 206, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.label {
+  display: inline;
+  *zoom: 1;
+  padding: 0.3em 0.6em 0.3em 0.6em;
+  *padding-top: .5em;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em; }
+
+/* line 220, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.label-default {
+  background-color: #777; }
+
+/* line 224, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.label-success {
+  background-color: #48A348; }
+
+/* line 228, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.label-primary {
+  background-color: #417dea; }
+
+/* line 232, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.label-info {
+  background-color: #5bc0de; }
+
+/* line 236, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.label-warning {
+  background-color: #f7c228; }
+
+/* line 240, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.label-danger {
+  background-color: #d9534f; }
+
+/* 颜色 */
+/* line 247, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.orange {
+  background: #f6742e; }
+  /* line 249, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .orange .badge {
+    background: #fff;
+    color: #f6742e; }
+
+/* line 255, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.green {
+  background: #07b57a; }
+  /* line 257, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .green .badge {
+    background: #fff;
+    color: #07b57a; }
+
+/* line 263, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.blue {
+  background: #1bacff; }
+  /* line 265, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .blue .badge {
+    background: #fff;
+    color: #1bacff; }
+
+/* line 271, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.azury {
+  background: #78a2f0; }
+  /* line 273, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .azury .badge {
+    background: #fff;
+    color: #78a2f0; }
+
+/* line 279, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.yellow {
+  background: #fa9d3a; }
+  /* line 281, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .yellow .badge {
+    background: #fff;
+    color: #fa9d3a; }
+
+/* line 287, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.darkgreen {
+  background: #008e89; }
+  /* line 289, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .darkgreen .badge {
+    background: #fff;
+    color: #008e89; }
+
+@font-face {
+  font-family: 'iconfont';
+  src: url("../fonts/iconfont.eot");
+  /* IE9*/
+  src: url("../fonts/iconfont.eot?#iefix") format("embedded-opentype"), url("../fonts/iconfont.woff") format("woff"), url("../fonts/iconfont.ttf") format("truetype"), url("../fonts/iconfont.svg#iconfont") format("svg");
+  /* iOS 4.1- */ }
+
+/* line 306, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+/* line 314, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.red {
+  color: #d44950; }
+
+/* line 318, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.body-warp {
+  background-color: #eeedec;
+  padding: 10px; }
+
+/* line 323, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.tree-list {
+  position: absolute;
+  z-index: 1000;
+  min-width: 200px;
+  min-height: 730px;
+  margin-right: 10px;
+  overflow-y: auto;
+  overflow-x: hidden; }
+  /* line 331, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .tree-list .panel {
+    min-height: 33px; }
+
+/* line 336, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.tree-content {
+  margin-left: 232px; }
+
+/* line 340, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.tree-list-scroll {
+  position: absolute !important;
+  z-index: 1000;
+  width: 200px;
+  min-height: 730px;
+  margin-right: 10px; }
+  /* line 346, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .tree-list-scroll .panel {
+    min-height: 33px; }
+
+/* line 351, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.tree-content-absolute {
+  margin-left: 210px; }
+
+/* 警告框 */
+/* line 358, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.alert {
+  padding: 10px;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  vertical-align: middle; }
+  /* line 364, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .alert.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6; }
+  /* line 369, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .alert.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1; }
+  /* line 374, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .alert.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc; }
+  /* line 379, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .alert.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1; }
+
+/* line 386, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px; }
+
+/* 信息提示和模态窗 */
+/* line 397, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.dialog {
+  position: absolute;
+  z-index: 99999;
+  text-align: left;
+  background-color: #fbfbfb;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  border: 1px solid #e1e1e1;
+  font-size: 14px;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-clip: padding-box;
+  outline: none;
+  border-radius: 4px; }
+  /* line 412, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .dialog .dialog-header {
+    position: relative;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e1e1e1;
+    background-color: #f9f9f7;
+    overflow: hidden;
+    zoom: 1;
+    line-height: 14px; }
+    /* line 420, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .dialog .dialog-header .close-dialog {
+      float: right;
+      font-size: 18px;
+      color: #c13a36;
+      cursor: pointer; }
+  /* line 427, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .dialog.alert-tip {
+    width: 200px;
+    padding: 15px;
+    text-align: center; }
+  /* line 432, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .dialog .dialog-body {
+    padding: 20px;
+    text-align: center; }
+    /* line 435, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .dialog .dialog-body .btn {
+      margin: 0 10px; }
+
+/* line 441, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.modal-dialog {
+  width: auto !important;
+  width: 320px;
+  min-width: 260px; }
+
+/* line 447, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.shade {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0.6;
+  filter: alpha(opacity=60); }
+
+/* 按钮 */
+/* line 462, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.btn {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding: 4px 10px;
+  color: #333;
+  font-size: 12px;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  text-align: center;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  vertical-align: middle;
+  white-space: nowrap;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 2px; }
+  /* line 483, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn:hover {
+    border-color: #cfcfcf;
+    background-color: #e6e6e6;
+    text-decoration: none;
+    color: #333; }
+  /* line 489, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn:active {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAyCAYAAACd+7GKAAAAJklEQVQIW2P4//+/NxMDA8N/JgYGhn+oLDQu7Vk/GP4zMXDQx3IA0To1YWcEwtQAAAAASUVORK5CYII=");
+    background-repeat: repeat-x; }
+  /* line 493, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.disabled {
+    cursor: default;
+    filter: alpha(opacity=65);
+    opacity: .65; }
+  /* line 498, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.btn-primary {
+    color: #fff;
+    border-color: #366dd1;
+    background-color: #417dea; }
+    /* line 502, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .btn.btn-primary:hover {
+      border-color: #225ac0;
+      background-color: #3772dc;
+      color: #fff; }
+  /* line 508, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.btn-info {
+    color: #fff;
+    border-color: #46b8da;
+    background-color: #5bc0de; }
+    /* line 512, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .btn.btn-info:hover {
+      border-color: #269abc;
+      background-color: #5bc0de;
+      color: #fff; }
+  /* line 518, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.btn-success {
+    color: #fff;
+    border-color: #368B36;
+    background-color: #48A348; }
+    /* line 522, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .btn.btn-success:hover {
+      border-color: #2F792F;
+      background-color: #48A348;
+      color: #fff; }
+  /* line 528, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.btn-warning {
+    color: #fff;
+    border-color: #e9b318;
+    background-color: #f7c228; }
+    /* line 532, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .btn.btn-warning:hover {
+      border-color: #dca70e;
+      background-color: #e9b51c;
+      color: #fff; }
+  /* line 538, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a; }
+    /* line 542, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .btn.btn-danger:hover {
+      color: #fff;
+      background-color: #d9534f;
+      border-color: #ac2925; }
+  /* line 548, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.btn-mini {
+    padding: 2px 5px; }
+  /* line 551, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.btn-large {
+    padding: 5px 20px; }
+  /* line 554, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn.no-padding {
+    padding: 0; }
+  /* line 557, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .btn .iconfont {
+    font-size: 12px;
+    margin-right: 5px;
+    vertical-align: bottom;
+    *vertical-align: baseline; }
+
+/* 表单 */
+/* line 568, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+form {
+  /* 基本排列 */
+  /* 水平排列 */ }
+  /* line 570, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form .form-label {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 86px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-weight: 500;
+    font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+    vertical-align: middle; }
+  /* line 581, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form .label-textarea {
+    vertical-align: top; }
+  /* line 584, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form .ui-selectbox {
+    width: 365px; }
+  /* line 587, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form .error-input {
+    border-color: #DF676B;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(223, 103, 107, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(223, 103, 107, 0.6); }
+  /* line 593, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form .form-group {
+    text-align: center; }
+  /* line 597, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form.form-inline {
+    position: relative; }
+    /* line 599, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    form.form-inline .fixed-right {
+      position: absolute;
+      right: 0px;
+      top: 0px; }
+    /* line 604, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    form.form-inline label {
+      margin-bottom: 0; }
+    /* line 607, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    form.form-inline .form-group {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: auto;
+      vertical-align: middle; }
+      /* line 613, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      form.form-inline .form-group.form-row {
+        display: block;
+        text-align: left; }
+    /* line 618, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    form.form-inline .form-control {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: auto;
+      margin-right: 10px; }
+    /* line 626, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    form.form-inline .ui-selectbox {
+      margin-right: 10px;
+      width: 168px; }
+  /* line 631, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form .form-text {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei; }
+  /* line 638, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form .form-mutiple-text {
+    margin: 10px 0; }
+  /* line 641, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  form .alert {
+    display: inline-block;
+    *display: inline;
+    padding: 5px;
+    *zoom: 1; }
+
+/* line 649, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-choice-area {
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei; }
+  /* line 651, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-choice-area .form-choice-head {
+    margin: 0 0 20px;
+    font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei; }
+  /* line 656, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-choice-area .form-display,
+  .form-choice-area .form-table {
+    padding-left: 30px; }
+
+/* line 662, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-display .form-display-row {
+  position: relative; }
+  /* line 664, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-display .form-display-row .form-label {
+    position: absolute;
+    top: 8px;
+    left: 0px; }
+    /* line 668, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .form-display .form-display-row .form-label.form-label-input {
+      top: 16px; }
+  /* line 672, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-display .form-display-row .form-content {
+    margin-bottom: 10px;
+    margin-left: 94px;
+    /*.table-tool-bar {
+				padding: 0px;
+				padding-bottom: 10px;
+			}*/ }
+
+/* line 682, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-display .form-display-gallery .form-option-list {
+  margin-right: 40px;
+  padding-bottom: 10px; }
+  /* line 685, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-display .form-display-gallery .form-option-list img {
+    display: block;
+    font-size: 0px;
+    width: 250px;
+    height: 141px;
+    margin-top: 10px; }
+
+/* line 694, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-display .form-display-button {
+  text-align: center; }
+
+/* line 699, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-table {
+  display: block; }
+  /* line 700, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-table.middle-label .form-label {
+    width: 150px; }
+  /* line 703, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-table.big-label .form-label {
+    width: 200px; }
+  /* line 707, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-table tbody {
+    display: block; }
+  /* line 710, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-table tr {
+    display: block; }
+    /* line 713, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .form-table tr.valign-top td,
+    .form-table tr.valign-top .alert {
+      vertical-align: top; }
+  /* line 717, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-table td {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    _padding-bottom: 10px; }
+    /* line 722, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .form-table td > * {
+      margin-bottom: 10px; }
+    /* line 725, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .form-table td .mb-5 {
+      margin-bottom: 5px; }
+  /* line 729, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-table .form-group {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: auto;
+    vertical-align: middle; }
+    /* line 735, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .form-table .form-group.form-row {
+      display: block;
+      text-align: left; }
+  /* line 740, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-table .alert {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1; }
+
+/* line 747, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.reset-table {
+  display: table; }
+  /* line 749, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .reset-table tr {
+    display: table-row; }
+  /* line 752, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .reset-table td {
+    display: table-cell; }
+
+/* line 757, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.button-group {
+  margin-left: 95px; }
+  /* line 759, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .button-group .c-btn {
+    margin-right: 10px; }
+
+/* line 764, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-group {
+  margin-bottom: 10px;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  *zoom: 1; }
+
+/* line 770, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-option-group {
+  width: 367px;
+  margin-top: -8px; }
+
+/* line 775, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-option-list {
+  float: left;
+  margin-top: 8px; }
+
+/* line 780, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-option-list-all {
+  float: none; }
+
+/* line 784, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-control {
+  width: 345px;
+  height: 20px;
+  padding: 5px 10px;
+  /*
+	line-height: 20px;
+*/
+  color: #555;
+  border: 1px solid #d2d2d2;
+  background-color: #fff;
+  outline: 0;
+  vertical-align: middle; }
+  /* line 796, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-control:focus {
+    border-color: #508cf9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6); }
+  /* line 802, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-control.date {
+    background: #fff url("../images/icon-sprite.gif") right -50px no-repeat; }
+  /* line 805, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-control.readonly {
+    background-color: #eee;
+    color: #555; }
+  /* line 809, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-control[disabled] {
+    color: #999; }
+
+/* line 814, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-hint {
+  display: inline-block;
+  height: 20px;
+  padding: 5px 10px;
+  line-height: 20px;
+  color: #555;
+  border: 1px solid #d2d2d2;
+  background-color: #e5e5e5;
+  outline: 0;
+  margin-right: -5px;
+  vertical-align: middle; }
+
+/* line 827, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-textarea {
+  width: 345px;
+  height: 75px;
+  padding: 5px 10px;
+  *line-height: 20px;
+  color: #555;
+  border: 1px solid #d2d2d2;
+  background-color: #fff;
+  outline: 0;
+  overflow: auto;
+  vertical-align: middle; }
+  /* line 838, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .form-textarea:focus {
+    border-color: #508cf9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6); }
+
+/* line 846, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-select {
+  width: 367px;
+  height: 32px;
+  border: 1px solid #d2d2d2; }
+
+/* line 853, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-radio,
+.form-checkbox {
+  margin: 0;
+  padding: 0;
+  width: 13px;
+  height: 13px;
+  vertical-align: -2px;
+  *vertical-align: middle;
+  font: 13px Arial; }
+
+/* line 863, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-wrap {
+  padding: 20px;
+  background-color: #F9F7F4; }
+
+/* line 868, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.multiple-form-info {
+  width: 74px;
+  text-align: center; }
+
+/* line 873, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.pic-preview {
+  position: relative;
+  display: none;
+  padding: 5px;
+  border: 1px solid #d2d2d2;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  text-align: center; }
+  /* line 880, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .pic-preview img {
+    display: block;
+    width: 355px; }
+  /* line 884, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .pic-preview .pic-preview-text {
+    margin-top: 5px; }
+
+/* 路径 */
+/* line 892, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.place {
+  height: 35px;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  line-height: 35px;
+  background-color: #fff;
+  border-bottom: 1px solid #d2d2d2; }
+  /* line 898, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .place .label-span {
+    font-weight: bold;
+    float: left;
+    margin: 0 10px; }
+
+/* 面板 */
+/* line 908, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.panel {
+  margin-bottom: 7px;
+  border: 1px solid #d2d2d2;
+  background-color: #f9f7f4;
+  *zoom: 1; }
+
+/* line 915, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.panel-title {
+  height: 34px;
+  font-size: 14px;
+  line-height: 34px;
+  color: #333;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  background-color: #eeedec;
+  border-bottom: 1px solid #d2d2d2; }
+  /* line 923, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .panel-title .form-icon {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 34px;
+    height: 34px;
+    border-right: 1px solid #d2d2d2;
+    background: url("../images/icon-sprite.gif") 9px -15px;
+    vertical-align: middle; }
+  /* line 933, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .panel-title .title-text {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 34px;
+    margin-left: 8px;
+    line-height: 34px;
+    vertical-align: middle; }
+
+/* line 944, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.panel-body {
+  padding: 20px; }
+
+/* 面板视图 */
+/* line 951, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.panel-viewport {
+  padding: 10px; }
+  /* line 954, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .panel-viewport .panel-viewport-header {
+    height: 34px;
+    font-size: 14px;
+    color: #333;
+    font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+    border-bottom: 1px solid #d2d2d2; }
+  /* line 961, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .panel-viewport .panel-viewport-item {
+    float: left;
+    margin: 10px 10px 0px 0;
+    padding: 8px 10px;
+    white-space: nowrap;
+    color: #333;
+    line-height: 12px;
+    box-shadow: 0 0 2px white inset;
+    border-radius: 3px;
+    background-color: #efefef;
+    background-size: 100% 19px;
+    background-repeat: repeat-x;
+    background-clip: padding-box;
+    border: 1px solid #aaa;
+    -webkit-user-select: none;
+    user-select: none; }
+    /* line 977, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .panel-viewport .panel-viewport-item img {
+      vertical-align: middle;
+      height: 14px; }
+    /* line 981, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .panel-viewport .panel-viewport-item span {
+      /*
+						vertical-align: middle;
+*/ }
+    /* line 986, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .panel-viewport .panel-viewport-item .iconfont {
+      font-size: 14px;
+      cursor: pointer; }
+  /* line 991, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .panel-viewport .panel-viewport-tools {
+    margin-top: 10px;
+    /*padding-top: 10px;
+		border-top: 1px solid #d2d2d2;*/ }
+
+/* line 998, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.highlight {
+  padding: 9px 14px;
+  margin-bottom: 14px;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  overflow: hidden;
+  *zoom: 1; }
+
+/* 标签 */
+/* line 1011, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.tabs {
+  height: 38px;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  border-bottom: 1px solid #d0dee5;
+  border-left: 1px solid #d3dbde;
+  *zoom: 1; }
+  /* line 1017, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .tabs li {
+    float: left;
+    height: 37px;
+    line-height: 37px;
+    background-color: #f2f6f7;
+    margin-left: -1px; }
+  /* line 1024, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .tabs .tabs-btn {
+    border: 1px solid #d3dbde;
+    display: block;
+    padding: 0 25px;
+    font-size: 14px;
+    color: #000; }
+    /* line 1030, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .tabs .tabs-btn.selected {
+      border-top: 2px solid #508cf9;
+      border-bottom: 1px solid #fff;
+      background-color: #fff;
+      font-weight: bold;
+      margin-top: -1px; }
+    /* line 1037, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .tabs .tabs-btn:hover {
+      text-decoration: none; }
+
+/* 标签 */
+/* line 1046, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.tabs2 {
+  height: 38px;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  border-bottom: 1px solid #d0dee5;
+  border-left: 1px solid #d3dbde;
+  *zoom: 1; }
+  /* line 1052, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .tabs2 .node {
+    float: left;
+    height: 37px;
+    line-height: 37px;
+    background-color: #f2f6f7;
+    margin-left: -1px;
+    padding: 0 25px;
+    border: 1px solid #d3dbde;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer; }
+    /* line 1063, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .tabs2 .node.selected {
+      border-top: 2px solid #508cf9;
+      border-bottom: 1px solid #fff;
+      background-color: #fff;
+      font-weight: bold;
+      margin-top: -1px; }
+  /* line 1071, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .tabs2 .tabs-btn {
+    display: block; }
+    /* line 1073, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .tabs2 .tabs-btn:hover {
+      text-decoration: none; }
+
+/* line 1079, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.tabs-content {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #d3dbde;
+  border-top: none; }
+
+/* line 1086, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+body.iframe {
+  background-color: transparent; }
+
+/* line 1090, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+body.iframe .body-warp {
+  background-color: transparent;
+  padding: 0px; }
+
+/* 标签 */
+/* line 1098, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.tags {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding: 2px 10px;
+  margin-right: 5px;
+  font-size: 14px;
+  color: #fff;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  background-color: #508cf9;
+  border-radius: 4px; }
+  /* line 1109, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .tags .close {
+    font-size: 14px;
+    cursor: pointer; }
+
+/* 列表 */
+/* line 1118, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.list {
+  position: relative;
+  margin-bottom: 10px;
+  background-color: #f9f7f4;
+  border: 1px solid #d2d2d2;
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+  *zoom: 1; }
+  /* line 1125, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list ul {
+    overflow: hidden;
+    *zoom: 1; }
+  /* line 1129, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-panel {
+    background-color: #fff;
+    padding: 10px 10px 0 10px;
+    overflow: hidden;
+    *zoom: 1; }
+  /* line 1135, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-item {
+    position: relative;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #d2d2d2;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    *zoom: 1; }
+  /* line 1145, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-label {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    padding-bottom: 1000px; }
+  /* line 1154, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-btn {
+    margin-left: 58px; }
+  /* line 1157, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-left {
+    float: left;
+    width: 48px; }
+  /* line 1161, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-center {
+    margin-left: 58px; }
+  /* line 1164, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-title {
+    margin-bottom: 10px; }
+  /* line 1167, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #666; }
+  /* line 1173, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-content {
+    margin-bottom: 10px;
+    color: #666;
+    overflow: hidden;
+    *zoom: 1; }
+    /* line 1178, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .list .list-content .float-img {
+      float: left;
+      margin-right: 10px; }
+  /* line 1183, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-first {
+    overflow: hidden;
+    *zoom: 1; }
+  /* line 1187, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .list .list-second {
+    margin: 10px 80px 0px 58px;
+    padding: 10px 0 10px 20px;
+    border: 1px solid #e4e4e4;
+    background-color: #fff;
+    overflow: hidden;
+    *zoom: 1; }
+
+/* 进度条 */
+/* line 1200, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.progress {
+  height: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); }
+  /* line 1208, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .progress .progress-bar {
+    float: left;
+    width: 0;
+    height: 100%;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    background-color: #417dea;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    -webkit-transition: width 0.6s ease;
+    -o-transition: width 0.6s ease;
+    transition: width 0.6s ease; }
+
+/* 文章 */
+/* line 1228, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.article {
+  line-height: 2;
+  font-size: 12px;
+  text-align: left;
+  font-family: 'Arial'; }
+  /* line 1233, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .article td {
+    vertical-align: top; }
+  /* line 1236, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .article .article-title {
+    width: 20%; }
+  /* line 1239, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .article .article-indent {
+    text-indent: 2em; }
+
+/* 下拉框样式 */
+/* line 1247, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox {
+  position: relative;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  height: 32px;
+  padding: 0;
+  line-height: 32px;
+  text-align: left;
+  border: 1px solid #dadbda;
+  background-color: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: 0 none;
+  *overflow: visible;
+  *zoom: 1; }
+
+/* line 1265, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-open {
+  background-color: #f9f7f4; }
+
+/* line 1269, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox:hover {
+  border: 1px solid #508cf9; }
+
+/* line 1273, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox.select-multiply:hover {
+  border: 1px solid #dadbda; }
+
+/* line 1277, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/* line 1283, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+select[disabled] + .ui-selectbox,
+select[disabled] + .ui-selectbox:hover {
+  color: #CCC;
+  border: 1px solid #B7B7B7;
+  cursor: default;
+  box-shadow: none;
+  opacity: .7;
+  user-select: none; }
+
+/* line 1292, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-inner {
+  padding: 0 0 0 10px;
+  margin-right: 15px;
+  font-size: 12px;
+  color: #555;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  *background: #fafafa; }
+
+/* line 1303, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox .ui-selectbox-icon {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  margin-top: -2px;
+  border-top: 5px solid #A7A7A7;
+  border-left: 5px dashed transparent;
+  border-right: 5px dashed transparent;
+  border-bottom: 0 none;
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  line-height: 0;
+  font-size: 0;
+  _color: #FF3FFF;
+  _filter: chroma(color=#FF3FFF); }
+
+/* line 1322, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-open .ui-selectbox-icon {
+  margin-top: -3px;
+  border-top: 0 none;
+  border-bottom: 5px solid #A7A7A7; }
+
+/* line 1328, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-focus {
+  border: 1px solid #508cf9;
+  outline: 0 none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6); }
+
+/* line 1335, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  list-style: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: Helvetica, arial, sans-serif;
+  background: #FFF;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #DCDCDC; }
+
+/* line 1349, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  overflow: visible; }
+
+/* line 1355, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown::-webkit-scrollbar-button {
+  height: 0;
+  width: 0; }
+
+/* line 1360, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown::-webkit-scrollbar-track {
+  background-clip: padding-box; }
+
+/* line 1364, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown::-webkit-scrollbar-track:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.05); }
+
+/* line 1369, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown::-webkit-scrollbar-track:active {
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
+
+/* line 1374, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.14);
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 1px 2px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
+
+/* line 1382, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.28);
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.25); }
+
+/* line 1387, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35); }
+
+/* line 1393, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-optgroup,
+.ui-selectbox-option {
+  margin: 0;
+  padding: 8px 10px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #333;
+  background: transparent;
+  outline: 0 none; }
+
+/* line 1403, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-optgroup {
+  cursor: default;
+  color: #000;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 14px; }
+
+/* line 1411, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-option:hover {
+  background: #EEE; }
+
+/* line 1415, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-option:focus {
+  outline: 0 none; }
+
+/* line 1420, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown .ui-selectbox-selected,
+.ui-selectbox-dropdown .ui-selectbox-selected:hover {
+  background: #3870F3;
+  color: #FFF; }
+
+/* line 1426, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-dropdown .ui-selectbox-disabled,
+.ui-selectbox-dropdown .ui-selectbox-disabled:hover {
+  color: #CCC;
+  cursor: default;
+  background: #FFF; }
+
+/* line 1432, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.select-multiply {
+  height: auto;
+  cursor: default; }
+  /* line 1435, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-multiply .ui-selectbox-inner {
+    margin-top: -6px;
+    cursor: pointer; }
+
+/* line 1441, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-label {
+  padding: 6px 0 0 5px;
+  _padding-bottom: 6px;
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+  overflow: hidden;
+  *zoom: 1; }
+  /* line 1455, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ui-selectbox-label .ui-selectbox-label-item {
+    float: left;
+    margin: 0 5px 6px 0;
+    padding: 2px 5px;
+    border: 1px solid #aaa;
+    max-width: 100%;
+    border-radius: 3px;
+    background-color: #eeeeee;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
+    background-image: -webkit-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+    background-image: -moz-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+    background-image: -o-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+    background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+    background-size: 100% 19px;
+    background-repeat: repeat-x;
+    background-clip: padding-box;
+    box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+    color: #333;
+    line-height: 13px;
+    white-space: nowrap;
+    cursor: default;
+    *zoom: 1; }
+    /* line 1477, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-selectbox-label .ui-selectbox-label-item a {
+      color: #333; }
+      /* line 1479, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .ui-selectbox-label .ui-selectbox-label-item a:hover {
+        color: #333;
+        text-decoration: none; }
+    /* line 1484, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-selectbox-label .ui-selectbox-label-item .iconfont {
+      font-size: 14px;
+      cursor: pointer; }
+
+/* line 1491, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-selectbox-drop {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  z-index: 1010;
+  display: none;
+  margin-top: 1px;
+  _margin-top: 2px;
+  width: 100%;
+  border: 1px solid #dcdcdc;
+  border-top: 0;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); }
+  /* line 1504, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ui-selectbox-drop .ui-selectbox-drop-ul {
+    position: relative;
+    max-height: 200px;
+    _height: 200px;
+    color: #444;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; }
+  /* line 1513, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ui-selectbox-drop .ui-selectbox-drop-option {
+    margin: 0;
+    height: 32px;
+    line-height: 32px;
+    color: #333;
+    background: #fff;
+    outline: 0 none;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer; }
+    /* line 1525, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-selectbox-drop .ui-selectbox-drop-option a {
+      display: block;
+      padding: 0 10px;
+      height: 32px;
+      line-height: 32px;
+      color: #333; }
+      /* line 1531, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .ui-selectbox-drop .ui-selectbox-drop-option a:hover {
+        color: #FFF;
+        background: #3870F3;
+        text-decoration: none; }
+  /* line 1538, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ui-selectbox-drop .selected {
+    color: #ccc;
+    cursor: default; }
+    /* line 1541, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-selectbox-drop .selected a {
+      color: #ccc; }
+      /* line 1543, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .ui-selectbox-drop .selected a:hover {
+        color: #ccc;
+        background-color: #999;
+        cursor: default; }
+
+/* 起始页 */
+/* line 1555, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.start-page {
+  font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei; }
+  /* line 1557, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .start-page .text {
+    padding-right: 5px;
+    font-family: Tahoma, "宋体", Arial, Helvetica, sans-serif; }
+  /* line 1561, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .start-page .iconfont {
+    color: #5784d7;
+    margin-right: 10px; }
+
+/* line 1567, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.start-panel {
+  padding: 10px 0;
+  border-bottom: 1px solid #e8e8e8; }
+  /* line 1570, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .start-panel:last-child {
+    border-bottom: none; }
+
+/* line 1575, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.shortcut-list {
+  padding-top: 0;
+  padding-left: 30px;
+  overflow: hidden;
+  *zoom: 1; }
+  /* line 1580, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .shortcut-list a {
+    text-decoration: none; }
+  /* line 1583, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .shortcut-list li {
+    float: left;
+    *display: inline;
+    width: 48px;
+    margin-right: 32px;
+    margin-bottom: 20px; }
+  /* line 1590, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .shortcut-list .shortcut {
+    display: block;
+    text-align: center;
+    color: #5c5a5a; }
+    /* line 1594, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .shortcut-list .shortcut:hover {
+      text-decoration: none;
+      color: #769de5; }
+      /* line 1597, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .shortcut-list .shortcut:hover .shortcut-block {
+        background-color: #508df9; }
+    /* line 1601, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .shortcut-list .shortcut .shortcut-block {
+      display: block;
+      margin-bottom: 10px;
+      background-color: #dbd9d9;
+      border-radius: 10px; }
+    /* line 1607, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .shortcut-list .shortcut .iconfont {
+      margin: 0;
+      color: #fff;
+      font-size: 32px; }
+    /* line 1612, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .shortcut-list .shortcut .badge {
+      margin: 30px 0;
+      vertical-align: middle; }
+
+/* line 1619, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.system-info {
+  color: #666; }
+  /* line 1621, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .system-info p {
+    margin: 10px 0; }
+
+/* line 1626, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.start-list h4 {
+  color: #333; }
+
+/* line 1630, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.start-list.multiple {
+  width: 500px;
+  overflow: hidden;
+  *zoom: 1; }
+  /* line 1634, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .start-list.multiple ul {
+    float: left; }
+  /* line 1637, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .start-list.multiple li {
+    float: left;
+    width: 225px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; }
+
+/* line 1647, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.start-list li {
+  color: #7a7a7a;
+  margin: 4px 0 4px 25px;
+  font-size: 12px; }
+
+/* line 1653, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.border-box {
+  border: 1px solid #d2d4d4;
+  margin-bottom: 20px;
+  overflow: hidden;
+  *zoom: 1; }
+
+/* line 1660, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.icon-block {
+  position: relative; }
+  /* line 1663, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .icon-block .left-arrow,
+  .icon-block .right-arrow {
+    position: absolute;
+    top: 22px;
+    font-size: 25px;
+    color: #366dd1; }
+    /* line 1668, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .icon-block .left-arrow:hover,
+    .icon-block .right-arrow:hover {
+      color: #4F89F0;
+      text-decoration: none; }
+    /* line 1672, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .icon-block .left-arrow.disabled,
+    .icon-block .right-arrow.disabled {
+      color: #ccc;
+      cursor: default; }
+  /* line 1677, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .icon-block .left-arrow {
+    left: 0; }
+  /* line 1680, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .icon-block .right-arrow {
+    right: 0; }
+
+/* line 1685, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.app-warp {
+  margin: 0 14px;
+  overflow: hidden;
+  *zoom: 1; }
+
+/* line 1691, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.app-list {
+  height: 98px;
+  overflow: hidden;
+  margin: 0 auto;
+  *zoom: 1; }
+  /* line 1696, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .app-list li {
+    float: left;
+    width: 48px;
+    padding: 5px 16px;
+    text-align: center; }
+    /* line 1701, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .app-list li img {
+      width: 48px;
+      height: 48px; }
+    /* line 1705, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .app-list li p {
+      width: 100%;
+      height: 36px;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      overflow: hidden; }
+  /* line 1713, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .app-list a {
+    color: #000; }
+  /* line 1716, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .app-list a:hover {
+    text-decoration: none;
+    color: #366dd1; }
+
+/* line 1722, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.iframe-dialog-title {
+  padding: 0 10px;
+  height: 30px;
+  margin-bottom: 10px;
+  border: 1px solid #e0e0e0;
+  line-height: 30px;
+  font-size: 14px; }
+  /* line 1729, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .iframe-dialog-title .iconfont {
+    color: #92b0e6; }
+
+/* line 1734, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.iframe-dialog-list {
+  width: 295px;
+  padding: 10px 20px; }
+  /* line 1737, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .iframe-dialog-list li {
+    float: left;
+    width: 48px;
+    height: 88px;
+    margin: 10px 25px; }
+    /* line 1742, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .iframe-dialog-list li img {
+      width: 48px;
+      height: 48px; }
+    /* line 1746, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .iframe-dialog-list li p {
+      height: 36px;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      overflow: hidden; }
+
+/* 对比 */
+/* line 1758, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.compare {
+  min-width: 480px;
+  max-width: 800px;
+  font-family: "Microsoft YaHei", '微软雅黑', MicrosoftJhengHei; }
+  /* line 1762, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare div {
+    margin-top: 20px;
+    text-align: center; }
+
+/* line 1768, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.compare_table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  word-wrap: break-word;
+  word-break: break-all;
+  width: 100%;
+  border: 1px solid #d3dbde;
+  font-size: 12px; }
+  /* line 1776, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table tr td {
+    padding: 8px 10px;
+    border: 1px solid #d3dbde; }
+  /* line 1780, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table .notice {
+    color: red; }
+  /* line 1783, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table .area {
+    border-top: 2px solid #6a6459; }
+  /* line 1786, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table .heading {
+    font-family: SimSun;
+    font-weight: bold;
+    font-size: 14px; }
+  /* line 1791, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table .field_heading {
+    padding: 10px 15px; }
+  /* line 1794, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table .field {
+    text-align: right;
+    vertical-align: middle; }
+  /* line 1798, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table .divide {
+    height: 5px;
+    line-height: 5px;
+    font-size: 0px;
+    padding: 0px; }
+  /* line 1804, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table img {
+    display: block;
+    width: 100%; }
+  /* line 1808, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table .modify {
+    color: #d9534f;
+    text-decoration: underline; }
+  /* line 1812, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .compare_table .form-textarea {
+    width: 100%;
+    height: 120px;
+    padding: 0px; }
+
+/* line 1819, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.filter_condition {
+  margin-top: 10px; }
+  /* line 1821, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .filter_condition span {
+    margin: 0 10px; }
+  /* line 1824, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .filter_condition strong {
+    font-weight: normal; }
+  /* line 1827, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .filter_condition .form-control {
+    width: 160px; }
+
+/* line 1832, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.filter_result {
+  margin: 15px 0px; }
+  /* line 1834, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .filter_result .symbol {
+    font-family: simsun;
+    margin-right: 4px;
+    color: #666; }
+  /* line 1839, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .filter_result span {
+    margin-right: 25px;
+    color: #366dd1; }
+
+/* line 1845, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.filter_table {
+  width: 500px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  word-wrap: break-word;
+  word-break: break-all;
+  border: 1px solid #d3dbde; }
+  /* line 1853, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .filter_table tr td,
+  .filter_table tr th {
+    padding: 5px;
+    border: 1px solid #d3dbde;
+    text-align: center; }
+  /* line 1858, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .filter_table tr th {
+    font-weight: bold; }
+
+/* line 1863, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ui-droplist {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  position: relative;
+  text-align: left !important;
+  z-index: 2; }
+  /* line 1870, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ui-droplist .btn {
+    position: relative;
+    z-index: 2; }
+    /* line 1873, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .btn .ui-selectbox-icon {
+      margin-top: -2px;
+      margin-left: 10px;
+      border-top: 4px solid #fff;
+      border-left: 4px dashed transparent;
+      border-right: 4px dashed transparent;
+      border-bottom: 0 none;
+      display: inline-block;
+      vertical-align: middle;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      line-height: 0;
+      font-size: 0; }
+    /* line 1888, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .btn.active .ui-selectbox-icon {
+      border-top: none;
+      border-bottom: 4px solid #fff; }
+  /* line 1893, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ui-droplist .btn.liketext {
+    color: #333;
+    background-color: transparent;
+    border: none; }
+    /* line 1897, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .btn.liketext .ui-selectbox-icon {
+      margin-left: 6px;
+      border-top-color: #333; }
+    /* line 1901, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .btn.liketext.active .ui-selectbox-icon {
+      border-bottom-color: #333; }
+    /* line 1904, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .btn.liketext:hover {
+      color: #508cf9;
+      background-color: transparent; }
+    /* line 1908, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .btn.liketext:active {
+      background-color: transparent;
+      background-image: none; }
+  /* line 1913, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ui-droplist .ui-droplist-option {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    margin-top: -1px; }
+  /* line 1920, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ui-droplist .ui-selectbox-option {
+    padding: 6px 12px; }
+    /* line 1922, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .ui-selectbox-option a {
+      display: block;
+      color: #333;
+      text-decoration: none; }
+    /* line 1927, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .ui-selectbox-option:hover {
+      color: #fff;
+      background-color: #508cf9; }
+      /* line 1930, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .ui-droplist .ui-selectbox-option:hover a {
+        color: #fff; }
+    /* line 1934, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ui-droplist .ui-selectbox-option .iconfont {
+      margin-right: 6px;
+      font-size: 14px; }
+
+/* line 1941, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.table-droplist {
+  position: static; }
+  /* line 1943, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .table-droplist .ui-droplist-option {
+    z-index: 1000;
+    top: auto;
+    left: auto; }
+  /* line 1949, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .table-droplist .btn .ui-selectbox-icon {
+    margin-top: -2px; }
+
+/* line 1956, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.arrow-droplist .btn {
+  padding-right: 32px !important; }
+  /* line 1958, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .arrow-droplist .btn .arrow-selectbox-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 30px;
+    height: 28px; }
+  /* line 1966, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .arrow-droplist .btn .ui-selectbox-icon {
+    margin-left: 8px;
+    margin-top: 13px;
+    border-top: 4px solid #fff;
+    border-left: 4px dashed transparent;
+    border-right: 4px dashed transparent;
+    border-bottom: 0 none;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0; }
+
+/* line 1983, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.pagination {
+  padding-top: 60px;
+  padding-bottom: 50px;
+  font-size: 12px; }
+  /* line 1987, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .pagination .num-page {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    height: 28px;
+    margin: 0 2px;
+    padding: 0 10px;
+    line-height: 28px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    background-color: #f5f5f5;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+    /* line 2012, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .num-page:hover,
+    .pagination .num-page.selected {
+      border-color: #366dd1;
+      background-color: #fff;
+      color: #366dd1; }
+    /* line 2018, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .num-page.disabled {
+      opacity: .65;
+      filter: alpha(opacity=65);
+      cursor: default; }
+    /* line 2026, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .num-page.next-page,
+    .pagination .num-page.prev-page,
+    .pagination .num-page.first-page,
+    .pagination .num-page.last-page {
+      width: auto;
+      padding: 0px 10px;
+      color: #fff;
+      border-color: #366dd1;
+      background-color: #366dd1; }
+    /* line 2036, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .num-page.next-page:hover,
+    .pagination .num-page.prev-page:hover,
+    .pagination .num-page.first-page:hover,
+    .pagination .num-page.last-page:hover {
+      border-color: #255dc3;
+      background-color: #255dc3; }
+  /* line 2041, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .pagination .paging-num {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    height: 28px;
+    margin: 0 2px;
+    padding: 0 10px;
+    line-height: 28px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    background-color: #f5f5f5;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+    /* line 2066, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .paging-num:hover,
+    .pagination .paging-num.selected {
+      border-color: #366dd1;
+      background-color: #fff;
+      color: #366dd1; }
+    /* line 2072, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .paging-num.disabled {
+      opacity: .65;
+      filter: alpha(opacity=65);
+      cursor: default; }
+    /* line 2080, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .paging-num.next-paging,
+    .pagination .paging-num.prev-paging,
+    .pagination .paging-num.first-paging,
+    .pagination .paging-num.last-paging {
+      width: auto;
+      padding: 0px 10px;
+      color: #fff;
+      border-color: #366dd1;
+      background-color: #366dd1; }
+    /* line 2090, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .paging-num.next-paging:hover,
+    .pagination .paging-num.prev-paging:hover,
+    .pagination .paging-num.first-paging:hover,
+    .pagination .paging-num.last-paging:hover {
+      border-color: #255dc3;
+      background-color: #255dc3; }
+  /* line 2095, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .pagination .paging-jump {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    /*.jump-text {
+			width: 32px;
+			padding: 5px 0 2px;
+			margin: 0 5px;
+			border: none;
+			border-bottom: 1px solid #aaa;
+			background-color: transparent;
+			text-align: center;
+			color: #666;
+		}*/ }
+    /* line 2101, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .paging-jump .jump {
+      height: 30px;
+      color: #555;
+      border: 1px solid #d2d2d2;
+      background-color: #fff; }
+  /* line 2118, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .pagination .paging-limit {
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1; }
+    /* line 2124, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .paging-limit .limit {
+      height: 30px;
+      color: #555;
+      border: 1px solid #d2d2d2;
+      background-color: #fff; }
+  /* line 2131, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .pagination .paging-container {
+    float: left; }
+  /* line 2134, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .pagination .paging-info {
+    line-height: 30px;
+    float: right; }
+    /* line 2137, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .pagination .paging-info em {
+      font-weight: bold; }
+
+/* 弹出选择框 样式*/
+/* line 2146, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.popup-select-box .search {
+  float: right;
+  margin-right: 8px;
+  cursor: pointer; }
+  /* line 2151, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-box .search .search input {
+    height: 24px;
+    line-height: 24px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 12px;
+    padding: 0px 5px; }
+  /* line 2160, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-box .search .search i {
+    margin-left: 8px; }
+  /* line 2164, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-box .search .pagination {
+    padding-top: 15px;
+    padding-bottom: 30px;
+    text-align: center; }
+  /* line 2169, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-box .search .controls {
+    text-align: center;
+    padding-top: 15px; }
+  /* line 2173, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-box .search .panel-viewport-header {
+    border-bottom: none;
+    border-top: 1px solid #d1d1d1;
+    line-height: 34px; }
+  /* line 2178, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-box .search .panel-item {
+    margin: 0px 10px 0px 0px; }
+
+/* line 2183, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.popup-select-list {
+  margin-left: 1px; }
+  /* line 2185, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-list .header {
+    padding-bottom: 10px; }
+    /* line 2187, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-list .header .title {
+      float: left; }
+  /* line 2191, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-list li {
+    position: relative;
+    float: left;
+    width: 50px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: -1px;
+    margin-top: -1px;
+    border: 1px solid #d1d1d1;
+    cursor: pointer;
+    /*框的高宽*/ }
+    /* line 2202, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-list li:hover {
+      background-color: #eee; }
+    /* line 2205, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-list li.selected {
+      background-color: #eee; }
+    /* line 2208, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-list li.selected .icon-state {
+      font-size: 18px; }
+    /* line 2211, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-list li .icon-state {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      color: #FB496B;
+      font-size: 0px; }
+    /* line 2218, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-list li a {
+      display: block;
+      font-size: 12px;
+      text-align: center;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      /* line 2225, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .popup-select-list li a:hover {
+        text-decoration: none; }
+    /* line 2229, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-list li img {
+      display: block;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 4px; }
+    /* line 2235, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-list li .name {
+      white-space: nowrap;
+      letter-spacing: 1px; }
+
+/* line 2242, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+form .popup-select-panel {
+  width: 345px;
+  padding-right: 20px; }
+
+/* line 2247, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.popup-select-panel {
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  text-align: left;
+  border: 1px solid #dbdcdb;
+  background-color: white;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: 0 none;
+  line-height: 32px;
+  min-height: 32px; }
+  /* line 2261, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel:hover {
+    border: 1px solid #508cf9; }
+  /* line 2264, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel.popup-select-panel-focus {
+    border: 1px solid #508cf9;
+    outline: 0 none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6); }
+  /* line 2270, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel ul {
+    height: 100%;
+    padding: 6px 0 0 5px;
+    display: block; }
+  /* line 2275, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel .panel-placeholder {
+    padding: 0 0 0 10px;
+    margin-right: 15px;
+    font-size: 12px;
+    color: #545454;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+  /* line 2284, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel .panel-single {
+    padding: 0 0 0 10px;
+    margin-right: 15px;
+    font-size: 12px;
+    color: #545454;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 32px;
+    line-height: 32px; }
+    /* line 2294, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-panel .panel-single .panel-item {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      line-height: 32px; }
+      /* line 2299, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .popup-select-panel .panel-single .panel-item img {
+        vertical-align: top;
+        margin-right: 3px;
+        margin-top: 10px;
+        height: 14px;
+        font-size: 0px;
+        line-height: 0px; }
+      /* line 2307, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .popup-select-panel .panel-single .panel-item .iconfont {
+        vertical-align: baseline;
+        display: none; }
+  /* line 2313, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel .panel-viewport-header {
+    display: none; }
+  /* line 2316, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel .panel-item {
+    float: left;
+    margin: 0 5px 5px 0;
+    padding: 2px 5px;
+    border: 1px solid #ababab;
+    max-width: 100%;
+    border-radius: 3px;
+    background-color: #ededed;
+    background-size: 100% 19px;
+    background-repeat: repeat-x;
+    background-clip: padding-box;
+    box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+    color: #333333;
+    line-height: 13px;
+    white-space: nowrap;
+    cursor: default; }
+    /* line 2332, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-panel .panel-item .iconfont {
+      vertical-align: middle;
+      font-size: 14px; }
+    /* line 2336, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-panel .panel-item img {
+      vertical-align: top;
+      margin-right: 3px;
+      height: 14px;
+      font-size: 0px;
+      line-height: 0px; }
+  /* line 2344, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel .ui-selectbox-icon {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    margin-top: -2px;
+    border-top: 5px solid #a6a6a6;
+    border-left: 5px dashed transparent;
+    border-right: 5px dashed transparent;
+    border-bottom: 0 none;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0; }
+  /* line 2360, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .popup-select-panel .ui-selectbox-open {
+    background-color: #faf8f5; }
+    /* line 2362, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .popup-select-panel .ui-selectbox-open .ui-selectbox-icon {
+      margin-top: -3px;
+      border-top: 0 none;
+      border-bottom: 5px solid #a6a6a6; }
+
+/* line 2370, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.panelview {
+  padding: 10px; }
+  /* line 2372, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .panelview .heading {
+    padding-bottom: 10px; }
+  /* line 2375, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .panelview .control {
+    font-size: 14px;
+    color: #333;
+    font-family: Microsoft YaHei, "微软雅黑", MicrosoftJhengHei;
+    margin-bottom: 10px; }
+    /* line 2380, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .panelview .control .notice {
+      line-height: 30px; }
+    /* line 2383, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .panelview .control .btn {
+      float: right;
+      margin-left: 5px; }
+    /* line 2387, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .panelview .control .test {
+      border: 1px solid #000;
+      line-height: 30px;
+      padding: 4px;
+      margin-right: 4px;
+      cursor: pointer; }
+  /* line 2395, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .panelview .content {
+    margin-top: -10px; }
+    /* line 2397, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .panelview .content .node {
+      float: left;
+      margin: 10px 10px 0px 0;
+      padding: 8px 10px;
+      white-space: nowrap;
+      color: #333;
+      line-height: 12px;
+      box-shadow: 0 0 2px white inset;
+      border-radius: 3px;
+      background-color: #efefef;
+      background-size: 100% 19px;
+      background-repeat: repeat-x;
+      background-clip: padding-box;
+      border: 1px solid #aaa;
+      -webkit-user-select: none;
+      user-select: none; }
+      /* line 2413, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .panelview .content .node .iconfont {
+        font-size: 14px;
+        cursor: pointer; }
+      /* line 2417, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .panelview .content .node.selected {
+        border-color: #f00;
+        color: #f00; }
+      /* line 2421, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .panelview .content .node.disabled {
+        border-color: #ccc;
+        color: #ccc; }
+      /* line 2425, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .panelview .content .node img {
+        height: 14px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 3px;
+        font-size: 0px;
+        line-height: 0px; }
+      /* line 2433, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .panelview .content .node span {
+        display: inline-block;
+        vertical-align: top; }
+
+/* popuptips提示样式 */
+/* line 2444, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.popuptips {
+  color: #333;
+  font-size: 12px !important;
+  line-height: 12px !important;
+  width: 12px !important;
+  font-weight: bold !important;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5) !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  margin-left: 2px !important;
+  margin-top: -3px !important;
+  vertical-align: middle !important; }
+
+/* line 2458, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.showtips {
+  cursor: pointer;
+  margin-left: 3px;
+  font-size: 14px;
+  width: 14px;
+  line-height: 14px;
+  vertical-align: middle; }
+
+/* line 2467, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.table .popuptips {
+  color: #fff !important; }
+
+/* line 2471, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.start-page .showtips {
+  font-size: 14px !important;
+  margin-left: 2px; }
+
+/* line 2476, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-table .showtips-alert {
+  display: none; }
+
+/* line 2480, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+form .showtips-alert {
+  display: none; }
+
+/* line 2484, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.showtips-alert {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-weight: normal;
+  display: none; }
+
+/* line 2491, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.showtips-alert .tips-close {
+  float: right;
+  cursor: pointer; }
+
+/* line 2496, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.showtips-alert.alert-success .tips-close .iconfont {
+  color: #3c763d; }
+
+/* line 2500, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.showtips-alert.alert-danger .tips-close .iconfont {
+  color: #a94442; }
+
+/* line 2504, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.showtips-alert.alert-warning .tips-close .iconfont {
+  color: #8a6d3b; }
+
+/* line 2508, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.showtips-alert.alert-info .tips-close .iconfont {
+  color: #31708f; }
+
+/*覆盖默认样式*/
+/* line 2515, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.layui-layer-tips {
+  margin-top: -8px !important; }
+
+/* line 2519, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.layui-layer-tips .layui-layer-content {
+  color: #8a6d3b !important;
+  background-color: #fcf8e3 !important;
+  border-color: #faebcc !important; }
+
+/* line 2526, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.layui-layer-tips i.layui-layer-TipsL,
+.layui-layer-tips i.layui-layer-TipsR {
+  border-bottom-color: #fcf8e3 !important; }
+
+/* line 2531, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.layui-layer-tips i.layui-layer-TipsB,
+.layui-layer-tips i.layui-layer-TipsT {
+  border-right-color: #fcf8e3 !important; }
+
+/* 域包裹框样式 */
+/* line 2538, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.field-container {
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 25px 20px;
+  border-radius: 5px; }
+
+/* line 2545, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.field-container .headline {
+  position: absolute;
+  left: 10px;
+  top: -11px;
+  line-height: 20px;
+  height: 20px;
+  background-color: #f9f7f4;
+  padding: 0px 6px; }
+
+/* 弹出选择框样式 */
+/* line 2558, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.selectbox {
+  margin-left: 1px; }
+  /* line 2560, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .selectbox .header {
+    padding-bottom: 10px; }
+    /* line 2562, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .selectbox .header .title {
+      float: left; }
+  /* line 2566, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .selectbox .node {
+    position: relative;
+    float: left;
+    width: 50px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: -1px;
+    margin-top: -1px;
+    border: 1px solid #d1d1d1;
+    cursor: pointer;
+    /*框的高宽*/ }
+    /* line 2577, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .selectbox .node:hover {
+      background-color: #eee; }
+    /* line 2580, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .selectbox .node.selected {
+      background-color: #eee; }
+    /* line 2583, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .selectbox .node.selected .icon-state {
+      font-size: 18px;
+      line-height: 18px; }
+    /* line 2587, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .selectbox .node .icon-state {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      color: #FB496B;
+      font-size: 0px;
+      line-height: 0px; }
+    /* line 2595, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .selectbox .node a {
+      display: block;
+      font-size: 12px;
+      text-align: center;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      /* line 2602, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .selectbox .node a:hover {
+        text-decoration: none; }
+    /* line 2606, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .selectbox .node img {
+      display: block;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 4px; }
+    /* line 2612, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .selectbox .node .name {
+      white-space: nowrap;
+      letter-spacing: 1px; }
+
+/* line 2619, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.select-panelview {
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  text-align: left;
+  border: 1px solid #d2d2d2;
+  background-color: white;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: 0 none;
+  line-height: 30px;
+  min-height: 32px;
+  color: #555; }
+  /* line 2634, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-panelview.disabled {
+    color: #999; }
+    /* line 2636, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .select-panelview.disabled:hover {
+      border: 1px solid #d2d2d2; }
+  /* line 2640, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-panelview:hover {
+    border: 1px solid #508cf9; }
+  /* line 2643, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-panelview.focus {
+    border: 1px solid #508cf9;
+    outline: 0 none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(80, 140, 249, 0.6);
+    background-color: #faf8f5; }
+    /* line 2649, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .select-panelview.focus .selectbox-icon {
+      margin-top: -3px;
+      border-top: 0 none;
+      border-bottom: 5px solid #a6a6a6; }
+  /* line 2655, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-panelview .content {
+    height: 100%;
+    padding: 6px 0 0 5px;
+    display: block; }
+  /* line 2660, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-panelview .node {
+    float: left;
+    margin: 0 5px 5px 0;
+    padding: 2px 5px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+    border-radius: 3px;
+    background-color: #f5f5f5;
+    background-size: 100% 19px;
+    background-repeat: repeat-x;
+    background-clip: padding-box;
+    box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+    line-height: 14px;
+    white-space: nowrap;
+    cursor: default; }
+    /* line 2675, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .select-panelview .node .iconfont {
+      font-size: 14px;
+      cursor: pointer; }
+    /* line 2679, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .select-panelview .node img {
+      vertical-align: top;
+      margin-right: 3px;
+      height: 14px;
+      font-size: 0px;
+      line-height: 0px; }
+  /* line 2687, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-panelview .placeholder {
+    display: none;
+    padding: 0 0 0 10px;
+    margin-right: 15px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+  /* line 2696, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-panelview .single {
+    padding: 0 0 0 10px;
+    margin-right: 15px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 32px;
+    line-height: 32px; }
+    /* line 2705, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .select-panelview .single .node {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      line-height: 30px;
+      box-shadow: none; }
+      /* line 2711, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .select-panelview .single .node img {
+        vertical-align: top;
+        margin-right: 3px;
+        margin-top: 8px;
+        height: 14px;
+        font-size: 0px;
+        line-height: 0px; }
+      /* line 2719, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .select-panelview .single .node .iconfont {
+        display: none; }
+    /* line 2723, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .select-panelview .single .ext-node {
+      display: inline; }
+  /* line 2727, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .select-panelview .selectbox-icon {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    margin-top: -2px;
+    border-top: 5px solid #a6a6a6;
+    border-left: 5px dashed transparent;
+    border-right: 5px dashed transparent;
+    border-bottom: 0 none;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0; }
+
+/* line 2745, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+form .select-panelview {
+  width: 345px;
+  padding-right: 20px; }
+
+/* line 2750, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.form-control.ext-select-panelview {
+  width: 340px; }
+
+/* line 2754, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.selectbox-inner-panelview {
+  padding: 20px;
+  padding-bottom: 0px; }
+  /* line 2757, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .selectbox-inner-panelview .content {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d1d1d1; }
+
+/*选择下拉框*/
+/* line 2766, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.droplist {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  list-style: none;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  font-family: Helvetica, arial, sans-serif;
+  background: #FFF;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #DCDCDC; }
+  /* line 2778, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .droplist .node {
+    margin: 0;
+    padding: 8px 10px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #555;
+    outline: 0 none; }
+    /* line 2785, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .droplist .node img {
+      height: 20px;
+      font-size: 0px;
+      line-height: 0px;
+      vertical-align: middle;
+      margin-right: 4px; }
+    /* line 2792, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .droplist .node .name {
+      vertical-align: middle; }
+    /* line 2795, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .droplist .node:hover {
+      background: #EEE; }
+    /* line 2798, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .droplist .node:focus {
+      outline: 0 none; }
+    /* line 2801, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .droplist .node.selected {
+      background: #3870F3;
+      color: #FFF; }
+      /* line 2804, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .droplist .node.selected:hover {
+        background: #3870F3;
+        color: #FFF; }
+    /* line 2809, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .droplist .node.disabled {
+      color: #CCC;
+      cursor: default;
+      background: #FFF; }
+      /* line 2813, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .droplist .node.disabled:hover {
+        color: #CCC;
+        cursor: default;
+        background: #FFF; }
+
+/* 更换头像 avator.html */
+/* line 2826, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.avator-preview img {
+  display: block;
+  width: 200px;
+  margin-top: 10px;
+  border: 1px solid #DCDCDC; }
+
+/* line 2834, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.avator-result {
+  color: #666; }
+  /* line 2836, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .avator-result .heading {
+    font-size: 14px;
+    margin-bottom: 8px; }
+  /* line 2840, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .avator-result .avator-pic {
+    margin-bottom: 20px; }
+    /* line 2844, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .avator-result .avator-pic img,
+    .avator-result .avator-pic b,
+    .avator-result .avator-pic span {
+      display: block; }
+    /* line 2847, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .avator-result .avator-pic .big {
+      width: 100px;
+      height: 100px;
+      overflow: hidden; }
+    /* line 2852, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .avator-result .avator-pic .normal {
+      width: 55px;
+      height: 55px;
+      overflow: hidden; }
+    /* line 2857, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .avator-result .avator-pic .small {
+      width: 30px;
+      height: 30px;
+      overflow: hidden; }
+    /* line 2862, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .avator-result .avator-pic b {
+      border: 1px solid #DCDCDC;
+      /*
+			border: 1px solid #94cfeb;
+*/ }
+    /* line 2868, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .avator-result .avator-pic img {
+      width: 100%;
+      height: 100%; }
+    /* line 2872, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .avator-result .avator-pic span {
+      margin-top: 4px; }
+
+/*搜索样式*/
+/* line 2881, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.searchbox {
+  padding: 0px;
+  float: right; }
+
+/* 异步加载 */
+@keyframes ext-async-loading {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+/* line 2898, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ext-loader {
+  text-align: center;
+  color: #999;
+  padding: 20px 0px; }
+  /* line 2904, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ext-loader .loading,
+  .ext-loader .nodata,
+  .ext-loader .error {
+    display: inline-block; }
+  /* line 2907, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ext-loader .ani-loading {
+    display: inline-block;
+    padding: 20px 0px;
+    width: 32px;
+    height: 32px;
+    animation: ext-async-loading 0.75s linear infinite;
+    background-image: url(data:image/png;base64,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);
+    background-position: center;
+    background-repeat: no-repeat; }
+
+/* 列表树扩展 */
+/* line 2922, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+.ext-treelist {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  list-style: none;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  font-family: Helvetica, arial, sans-serif;
+  background: #FFF;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #DCDCDC; }
+  /* line 2934, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ext-treelist .ext-child-content {
+    display: none;
+    padding-left: 12px; }
+  /* line 2938, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ext-treelist .ext-child-content.active {
+    display: block; }
+  /* line 2941, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ext-treelist .ext-expander {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    width: 20px;
+    height: 100%;
+    margin-left: -20px; }
+    /* line 2948, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ext-treelist .ext-expander:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      margin-left: 8px;
+      margin-top: -2px;
+      border: 4px solid transparent;
+      border-top-color: #777;
+      font-size: 0px;
+      line-height: 0;
+      cursor: pointer;
+      transform: rotate(-90deg);
+      transform-origin: 50% 25%;
+      text-indent: 0px; }
+    /* line 2964, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ext-treelist .ext-expander.active:after {
+      transform: rotate(0); }
+  /* line 2969, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ext-treelist .ext-node-container {
+    position: relative; }
+  /* line 2972, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ext-treelist .ext-node {
+    position: relative;
+    margin: 0;
+    padding: 8px 10px 8px 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #555;
+    outline: 0 none;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none; }
+    /* line 2988, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ext-treelist .ext-node img {
+      height: 20px;
+      font-size: 0px;
+      line-height: 0px;
+      vertical-align: middle;
+      margin-right: 4px; }
+    /* line 2996, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ext-treelist .ext-node:hover {
+      background: #EEE; }
+    /* line 2999, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ext-treelist .ext-node:focus {
+      outline: 0 none; }
+    /* line 3002, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ext-treelist .ext-node.selected {
+      background: #3870F3;
+      color: #FFF; }
+      /* line 3005, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .ext-treelist .ext-node.selected:hover {
+        background: #3870F3;
+        color: #FFF; }
+    /* line 3010, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+    .ext-treelist .ext-node.disabled {
+      color: #CCC;
+      cursor: default;
+      background: #FFF; }
+      /* line 3014, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+      .ext-treelist .ext-node.disabled:hover {
+        color: #CCC;
+        cursor: default;
+        background: #FFF; }
+  /* line 3021, G:/SVN/Html/前端库/后台系统初版/html/stylesheets/common.scss */
+  .ext-treelist .ext-loader {
+    /*display: inline-block;
+		vertical-align: middle;*/
+    margin-left: 6px;
+    padding: 0px; }
+
+/*# sourceMappingURL=common.css.map */

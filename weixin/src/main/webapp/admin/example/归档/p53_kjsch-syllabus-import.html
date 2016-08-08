@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>基本设置 - 课程表管理 - EXCEL导入</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+
+	<div class="form-wrap">
+		<form>
+			<table class="form-table">
+				<tr>
+					<td>
+						<label class="form-label"><b class="red">*</b>选择EXCEL文件</label>
+					</td>
+					<td>
+						<input id="upload" type="file" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label class="form-label"></label>
+					</td>
+					<td>
+						<div class="form-text"><a href="111.xls" download="课程表模板">【点击下载EXCEL模板】</a></div>
+					</td>
+				</tr>
+				<tr>
+					<!-- 空内容的td 保持间距 -->
+					<td>
+						<label class="form-label">&nbsp;</label>
+					</td>
+					<td>
+						<input id="submit-btn" class="btn btn-success btn-large" type="submit" value="导入">
+						<input id="return-btn" class="btn btn-default btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/src/jquery-elist.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript" src="../javascripts/jquery-tools.js"></script>
+	<script>
+		$(function () {
+
+			//延迟加载修复chrome下崩溃的bug
+			setTimeout(function () {
+				$('#upload').uploadify({
+					//swf地址
+					swf: '../ext/uploadify/uploadify.swf',
+					//上传路径
+					uploader: '/img/upload',
+					//文件后缀名限制
+					fileTypeExts: '*.jpg;*.jpeg;*.png;',
+					//是否启用多文件上传
+					multi: false,
+					//按钮样式
+					buttonClass: 'btn btn-primary no-padding',
+					//文件name
+					fileObjName: 'file',
+					//宽度
+					width: 70,
+					//高度
+					height: 30,
+					//文件选择框显示的类型名称
+					fileTypeDesc: '图片',
+					//按钮上的文字
+					buttonText: '上传文件',
+					//成功上传事件
+					onUploadSuccess: function (file, data, response) {}
+				});
+			}, 10);
+			addListeners();
+		});
+		/*侦听*/
+		function addListeners() {
+			//保存事件
+			$('#submit-btn').bind('click', function () {
+				window.location.href = './syllabus-modify.html';
+			});
+
+
+			//返回事件
+			$('#return-btn').bind('click', function () {
+				window.location.href = 'XXX';
+			});
+		}
+	</script>
+</body>
+
+</html>

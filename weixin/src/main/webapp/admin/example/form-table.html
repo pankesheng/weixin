@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel" style="width:700px;margin-right:50px;float:left;">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+						<tr>
+							<td colspan="2">
+								<span class="form-tip alert alert-info">改变
+                                    <span class="code">class="form-label"</span> 的宽度请在
+								<span class="code">class="form-table"</span> 上添加
+								<span class="code">class="middle-label"</span> 或
+								<span class="code">class="big-label"</span> 样式
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">文本框<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control " id="search1" type="text" />
+								<a href="javascript:void(0);" class="btn btn-primary" id="popup"><i class="iconfont">&#xe61b;</i>选择父单位</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">提示框<b class="red">*</b></label>
+							</td>
+							<td>
+								<span class="form-hint">HTTP://</span>
+								<!-- TODO 可考虑用JS自动设置宽度(放弃)，目前手动form-control默认总宽为346px 用审查元素查看提示文本所占的总宽，相减-->
+								<input style="width:281px" class="form-control" id="search1" type="text" />
+								<span class="form-tip alert alert-info">提示文本</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search-select">下拉框<b class="red">*</b></label>
+							</td>
+							<td>
+								<select class="form-select" id="search-select">
+									<option value="">请选择条件</option>
+									<option>按名称</option>
+									<option>按身份</option>
+									<option>按时间</option>
+								</select>
+								<span class="form-tip alert alert-danger">危险文本</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search2">日期控件</label>
+							</td>
+							<td>
+								<input class="form-control date" id="search2" type="text" />
+								<span class="form-tip alert alert-success">成功提示</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label">单选框复选框（数量少时）</label>
+							</td>
+							<td>
+								<input class="form-radio" id="d1" type="radio" name="d1" />
+								<label class="mr-10" for="d1">单选1991-03-29</label>
+
+								<input class="form-checkbox" id="d3" type="checkbox" />
+								<label class="mr-10" for="d3">多选1991-03-29</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label">单选框复选框（数量多时）</label>
+							</td>
+							<td>
+								<ul class="form-option-group clearfix">
+									<li class="form-option-list form-option-list-all">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">全选</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">数量多</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">时能根据</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">整个单选框的长度</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">自动换行</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">若增加全选换行，请在第一li上面加上class=form-option-list-all</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">多选显示区域与表单项对齐，若想自适应，请删除class=form-option-group</label>
+									</li>
+
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label">文本显示</label>
+							</td>
+							<td>
+								<div class="form-text">文本显示文本显示文本显示文本显示</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label">上传文件</label>
+							</td>
+							<td>
+								<input id="upload" type="file" />
+							</td>
+						</tr>
+						<!-- textarea加这个类 保持label对齐 -->
+						<tr class="valign-top">
+							<td>
+								<label class="form-label" for="search4">输入域</label>
+							</td>
+							<td>
+								<textarea class="form-textarea" id="search4" name=""></textarea>
+								<span class="form-tip alert alert-warning">警告提示</span>
+							</td>
+						</tr>
+
+						<tr class="valign-top">
+							<td>
+								<label class="form-label" for="search4">输入域</label>
+							</td>
+							<td>
+								<textarea class="form-textarea" id="search4" name="" maxlength="10"></textarea>
+								<span class="form-tip alert alert-warning">警告提示</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">引用</label>
+							</td>
+							<td>
+
+								<table>
+									<tr style="margin-bottom:2px;">
+										<td>
+											<a href="###">2015-08-13 135454</a>
+										</td>
+										<td>
+											<a href="###" style="color:#F72727;margin-left:2px;margin-bottom:2px;">[删除]</a>
+										</td>
+									</tr>
+									<tr style="margin-bottom:2px;">
+										<td>
+											<a href="###">2015-08-13 135454</a>
+										</td>
+										<td>
+											<a href="###" style="color:#F72727;margin-left:2px;margin-bottom:2px;">[删除]</a>
+										</td>
+									</tr>
+									<tr style="margin-bottom:2px;">
+										<td>
+											<a href="###">2015-08-13 135454</a>
+										</td>
+										<td>
+											<a href="###" style="color:#F72727;margin-left:2px;margin-bottom:2px;">[删除]</a>
+										</td>
+									</tr>
+									<tr style="margin-bottom:2px;">
+										<td>
+											<a href="###">2015-08-13 135454</a>
+										</td>
+										<td>
+											<a href="###" style="color:#F72727;margin-left:2px">[删除]</a>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search4">多选下拉</label>
+							</td>
+							<td>
+								<select id="select" name="f" data-placeholder="请选择" multiple>
+									<option data-selected="true" value="1">你好</option>
+									<option data-selected="true" value="2">你好</option>
+									<option value="3">你好</option>
+									<option value="4">你好</option>
+									<option value="5">你好</option>
+									<option value="6">你好</option>
+									<option value="7">你好</option>
+									<option value="8">你好</option>
+									<option value="9">你好</option>
+									<option value="10">你好</option>
+								</select>
+								<select id="select1" name="f" data-placeholder="请选择" multiple>
+									<option data-selected="true" value="1">你好</option>
+									<option data-selected="true" value="2">你好</option>
+									<option value="3">你好</option>
+									<option value="4">你好</option>
+									<option value="5">你好</option>
+									<option value="6">你好</option>
+									<option value="7">你好</option>
+									<option value="8">你好</option>
+									<option value="9">你好</option>
+									<option value="10">你好</option>
+								</select>
+								<select id="select2" name="f" data-placeholder="请选择" multiple>
+									<option data-selected="true" value="1">你好</option>
+									<option data-selected="true" value="2">你好</option>
+									<option value="3">你好</option>
+									<option value="4">你好</option>
+									<option value="5">你好</option>
+									<option value="6">你好</option>
+									<option value="7">你好</option>
+									<option value="8">你好</option>
+									<option value="9">你好</option>
+									<option value="10">你好</option>
+								</select>
+								<div class="ui-selectbox select-multiply" data-placeholder="请选择" style="display: none;">
+									<ul class="ui-selectbox-label">
+										<li class="ui-selectbox-inner">请选择</li>
+										<li class="ui-selectbox-label-item">
+											<span>你好你好你好你好你好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+										<li class="ui-selectbox-label-item">
+											<span>你好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+										<li class="ui-selectbox-label-item">
+											<span>你好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+										<li class="ui-selectbox-label-item">
+											<span>你好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+										<li class="ui-selectbox-label-item">
+											<span>你你好你好你好你好好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+										<li class="ui-selectbox-label-item">
+											<span>你好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+										<li class="ui-selectbox-label-item">
+											<span>你好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+										<li class="ui-selectbox-label-item">
+											<span>你好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+										<li class="ui-selectbox-label-item">
+											<span>你好</span>
+											<i class="iconfont">&#xe628;</i>
+										</li>
+									</ul>
+									<div class="ui-selectbox-drop">
+										<ul class="ui-selectbox-drop-ul">
+											<li class="ui-selectbox-drop-option" data-value="a">
+												<a href="javascript:void(0);">a</a>
+											</li>
+											<li class="ui-selectbox-drop-option selected" data-value="b">
+												<a href="javascript:void(0);">b</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="c">
+												<a href="javascript:void(0);">c</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="d">
+												<a href="javascript:void(0);">d</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="a">
+												<a href="javascript:void(0);">a</a>
+											</li>
+											<li class="ui-selectbox-drop-option selected" data-value="b">
+												<a href="javascript:void(0);">b</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="c">
+												<a href="javascript:void(0);">c</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="d">
+												<a href="javascript:void(0);">d</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="a">
+												<a href="javascript:void(0);">a</a>
+											</li>
+											<li class="ui-selectbox-drop-option selected" data-value="b">
+												<a href="javascript:void(0);">b</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="c">
+												<a href="javascript:void(0);">c</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="d">
+												<a href="javascript:void(0);">d</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="a">
+												<a href="javascript:void(0);">a</a>
+											</li>
+											<li class="ui-selectbox-drop-option selected" data-value="b">
+												<a href="javascript:void(0);">b</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="c">
+												<a href="javascript:void(0);">c</a>
+											</li>
+											<li class="ui-selectbox-drop-option" data-value="d">
+												<a href="javascript:void(0);">d</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<!-- 空内容的td 保持间距 -->
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input class="btn btn-success btn-large" type="submit" value="提交">
+								<input class="btn btn-danger btn-large" type="reset" value="重置">
+								<input class="btn  btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+
+		<div class="panel" style="width:700px;margin-right:50px;float:left;">
+			<div class="panel-body">
+				<!-- 简单展示时可以直接使用title属性设置解释说明 -->
+				<!-- 自定义展示时可以通过data-showtips绑定要展示的html元素元素 -->
+				<form id="form2" class="field-container">
+					<span class="headline">包裹框<i class="iconfont infotips showtips" data-tipsid='#ccc' title="这里可以进行解释说明">&#xe644;</i></span>
+					<div id="ccc" class="showtips-alert alert alert-success mb-10"><span><i class="iconfont">&#xe624;</i>这里可以进行解释说明</span><span class="tips-close"><i class="iconfont">&#xe628;</i></span></div>
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label" for="search1">必须且为数字<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" data-check="must|n" type="text" />
+								<span class="form-tip alert alert-info">必须且为数字</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">必须且为中文<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="search11" data-check="must|chinese" type="text" />
+								<span class="form-tip alert alert-info">必须且为中文</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search2">手机<i class="iconfont  infotips popuptips" title="这里可以进行解释说明">&#xe644;</i></label>
+							</td>
+							<td>
+								<input class="form-control" id="search2" data-check="must|mobile" type="text" />
+								<span class="form-tip alert alert-info">必须且为手机</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">身份证</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="must|idcard" type="text" />
+								<span class="form-tip alert alert-info">必须且为身份证</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">最大长度</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="max-len: 10" name="max" type="text" />
+								<span class="form-tip alert alert-info">最大长度10</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">最大字符长度（区分汉字）</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="max-char-len: 10" name="max" type="text" />
+								<span class="form-tip alert alert-info">最大字符长度10</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">最小长度</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="min-len: 5" name="max" type="text" />
+								<span class="form-tip alert alert-info">最小长度10</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">最小字符长度（区分汉字）</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="min-char-len: 10" name="max" type="text" />
+								<span class="form-tip alert alert-info">最小字符长度10</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">相同值</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="fit: max" type="text" />
+								<span class="form-tip alert alert-info">必须值相同</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">范围限制</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="scope: 1-2" type="text" />
+								<span class="form-tip alert alert-info">范围1-2</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">url</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="url" type="text" />
+								<span class="form-tip alert alert-info">url</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">ip</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="ip" type="text" />
+								<span class="form-tip alert alert-info">ip</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search3">电子邮箱</label>
+							</td>
+							<td>
+								<input class="form-control" id="search3" data-check="email" type="text" />
+								<span class="form-tip alert alert-info">电子邮箱</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+
+								<input id="submit-btn" class="btn btn-success btn-large" type="submit" value="提交">
+								<input id="reset-btn" class="btn btn-danger btn-large" type="reset" value="重置">
+								<input id="return-btn" class="btn btn-default btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/src/jquery-elist.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script type="text/javascript" src="../ext/zw/check.js"></script>
+
+	<script>
+		$(function () {
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+			// 文本域统计字数 require tool.js
+			// 字数统计以html里设置的maxLength为最高优先级，参数无法覆盖它
+			$("textarea").wordCount("5");
+
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+
+			var setting = {
+				callback: {
+					closeCallback: function (a, b, c) {
+						console.log(1111)
+
+					}
+				}
+			}
+
+			var setting2 = {
+				callback: {
+					closeCallback: function (a, b, c) {
+						console.log(222)
+					}
+				}
+			}
+
+			var setting3 = {
+				callback: {
+					closeCallback: function (a, b, c) {
+						console.log(333)
+					}
+				}
+			}
+			$('#select').elist(setting);
+
+			$('#select1').elist(setting2);
+
+			$('#select2').elist(setting3);
+
+
+			laydate({
+				elem: '#search2',
+				event: 'focus'
+			});
+
+
+
+			//初始化弹出条信息, require tool.js
+			$('.infotips').popupTips();
+
+			//延迟加载修复chrome下崩溃的bug
+			setTimeout(function () {
+				$('#upload').uploadify({
+					//swf地址
+					swf: '../ext/uploadify/uploadify.swf',
+					//上传路径
+					uploader: '/img/upload',
+					//文件后缀名限制
+					fileTypeExts: '*.jpg;*.jpeg;*.png;',
+					//是否启用多文件上传
+					multi: false,
+					//按钮样式
+					buttonClass: 'btn btn-primary no-padding',
+					//文件name
+					fileObjName: 'file',
+					//宽度
+					width: 70,
+					//高度
+					height: 30,
+					//文件选择框显示的类型名称
+					fileTypeDesc: '图片',
+					//按钮上的文字
+					buttonText: '上传文件',
+					//成功上传事件
+					onUploadSuccess: function (file, data, response) {}
+				});
+			}, 10);
+
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+		function addListeners(argument) {
+			$('#return-btn').click(function (event) {
+				/*				$('#select').val(['1', '2', '3']);
+								alert($(this).serialize());*/
+				$("#form2").check()
+
+
+			});
+		}
+	</script>
+</body>
+
+</html>

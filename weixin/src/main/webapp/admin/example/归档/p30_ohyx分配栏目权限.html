@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span>用户权限管理 - 分配栏目权限
+</span>
+	</div>
+	<div class="body-warp">
+		<form class="form-inline">
+			<table class="table" id="table"></table>
+
+			<div style="text-align:center;margin-top:20px;">
+
+				<input id="submit-btn" class="btn btn-success btn-large" type="submit" value="提交">
+				<input id="reset-btn" class="btn btn-danger btn-large" type="reset" value="重置">
+				<input id="return-btn" class="btn btn-default btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+			</div>
+		</form>
+
+
+	</div>
+
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../ext/zw/src/jquery-epaging.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		var grid;
+		$(function () {
+			/*初始化表格*/
+			grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						//1为开启，0为关闭
+						"username": "李白",
+						"organize": "瓯海教育局",
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"name": "全部栏目",
+							"ckqx": 0,
+							"bjqx": 0,
+							"zdqx": 0,
+							"shqx": 0,
+							"glyqx": 0
+						}, {
+							"_id": "5518b89db1c547f6c18c98dff",
+							"name": "文件通知",
+							"ckqx": 0,
+							"bjqx": 1,
+							"zdqx": 0,
+							"shqx": 0,
+							"glyqx": 0
+						}, {
+							"_id": "5518b89db4c547f6c18c98dff",
+							"name": "中心文件",
+							"ckqx": 0,
+							"bjqx": 1,
+							"zdqx": 1,
+							"shqx": 0,
+							"glyqx": 0
+						}, {
+							"_id": "55183b89dbc547f6c18c98dff",
+							"name": "周行事历",
+							"ckqx": 0,
+							"bjqx": 0,
+							"zdqx": 0,
+							"shqx": 0,
+							"glyqx": 0
+						}, {
+							"_id": "51518b89dbc547f6c18c98dff",
+							"name": "普高研修",
+							"ckqx": 1,
+							"bjqx": 0,
+							"zdqx": 1,
+							"shqx": 0,
+							"glyqx": 1
+						}, {
+							"_id": "5518b89dbc5472f6c18c98dff",
+							"name": "研修新闻",
+							"ckqx": 0,
+							"bjqx": 1,
+							"zdqx": 1,
+							"shqx": 0,
+							"glyqx": 1
+						}]
+					}
+				},
+				tool: {
+					pagingBar: false,
+					checkboxSelect: false
+				},
+				columns: [{
+					title: '栏目',
+					dataIndex: 'name',
+                }, {
+					title: '查看权限',
+					dataIndex: 'ckqx',
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						var checked = '';
+						if (cellData == 1) {
+							checked = 'checked';
+						}
+						return '<input style="vertical-align:middle;margin-right:4px;" name="' + this.dataIndex + '" id="' + this.dataIndex + cellIndex + rowIndex + '" data-role="' + this.dataIndex + '" type="checkbox" ' + checked + ' /><label for="' + this.dataIndex + cellIndex + rowIndex + '">' + this.title + '</label>';
+					}
+
+                }, {
+					title: '编辑权限',
+					dataIndex: 'bjqx',
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						var checked = '';
+						if (cellData == 1) {
+							checked = 'checked';
+						}
+						return '<input style="vertical-align:middle;margin-right:4px;" name="' + this.dataIndex + '" id="' + this.dataIndex + cellIndex + rowIndex + '" data-role="' + this.dataIndex + '" type="checkbox" ' + checked + ' /><label for="' + this.dataIndex + cellIndex + rowIndex + '">' + this.title + '</label>';
+					}
+                }, {
+					title: '置顶权限',
+					dataIndex: 'zdqx',
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						var checked = '';
+						if (cellData == 1) {
+							checked = 'checked';
+						}
+						return '<input style="vertical-align:middle;margin-right:4px;" name="' + this.dataIndex + '" id="' + this.dataIndex + cellIndex + rowIndex + '" data-role="' + this.dataIndex + '" type="checkbox" ' + checked + ' /><label for="' + this.dataIndex + cellIndex + rowIndex + '">' + this.title + '</label>';
+					}
+                }, {
+					title: '审核权限',
+					dataIndex: 'shqx',
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						var checked = '';
+						if (cellData == 1) {
+							checked = 'checked';
+						}
+						return '<input style="vertical-align:middle;margin-right:4px;" name="' + this.dataIndex + '" id="' + this.dataIndex + cellIndex + rowIndex + '" data-role="' + this.dataIndex + '" type="checkbox" ' + checked + ' /><label for="' + this.dataIndex + cellIndex + rowIndex + '">' + this.title + '</label>';
+					}
+                }, {
+					title: '管理员权限',
+					dataIndex: 'glyqx',
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						var checked = '';
+						if (cellData == 1) {
+							checked = 'checked';
+						}
+						return '<input style="vertical-align:middle;margin-right:4px;" name="' + this.dataIndex + '" id="' + this.dataIndex + cellIndex + rowIndex + '" data-role="' + this.dataIndex + '" type="checkbox" ' + checked + ' /><label for="' + this.dataIndex + cellIndex + rowIndex + '">' + this.title + '</label>';
+					}
+                }], //add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//事件回调 
+						//获取列数
+						var colspan = that.$me.find("tr").eq(0).children().length;
+						$(that.$me.find("tr").eq(0).html('<th colspan="' + colspan + '" style="white-space: nowrap;">当前用户：' + that.opts.store.data.username + that.opts.store.data.organize + '分配栏目权限</th>'))
+					}
+				}
+			});
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+
+
+		}
+
+		/*侦听*/
+		function addListeners() {
+
+			function getTableData(tableId) {
+				var $table = $(tableId);
+				var $tableTr = $table.find("tr");
+
+				//封装数据，将一行当中所有的文本域全部保存到一个对象数据里
+				//封装为一个二维码组，二维保存该行name/value值 对象
+				var modArray = [];
+				//跳过标题行
+				for (var i = 1; i < $tableTr.length; i++) {
+
+					var $modInput = $tableTr.eq(i).find("input:checkbox");
+					modArray[i - 1] = [];
+
+					for (var j = 0; j < $modInput.length; j++) {
+						//获取名称与值的对：文本元素，名称要正确
+						var name = $modInput.eq(j).attr("name");
+						var value;
+						if ($modInput.eq(j).is(":checked")) {
+							value = 1;
+						} else {
+							value = 0;
+						}
+						modArray[i - 1][j] = {
+							"name": name,
+							"value": value
+						}
+					}
+				}
+
+				return modArray;
+			};
+
+
+			$("#submit-btn").click(function () {
+				//获取修改过的数据，封装成json格式
+				var modArray = getTableData("#table");
+				var modJson = {
+					"d": []
+				};
+
+				for (var i = 0; i < modArray.length; i++) {
+					modJson.d[i] = {};
+					for (var j = 0; j < modArray[i].length; j++) {
+						var name = modArray[i][j].name;
+						var value = modArray[i][j].value;
+						modJson.d[i][name] = value;
+					}
+				};
+				var newJson = $.extend(true, grid.config.store.data, modJson)
+				console.log(modJson)
+				console.log(newJson)
+				event.preventDefault();
+				return false;
+			})
+		}
+	</script>
+</body>
+
+</html>

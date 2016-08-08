@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<style>
+		.mulit-selectbox {
+			padding: 5px 10px;
+			background-color: #fff;
+			border: 1px solid #d2d2d2;
+		}
+		
+		.selectbox-title {
+			margin: 5px 0;
+			padding: 5px 0px;
+			background-color: #eeedec;
+			color: #333;
+			text-indent: 6px;
+			cursor: pointer;
+		}
+		
+		.selectbox-parent {
+			display: none;
+		}
+		
+		.selectbox-parent.on {
+			display: block;
+		}
+		
+		.selectbox-parent li {
+			/*TODO 列表项可以指定固定宽度*/
+			float: left;
+			color: #444;
+		}
+		/*同时以修正IE不支持子元素选择器 JS实现 li选中时，子元素span on 子元素 show */
+		
+		.selectbox-parent span {
+			display: block;
+			padding: 5px 20px 5px 10px;
+			margin-right: 6px;
+			border: 1px solid transparent;
+			border-bottom: none;
+		}
+		
+		.selectbox-title label,
+		.selectbox-parent span label {
+			margin-left: 2px;
+			cursor: pointer;
+		}
+		
+		.selectbox-parent span.on,
+		.selectbox-child span.on {
+			position: relative;
+			z-index: 2;
+			background-color: #fff;
+			border-color: #d2d2d2;
+		}
+		
+		.selectbox-child {
+			position: absolute;
+			z-index: 1;
+			left: 0px;
+			margin-top: -1px;
+			width: 345px;
+			padding: 6px 10px;
+			background-color: #fff;
+			border: 1px solid #d2d2d2;
+			display: none;
+		}
+		
+		.mulit-selectbox input {
+			text-indent: -12px;
+		}
+		
+		.mulit-selectbox b {
+			font-size: 0px;
+			line-height: 12px;
+			display: inline-block;
+			vertical-align: -2px;
+			width: 12px;
+			height: 12px;
+			background-image: url(../ext/zw/checkbox.jpg);
+		}
+		
+		.mulit-selectbox b.enabled {
+			background-position: 0 -0px;
+		}
+		
+		.mulit-selectbox b.enabled-all {
+			background-position: 0 -12px;
+		}
+		
+		.mulit-selectbox b.enabled-part {
+			background-position: 0 -24px;
+		}
+		
+		.mulit-selectbox b.disabled {
+			background-position: 0 -36px;
+		}
+		
+		.mulit-selectbox b.disabled-all {
+			background-position: 0 -48px;
+		}
+		
+		.selectbox-child-1 {
+			display: none;
+		}
+		
+		.selectbox-child-2 {
+			display: none;
+		}
+		
+		.selectbox-child-3 {
+			display: none;
+		}
+		
+		.selectbox-tools {
+			margin: 15px auto 5px;
+			text-align: center;
+		}
+		
+		.selectbox-tools span {
+			margin: 0 5px;
+			border: 1px solid #ddd;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<div class="form-group">
+						<label class="form-label" for="search1">所在地区<b class="red">*</b></label>
+						<input class="form-control " readonly="readonly" id="search1" type="text" />
+
+						<!--<span id="mulitSelect" style="vertical-align:middle;display:inline-block;height:25px; overflow:hidden; padding: 0 20px 3px 3px;width: 160px;border: 1px solid #d8d8d8;">
+						</span>-->
+						<!-- 一级直接展示，二级鼠标展现，三级鼠标点,   点击关闭当前弹出框后，返回到上一级目录，点击确认按钮，关闭所有窗口 -->
+						<!--<div class="mulit-selectbox">
+							<div class="selectbox-title">
+								<input class="form-checkbox" type="checkbox" value="1" name="lcjyj" id="lcjyj" />
+								<label for="lcjyj">鹿城教育局</label>
+							</div>
+							<ul class="selectbox-parent clearfix">
+								<li>
+									<span class="on"><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span>
+									<ul class="selectbox-child selectbox-child-1 clearfix">
+										<li>
+											<span><input class="form-checkbox" type="checkbox" value="1" name="hz" id="hz" /><label for="hz">杭州市</label></span></li>
+										<li>
+											<span><input class="form-checkbox" type="checkbox" value="1" name="wz" id="wz" /><label for="wz">温州市</label></span>
+											<ul class="selectbox-child selectbox-child-2 clearfix">
+												<li>
+													<span><input class="form-checkbox" type="checkbox" value="1" name="ras" id="ras" /><label for="ras">瑞安市区好地方</label></span>
+													<ul class="selectbox-child selectbox-child-3 clearfix">
+														<li>
+															<span><input class="form-checkbox" type="checkbox" value="1" />锦湖街道</span></li>
+														<li>
+															<span><input class="form-checkbox" type="checkbox" value="1" />安阳街道</span></li>
+														<li>
+															<span><input class="form-checkbox" type="checkbox" value="1" />玉海街道</span></li>
+													</ul>
+												</li>
+												<li>
+													<span><input class="form-checkbox" type="checkbox" value="1w" name="lw" id="lw" /><label for="lw">龙湾</label></span></li>
+												<li>
+													<span><input class="form-checkbox" type="checkbox" value="1" name="oh" id="oh" /><label for="oh">瓯海</label></span></li>
+												<li>
+													<span><input class="form-checkbox" type="checkbox" value="1" name="lc" id="lc" /><label for="lc">鹿城</label></span></li>
+											</ul>
+
+										</li>
+										<li>
+											<span><input class="form-checkbox" type="checkbox" value="1" name="wlmq" id="wlmq" /><label for="wlmq">乌鲁木齐市</label></span></li>
+										<li>
+											<span><input class="form-checkbox" type="checkbox" value="1" name="jysgdd" id="jysgdd" /><label for="jysgdd">九阳神功大殿</label></span></li>
+									</ul>
+								</li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+
+							</ul>
+							<div class="selectbox-title">
+								<input class="form-checkbox" type="checkbox" value="1" name="ohjyj" id="ohjyj" />
+								<label for="ohjyj">瓯海教育局</label>
+							</div>
+							<ul class="selectbox-parent clearfix">
+								<li>
+									<span class="on"><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span>
+									<ul class="selectbox-child selectbox-child-1 clearfix">
+										<li>
+											<span><input class="form-checkbox" type="checkbox" value="1" name="hz" id="hz" /><label for="hz">杭州市</label></span></li>
+										<li>
+											<span><input class="form-checkbox" type="checkbox" value="1" name="wz" id="wz" /><label for="wz">温州市</label></span>
+											<ul class="selectbox-child selectbox-child-2 clearfix">
+												<li>
+													<span><input class="form-checkbox" type="checkbox" value="1" name="ras" id="ras" /><label for="ras">瑞安市区好地方</label></span>
+													<ul class="selectbox-child selectbox-child-3 clearfix">
+														<li>
+															<span><input class="form-checkbox" type="checkbox" value="1" />锦湖街道</span></li>
+														<li>
+															<span><input class="form-checkbox" type="checkbox" value="1" />安阳街道</span></li>
+														<li>
+															<span><input class="form-checkbox" type="checkbox" value="1" />玉海街道</span></li>
+													</ul>
+												</li>
+												<li>
+													<span><input class="form-checkbox" type="checkbox" value="1w" name="lw" id="lw" /><label for="lw">龙湾</label></span></li>
+												<li>
+													<span><input class="form-checkbox" type="checkbox" value="1" name="oh" id="oh" /><label for="oh">瓯海</label></span></li>
+												<li>
+													<span><input class="form-checkbox" type="checkbox" value="1" name="lc" id="lc" /><label for="lc">鹿城</label></span></li>
+											</ul>
+
+										</li>
+										<li>
+											<span><input class="form-checkbox" type="checkbox" value="1" name="wlmq" id="wlmq" /><label for="wlmq">乌鲁木齐市</label></span></li>
+										<li>
+											<span><input class="form-checkbox" type="checkbox" value="1" name="jysgdd" id="jysgdd" /><label for="jysgdd">九阳神功大殿</label></span></li>
+									</ul>
+								</li>
+
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+								<li><span><input class="form-checkbox" type="checkbox" value="1" name="zj" id="zj" /><label for="zj">浙江省</label></span></li>
+
+							</ul>
+							<div class="selectbox-tools">
+								<span class="selectbox-close btn btn-success">确认</span><span class="selectbox-clean btn btn-danger">清空</span><span class="selectbox-close btn btn-default">取消</span>
+							</div>
+						</div>-->
+					</div>
+					<div class="form-group">
+						<label class="form-label" for="search2">出生日期</label>
+						<input class="form-control date" id="search2" type="text" />
+						<span class="form-tip alert alert-success">账户名由数字和字母组成 长度为4-10字符</span>
+					</div>
+					<div class="form-group button-group">
+						<input class="btn btn-success btn-large" type="submit" value="提交">
+						<input class="btn btn-danger btn-large" type="reset" value="重置">
+						<input class="btn btn-danger btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/mulitSelectBox.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script>
+		$(function () {
+
+			//初始化
+			initTablePage();
+
+			/*
+				数据结构
+				"state":"s",
+				"total":"",//数据总量
+				"data": [
+							{
+								"id": "00",
+								"value": "ohjyj",
+								"name": "鹿城教育局",
+								"open": true,折叠/展开状态,默认true
+								"select":true,项选中状态,默认false
+								"formatter:function(){},格式化输出
+								"eventType": "click",子项事件行为
+								"childs":[ //子类数据
+									{
+										"id": "01",
+										"value": "zjs",
+										"name": "浙江省",
+										"select": true,																	"formatter:"function(){}",格式化输出
+										"childs":[{}]
+									}
+								]
+							}
+				]
+				"selectedId":[],//选中状态数组，会覆盖data数据设置的select状态
+				
+				"contWidth":"auto",//自定义宽度，默认XX?
+				"contHeight":"auto",//自定义外框高度，默认auto
+				"childWidth":"auto",//统一子项宽度，微调
+				"eventType": "click",//事件行为
+				"callback":function(){}//回调函数
+				TODO 样式：全选与非全选不同的表现方式
+			*/
+			var config = {
+				"state": "s",
+				"total": "",
+				"data": [
+					{
+						"id": "01",
+						"value": "zwxxjs",
+						"name": "掌网信息技术",
+						"open": true,
+						"select": false,
+						"childs": [
+							{
+								"id": "01",
+								"value": "sjz",
+								"name": "设计组",
+								"select": false,
+								childs: [
+									{
+										"id": "101",
+										"value": "zjw",
+										"name": "朱建伟"
+            },
+									{
+										"id": "102",
+										"value": "ytt",
+										"name": "严听听"
+            }
+          ]
+        },
+							{
+								"id": "02",
+								"value": "jsz",
+								"name": "技术组",
+								childs: [
+									{
+										"id": "201",
+										"value": "qdz",
+										"name": "前端开发组",
+										childs: [
+											{
+												"id": "2201",
+												"value": "msl",
+												"name": "莫胜利",
+												childs: [
+													{
+														"id": "22201",
+														"value": "jhjd",
+														"name": "锦湖街道",
+
+                    },
+													{
+														"id": "22202",
+														"value": "ayjd",
+														"name": "安阳街道",
+
+                    }
+                  ]
+                },
+											{
+												"id": "2102",
+												"value": "qsxlr",
+												"name": "我是新来的"
+                }
+              ]
+            },
+									{
+										"id": "202",
+										"value": "kfz",
+										"name": "测试组",
+										childs: [{
+											"id": "2213",
+											"value": "xfp",
+											"name": "莫胜利"
+										}, {
+											"id": "2211",
+											"value": "jxx",
+											"name": "金鑫鑫"
+										}]
+            }
+          ]
+        }, {
+								"id": "01",
+								"value": "sjz",
+								"name": "设计组",
+								"select": false,
+								childs: [
+									{
+										"id": "101",
+										"value": "zjw",
+										"name": "朱建伟"
+            },
+									{
+										"id": "102",
+										"value": "ytt",
+										"name": "严听听"
+            }
+          ]
+        },
+							{
+								"id": "02",
+								"value": "jsz",
+								"name": "技术组",
+								childs: [
+									{
+										"id": "201",
+										"value": "qdz",
+										"name": "前端开发组",
+										childs: [
+											{
+												"id": "2201",
+												"value": "msl",
+												"name": "莫胜利",
+												childs: [
+													{
+														"id": "22201",
+														"value": "jhjd",
+														"name": "锦湖街道",
+
+                    },
+													{
+														"id": "22202",
+														"value": "ayjd",
+														"name": "安阳街道",
+
+                    }
+                  ]
+                },
+											{
+												"id": "2102",
+												"value": "qsxlr",
+												"name": "我是新来的"
+                }
+              ]
+            },
+									{
+										"id": "202",
+										"value": "kfz",
+										"name": "测试组",
+										childs: [{
+											"id": "2213",
+											"value": "xfp",
+											"name": "莫胜利"
+										}, {
+											"id": "2211",
+											"value": "jxx",
+											"name": "金鑫鑫"
+										}]
+            }
+          ]
+        }, {
+								"id": "01",
+								"value": "sjz",
+								"name": "设计组",
+								"select": false,
+								childs: [
+									{
+										"id": "101",
+										"value": "zjw",
+										"name": "朱建伟"
+            },
+									{
+										"id": "102",
+										"value": "ytt",
+										"name": "严听听"
+            }
+          ]
+        },
+							{
+								"id": "02",
+								"value": "jsz",
+								"name": "技术组",
+								childs: [
+									{
+										"id": "201",
+										"value": "qdz",
+										"name": "前端开发组",
+										childs: [
+											{
+												"id": "2201",
+												"value": "msl",
+												"name": "莫胜利",
+												childs: [
+													{
+														"id": "22201",
+														"value": "jhjd",
+														"name": "锦湖街道",
+
+                    },
+													{
+														"id": "22202",
+														"value": "ayjd",
+														"name": "安阳街道",
+
+                    }
+                  ]
+                },
+											{
+												"id": "2102",
+												"value": "qsxlr",
+												"name": "我是新来的"
+                }
+              ]
+            },
+									{
+										"id": "202",
+										"value": "kfz",
+										"name": "测试组",
+										childs: [{
+											"id": "2213",
+											"value": "xfp",
+											"name": "莫胜利"
+										}, {
+											"id": "2211",
+											"value": "jxx",
+											"name": "金鑫鑫"
+										}]
+            }
+          ]
+        }, {
+								"id": "01",
+								"value": "sjz",
+								"name": "设计组",
+								"select": false,
+								childs: [
+									{
+										"id": "101",
+										"value": "zjw",
+										"name": "朱建伟"
+            },
+									{
+										"id": "102",
+										"value": "ytt",
+										"name": "严听听"
+            }
+          ]
+        },
+							{
+								"id": "02",
+								"value": "jsz",
+								"name": "技术组",
+								childs: [
+									{
+										"id": "201",
+										"value": "qdz",
+										"name": "前端开发组",
+										childs: [
+											{
+												"id": "2201",
+												"value": "msl",
+												"name": "莫胜利",
+												childs: [
+													{
+														"id": "22201",
+														"value": "jhjd",
+														"name": "锦湖街道",
+
+                    },
+													{
+														"id": "22202",
+														"value": "ayjd",
+														"name": "安阳街道",
+
+                    }
+                  ]
+                },
+											{
+												"id": "2102",
+												"value": "qsxlr",
+												"name": "我是新来的"
+                }
+              ]
+            },
+									{
+										"id": "202",
+										"value": "kfz",
+										"name": "测试组",
+										childs: [{
+											"id": "2213",
+											"value": "xfp",
+											"name": "莫胜利"
+										}, {
+											"id": "2211",
+											"value": "jxx",
+											"name": "金鑫鑫"
+										}]
+            }
+          ]
+        }, {
+								"id": "01",
+								"value": "sjz",
+								"name": "设计组",
+								"select": false,
+								childs: [
+									{
+										"id": "101",
+										"value": "zjw",
+										"name": "朱建伟"
+            },
+									{
+										"id": "102",
+										"value": "ytt",
+										"name": "严听听"
+            }
+          ]
+        },
+							{
+								"id": "02",
+								"value": "jsz",
+								"name": "技术组",
+								childs: [
+									{
+										"id": "201",
+										"value": "qdz",
+										"name": "前端开发组",
+										childs: [
+											{
+												"id": "2201",
+												"value": "msl",
+												"name": "莫胜利",
+												childs: [
+													{
+														"id": "22201",
+														"value": "jhjd",
+														"name": "锦湖街道",
+
+                    },
+													{
+														"id": "22202",
+														"value": "ayjd",
+														"name": "安阳街道",
+
+                    }
+                  ]
+                },
+											{
+												"id": "2102",
+												"value": "qsxlr",
+												"name": "我是新来的"
+                }
+              ]
+            },
+									{
+										"id": "202",
+										"value": "kfz",
+										"name": "测试组",
+										childs: [{
+											"id": "2213",
+											"value": "xfp",
+											"name": "莫胜利"
+										}, {
+											"id": "2211",
+											"value": "jxx",
+											"name": "金鑫鑫"
+										}]
+            }
+          ]
+        }
+      ]
+    },
+					{
+						"id": "02",
+						"value": "zwsyjg",
+						"name": "掌网事业机构",
+						"open": true,
+
+						"childs": [
+							{
+								"id": "003",
+								"value": "xmb",
+								"name": "项目部",
+								childs: [
+									{
+										"id": "10441",
+										"value": "zcj",
+										"name": "邹崇锦"
+            },
+									{
+										"id": "55351",
+										"value": "cdm",
+										"name": "陈东敏"
+            }, {
+										"id": "553a51",
+										"value": "pks",
+										"name": "潘克胜"
+            }
+          ]
+        },
+							{
+								"id": "046",
+								"value": "ssb",
+								"name": "销售部",
+								childs: [
+									{
+										"id": "5223",
+										"value": "wdw",
+										"name": "未到位"
+            },
+									{
+										"id": "6783",
+										"value": "jyn",
+										"name": "酱油男"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+				"selectedId": [], //选中状态数组，会覆盖data数据设置的select状态
+				"contWidth": "600", //自定义宽度，默认XX?
+				"contHeight": "auto", //自定义外框高度，默认auto
+				"childWidth": "auto", //统一子项宽度，微调
+				"eventType": "click", //事件行为 
+				"callback": function () {} //回调函数
+			}
+			$("#search1").mulitSelectBox(config);
+
+			//侦听事件
+			addListeners();
+		});
+
+		/*初始化各项设置*/
+		function initTablePage() {
+			//下拉菜单初始化
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+			laydate({
+				elem: '#search2',
+				event: 'focus'
+			});
+		}
+
+		/*侦听*/
+		function addListeners() {
+			//新增事件
+			$('#add-btn').bind('click', function () {
+				var index = showIframe('新增', './dialog-form.html', 800, 352);
+			});
+			//修改事件
+			$('#mod-btn').bind('click', function () {
+				//var index = showIframe('编辑', './dynamic-form.html', 800, 352);
+			});
+			//删除事件
+			$('#del-btn').bind('click', function () {
+				//setManager()
+			});
+
+			//视图模式切换
+			$('.switchMode').bind('click', function () {
+				$(this).siblings('.selected').removeClass('selected');
+				$(this).addClass('selected');
+				grid.switchDisplayMode($(this).data('mode'));
+			});
+		}
+
+		//弹出内联DOM框
+		function setJuage(me) {
+			showDom('标题', '#category', 400, 200);
+		}
+
+		//单项编辑
+		function editItem(rowIndex) {
+			//var data = grid.getRowDataByIndex(rowIndex).data;
+			var index = showIframe('编辑', './dialog-form.html', 800, 352);
+		}
+
+		//警告框
+		function setManager(me) {
+			showAlert('确认要执行此操作，可能会带来未知的数据异常', function (index) {
+				layer.close(index);
+			});
+		}
+	</script>
+</body>
+
+</html>

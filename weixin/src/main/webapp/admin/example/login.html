@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title></title>
+    <link rel="stylesheet" href="../stylesheets/common.css" />
+    <link rel="stylesheet" href="../stylesheets/login.css" />
+</head>
+<body>
+    <table width="100%" height="100%">
+        <tbody>
+            <tr>
+                <td align="center" valign="middle">
+                    <div class="login-block">
+                        <h1 class="website-title">后台管理系统示例</h1>
+                        <div class="login-panel">
+                            <h2 class="login-title">用户登录</h2>
+                            <div class="login-content">
+                                <!-- <div class="login-tip">您输入的账号或密码有误！</div> -->
+                                <form action="">
+                                    <div class="form-group">
+                                        <input class="form-control" id="account" name="account" type="text" />
+                                        <i class="iconfont">&#xe62c;</i>
+                                        <div class="placeholder">手机号码或邮箱账号</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" id="password" name="password" type="password" />
+                                        <i class="iconfont">&#xe62d;</i>
+                                        <div class="placeholder">请输入密码</div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <span class="left">
+                                            <input class="form-checkbox" id="remember-password" type="checkbox" autocomplete="off" />
+                                            <label for="remember-password">记住密码</label>
+                                        </span>
+                                        <a class="right" href="##">忘记密码？</a>
+                                    </div>
+                                    <div class="form-group">
+                                        <a class="login-submit" href="javascript:void(0);" id="login-submit">登&nbsp;&nbsp;录</a>
+                                    </div>
+                                    <input class="hide" type="password" />
+                                </form>
+                            </div>
+                        </div>
+                        <div class="copyright">
+                            <a href="http://www.thanone.com" target="_blank">© 掌网科技 Thanone Inc.</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+    <script>
+        var docCookies = {
+            getItem: function(sKey) {
+                return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+            },
+            setItem: function(sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+                if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
+                    return false;
+                }
+                var sExpires = "";
+                if (vEnd) {
+                    switch (vEnd.constructor) {
+                        case Number:
+                            sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
+                            break;
+                        case String:
+                            sExpires = "; expires=" + vEnd;
+                            break;
+                        case Date:
+                            sExpires = "; expires=" + vEnd.toUTCString();
+                            break;
+                    }
+                }
+                document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
+                return true;
+            },
+            removeItem: function(sKey, sPath, sDomain) {
+                if (!sKey || !this.hasItem(sKey)) {
+                    return false;
+                }
+                document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "");
+                return true;
+            },
+            hasItem: function(sKey) {
+                return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+            },
+            keys: function() {
+                var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+                for (var nIdx = 0; nIdx
+                < aKeys.length; nIdx++) {
+                    aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]);
+                }
+                return aKeys;
+            }
+        };
+        $(function() {
+            loadCookies();
+            removePlaceholder();
+            addListeners();
+        });
+
+        /*移除输入框提示*/
+        function removePlaceholder () {
+            if (navigator.userAgent.toLowerCase().indexOf("chrome") >= 0) {
+                $('input:-webkit-autofill').each(function(){
+                    var text = $(this).val();
+                    var name = $(this).attr('name');
+                    $(this).after(this.outerHTML).remove();
+                    $('input[name=' + name + ']').val(text);
+                });
+            }
+            $('.form-control').each(function(index, el) {
+                if($(this).val().length !== 0){
+                    $(this).siblings('.placeholder').hide();
+                }
+            });
+        }
+        /*侦听器*/
+        function addListeners () {
+            /*placeholder相关*/
+            $('.form-control').focus(function(event) {
+                $(this).siblings('.placeholder').hide();
+            });
+            $('.placeholder').click(function(event) {
+                $(this).siblings('.form-control').focus();
+            });
+            $('.form-control').blur(function(event) {
+                if($(this).val().length === 0){
+                    $(this).siblings('.placeholder').show();
+                }
+            });
+            /*表单提交*/
+            $('.form-control').bind('keydown', function(event){
+                if(event.keyCode === 13){
+                    $('#login-submit').trigger('click');
+                    return false;
+                }
+            });
+            $('#login-submit').bind('click', function(){
+                //cookies
+                if($('#remember-password').is(':checked')){
+                    docCookies.setItem('account', $('#account').val(), Infinity);
+                    docCookies.setItem('password', $('#password').val(), Infinity);
+                }else{
+                    docCookies.removeItem('account');
+                    docCookies.removeItem('password');
+                }
+
+                //登录
+                // $.get('/path/to/file', function(data) {
+                //     /*optional stuff to do after success */
+                // });
+            });
+        }
+
+        function loadCookies (argument) {
+            var account = docCookies.getItem('account');
+            var password = docCookies.getItem('password');
+
+            if(account && password){
+                $('#account').val(account);
+                $('#password').val(password);
+                $('#remember-password').prop('checked', true);
+            }
+        }
+    </script>
+</body>
+</html>

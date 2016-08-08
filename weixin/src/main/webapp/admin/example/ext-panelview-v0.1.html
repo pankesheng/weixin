@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>视图面板示例</title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span></span>
+	</div>
+	<div class="body-warp clearfix">
+
+		<!-- 默认配置 -->
+		<div id="panelView" class="panel ext-panelview">
+
+		</div>
+
+	</div>
+	<link rel="stylesheet" href="../ext/zw/lui-v2.1/css/extension.css" />
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/luicontroller-advance.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/panelview.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/extension.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+	<script>
+		$(function () {
+			var setting = {
+				store: {
+					data: [
+						{
+							name: "刘备",
+							value: "msl",
+							checked: true,
+						},
+						{
+							name: "曹操",
+							value: "cdm",
+							selected: true
+				},
+						{
+							name: "孙权",
+							value: "yfp",
+				}, {
+							name: "司马懿",
+							value: "yfp",
+							disabled: true
+				}
+		]
+				},
+				view: {}
+			}
+
+			//例子1：未传入data
+			var panel01 = $("#panelView").panelview(setting);
+		});
+	</script>
+</body>
+
+</html>

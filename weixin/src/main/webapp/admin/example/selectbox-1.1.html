@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：弹出选择框（html直接输出）<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="selectPanelview10" class="select-panelview">
+								</div>
+								<div id="selectbox10" class="panel-body selectbox">
+									<div class="content clearfix" data-role="content">
+										<div data-role="node" data-index="1" data-id="SelectBox24072319890130" class="node selected" data-state="selected">
+											<a href="javascript:void(0);" title="主智平课台"><img src="../images/icon/icon3.png" alt="主智平课台" title="主智平课台"><span class="name" title="主智平课台">主智平课台</span></a><span class="iconfont icon-state"></span></div>
+										<div data-role="node" data-index="2" data-id="SelectBox24072319890130" class="node selected" data-state="selected">
+											<a href="javascript:void(0);" title="主智平课台"><img src="../images/icon/icon3.png" alt="主智平课台" title="主智平课台"><span class="name" title="主智平课台">主智平课台</span></a><span class="iconfont icon-state"></span></div>
+										<div data-role="node" data-index="3" data-id="SelectBox24072319890130" class="node selected" data-state="selected">
+											<a href="javascript:void(0);" title="主智平课台"><img src="../images/icon/icon3.png" alt="主智平课台" title="主智平课台"><span class="name" title="主智平课台">主智平课台</span></a><span class="iconfont icon-state"></span></div>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：弹出选择框（单选）美化滚动条<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="selectPanelview" class="select-panelview">
+								</div>
+								<div id="droplistContainer3" class="hide">
+									<div id="selectbox" class=" panel-body selectbox">
+									</div>
+								</div>
+								<a href="javascript:void(0);" class="btn btn-primary" id="popup"><i class="iconfont">&#xe61b;</i>选择父单位</a>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：弹出选择框（多选）<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="selectPanelview2" class="select-panelview">
+								</div>
+								<div id="selectbox2" class="hide panel-body selectbox">
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：弹出选择框（多选加内部选中提示）<b class="red">*</b></label>
+							</td>
+							<td>
+								<div id="selectPanelview3" class="select-panelview">
+								</div>
+								<div id="popupSelectbox3" class="hide">
+									<div id="selectboxInnerPanelview3" class="panel-body panelview selectbox-inner-panelview">
+									</div>
+									<div id="selectbox3" class="panel-body selectbox">
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">示例：选择框列表展示(最大可选设置为5个)<b class="red">*</b></label>
+							</td>
+							<td>
+			</div>
+			<div id="selectboxInnerPanelview4" class="panel-body panelview selectbox-inner-panelview">
+			</div>
+			<div id="selectbox4" class="panel-body selectbox">
+			</div>
+			</td>
+			</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/panelview.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+
+	<script>
+		$(function () {
+			logDebug = true;
+			var setting6 = {
+				store: {
+					data: [
+						{
+							id: "27",
+							value: "msl",
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							id: "28",
+							value: "abc",
+
+							name: "主智平课台",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							id: "29",
+							value: "ddda",
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							id: "30",
+							value: "gda",
+							name: "评价gda",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							id: "25",
+							value: "dcd",
+							subName: "30",
+
+							name: "25dcd30",
+							image: "../images/icon/icon6.png",
+				}
+						, {
+							id: "25",
+							value: "eqd",
+							subName: "32",
+
+							name: "25eqd32",
+							image: "../images/icon/icon11.png",
+							state: "disabled"
+
+				}, {
+							id: "26",
+							value: "vdx",
+
+							name: "评对",
+							image: "../images/icon/icon12.png",
+							state: "disabled"
+
+				}, {
+							id: "30",
+							value: "urd",
+
+							name: "评断urd",
+							image: "../images/icon/icon10.png",
+							state: "disabled"
+
+				},
+						{
+							id: "30",
+							value: "drd",
+
+							name: "评断drd",
+							image: "../images/icon/icon10.png",
+							state: "disabled"
+
+				},
+						{
+							id: "30",
+							value: "xda",
+
+							name: "评断xda",
+							image: "../images/icon/icon10.png",
+							state: "disabled"
+
+				},
+		]
+				},
+				view: {
+
+					//启用多选
+					enabledMultiple: false,
+					//多选个数限制
+					/*
+										mainShow: "all",
+					multipleSize: null,
+					//选中即时显示
+					enabledShowSelected: true,
+					//启用网格(未支持)
+					enabledGrid: true,
+					//TODO启用搜索(未支持)
+					enabledSearch: true,
+					//TODO启用分页(未支持)
+					enabledPagination: true,
+					//TODO 分页每页数目
+					paginationNumber: 2,
+					//TODO启用视图(未支持)
+					enabledPanelview: true,
+					*/
+
+				},
+				/*callback: {
+					nodeOnClick: function () {
+					}
+				}*/
+			}
+
+			var setting = {
+				store: {
+					data: [
+						{
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主智平课台",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				}, {
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				}, {
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				}, {
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				}, {
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				}, {
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				}, {
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							id: "19890129",
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							id: "19890130",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							id: "19890120",
+
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				}, {
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				}, {
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+							state: "xxxx"
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				},
+						{
+							name: "资讯",
+							image: "../images/icon/icon7.png",
+				}, {
+							name: "信息",
+							image: "../images/icon/icon8.png",
+				}, {
+							name: "组织",
+							image: "../images/icon/icon9.png",
+				}, {
+							name: "权限",
+							image: "../images/icon/icon10.png",
+				}, {
+							name: "图片",
+							image: "../images/icon/icon11.png",
+				}, {
+							name: "视频",
+							image: "../images/icon/icon12.png",
+				}, {
+							name: "智课",
+							image: "../images/icon/icon2.png",
+							state: "selected"
+						},
+						{
+							name: "主平台",
+							image: "../images/icon/icon3.png",
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+						},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				},
+						{
+							name: "资讯",
+							image: "../images/icon/icon7.png",
+				}, {
+							name: "信息",
+							image: "../images/icon/icon8.png",
+				}, {
+							name: "组织",
+							image: "../images/icon/icon9.png",
+				}, {
+							name: "权限",
+							image: "../images/icon/icon10.png",
+				}, {
+							name: "图片",
+							image: "../images/icon/icon11.png",
+				}, {
+							name: "视频",
+							image: "../images/icon/icon12.png",
+				}, {
+							name: "智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台",
+							image: "../images/icon/icon3.png",
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+				},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				},
+						{
+							name: "资讯",
+							image: "../images/icon/icon7.png",
+				}, {
+							name: "信息",
+							image: "../images/icon/icon8.png",
+				}, {
+							name: "组织",
+							image: "../images/icon/icon9.png",
+				}, {
+							name: "权限",
+							image: "../images/icon/icon10.png",
+				}, {
+							name: "图片",
+							image: "../images/icon/icon11.png",
+				}, {
+							name: "视频",
+							image: "../images/icon/icon12.png",
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+				},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				},
+						{
+							name: "资讯",
+							image: "../images/icon/icon7.png",
+				}, {
+							name: "信息",
+							image: "../images/icon/icon8.png",
+				}, {
+							name: "组织",
+							image: "../images/icon/icon9.png",
+				}, {
+							name: "权限",
+							image: "../images/icon/icon10.png",
+				}, {
+							name: "图片",
+							image: "../images/icon/icon11.png",
+				}, {
+							name: "视频",
+							image: "../images/icon/icon12.png",
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+				},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				},
+						{
+							name: "资讯",
+							image: "../images/icon/icon7.png",
+				}, {
+							name: "信息",
+							image: "../images/icon/icon8.png",
+				}, {
+							name: "组织",
+							image: "../images/icon/icon9.png",
+				}, {
+							name: "权限",
+							image: "../images/icon/icon10.png",
+				}, {
+							name: "图片",
+							image: "../images/icon/icon11.png",
+				}, {
+							name: "视频",
+							image: "../images/icon/icon12.png",
+				},
+						{
+							name: "评价",
+							image: "../images/icon/icon5.png",
+				},
+						{
+							name: "信息",
+							image: "../images/icon/icon6.png",
+				},
+						{
+							name: "资讯",
+							image: "../images/icon/icon7.png",
+				}, {
+							name: "信息",
+							image: "../images/icon/icon8.png",
+				}, {
+							name: "组织",
+							image: "../images/icon/icon9.png",
+				}, {
+							name: "权限",
+							image: "../images/icon/icon10.png",
+				}, {
+							name: "图片",
+							image: "../images/icon/icon11.png",
+				}, {
+							name: "视频",
+							image: "../images/icon/icon12.png",
+				},
+		]
+				},
+				view: {
+
+					//启用多选
+					enabledMultiple: false,
+					//多选个数限制
+					/*
+										mainShow: "all",
+					multipleSize: null,
+					//选中即时显示
+					enabledShowSelected: true,
+					//启用网格(未支持)
+					enabledGrid: true,
+					//TODO启用搜索(未支持)
+					enabledSearch: true,
+					//TODO启用分页(未支持)
+					enabledPagination: true,
+					//TODO 分页每页数目
+					paginationNumber: 2,
+					//TODO启用视图(未支持)
+					enabledPanelview: true,
+					*/
+
+				},
+				/*callback: {
+					nodeOnClick: function () {
+					}
+				}*/
+			}
+			var setting2 = $.extend(true, {}, setting);
+
+			setting2.view.enabledMultiple = true;
+			var setting4 = $.extend(true, {}, setting);
+			setting4.view.enabledMultiple = true;
+			setting4.view.enabledControl = true;
+			setting4.view.multipleSize = 5;
+			setting4.view.controlFormater = function () {
+					return '<div class="searchbox filter-block"><form class="form-inline"><div class="form-group"><input class="form-control" id="searchInput" type="text"></div><div class="form-group"><a id="searchButton" href="javascript:void(0);" class="btn"><i class="iconfont"></i>搜索</a></div></form></div>'
+
+				}
+				//示例：弹出选择框（单选）
+			panelO1 = $("#selectPanelview").panelview();
+			sbO1 = $("#selectbox").selectbox(setting);
+
+			popupSelectBox([sbO1, panelO1], "#droplistContainer3", "所有图标", ["500px", "400px"], ['选择', '关闭'], null, null, function () {
+
+				//美化滚动条
+
+				$('#droplistContainer3').parent().css({
+					"overflow": "hidden",
+				})
+				setTimeout(function () {
+					ncO = $('#droplistContainer3').parent().niceScroll({
+						cursorcolor: '#7db7fb',
+						cursorwidth: '6px',
+						cursorborderradius: 2,
+						autohidemode: true,
+						background: '#d0d0d0',
+						cursoropacitymin: 1,
+						cursorborder: 'none',
+						horizrailenabled: false,
+					})
+				}, 250)
+			})
+
+			//示例：弹出选择框（多选）
+
+			panelO2 = $("#selectPanelview2").panelview();
+			sbO2 = $("#selectbox2").selectbox(setting2);
+
+
+			popupSelectBox([sbO2, panelO2], sbO2.$me.selector, "所有图标", null, ['选择', '关闭'])
+
+			//示例：弹出选择框（多选加内部选中提示）
+			panelO3 = $("#selectPanelview3").panelview();
+			sbO3 = $("#selectbox3").selectbox(setting2);
+			sbPanelO3 = $("#selectboxInnerPanelview3").panelview();
+
+			SelectBoxPanelview([sbO3, sbPanelO3])
+
+			popupSelectBox([sbO3, panelO3, sbPanelO3], "#popupSelectbox3", "所有图标", null, ['选择', '关闭'])
+
+			//示例：示例：选择框列表展示(最大可选设置为5个）*  
+			sbO4 = $("#selectbox4").selectbox(setting4);
+			sbPanelO4 = $("#selectboxInnerPanelview4").panelview();
+
+			SelectBoxPanelview([sbO4, sbPanelO4])
+
+			sbO10 = selectbox($("#selectbox10"));
+
+
+
+
+			$("#searchButton").click(function () {
+				/*				var getValue = $("#ssss").val().split(",");
+								sbO4.filterNode(getValue, false, function () {
+									console.log("sdf1")
+								})*/
+
+				var getValue = $("#searchInput").val();
+
+				/*
+								var d = sbO4.filterNode(pattern, searchKey, matchMode, filterMode, callback) 
+				*/
+				var d = sbO4.filterNode(getValue)
+
+
+			})
+
+
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+			$("#popup").click(function () {
+				$("#selectPanelview").click()
+			})
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+
+
+		function addListeners(argument) {
+
+		}
+	</script>
+</body>
+
+</html>

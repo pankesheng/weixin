@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+
+
+		<div class="panel" style="width:700px;margin-right:50px;float:left;">
+			<div class="panel-body">
+				<!-- 简单展示时可以直接使用title属性设置解释说明 -->
+				<!-- 自定义展示时可以通过data-showtips绑定要展示的html元素元素 -->
+				<form class="field-container">
+					<span class="headline">包裹框<i class="iconfont infotips showtips" data-tipsid='#ccc' title="这里可以进行解释说明">&#xe644;</i></span>
+					<div id="ccc" class="showtips-alert alert alert-success mb-10"><span><i class="iconfont">&#xe624;</i>这里可以进行解释说明</span><span class="tips-close"><i class="iconfont">&#xe628;</i></span></div>
+					<table class="form-table">
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">禁用<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="selectPanelview" class="select-panelview">
+									</div>
+									<div id="droplist" class="droplist hide close-popup">
+									</div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">新下拉选择列表（单选）<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="selectPanelview2" class="select-panelview">
+									</div>
+									<select class="form-select hide" id="droplist2" size="4">
+										<optgroup label="请选择条件">
+											<option>按名称</option>
+											<option>按身份</option>
+											<option selected>按时间</option>
+											<option>按身份</option>
+											<option>按时间</option>
+											<option selected>按身份</option>
+											<option>按时间</option>
+											<option disabled>按身份</option>
+											<option>按时间</option>
+											<option>按身份</option>
+											<option>按时间</option>
+											<option>按身份</option>
+											<option>按时间</option>
+										</optgroup>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">新下拉选择列表（单选）<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="selectPanelview4" class="select-panelview">
+									</div>
+									<div id="droplist4" class="droplist hide close-popup">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">新下拉选择列表（多选）(并限制为5个)<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="selectPanelview5" class="select-panelview">
+									</div>
+									<div id="droplist5" class="droplist hide close-popup">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">漂亮滚动条<b class="red">*</b></label>
+							</td>
+							<td>
+								<div>
+									<div id="selectPanelview6" class="select-panelview">
+									</div>
+									<div id="droplistContainer6" class="hide close-popup" style="max-height:216px;">
+										<div id="droplist6" class="droplist hide close-popup">
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2/js/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/droplist.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/panelview.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+
+	<script>
+		$(function () {
+
+
+			var setting = {
+				store: {
+					data: [
+						{
+							id: "01",
+							name: "莫胜利",
+							value: "msl",
+						},
+						{
+							id: "02",
+							name: "陈东敏",
+							value: "cdm",
+							image: "../images/icon/icon2.png",
+				},
+						{
+							id: "03",
+							name: "许凤平",
+							value: "yfp",
+							image: "../images/icon/icon3.png",
+							state: "disabled"
+				}, {
+							id: "04",
+							name: "严听听",
+							value: "ytt",
+
+						},
+						{
+							id: "05",
+							name: "邹崇锦",
+							value: "zcj",
+							image: "../images/icon/icon5.png",
+
+						},
+						{
+							id: "06",
+							name: "潘克胜",
+							value: "pks",
+							image: "../images/icon/icon6.png",
+						},
+						{
+							id: "07",
+							name: "鹏飞",
+							value: "pf",
+							image: "../images/icon/icon7.png",
+						},
+						{
+							id: "08",
+							name: "酱油1",
+							value: "jy",
+							image: "../images/icon/icon8.png",
+						},
+						{
+							id: "09",
+							name: "酱油2",
+							value: "jy2",
+							image: "../images/icon/icon9.png",
+						},
+						{
+							id: "10",
+							name: "酱油3",
+							value: "jy3",
+							image: "../images/icon/icon10.png",
+						},
+						{
+							id: "11",
+							name: "酱油4",
+							value: "jy4",
+							image: "../images/icon/icon11.png",
+						}, {
+							id: "21",
+							name: "莫胜利",
+							value: "msl",
+							image: "../images/icon/icon1.png",
+						},
+						{
+							id: "22",
+							name: "陈东敏",
+							value: "cdm",
+							image: "../images/icon/icon2.png",
+				},
+						{
+							id: "23",
+							name: "许凤平",
+							value: "yfp",
+							image: "../images/icon/icon3.png",
+							state: "disabled"
+				}, {
+							id: "24",
+							name: "严听听",
+							value: "ytt",
+							image: "../images/icon/icon4.png",
+							state: "selected",
+
+
+						},
+						{
+							id: "25",
+							name: "邹崇锦",
+							value: "zcj",
+							image: "../images/icon/icon5.png",
+							state: "selected",
+
+						},
+						{
+							id: "26",
+							name: "潘克胜",
+							value: "pks",
+							image: "../images/icon/icon6.png",
+						},
+						{
+							id: "27",
+							name: "鹏飞",
+							value: "pf",
+							image: "../images/icon/icon7.png",
+						},
+						{
+							id: "28",
+							name: "酱油1",
+							value: "jy",
+							image: "../images/icon/icon8.png",
+						},
+						{
+							id: "29",
+							name: "酱油2",
+							value: "jy2",
+							image: "../images/icon/icon9.png",
+						},
+						{
+							id: "30",
+							name: "酱油3",
+							value: "jy3",
+							image: "../images/icon/icon10.png",
+						},
+						{
+							id: "31",
+							name: "酱油4",
+							value: "jy4",
+							image: "../images/icon/icon11.png",
+						}, {
+							id: "41",
+							name: "莫胜利",
+							value: "msl",
+							image: "../images/icon/icon1.png",
+						},
+						{
+							id: "42",
+							name: "陈东敏",
+							value: "cdm",
+							image: "../images/icon/icon2.png",
+				},
+						{
+							id: "43",
+							name: "许凤平",
+							value: "yfp",
+							image: "../images/icon/icon3.png",
+							state: "disabled"
+				}, {
+							id: "44",
+							name: "严听听",
+							value: "ytt",
+							image: "../images/icon/icon4.png",
+
+						},
+						{
+							id: "45",
+							name: "邹崇锦",
+							value: "zcj",
+							image: "../images/icon/icon5.png",
+						},
+						{
+							id: "46",
+							name: "潘克胜",
+							value: "pks",
+							image: "../images/icon/icon6.png",
+						},
+						{
+							id: "47",
+							name: "鹏飞",
+							value: "pf",
+							image: "../images/icon/icon7.png",
+						},
+						{
+							id: "48",
+							name: "酱油1",
+							value: "jy",
+							image: "../images/icon/icon8.png",
+						},
+						{
+							id: "49",
+							name: "酱油2",
+							value: "jy2",
+							image: "../images/icon/icon9.png",
+						},
+						{
+							id: "50",
+							name: "酱油3",
+							value: "jy3",
+							image: "../images/icon/icon10.png",
+						},
+						{
+							id: "51",
+							name: "酱油4",
+							value: "jy4",
+							image: "../images/icon/icon11.png",
+						},
+		]
+				},
+				view: {
+					enabled: true,
+					//主要显示:image，只显示图片，标题作为图片title属性
+					//主要显示:text，只显示文本，忽略图片
+					//主要显示:all，即(先）显示图片，也显示文本
+					mainShow: "all",
+					//启用多选
+					enabledMultiple: false,
+				},
+				/*callback: {
+					nodeOnClick: function () {
+					}
+				}*/
+			}
+
+			var setting2 = $.extend(true, {}, setting);
+			setting2.view.enabled = false;
+			var setting5 = $.extend(true, {}, setting);
+			setting5.view.enabledMultiple = true;
+			setting5.view.multipleSize = 5;
+
+
+			//#1 禁用
+
+			panelO = $("#selectPanelview").panelview();
+			dropO = $("#droplist").droplist(setting2);
+
+			droplist([dropO, panelO])
+
+			//#2 使用select数据生成（不要传入配置参数）
+
+			panelO2 = $("#selectPanelview2").panelview();
+			dropO2 = $("#droplist2").droplist();
+
+			droplist([dropO2, panelO2])
+
+			//#4 单选模式
+
+			panelO4 = $("#selectPanelview4").panelview();
+			dropO4 = $("#droplist4").droplist(setting);
+			droplist([dropO4, panelO4])
+
+			//#5 多选模式(并限制为5个)
+
+			panelO5 = $("#selectPanelview5").panelview();
+			dropO5 = $("#droplist5").droplist(setting5);
+			droplist([dropO5, panelO5])
+
+			//#6 多选漂亮滚动条
+			panelO6 = $("#selectPanelview6").panelview();
+			dropO6 = $("#droplist6").droplist(setting);
+
+			ncO6 = $('#droplistContainer6').niceScroll({
+				cursorcolor: '#7db7fb',
+				cursorwidth: '6px',
+				cursorborderradius: 2,
+				autohidemode: true,
+				background: '#d0d0d0',
+				cursoropacitymin: 1,
+				cursorborder: 'none',
+				horizrailenabled: false,
+			});
+
+			droplist([dropO6, panelO6, ncO6])
+
+			/*
+						//下拉列表
+						//初始化时，判断 要初始化的对象是什么元素
+						//1.假如是select元素，则按照select的属性设置和数据模拟生成
+						//2.假如不是select元素，但符合标准的结构，则按标准初始化即可（如果需要额外数据，可以使用data-*方式）
+						//3.只要setting里有数据，则以setting传入生成的，则以setting为最终结果
+						panelO = $("#selectPanelview").panelview();
+						dropO = $("#droplist").droplist(setting);
+						//如果想以select元素结构初始化列表，请不要传入配置参数setting
+						//dropO2 = $("#droplisfan").droplist();
+
+						ncO = $('#droplistContainer').niceScroll({
+							cursorcolor: '#7db7fb',
+							cursorwidth: '6px',
+							cursorborderradius: 2,
+							autohidemode: true,
+							background: '#d0d0d0',
+							cursoropacitymin: 1,
+							cursorborder: 'none',
+							horizrailenabled: false,
+						});
+
+						droplist([dropO, panelO, ncO])
+							//$("#search1").searchDroplist([dropO,ncO], "all", true);*/
+
+
+
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {}
+
+		function addListeners(argument) {
+			$('form').submit(function () {
+
+			});
+		}
+	</script>
+</body>
+
+</html>

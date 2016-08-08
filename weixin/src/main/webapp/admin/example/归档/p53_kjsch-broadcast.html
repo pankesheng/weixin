@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<title>电子播报 - 电子播报管理</title>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span>电子播报 - 电子播报管理</span>
+	</div>
+	<div class="body-warp">
+		<div class="panel filter-block">
+			<form class="form-inline">
+
+				<div class="form-group">
+					<a id="add-btn" href="javascript:void(0);" class="btn"><i class="mod-btn iconfont">&#xe619;</i>新增</a>
+				</div>
+				<div class="form-group">
+					<input class="form-control date" id="push-date" type="text" placeholder="选择播出日期">
+
+					<a id="search-btn" href="javascript:void(0);" class="btn"><i class="mod-btn iconfont">&#xe61b;</i>搜索</a>
+				</div>
+			</form>
+		</div>
+
+		<table class="table" id="table"></table>
+	</div>
+
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../ext/layer/layer.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		var grid = {};
+		$(function () {
+			initTablePage();
+
+			/*初始化表格*/
+			grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"device": "所有设备",
+							"content": "在线编辑",
+							"startdate": "2015年10月25日 14：40",
+							"enddate": "2015年10月29日 14：40",
+							"status": "正在播出",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"device": "设备651254【一（1）班】",
+							"content": "本地上传",
+							"startdate": "2015年10月25日 14：40",
+							"enddate": "2015年10月29日 14：40",
+							"status": "已下架",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"device": "所有设备",
+							"content": "在线编辑",
+							"startdate": "2015年10月25日 14：40",
+							"enddate": "2015年10月29日 14：40",
+							"status": "将要播出",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"device": "所有设备",
+							"content": "在线编辑",
+							"startdate": "2015年10月25日 14：40",
+							"enddate": "2015年10月29日 14：40",
+							"status": "已过期",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"device": "所有设备",
+							"content": "在线编辑",
+							"startdate": "2015年10月25日 14：40",
+							"enddate": "2015年10月29日 14：40",
+							"status": "正在播出",
+						}, {
+							"_id": "5518b89dbc547f6c18c98dff",
+							"title": "2015年10月15日 第一期",
+							"device": "所有设备",
+							"content": "在线编辑",
+							"startdate": "2015年10月25日 14：40",
+							"enddate": "2015年10月29日 14：40",
+							"status": "正在播出",
+						}],
+						"total": 600
+					}
+				},
+				schema: {
+					thumbRenderer: function (rowData, grid, rowIndex) {
+						return '<div class="thumb-content" style="width: 300px;">' +
+							'<a class="thumb-title">瓯海教育OA系统</a>' +
+							'<p class="thumb-section"><b>适用范围</b>：全区</p>' +
+							'<p class="thumb-section"><b>应用类型</b>：系统应用</p>' +
+							'<b>安装人数</b>：123456<b>&nbsp;&nbsp;&nbsp;&nbsp;使用人数</b>：12345' +
+							'<p class="thumb-section"><b>使用状态</b>：启动</p>' +
+							'<p class="thumb-section"><b>应用介绍</b>：这是一段应用介绍霍乱有多种传播途径什</p>' +
+							'<p class="thumb-section thumb-btns"><a class="btn btn-mini btn-primary">编辑</a>\n<a class="btn btn-mini btn-primary">编辑</a>\n<a class="btn btn-mini btn-primary">编辑</a></p>'
+						'</div>';
+					}
+				},
+				tool: {
+					pagingBar: true
+				},
+				columns: [{
+					title: '标题',
+					dataIndex: 'title',
+					//add 新属性[不换行]，true
+					nowrap: true,
+					renderer: function (cellData) {
+						return '<span style="color:#508cf9;font-weight:bold">' + cellData + '</span>';
+					}
+                }, {
+					title: '播出设备',
+					dataIndex: 'device',
+
+                }, {
+					title: '播出内容',
+					dataIndex: 'content'
+                }, {
+					title: '开始播出时间',
+					dataIndex: 'startdate',
+					renderer: function (cellData, rowData) {
+						if (cellData == "班会") {
+							return '<span class="red">' + cellData + '</span>'
+						} else {
+							return cellData
+						}
+					}
+                }, {
+					title: '结束播出时间',
+					dataIndex: 'enddate',
+
+                }, {
+					title: '状态',
+					dataIndex: 'status',
+
+                }, {
+					title: '操作',
+					//width: 300,
+					nowrap: true,
+					renderer: function (cellData, rowData, grid, cellIndex, rowIndex) {
+						var preview = '<a class="btn btn-primary" href="javascript:void(0);" onclick="viewItem('+rowIndex+');">预览</a>\n'
+						var edit = '<a class="btn btn-info" href="javascript:void(0);" onclick="editItem('+rowIndex+');">编辑</a>\n';
+						var remove = '<a class="btn btn-danger" href="javascript:void(0);" onclick="delItem('+rowIndex+');">删除</a>\n';
+						var offline = '<a class="btn btn-warning" href="javascript:void(0);" onclick="offItem('+rowIndex+');">下架</a>\n';
+						var online = '<a class="btn btn-success " href="javascript:void(0);" onclick="onItem('+rowIndex+');">发布</a>\n';
+
+						if (rowData.status == "正在播出") {
+							return '<div style="overflow:hidden;margin:0 auto;">' + preview + offline + edit + remove + '</div>';
+						} else if (rowData.status == "已下架") {
+							return '<div style="overflow:hidden;margin:0 auto;">' + preview + online + edit + remove + '</div>';
+						} else if (rowData.status == "编辑中") {
+							return '<div style="overflow:hidden;margin:0 auto;">' + preview + edit + remove + '</div>';
+						} else {
+							return '';
+						}
+					}
+                }],
+				//add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//将上下午课时，加一条线区分
+
+						/*that.$me.find("tr:nth-child(4) td").css({
+							"borderBottomColor":"#ddd",
+							"borderBottomWidth":"3px"
+						})*/
+					}
+				}
+			});
+			/*侦听*/
+			addListeners();
+		});
+		/*初始化*/
+		function initTablePage() {
+			//初始化日期
+			laydate({
+				elem: '#push-date',
+				event: 'focus',
+				format: 'YYYY/MM/DD', // 分隔符可以任意定义，该例子表示只显示年月
+			});
+
+		}
+
+		/*侦听*/
+		function addListeners() {
+			//新增事件
+			$('#add-btn').bind('click', function () {
+				//var index = showIframe('编辑', './dynamic-form.html', 800, 352);
+				//window.location.href = './syllabus-modify.html';
+			});
+
+			//搜索事件
+			$('#search-btn').bind('click', function () {
+				//var index = showIframe('基本设置 - 课程表管理 - EXCEL导入', './syllabus-import.html', 440, 188);
+			});
+		}
+
+
+		//预览事件
+		function viewItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//下架事件
+		function offItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//发布事件
+		function onItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//编辑事件
+		function editItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+
+		//删除事件
+		function removeItem(rowIndex) {
+			//showDom('标题', '#category', 400, 200);
+		}
+	</script>
+</body>
+
+</html>

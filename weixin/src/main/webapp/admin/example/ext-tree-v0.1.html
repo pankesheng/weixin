@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>层级列表示例</title>
+    <link rel="stylesheet" href="../stylesheets/common.css" />
+    <link rel="stylesheet" href="../stylesheets/table.css" />
+    <link rel="stylesheet" href="../ext/zw/lui-v2.1/css/extension.css" />
+
+</head>
+
+<body>
+    <div class="place">
+        <span class="label-span">位置：</span>
+        <ul id="place-list" class="place-ul">
+            <li>
+                首页
+            </li>
+        </ul>
+    </div>
+    <div class="body-warp">
+
+
+        <div class="panel" style="">
+            <div class="panel-body">
+                <form class="field-container">
+                    <span class="headline">包裹框<i class="iconfont infotips showtips" data-tipsid='#ccc' title="这里可以进行解释说明">&#xe644;</i></span>
+                    <div id="ccc" class="showtips-alert alert alert-success mb-10"><span><i class="iconfont">&#xe624;</i>这里可以进行解释说明</span><span class="tips-close"><i class="iconfont">&#xe628;</i></span></div>
+                    <table class="form-table">
+
+                        <tr>
+                            <td>
+                                <label class="form-label" for="search1">示例1：纯下拉列表<b class="red">*</b></label>
+                            </td>
+                            <td>
+                                <div><a href="###" class="a1">覆盖加载</a><a href="###" class="a2">持续加载</a><a href="###" class="a3">ajax持续加载</a></div>
+                                <div class="clearfix">
+                                    <div class="left" style="margin-right:20px;">
+                                        #0101选中模式单选：
+                                        <div id="tree0101" class="ext-treelist">
+                                            <div class="ext-content clearfix clear" data-role="content">
+                                                <div class="ext-node-container" data-role="node-container">
+                                                    <div class="ext-node ext-node-0 selected" data-id="0" data-role="node" data-selected></i>刘备</div>
+                                                </div>
+                                                <div class="ext-node-container" data-role="node-container">
+                                                    <div class="ext-node ext-node-0 selected" data-id="1" data-role="node" data-state="selected,checked"></i>曹操</div>
+                                                </div>
+                                                <div class="ext-node-container" data-role="node-container">
+                                                    <div class="ext-node ext-node-0 selected" data-id="2" data-role="node"></i>孙权</div>
+                                                </div>
+                                                <div class="ext-node-container" data-role="node-container">
+                                                    <div class="ext-node ext-node-0 " data-id="2" data-role="node"></i>赵云</div>
+                                                </div>
+                                                <div class="ext-node-container" data-role="node-container">
+                                                    <div class="ext-node ext-node-0 " data-id="2" data-role="node"></i>马超</div>
+                                                </div>
+                                                <div class="ext-node-container" data-role="node-container">
+                                                    <div class="ext-node ext-node-0 " data-id="2" data-role="node"></i>关羽</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/common.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/luicontroller-advance.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/panelview.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/tree.js"></script>
+    <script type="text/javascript" src="../ext/zw/lui-v2.1/js/extension.js"></script>
+    <script>
+        $(function () {
+            var setting = {
+                store: {
+                    data: [
+
+                        {
+                            id: 0,
+                            name: "刘备",
+                            value: "msl",
+                            checked: true,
+						},
+                        {
+                            id: 1,
+
+                            name: "曹操",
+                            value: "cdm",
+                            selected: true
+				},
+                        {
+                            id: 2,
+                            hidden: true,
+                            name: "孙权",
+                            value: "yfp",
+				}
+		]
+                },
+                view: {}
+            }
+
+
+
+            //#01 纯下拉列表示例
+            var setting0101 = $.extend(true, {}, setting);
+
+            setting0101.store.data = [];
+            setting0101.view.selectedMultiple = true;
+            setting0101.view.enabledCheckMode = true;
+
+            setting0101.view.checkedMultiple = true;
+            setting0101.view.expandedMultiple = true;
+            setting0101.view.checkedSize = true;
+
+
+
+            tree0101 = $("#tree0101").tree(setting0101);
+
+
+
+
+            /* 初始化控件 */
+            initWidget();
+
+            /*侦听*/
+            addListeners();
+
+        });
+
+        /*初始化控件*/
+        function initWidget() {}
+
+        function addListeners(argument) {
+            $('form').submit(function () {
+
+            });
+
+            var ss = [{
+                "name": "msl",
+                checked: true,
+            }, {
+                "name": "cdm"
+            }];
+
+            var gg = [{
+                "name": "msl",
+                selected: true,
+            }, {
+                "name": "cdm"
+            }];
+
+            tree0101.ready(function () {
+                var $node1 = tree0101.getNodeById(2);
+                var $childNode = tree0101.getChildrenNode($node1);
+
+                log($node1)
+                $(".a1").click(function () {
+                    tree0101.hideNode($node1);
+                });
+
+                $(".a2").click(function () {
+                    tree0101.showNode($node1);
+
+
+                });
+            })
+
+
+
+            $(".a3").click(function () {
+                var $node = tree0101.getNodeByIndex(0);
+
+                log(tree0101.getDataById(tree0101.getChildrenNode($node)))
+            });
+        }
+    </script>
+</body>
+
+</html>

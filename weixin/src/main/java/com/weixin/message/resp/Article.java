@@ -17,6 +17,12 @@ public class Article {
     public Article() {
 		// TODO Auto-generated constructor stub
 	}
+    /**
+     * @param title	图文消息名称
+     * @param description	图文消息描述
+     * @param picUrl	图片地址
+     * @param url	图文消息跳转信息链接地址
+     */
 	public Article(String title, String description, String picUrl, String url) {
 		super();
 		Title = title;

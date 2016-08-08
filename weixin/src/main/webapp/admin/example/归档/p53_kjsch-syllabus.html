@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+	<title>基本设置 - 课程表管理</title>
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<span>基本设置 - 课程表管理</span>
+	</div>
+	<div class="body-warp">
+		<div class="panel filter-block">
+			<form class="form-inline">
+				<div class="form-group">
+					<select class="form-select">
+						<option selected="" value="">请选择班级</option>
+						<option value="选项1">一（1）班</option>
+						<option value="选项2">二（2）班</option>
+						<option value="选项3">三（3）班</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<a href="javascript:void(0);" class="btn" id="mod-btn"><i class="mod-btn iconfont">&#xe609;</i>编辑</a>
+					<a href="javascript:void(0);" class="btn" id="import-btn"><i class="mod-btn iconfont">&#xe613;</i>EXCEL导入</a>
+				</div>
+			</form>
+		</div>
+
+		<table class="table" id="table"></table>
+	</div>
+	
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/layer/layer.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		var grid = {};
+		$(function () {
+			initTablePage();
+
+
+			/*初始化表格*/
+			grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+								"_id": "5518b89dbc547f6c18c98dff",
+								"timeline": "第1节(08:10~08:50)",
+								"monday": "数学(邱老师)",
+								"tuesday": "语文(莫老师)",
+								"wednesday": "英语(陈老师)",
+								"thursday": "历史(潘老师)",
+								"friday": "体育(邹老师)",
+						}, {
+								"_id": "5518b89dbc547f6c18c98dff",
+								"timeline": "第2节(08:10~08:50)",
+								"monday": "数学(邱老师)",
+								"tuesday": "语文(莫老师)",
+								"wednesday": "英语(陈老师)",
+								"thursday": "历史(潘老师)",
+								"friday": "体育(邹老师)",
+						},
+							{
+								"_id": "5518b89dbc547f6c18c98dff",
+								"timeline": "第3节(08:10~08:50)",
+								"monday": "数学(邱老师)",
+								"tuesday": "语文(莫老师)",
+								"wednesday": "英语(陈老师)",
+								"thursday": "历史(潘老师)",
+								"friday": "体育(邹老师)",
+						},
+							{
+								"_id": "5518b89dbc547f6c18c98dff",
+								"timeline": "第4节(08:10~08:50)",
+								"monday": "数学(邱老师)",
+								"tuesday": "生理教育",
+								"wednesday": "英语(陈老师)",
+								"thursday": "历史(潘老师)",
+								"friday": "体育(邹老师)",
+						},
+							{
+								"_id": "5518b89dbc547f6c18c98dff",
+								"timeline": "第5节(08:10~08:50)",
+								"monday": "数学(邱老师)",
+								"tuesday": "语文(莫老师)",
+								"wednesday": "班会",
+								"thursday": "历史(潘老师)",
+								"friday": "体育(邹老师)",
+						},
+							{
+								"_id": "5518b89dbc547f6c18c98dff",
+								"timeline": "第6节(08:10~08:50)",
+								"monday": "数学(邱老师)",
+								"tuesday": "语文(莫老师)",
+								"wednesday": "英语(陈老师)",
+								"thursday": "历史(潘老师)",
+								"friday": "体育(邹老师)",
+						},
+							{
+								"_id": "5518b89dbc547f6c18c98dff",
+								"timeline": "第7节(08:10~08:50)",
+								"monday": "数学(邱老师)",
+								"tuesday": "语文(莫老师)",
+								"wednesday": "英语(陈老师)",
+								"thursday": "历史(潘老师)",
+								"friday": "体育(邹老师)",
+						}],
+						"total": 600
+					}
+				},
+				schema: {
+					thumbRenderer: function (rowData, grid, rowIndex) {
+						return '<div class="thumb-content" style="width: 300px;">' +
+							'<a class="thumb-title">瓯海教育OA系统</a>' +
+							'<p class="thumb-section"><b>适用范围</b>：全区</p>' +
+							'<p class="thumb-section"><b>应用类型</b>：系统应用</p>' +
+							'<b>安装人数</b>：123456<b>&nbsp;&nbsp;&nbsp;&nbsp;使用人数</b>：12345' +
+							'<p class="thumb-section"><b>使用状态</b>：启动</p>' +
+							'<p class="thumb-section"><b>应用介绍</b>：这是一段应用介绍霍乱有多种传播途径什</p>' +
+							'<p class="thumb-section thumb-btns"><a class="btn btn-mini btn-primary">编辑</a>\n<a class="btn btn-mini btn-primary">编辑</a>\n<a class="btn btn-mini btn-primary">编辑</a></p>'
+						'</div>';
+					}
+				},
+				tool: {
+					pagingBar: false
+				},
+				columns: [{
+					title: '课时',
+					dataIndex: 'timeline',
+					//add 新属性[不换行]，true
+					nowrap: true,
+					renderer: function (cellData) {
+						return '<span style="color:#508cf9;font-weight:bold">' + cellData + '</span>';
+					}
+                }, {
+					title: '星期一',
+					dataIndex: 'monday',
+
+                }, {
+					title: '星期二',
+					dataIndex: 'tuesday'
+                }, {
+					title: '星期三',
+					dataIndex: 'wednesday',
+					renderer: function (cellData, rowData) {
+						if (cellData == "班会") {
+							return '<span class="red">' + cellData + '</span>'
+						} else {
+							return cellData
+						}
+					}
+                }, {
+					title: '星期四',
+					dataIndex: 'thursday',
+
+                }, {
+					title: '星期五',
+					dataIndex: 'friday',
+
+                }],
+				//add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//将上下午课时，加一条线区分
+
+						/*that.$me.find("tr:nth-child(4) td").css({
+							"borderBottomColor":"#ddd",
+							"borderBottomWidth":"3px"
+						})*/
+					}
+				}
+			});
+			/*侦听*/
+			addListeners();
+		});
+		/*初始化*/
+		function initTablePage() {
+			//下拉菜单初始化
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+		}
+
+		/*侦听*/
+		function addListeners() {
+
+
+			//修改事件
+			$('#mod-btn').bind('click', function () {
+				//var index = showIframe('编辑', './dynamic-form.html', 800, 352);
+				window.location.href = './syllabus-modify.html';
+			});
+
+			//导入事件
+			$('#import-btn').bind('click', function () {
+				var index = showIframe('基本设置 - 课程表管理 - EXCEL导入', './syllabus-import.html', 440, 188);
+			});
+
+		}
+	</script>
+</body>
+
+</html>

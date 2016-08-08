@@ -9,6 +9,8 @@
     <title>首页</title>
 </head>
 <body>
-    首页
+  <script type="text/javascript">
+  	window.location.href="<%=request.getContextPath() %>/index/index.do";
+  </script>
 </body>
 </html>

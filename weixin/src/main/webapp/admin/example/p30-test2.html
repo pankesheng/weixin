@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<i class="form-icon"></i>
+				<span class="title-text">基本信息</span>
+			</div>
+			<div class="panel-body">
+				<form>
+					<div id="selectboxInnerPanelview4" class="panel-body panelview selectbox-inner-panelview">
+					</div>
+					<div id="selectbox4" class="panel-body selectbox">
+						
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/luicontroller-advance.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui-v2.1/js/extension.js"></script>
+	<script type="text/javascript" src="../javascripts/tool-1.1.js"></script>
+	<script type="text/javascript" src="../ext/jquery/jquery.nicescroll.min.js"></script>
+	<script>
+		$(function () {
+			logDebug = true;
+			var setting60 = {
+				store: {
+					data: [
+						{
+							value: "msl",
+							name: "d智课",
+							image: "../images/icon/icon61.png"
+						},
+						{
+							value: "abc",
+							name: "abc权限",
+							image: "../images/icon/icon62.png",
+							state: "selected"
+				},
+						{
+							value: "ddda",
+							name: "ddda评比",
+							image: "../images/icon/icon63.png"
+				},
+						{
+							value: "gda",
+							name: "gda评价",
+							image: "../images/icon/icon64.png",
+							expanded: true,
+							checked: true,
+							selected: true
+
+						},
+						{
+							value: "zdx",
+							name: "x设置",
+							image: "../images/icon/icon65.png"
+				}, {
+							value: "urd",
+							name: "x设置",
+							image: "../images/icon/icon61.png"
+				},
+						{
+							value: "drd",
+							name: "y应用",
+							image: "../images/icon/icon67.png",
+							checked: true,
+
+				},
+		]
+				},
+				view: {
+					enabledSelectedMemory: true
+				},
+				callback: {}
+
+			};
+
+			var setting7 = [
+				{
+					value: "msl",
+					name: "d智课",
+					image: "../images/icon/icon61.png"
+						},
+				{
+					value: "abc",
+					name: "abc权限",
+					image: "../images/icon/icon62.png",
+					state: "selected"
+				}];
+			var setting4 = $.extend(true, {}, setting60);
+			var setting5 = $.extend(true, {}, setting60);
+			var setting8 = $.extend(true, {}, setting60);
+
+			setting4.store.data = undefined;
+			setting4.view.updateConfig = true;
+
+			setting4.view.enabledCheckMode = true;
+			setting4.view.enabledControl = true;
+			setting4.view.controlFormater = function () {
+				return '<div class=" filter-block"><form class="form-inline"><div class="form-group"><input class="form-control" id="searchInput" type="text"></div><div class="form-group"><a id="searchButton01" href="javascript:void(0);" class="btn" ><i class="iconfont"></i>按钮1</a><a id="searchButton02" href="javascript:void(0);" class="btn"><i class="iconfont"></i>按钮2</a><a id="searchButton03" href="javascript:void(0);" class="btn"><i class="iconfont"></i>按钮3</a><a id="searchButton04" href="javascript:void(0);" class="btn"><i class="iconfont"></i>按钮4</a></div></form></div>'
+			}
+
+			setting5.store.data = setting7;
+			setting5.view.checkedMultiple = true;
+
+			var setting8 = $.extend(true, {}, setting60);
+			setting8.view.updateConfig = true;
+			setting8.view.controlFormater = function () {
+				return ''
+			};
+
+
+			//示例：示例：选择框列表展示(最大可选设置为5个）*  
+			sbO4 = $("#selectbox4").selectbox(setting60);
+			sbO4.load(setting4);
+			sbO4.load(setting5);
+			setting5.view.enabled = true;
+			sbO4.load(setting5);
+			/*setting60.view.enabledCheckMode = false;
+			setting60.view.updateConfig = false;
+			setting60.view.a = false;
+
+
+			sbO4.load(setting60,true);*/
+			//sbO4.refreshNode(sbO4.getAllNode());
+			//sbO4.load(setting5, true);
+
+			$("#selectbox4").delegate("#searchButton01", "click", function () {
+				sbO4.sortNode(["name", "value"], ["asc", "ASC"]);
+			})
+
+			$("#selectbox4").delegate("#searchButton02", "click", function () {
+				var c = sbO4.addNode({
+					"name": "msl",
+					selected: true
+				})
+				log(sbO4.getDataById(44));
+				log(sbO4.getDataById(c));
+			})
+
+			$("#selectbox4").delegate("#searchButton03", "click", function () {
+				log(sbO4.sortNode(sbO4.getNodeById([11, 55]), "name"));
+			})
+
+			$("#selectbox4").delegate("#searchButton04", "click", function () {
+				log(sbO4.getSelectedNode())
+
+			})
+
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+			$("#popup").click(function () {
+				$("#selectPanelview").click()
+			})
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+
+
+		function addListeners(argument) {
+
+		}
+	</script>
+</body>
+
+</html>

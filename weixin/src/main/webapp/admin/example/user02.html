@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body class="iframe-pan">
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class=" body-warp">
+		<div class="panel">
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label" for="search1">关联的学生<b class="red">*</b></label>
+							</td>
+							<td>
+								<div class="form-text">xx学生</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">监护人<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+							<td><a href="javascript:void(0);" class="btn btn-primary" id="selectGuardian"><i class="iconfont">&#xe61b;</i>选择监护人</a></td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search-select">与学生关系<b class="red">*</b></label>
+							</td>
+							<td>
+								<select class="form-select" id="search-select">
+									<option value="">请选择性别</option>
+									<option>母亲</option>
+									<option>父亲</option>
+									<option>亲戚</option>
+								</select>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">工作单位</label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">现居住地址</label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+						</tr>
+
+						<tr>
+							<!-- 空内容的td 保持间距 -->
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input class="btn btn-success btn-large" type="submit" value="提交">
+								<input class="btn btn-danger btn-large" type="reset" value="重置">
+								<input class="btn btn-danger btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+							</td>
+						</tr>
+					</table>
+					<div id="popupLayer" style="overflow:hidden;" class="hide">
+						<table class="table" id="table"></table>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/grid.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+
+	<script>
+		$(function () {
+
+
+			/*初始化表格*/
+			var grid = $('#table').grid({
+				store: {
+					data: {
+						"s": 1,
+						"d": [{
+							"_id": "5518b89dbc547f6c18c98dff",
+							"account": "admin",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"__v": 0,
+							"phone": "123",
+							"role": 2,
+							"sex": "男",
+							"name": "管理员1"
+						}, {
+							"_id": "551b56c11911ce040e0b9887",
+							"name": "123123",
+							"account": "admin1",
+							"password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+							"phone": "123123",
+							"__v": 0,
+							"role": 1,
+							"sex": "男"
+						}],
+						"total": 600
+					}
+				},
+				tool: {
+					pagingBar: true
+				},
+				columns: [{
+					title: '名称',
+					dataIndex: 'account',
+					sortable: true,
+					align: 'left',
+					//add 新属性[不换行]，true
+					nowrap: true,
+					renderer: function (cellData) {
+						return '<a href="javascript:void(0);">' + cellData + '</a>';
+					}
+                }, {
+					title: '电话',
+					dataIndex: 'name',
+					sortable: true,
+					formatter: {
+						length: 2
+					}
+                }, {
+					title: '关系',
+					dataIndex: 'unit'
+                }, {
+					title: '工作单位',
+					dataIndex: 'role',
+					renderer: function (cellData, rowData) {
+						return '<span class="red">否</span>';
+					}
+                }, {
+					title: '地址',
+					dataIndex: 'phone',
+					renderer: function (cellData, rowData) {
+						return '<span class="red">否</span>';
+					}
+                }], //add 初始化成功后回调函数
+				event: {
+					callback: function (that) {
+						//事件回调 
+					}
+				}
+			});
+
+			/* 初始化控件 */
+			initWidget();
+
+			/* 侦听 */
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+
+		}
+
+		/*侦听*/
+		function addListeners() {
+
+			$('form').submit(function () {
+				$('#select').val(['1', '2', '3']);
+				alert($(this).serialize());
+			});
+
+			//选择监护人
+			$("#selectGuardian").bind("click", function () {
+				//popupLayer(content, title, size, btn, yesCallback, cancelCallback, successCallback)
+				popupLayer("#popupLayer", "监护人列表", ['900px'], ['确认', '关闭'])
+			});
+
+
+		}
+	</script>
+</body>
+
+</html>

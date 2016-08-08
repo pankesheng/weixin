@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-body">
+				<form>
+					<table class="form-table">
+
+						<tr>
+							<td>
+								<label class="form-label" for="search1">所在单位<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">姓名<b class="red">*</b></label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search-select">性别<b class="red">*</b></label>
+							</td>
+							<td>
+								<select class="form-select" id="search-select">
+									<option value="">请选择性别</option>
+									<option>男</option>
+									<option>女</option>
+									<option>未知</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label">身份</label>
+							</td>
+							<td>
+								<ul class="form-option-group clearfix">
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">教师</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">家长</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">教练</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">评委</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">审核者</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">行政人员</label>
+									</li>
+									<li class="form-option-list">
+										<input class="form-radio" id="d1" type="checkbox" name="d1" />
+										<label class="mr-10" for="d1">其它</label>
+									</li>
+								</ul>
+							</td>
+							<td><span class="form-tip alert alert-info">最少选择一个</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">教育网短号</label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">QQ号码</label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search1">邮箱</label>
+							</td>
+							<td>
+								<input class="form-control" id="search1" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="form-label" for="search2">出生日期</label>
+							</td>
+							<td>
+								<input class="form-control date" id="search2" type="text" />
+							</td>
+						</tr>
+						<tr class="valign-top">
+							<td>
+								<label class="form-label" for="search4">个人简介</label>
+							</td>
+							<td>
+								<textarea class="form-textarea" id="search4" name=""></textarea>
+								<span class="form-tip alert alert-info">请填写您的职称，所获荣誉，头衔，工作履历等</span>
+							</td>
+						</tr>
+
+
+						<tr>
+							<!-- 空内容的td 保持间距 -->
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input class="btn btn-success btn-large" type="submit" value="提交">
+								<input class="btn btn-danger btn-large" type="reset" value="重置">
+								<input class="btn  btn-large return-btn" data-href="/manager/users" type="button" value="返回">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		$(function () {
+
+
+				/* 初始化控件 */
+				initWidget();
+
+				/* 侦听 */
+				addListeners();
+			})
+			/*初始化控件*/
+		function initWidget() {
+			// 文本域统计字数 require tool.js
+			// 字数统计以html里设置的maxLength为最高优先级，参数无法覆盖它
+			$("textarea").wordCount("5");
+
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+
+			laydate({
+				elem: '#search2',
+				event: 'focus'
+			});
+		}
+
+		function addListeners() {
+
+			$('form').submit(function () {
+				$('#select').val(['1', '2', '3']);
+				alert($(this).serialize());
+			});
+		}
+	</script>
+</body>
+
+</html>

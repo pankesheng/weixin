@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body style="min-width:800px;">
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<div class="panel">
+			<div class="panel-title">
+				<span class="title-text">自定义头像</span>
+			</div>
+			<div class="panel-body clearfix">
+				<form style="width:600px;float:left">
+					<table class="form-table">
+						<tr>
+							<td>
+								<label class="form-label">上传头像</label>
+							</td>
+							<td>
+								<div class="avator-preview">
+									<img src="../useless/images/avator.png">
+								</div>
+								<input id="upload" type="file" /><span class="form-tip alert alert-info">支持jpg、gif、png格式的图片（2M以下，200x200像素以内）</span>
+							</td>
+						</tr>
+						<tr>
+							<!-- 空内容的td 保持间距 -->
+							<td>
+								<label class="form-label">&nbsp;</label>
+							</td>
+							<td>
+								<input class="btn btn-success btn-large" type="submit" value="保存头像">
+							</td>
+						</tr>
+					</table>
+				</form>
+				<div style="width:146px;float:left;">
+
+					<div class="avator-result">
+						<div class="heading">头像预览</div>
+						<div class="avator-pic"><b class="big"><img src="../useless/images/avator.png" /></b><span>大头像100*100</span></div>
+						<div class="avator-pic"><b class="normal"><img src="../useless/images/avator.png" /></b><span>中头像55*55</span></div>
+						<div class="avator-pic"><b class="small"><img src="../useless/images/avator.png" /></b><span>小头像30*30</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--		<div class="panel" style="width:146px;float:left;">
+			<div class="panel-title">
+				<span class="title-text">头像预览</span>
+			</div>
+			<div class="panel-body avator-result">
+				<div class="heading">头像预览</div>
+				<div class="avator-pic"><b class="big"><img src="../useless/images/avator.gif" /></b><span>大头像100*100</span></div>
+				<div class="avator-pic"><b class="normal"><img src="../useless/images/avator.gif" /></b><span>中头像55*55</span></div>
+				<div class="avator-pic"><b class="small"><img src="../useless/images/avator.gif" /></b><span>小头像30*30</span></div>
+			</div>
+		</div>-->
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/src/jquery-elist.js"></script>
+	<script type="text/javascript" src="../ext/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript" src="../ext/layer_v2/layer.js"></script>
+	<script type="text/javascript" src="../ext/zw/luicontroller.js"></script>
+	<script type="text/javascript" src="../ext/zw/selectbox.js"></script>
+	<script type="text/javascript" src="../ext/zw/panelview-1.1.js"></script>
+	<script type="text/javascript" src="../javascripts/tool.js"></script>
+	<script>
+		$(function () {
+
+			var setting = {
+				store: {
+					data: [
+						{
+							name: "智课智课智课",
+							image: "../images/icon/icon2.png",
+						},
+						{
+							name: "主平台智课",
+							image: "../images/icon/icon3.png",
+							state: "selected"
+				},
+						{
+							name: "评比",
+							image: "../images/icon/icon4.png",
+							state: "disabled"
+				}
+		]
+				},
+				view: {
+
+					//启用多选
+					enabledMultiple: true,
+					//多选个数限制
+					/*
+										mainShow: "all",
+					multipleSize: null,
+					//选中即时显示
+					enabledShowSelected: true,
+					//启用网格(未支持)
+					enabledGrid: true,
+					//TODO启用搜索(未支持)
+					enabledSearch: true,
+					//TODO启用分页(未支持)
+					enabledPagination: true,
+					//TODO 分页每页数目
+					paginationNumber: 2,
+					//TODO启用视图(未支持)
+					enabledPanelview: true,
+					*/
+
+				},
+				/*callback: {
+					nodeOnClick: function () {
+					}
+				}*/
+			}
+
+
+
+			/* 初始化控件 */
+			initWidget();
+
+			/*侦听*/
+			addListeners();
+
+		});
+
+		/*初始化控件*/
+		function initWidget() {
+
+			//延迟加载修复chrome下崩溃的bug
+			setTimeout(function () {
+				$('#upload').uploadify({
+					//swf地址
+					swf: '../ext/uploadify/uploadify.swf',
+					//上传路径
+					uploader: '/img/upload',
+					//文件后缀名限制
+					fileTypeExts: '*.jpg;*.jpeg;*.png;',
+					//是否启用多文件上传
+					multi: false,
+					//按钮样式
+					buttonClass: 'btn btn-primary no-padding',
+					//文件name
+					fileObjName: 'file',
+					//宽度
+					width: 70,
+					//高度
+					height: 30,
+					//文件选择框显示的类型名称
+					fileTypeDesc: '图片',
+					//按钮上的文字
+					buttonText: '选择图片',
+					//成功上传事件
+					onUploadSuccess: function (file, data, response) {}
+				});
+			}, 10);
+
+		}
+
+		//add check.js暴露方法，单独验证
+		/*$("#search1").change(function () {
+			var ccc=$(this).check("expose").isEmpty($(this).val());
+		})*/
+
+		function addListeners(argument) {
+			$('form').submit(function () {
+				$('#select').val(['1', '2', '3']);
+				alert($(this).serialize());
+			});
+		}
+	</script>
+</body>
+
+</html>

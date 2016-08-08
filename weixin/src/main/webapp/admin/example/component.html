@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../ext/zw/lui/css/animate.css">
+	<link rel="stylesheet" href="../ext/zw/lui/css/component.css">
+	<link rel="stylesheet" href="../ext/zw/lui/css/test.css">
+	<style>
+		html {
+			padding: 0px;
+			margin: 0px;
+		}
+		
+		body {
+			padding: 0px;
+			margin: 0px;
+			counter-reset: section;
+		}
+		
+		* {
+			box-sizing: border-box;
+		}
+		
+		.example {
+			border: 1px solid #ddd;
+			padding: 50px;
+			margin: 2%;
+			width: 21%;
+			float: left;
+		}
+		
+		.example:before {
+			content: "CASE " counter(section) ". ";
+			counter-increment: section;
+			font-weight: bold;
+		}
+		
+		.name,
+		.summary,
+		.function {
+			word-break: break-all;
+			word-wrap: break-word;
+			line-height: 20px;
+			margin-top: 10px;
+		}
+		
+		.name {
+			color: #066f37;
+		}
+		
+		.summary {
+			color: #0955e5;
+		}
+		
+		.function {
+			color: #d32121;
+		}
+		
+		.function .ex {
+			color: #f90;
+		}
+		
+		.example-container {
+			margin-top: 20px;
+			border-left: 1px solid #ccc;
+			padding-left: 30px;
+		}
+		
+		ul {
+			margin: 0px 0px;
+			padding: 0px;
+			list-style: none;
+		}
+		
+		.node {
+			line-height: 22px;
+		}
+		
+		a {
+			color: #666;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="example">
+		<div class="name">Component.CondationFixed(selector,total,event) 条件过滤组件</div>
+		<div class="summary">说明：
+			<br />激活的数量data-total="3"
+			<br />触发方式（data-event="click"）
+		</div>
+		<div class="function"><span class="ex">@example</span> 只可激活3个，click触发</div>
+		<div class="example-container">
+			<ul class="com-enabler" data-total="3" data-event="click">
+				<li class="node"><a href="###">小学</a></li>
+				<li class="node active"><a href="###">中学</a></li>
+				<li class="node"><a href="###">高中</a></li>
+				<li class="node"><a href="###">大学</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div class="example">
+		<div class="name">Component.Navigator(selector, event, group) 导航组件</div>
+		<div class="summary">说明：
+			<br />触发方式（data-event="click"）
+			<br />多个成组（data-group="good")，成组后多个地方将仅有一个激活，其他均不激活</div>
+		<div class="function"><span class="ex">@example</span> 组1mouseenter触发，没有group，自已管自已</div>
+		<div class="example-container">
+			<ul class="com-switcher" data-event="mouseenter">
+				<li class="node active"><a href="###">组1：小学</a></li>
+				<li class="node"><a href="###">组1：中学</a></li>
+				<li class="node"><a href="###">组1：高中</a></li>
+				<li class="node"><a href="###">组1：大学</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="example">
+		<div class="name">_comNav(selector, event, group) 导航组件</div>
+		<div class="summary">说明：
+			<br />触发方式（data-event="click"）
+			<br />多个成组（data-group="good")，成组后多个地方将仅有一个激活，其他均不激活</div>
+		<div class="function"><span class="ex">@example</span> 组2和组3将成组"good"，它位接受共同的激活上下文环境,click触发</div>
+		<div class="example-container">
+			<ul class="com-switcher" data-group="good">
+				<li class="node active"><a href="###">组2：小学</a></li>
+				<li class="node"><a href="###">组2：中学</a></li>
+				<li class="node"><a href="###">组2：高中</a></li>
+				<li class="node"><a href="###">组2：大学</a></li>
+			</ul>
+		</div>
+		<div class="example-container">
+			<ul class="com-switcher" data-group="good">
+				<li class="node"><a href="###">组3：小学</a></li>
+				<li class="node"><a href="###">组3：中学</a></li>
+				<li class="node"><a href="###">组3：高中</a></li>
+				<li class="node"><a href="###">组3：大学</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="example">
+		<div class="name">_comDroplist(selector) 下拉组件</div>
+		<div class="summary">说明：
+			<br />触发方式（data-event="click"）
+			<br />特效方式(data-effect) 默认会有一种样式，动画库暂未设立
+			<br />多个成组（data-group="good")，成组后多个地方将仅有一个激活，其他均不激活，适合与下拉导航
+			<br />可以在com-target弹出框上绑定触发方式，表示框消失行为
+		</div>
+		<div class="function"><span class="ex">@example</span> 无特效</div>
+		<div class="example-container">
+			<div class="com-droplist">
+				<div class="com-trigger"><a href="###">文字触发</a></div>
+				<ul class="com-target">
+					<li class="node"><a href="###">小学</a></li>
+					<li class="node"><a href="###">中学</a></li>
+					<li class="node"><a href="###">高中</a></li>
+					<li class="node"><a href="###">大学</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="function"><span class="ex">@example</span> 箭头样式1 鼠标移入展开 鼠标移出关闭</div>
+		<div class="example-container">
+			<div class="com-droplist">
+				<div class="com-trigger" data-event="mouseenter,mouseleave" data-uiarrow="ui-rotate-arrow rotateDown"><a href="###">文字触发</a></div>
+				<ul class="com-target">
+					<li class="node"><a href="###">小学</a></li>
+					<li class="node"><a href="###">中学</a></li>
+					<li class="node"><a href="###">高中</a></li>
+					<li class="node"><a href="###">大学</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="function"><span class="ex">@example</span> 按钮触发 箭头样式2 点击展开 </div>
+		<div class="example-container">
+			<div class="com-droplist">
+				<div><a href="###">按钮触发</a><b class="com-trigger" data-uiarrow="ui-flip-arrow flipDown"></b></div>
+				<ul class="com-target">
+					<li class="node"><a href="###">小学</a></li>
+					<li class="node"><a href="###">中学</a></li>
+					<li class="node"><a href="###">高中</a></li>
+					<li class="node"><a href="###">大学</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="function"><span class="ex">@example</span> 动画效果 </div>
+		<div class="example-container">
+			<div class="com-droplist">
+				<div class="com-trigger" data-transient="transient fast" data-uiarrow="ui-flip-arrow flipDown"><a href="###">文字触发</a></div>
+				<ul class="com-target" data-animated="animated fast" data-effect="fadeInDownMini,fadeOutUpMini">
+					<li class="node"><a href="###">小学</a></li>
+					<li class="node"><a href="###">中学</a></li>
+					<li class="node"><a href="###">高中</a></li>
+					<li class="node"><a href="###">大学</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="function"><span class="ex">@example</span> 成组：一个导航效果 </div>
+		<div class="example-container clearfix">
+			<div class="com-droplist fl" data-group="good" style="margin-right:20px">
+				<div class="com-trigger" data-event="hover" data-transient="transient fast" data-uiarrow="ui-rotate-arrow rotateDown"><a href="###">文字触发</a></div>
+				<ul class="com-target" data-event="mouseleave" data-animated="animated fast" data-effect="fadeInDownMini,fadeOutUpMini">
+					<li class="node"><a href="###">小学</a></li>
+					<li class="node"><a href="###">中学</a></li>
+					<li class="node"><a href="###">高中</a></li>
+					<li class="node"><a href="###">大学</a></li>
+				</ul>
+			</div>
+			<div class="com-droplist fl" data-group="good">
+				<div class="com-trigger" data-event="hover,mouseleave" data-transient="transient fast" data-uiarrow="ui-flip-arrow flipDown"><a href="###">文字触发</a></div>
+				<ul class="com-target" data-event="mouseleave" data-animated="animated fast" data-effect="fadeInDownMini,fadeOutUpMini">
+					<li class="node"><a href="###">小学</a></li>
+					<li class="node"><a href="###">中学</a></li>
+					<li class="node"><a href="###">高中</a></li>
+					<li class="node"><a href="###">大学</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/common.js"></script>
+	<script type="text/javascript" src="../ext/zw/lui/component.js"></script>
+	<script>
+		$(function () {
+			logDebug = true;
+			Component.Enabler(".com-enabler");
+			Component.Switcher(".com-switcher");
+			Component.Droplist(".com-droplist")
+		})
+	</script>
+</body>
+
+</html>

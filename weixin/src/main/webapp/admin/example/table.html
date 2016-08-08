@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<link rel="stylesheet" href="../stylesheets/common.css" />
+	<link rel="stylesheet" href="../stylesheets/table.css" />
+</head>
+
+<body>
+	<div class="place">
+		<span class="label-span">位置：</span>
+		<ul id="place-list" class="place-ul">
+			<li>
+				首页
+			</li>
+		</ul>
+	</div>
+	<div class="body-warp">
+		<!-- 数量少时 -->
+		<div class="panel filter-block">
+			<form class="form-inline">
+				<div>
+					<div class="form-group">
+						<label for="search1">综合查询</label>
+						<input class="form-control" id="search1" type="text" />
+					</div>
+					<div class="form-group">
+						<label for="search-select">查询条件</label>
+						<select class="form-select" id="search-select">
+							<option>按名称</option>
+							<option>按身份</option>
+							<option>按时间</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="search2">综合查询</label>
+						<select class="form-select">
+							<option>按名称</option>
+							<option>按身份</option>
+							<option>按时间</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>查询</a>
+						<a href="javascript:void(0);" class="btn" id="reset-btn"><i class="iconfont">&#xe61a;</i>重置</a>
+					</div>
+				</div>
+				<div class="right">
+					<div class="form-group">
+						<label for="search2">综合查询</label>
+						<select class="form-select">
+							<option>按名称</option>
+							<option>按身份</option>
+							<option>按时间</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>查询</a>
+						<a href="javascript:void(0);" class="btn" id="reset-btn"><i class="iconfont">&#xe61a;</i>重置</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 数量多时 -->
+		<div class="panel filter-block">
+			<form class="form-inline clearfix">
+				<div style="margin-right:700px;">
+					<div class="form-group">
+						<input class="form-control" id="search1" type="text" />
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+
+					</div>
+					<!-- ui-droplist 控制按钮点击弹出框事件 ，若不想整个按钮控制，仅控制箭头，请增加 arrow-droplist和ui-selectbox-icon-->
+					<div class="form-group ui-droplist">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>纯下拉<i class="ui-selectbox-icon"></i></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><a href="http://www.baidu.com" target="_blank"><i class="add-btn iconfont">&#xe619;</i>我是个链接</a></dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+
+					<div class="form-group ui-droplist arrow-droplist">
+						<a href="javascript:void(0);" class="btn" id="search-btn">仅右边按钮下拉<span class="arrow-selectbox-container"><i class="ui-selectbox-icon"></i></span></a>
+						<dl class="ui-selectbox-dropdown ui-droplist-option">
+							<dd class="ui-selectbox-option"><i class="add-btn iconfont">&#xe619;</i>导出CVS</dd>
+							<dd class="ui-selectbox-option"><i class="remove-btn iconfont">&#xe608;</i>导出TXT</dd>
+							<dd class="ui-selectbox-option"><i class="iconfont">&#xe61b;</i>搜索</dd>
+						</dl>
+					</div>
+				</div>
+				<div class="fixed-right">
+					<div class="form-group">
+						<input class="form-control" id="search1" type="text" />
+					</div>
+					<div class="form-group">
+						<select class="form-select">
+							<option selected="" value="">下拉菜单</option>
+							<option value="选项1">选项1</option>
+							<option value="选项2">选项2</option>
+							<option value="选项3">选项3</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<a href="javascript:void(0);" class="btn" id="search-btn"><i class="iconfont">&#xe61b;</i>搜索</a>
+					</div>
+
+
+				</div>
+			</form>
+		</div>
+		<div class="panel table-tool-bar">
+			<a class="table-switch right" href="javascript:void(0);" title="缩略图模式"><i class="iconfont">&#xe629;</i></a>
+			<a class="table-switch right selected" href="javascript:void(0);" title="列表模式"><i class="iconfont">&#xe63d;</i></a>
+			<a class="btn" href="javascript:void(0);"><i class="add-btn iconfont">&#xe619;</i>添加</a>
+			<a class="btn" href="javascript:void(0);"><i class="remove-btn iconfont">&#xe608;</i>删除</a>
+		</div>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						<input class="checkbox" type="checkbox" />
+					</th>
+					<th>登录名称</th>
+					<th>真实名称</th>
+					<th>性别</th>
+					<th>身份<span class="iconfont">&#xe61e;</span></th>
+					<th>单位</th>
+					<th>电话</th>
+					<th>短号</th>
+					<th>邮箱</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr class="hover">
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td><a href="##">13858978966</a></td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-danger">修改</a>
+						<a href="javascript:void(0);" class="btn btn-primary">设置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">密码重置</a>
+						<a href="javascript:void(0);" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="checkbox" type="checkbox" />
+					</td>
+					<td>13858978966</td>
+					<td>吴小平</td>
+					<td>男</td>
+					<td>教师</td>
+					<td>温州市瓯海区仙岩沈岙小学</td>
+					<td>13858978966</td>
+					<td>637988</td>
+					<td>306318813@.qq.com</td>
+					<td>
+						<a class="btn btn-danger" href="javascript:void(0);">修改</a>
+						<a class="btn btn-primary" href="javascript:void(0);">设置</a>
+						<a class="btn btn-danger" href="javascript:void(0);">密码重置</a>
+						<a class="btn btn-danger" href="javascript:void(0);">删除</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="table-bottom-bar clearfix">
+			<div class="table-bottom-left">
+				<span class="page-size mr-10">
+                    <select class="normal-select pagesize-value">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                    </select>
+                </span>
+				<span class="pagination mr-10">
+                    <a class="prev-page disabled" href="javascript:void(0);">&nbsp;前页&nbsp;</a>
+                    <a class="num-page on" href="javascript:void(0);">1</a>
+                    <a class="num-page" href="javascript:void(0);">2</a>
+                    <a class="num-page" href="javascript:void(0);">3</a>
+                    <a class="num-page" href="javascript:void(0);">4</a>
+                    <a class="num-page" href="javascript:void(0);">5</a>
+                    <a class="next-page" href="javascript:void(0);">&nbsp;后页&nbsp;</a>
+                </span>
+				<span class="page-jump">
+                    <input class="form-control mr-10 jump-select" type="text">
+                    <a class="btn btn-primary btn-go" href="javascript:void(0);">GO</a>
+                </span>
+			</div>
+			<div class="page-function table-bottom-right">
+				<span class="page-info">
+                    当前第 <b>1</b>
+                    / <b>100</b>
+                    页， 共有
+                    <b>1000</b>
+                    条记录
+                </span>
+			</div>
+		</div>
+		<ul class="table-thumb">
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+			<li class="thumb-item">
+				<p>瓯海教育OA系统</p>
+				<p>适用范围：全区</p>
+				<p>应用类型：系统应用</p>
+				<p>安装人数：123456</p>
+				<p>应用介绍：这是一段应用介绍霍乱有多种传播途......</p>
+				<p>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">修改</a>
+					<a class="btn btn-primary btn-mini" href="javascript:void(0);">设置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">密码重置</a>
+					<a class="btn btn-danger btn-mini" href="javascript:void(0);">删除</a>
+				</p>
+			</li>
+		</ul>
+
+		<div class="table-tip table-none"></div>
+		<div class="table-tip table-loading"></div>
+		<div class="table-tip table-timeout"></div>
+	</div>
+	<script type="text/javascript" src="../ext/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../ext/jquery/selectbox.js"></script>
+	<script>
+		$(function () {
+			/* 初始化控件 */
+			initWidget();
+
+			/* 侦听 */
+			addListeners();
+		});
+
+		/* 初始化控件 */
+		function initWidget() {
+			$('.form-select').each(function (index, el) {
+				selectbox(this);
+			});
+		}
+
+		function addListeners() {
+
+		}
+	</script>
+</body>
+
+</html>
