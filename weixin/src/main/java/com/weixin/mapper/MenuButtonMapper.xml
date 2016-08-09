@@ -8,6 +8,7 @@
 	<sql id="qbuilder">
 		<where>
 			<if test="qbuilder.id!=null">and t_menubutton.id = #{qbuilder.id}</if>
+			<if test="qbuilder.pid!=null">and t_menubutton.pid = #{qbuilder.pid}</if>
 			<if test="qbuilder.btn_name!=null">and t_menubutton.btn_name like #{qbuilder.btn_name}</if>
 			<if test="qbuilder.btn_state!=null">and t_menubutton.btn_state = #{qbuilder.btn_state}</if>
 			<if test="qbuilder.btn_list!=null">and t_menubutton.btn_list = #{qbuilder.btn_list}</if>

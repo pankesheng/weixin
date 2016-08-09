@@ -16,6 +16,8 @@ import com.weixin.message.resp.TransInfo;
 import com.weixin.pojo.AccessToken;
 import com.weixin.pojo.KfInfo;
 import com.weixin.pojo.OnLineKf;
+import com.weixin.pojo.SNSUserInfo;
+import com.weixin.pojo.WeChatUserInfo;
 import com.weixin.session.Session;
 import com.weixin.session.SessionList;
 import com.weixin.util.AdvancedUtil;
@@ -121,6 +123,9 @@ public class CoreService {
                 String eventType = requestMap.get("Event");
                 // 订阅  
                 if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {   
+                	AccessToken accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+                	WeChatConfiguration.accessToken = accessToken;
+                	WeChatUserInfo userInfo = AdvancedUtil.getUserInfo(accessToken.getAccess_token(), fromUserName);
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
                     textMessage.setContent("欢迎你关注了该测试号。。。。。。");  
                     respMessage = MessageUtil.textMessageToXml(textMessage);
@@ -139,6 +144,7 @@ public class CoreService {
                     	AccessToken accessToken = WeChatConfiguration.accessToken;
                         if(accessToken==null){
                         	accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+                        	WeChatConfiguration.accessToken = accessToken;
                         }
                     	List<OnLineKf> list = AdvancedUtil.getOnLineKfList(accessToken.getAccess_token());
             			List<KfInfo> kfs = AdvancedUtil.getKfList(accessToken.getAccess_token());

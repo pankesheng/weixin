@@ -35,7 +35,7 @@
 		        			<select class="form-select" id="pid" name="pid" onchange="pidchange();">
 		        				<option value="" <#if !obj?? || !obj.pid??>selected</#if>>一级菜单按钮</option>
 		        				<#list list as o>
-		        					<option value="${o.id}" <#if (obj.pid)?? && obj.pid==o.id></#if> >${o.btn_name}</option>
+		        					<option value="${o.id}" <#if (obj.pid)?? && obj.pid==o.id>selected</#if> >${o.btn_name}</option>
 		        				</#list>
 		        			</select>
 		        		</td>

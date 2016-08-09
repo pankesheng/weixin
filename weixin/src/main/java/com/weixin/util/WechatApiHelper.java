@@ -39,6 +39,7 @@ public class WechatApiHelper {
 		AccessToken accessToken = WeChatConfiguration.accessToken;
 		if(accessToken==null){
 			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+			WeChatConfiguration.accessToken = accessToken;
 		}
 		return AdvancedUtil.sendCustomMessage(accessToken.getAccess_token(), jsonMsg);
 	}
@@ -57,6 +58,7 @@ public class WechatApiHelper {
 		AccessToken accessToken = WeChatConfiguration.accessToken;
 		if(accessToken==null){
 			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+			WeChatConfiguration.accessToken = accessToken;
 		}
 		return AdvancedUtil.sendCustomMessage(accessToken.getAccess_token(), jsonMsg);
 	}
@@ -72,6 +74,7 @@ public class WechatApiHelper {
 		AccessToken accessToken = WeChatConfiguration.accessToken;
 		if(accessToken==null){
 			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+			WeChatConfiguration.accessToken = accessToken;
 		}
 		return AdvancedUtil.sendCustomMessage(accessToken.getAccess_token(), jsonMsg);
 	}
@@ -88,6 +91,7 @@ public class WechatApiHelper {
 		AccessToken accessToken = WeChatConfiguration.accessToken;
 		if(accessToken==null){
 			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+			WeChatConfiguration.accessToken = accessToken;
 		}
         String url = WeChatConfiguration.MENU_CREATE_URL.replace("ACCESS_TOKEN", accessToken.getAccess_token());  
         String jsonMenu = JSONObject.fromObject(menu).toString();  
@@ -113,6 +117,7 @@ public class WechatApiHelper {
 		AccessToken accessToken = WeChatConfiguration.accessToken;
 		if(accessToken==null){
 			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+			WeChatConfiguration.accessToken = accessToken;
 		}
         String url = WeChatConfiguration.MENU_CREATE_URL.replace("ACCESS_TOKEN", accessToken.getAccess_token());  
         String jsonMenu = JSONObject.fromObject(menu).toString();  
@@ -120,7 +125,11 @@ public class WechatApiHelper {
         if (null != jsonObject) {
         	Integer errcode = jsonObject.getInt("errcode");
             if (0 != errcode) {
-                return WeChatErrorCode.errorCodeMap.get(errcode);
+            	if(StringUtils.isNotBlank(WeChatErrorCode.errorCodeMap.get(errcode))){
+            		return WeChatErrorCode.errorCodeMap.get(errcode);
+            	}else{
+            		return String.format("errcode:{%s} errmsg:{%s}",jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));
+            	}
             }
         }
 		return "";
