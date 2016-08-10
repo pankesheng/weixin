@@ -94,7 +94,19 @@ public class WeChatConfiguration {
 	//获取用户列表信息(GET)  默认从头开始拉取 每次最多10000条，在获取下一批的时候 添加参数&next_openid=NEXT_OPENID 
 	public final static String USER_LIST_URL = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN";
 	
-	
-	
-	
+	/***
+	 * 素材管理
+	 */
+	//上传图文消息内的图片获取URL(POST)
+	public final static String MEDIA_UPLOADIMG = "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=ACCESS_TOKEN";
+	//新增素材信息(POST)
+	public final static String MATERIAL_ADD_MATERIAL = "https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=ACCESS_TOKEN";
+	//新增永久图文素材 (POST)
+	public final static String MATERIAL_ADD_NEWS_URL = "https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
+	//获取某个素材信息(POST)
+	public final static String MATERIAL_GET_URL = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=ACCESS_TOKEN";
+	//获取素材信息列表(POST)
+	public final static String MATERIAL_BATCHGET_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN";
+
+
 }

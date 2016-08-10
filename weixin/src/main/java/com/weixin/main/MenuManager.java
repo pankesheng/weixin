@@ -7,8 +7,8 @@ import com.weixin.configuration.WeChatConfiguration;
 import com.weixin.menu.Button;
 import com.weixin.menu.ClickButton;
 import com.weixin.menu.ComplexButton;
+import com.weixin.menu.MaterialButton;
 import com.weixin.menu.Menu;
-import com.weixin.menu.PicPhotoOrAlbumButton;
 import com.weixin.menu.ViewButton;
 import com.weixin.pojo.AccessToken;
 import com.weixin.util.AdvancedUtil;
@@ -71,8 +71,10 @@ public class MenuManager {
 	        
 	    	ClickButton cb = new ClickButton("在线客服1", "zxkf");
 	    	ViewButton vb = new ViewButton("在线帮助1","http://www.baidu.com");
-	    	PicPhotoOrAlbumButton pb = new PicPhotoOrAlbumButton("拍照","picphoto");
-	    	Button[] b = new Button[]{cb,vb,pb};
+//	    	MaterialButton mb = new MaterialButton("测试素材", "LxFlvP_WYBLYFtV6D0SiQvlkbiO2p0b20RyJrC_kuVU");
+
+	    	MaterialButton mb = new MaterialButton("测试素材","view_limited", "RW5g-s3PWFjqVU0DmDxHFjvY4hFOZZGVVPx_g8lxej4");
+	    	Button[] b = new Button[]{cb,vb,mb};
 	    	
 	        ComplexButton kfComplexButton = new ComplexButton("在线客服",b);
 	        

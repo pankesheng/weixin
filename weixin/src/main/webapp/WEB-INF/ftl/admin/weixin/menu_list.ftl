@@ -85,6 +85,9 @@
                 title: 'url',
                 dataIndex: 'btn_url'
             },{
+            	title:'素材',
+            	dataIndex:'btn_media_name'
+            },{
             	title:'状态',
             	dataIndex:'btn_state',
             	renderer:function(cd){

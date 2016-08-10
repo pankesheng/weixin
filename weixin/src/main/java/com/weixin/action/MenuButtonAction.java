@@ -1,7 +1,9 @@
 package com.weixin.action;
 
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -17,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.weixin.common.ZwPageResult;
 import com.weixin.entity.MenuButton;
+import com.weixin.material.MaterialNews;
+import com.weixin.material.NewsMaterial;
 import com.weixin.menu.Button;
 import com.weixin.menu.ClickButton;
 import com.weixin.menu.ComplexButton;
+import com.weixin.menu.MaterialButton;
 import com.weixin.menu.Menu;
 import com.weixin.menu.ViewButton;
 import com.weixin.service.MenuButtonService;
@@ -167,14 +172,25 @@ public class MenuButtonAction extends BasicAction {
 				}
 				if(MenuButton.TYPE_CLICK.equals(obj.getBtn_type())){
 					obj.setBtn_url(null);
+					obj.setBtn_media_id(null);
+					obj.setBtn_media_name(null);
 					if(StringUtils.isBlank(obj.getBtn_key()) || !MenuButton.KEY_MAP.containsKey(obj.getBtn_key())){
 						out.write(ServiceResult.initErrorJson("没有该事件触发类型！"));
 						return ;
 					}
 				}else if(MenuButton.TYPE_VIEW.equals(obj.getBtn_type())){
 					obj.setBtn_key(null);
+					obj.setBtn_media_id(null);
+					obj.setBtn_media_name(null);
 					if(StringUtils.isBlank(obj.getBtn_url())){
 						out.write(ServiceResult.initErrorJson("请填写url地址！"));
+						return ;
+					}
+				}else if(MenuButton.TYPE_MATERIAL.equals(obj.getBtn_type())){
+					obj.setBtn_key(null);
+					obj.setBtn_url(null);
+					if(StringUtils.isBlank(obj.getBtn_media_id()) || StringUtils.isBlank(obj.getBtn_media_name())){
+						out.write(ServiceResult.initErrorJson("请选择素材！"));
 						return ;
 					}
 				}
@@ -228,6 +244,9 @@ public class MenuButtonAction extends BasicAction {
 					}else if(MenuButton.TYPE_VIEW.equals(b2.getBtn_type())){
 						ViewButton vb = new ViewButton(b2.getBtn_name(), b2.getBtn_url());
 						r2[j] = vb;
+					}else if(MenuButton.TYPE_MATERIAL.equals(b2.getBtn_type())){
+						MaterialButton mb = new MaterialButton(b2.getBtn_name(), b2.getBtn_media_id());
+						r2[i] = mb;
 					}
 				}
 				ComplexButton cb = new ComplexButton(b1.getBtn_name(), r2);
@@ -239,6 +258,9 @@ public class MenuButtonAction extends BasicAction {
 				}else if(MenuButton.TYPE_VIEW.equals(b1.getBtn_type())){
 					ViewButton vb = new ViewButton(b1.getBtn_name(), b1.getBtn_url());
 					r1[i] = vb;
+				}else if(MenuButton.TYPE_MATERIAL.equals(b1.getBtn_type())){
+					MaterialButton mb = new MaterialButton(b1.getBtn_name(), b1.getBtn_media_id());
+					r1[i] = mb;
 				}
 			}
 		}
@@ -252,4 +274,35 @@ public class MenuButtonAction extends BasicAction {
 		}
 	}
 	
+	@RequestMapping("/tomateriallist")
+	public String tomateriallist(HttpServletRequest request,String type,Model model){
+		model.addAttribute("type", type);
+		String returnUrl = "404.jsp";
+		if("news".equals(type)){
+			returnUrl = "/WEB-INF/ftl/admin/weixin/material_news_list.ftl";
+		}
+		return returnUrl;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/materiallist")
+	public void getMaterialList(PrintWriter out,String type) throws ParseException{
+		page = WechatApiHelper.getMaterialList(type,0,20);
+		if(page.getRows()!=null){
+			if(StringUtils.isNotBlank(type) && "news".equals(type)){
+				List<NewsMaterial> list = (List<NewsMaterial>) page.getRows();
+				for (NewsMaterial obj : list) {
+					obj.setUpdateDate(new Date(Long.parseLong(obj.getUpdate_time())*1000));
+					List<MaterialNews> news = obj.getContent().getNews_item();
+					for (MaterialNews obj2 : news) {
+						if("1".equals(obj2.getShow_cover_pic())){
+							obj.setName(obj2.getTitle());
+						}
+					}
+				}
+				page.setRows(list);
+			}
+		}
+		out.write(ZwPageResult.converByServiceResult(ServiceResult.initSuccess(page)));
+	}
 }

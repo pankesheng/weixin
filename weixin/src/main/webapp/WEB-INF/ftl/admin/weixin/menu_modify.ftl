@@ -8,8 +8,10 @@
 	
 	<script type="text/javascript" src="${contextPath}/ext/json/json2.js"></script>
 	
+	<script type="text/javascript" src="${contextPath}/ext/layer/layer.min.js"></script>
 	<script type="text/javascript" src="${contextPath}/admin/ext/jquery/selectbox.js"></script>
 	<script type="text/javascript" src="${contextPath}/admin/ext/zw/check.js?v=${sversion}"></script>
+	<script type="text/javascript" src="${contextPath}/admin/javascripts/zcommon.js?v=${sversion}" basepath="${contextPath}" baseinit="ajaxCheckLogin"></script>
 
 </head>
 <body>
@@ -79,6 +81,13 @@
 						<td><label class="form-label">url地址</label></td>
 						<td><input type="text" class="form-control" name="btn_url" data-check="max-len:200" value="${(obj.btn_url)!}" /></td>
 					</tr>
+					<tr id="materialtr" <#if !(obj.pid)?? || ((obj.btn_type)?? && obj.btn_type!="material")>style="display:none;"</#if>>
+						<td><label class="form-label">选择素材</label></td>
+						<td>
+							<input type="text" class="form-control" id="btn_media_name" onclick="tochoosemedia();" name="btn_media_name" value="${(obj.btn_media_name)!}" />
+							<input type="hidden" name="btn_media_id" id="btn_media_id" value="${(obj.btn_media.id)!}" />
+						</td>
+					</tr>
 					<tr>
 						<td><label class="form-label">排序号</label></td>
 						<td><input type="text" class="form-control" name="btn_order" data-check="n" value="${(obj.btn_order)!}" /></td>
@@ -117,6 +126,8 @@ function pidchange(){
 			$("#keytr").removeAttr("style");
 		}else if(btn_type=="view"){
 			$("#urltr").removeAttr("style");
+		}else if(btn_type=="material"){
+			$("#materialtr").removeAttr("style");
 		}
 	}else{
 		$("#listtr").removeAttr("style");
@@ -129,6 +140,7 @@ function btnlistchange(){
 		$("#typetr").attr("style","display:none;");
 		$("#keytr").attr("style","display:none;");
 		$("#urltr").attr("style","display:none;");
+		$("#materialtr").attr("style","display:none;");
 	}else{
 		$("#typetr").removeAttr("style");
 		var btn_type = $("#btn_type").val();
@@ -136,6 +148,8 @@ function btnlistchange(){
 			$("#keytr").removeAttr("style");
 		}else if(btn_type=="view"){
 			$("#urltr").removeAttr("style");
+		}else if(btn_type=="material"){
+			$("#materialtr").removeAttr("style");
 		}
 	}
 }
@@ -145,10 +159,26 @@ function btntypechange(){
 	if(btn_type=="click"){
 		$("#keytr").removeAttr("style");
 		$("#urltr").attr("style","display:none;");
+		$("#materialtr").attr("style","display:none;");
 	}else if(btn_type=="view"){
 		$("#urltr").removeAttr("style");
 		$("#keytr").attr("style","display:none;");
+		$("#materialtr").attr("style","display:none;");
+	}else if(btn_type=='material'){
+		$("#materialtr").removeAttr("style");
+		$("#urltr").attr("style","display:none;");
+		$("#keytr").attr("style","display:none;");
 	}
+}
+
+function tochoosemedia(){
+	z_openIframe('选择素材', 1000, 650, '${contextPath}/menubutton/tomateriallist.do?type=news');
+}
+
+function _choose(obj){
+	$("#btn_media_id").val(obj.media_id);
+	$("#btn_media_name").val(obj.media_name+"【"+obj.updateDate+"】");
+	layer.closeAll();
 }
 
 function _save() {

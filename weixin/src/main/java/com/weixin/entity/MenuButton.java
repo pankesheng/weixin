@@ -14,6 +14,7 @@ public class MenuButton {
 	public static final String KEY_ZXKF = "zxkf";	//在线客服
 	public static final String TYPE_CLICK = "click";//点击事件按钮
 	public static final String TYPE_VIEW = "view";	//视图按钮
+	public static final String TYPE_MATERIAL = "material";	//素材
 	public static final Map<String, String> KEY_MAP = new HashMap<String, String>();
 	public static final Map<String, String> TYPE_MAP = new HashMap<String, String>();
 	static{
@@ -21,6 +22,7 @@ public class MenuButton {
 		
 		TYPE_MAP.put(TYPE_CLICK,TYPE_CLICK);	
 		TYPE_MAP.put(TYPE_VIEW,TYPE_VIEW);
+		TYPE_MAP.put(TYPE_MATERIAL, TYPE_MATERIAL);
 	}
 	
 	private Long id ;
@@ -32,6 +34,8 @@ public class MenuButton {
 	private String btn_key;		//type类型为 click 事件触发的key值
 	private Integer btn_state ; //是否启用
 	private String btn_order; //排序号
+	private String btn_media_id;	//素材id
+	private String btn_media_name;	//素材标题名称 如果为多图文 则为封面的标题
 	private Date ctime ;	//创建时间
 	private Date utime ;	//更新时间
 	
@@ -90,6 +94,18 @@ public class MenuButton {
 	}
 	public void setBtn_order(String btn_order) {
 		this.btn_order = btn_order;
+	}
+	public String getBtn_media_id() {
+		return btn_media_id;
+	}
+	public void setBtn_media_id(String btn_media_id) {
+		this.btn_media_id = btn_media_id;
+	}
+	public String getBtn_media_name() {
+		return btn_media_name;
+	}
+	public void setBtn_media_name(String btn_media_name) {
+		this.btn_media_name = btn_media_name;
 	}
 	public Date getCtime() {
 		return ctime;

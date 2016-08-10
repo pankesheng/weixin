@@ -52,9 +52,9 @@
 	
 	<insert id="insert">
 		INSERT INTO t_menubutton
-			(id,pid,btn_list,btn_name,btn_type,btn_url,btn_key,btn_state,btn_order,ctime,utime)
+			(id,pid,btn_list,btn_name,btn_type,btn_url,btn_key,btn_state,btn_order,btn_media_id,btn_media_name,ctime,utime)
 		VALUES
-			(#{object.id},#{object.pid},#{object.btn_list},#{object.btn_name},#{object.btn_type},#{object.btn_url},#{object.btn_key},#{object.btn_state},#{object.btn_order},now(),now())
+			(#{object.id},#{object.pid},#{object.btn_list},#{object.btn_name},#{object.btn_type},#{object.btn_url},#{object.btn_key},#{object.btn_state},#{object.btn_order},#{object.btn_media_id},#{object.btn_media_name},now(),now())
 	</insert>
 	
 	<update id="update">
@@ -68,6 +68,8 @@
 			btn_key = #{object.btn_key},
 			btn_state = #{object.btn_state},
 			btn_order = #{object.btn_order},
+			btn_media_id = #{object.btn_media_id},
+			btn_media_name = #{object.btn_media_name},
 			utime = now()
 		WHERE id = #{object.id}
 	</update>

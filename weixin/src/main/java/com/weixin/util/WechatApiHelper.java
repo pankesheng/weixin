@@ -15,10 +15,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.weixin.configuration.WeChatConfiguration;
 import com.weixin.configuration.WeChatErrorCode;
+import com.weixin.material.BasicMaterial;
+import com.weixin.material.NewsMaterial;
+import com.weixin.material.OtherMaterial;
 import com.weixin.menu.Menu;
 import com.weixin.message.resp.Article;
 import com.weixin.message.resp.Music;
 import com.weixin.pojo.AccessToken;
+import com.zcj.web.dto.Page;
 
 
 public class WechatApiHelper {
@@ -139,6 +143,7 @@ public class WechatApiHelper {
 		AccessToken accessToken = WeChatConfiguration.accessToken;
 		if(accessToken==null){
 			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+			WeChatConfiguration.accessToken = accessToken;
 		}
 		String result = CommonUtil.httpGetRequest(WeChatConfiguration.USER_LIST_URL.replace("ACCESS_TOKEN", accessToken.getAccess_token()));
 		System.out.println(result);
@@ -158,5 +163,41 @@ public class WechatApiHelper {
 				bool = sendNewsMessage(openid, articleList);
 			}
 		}
+	}
+
+	/**
+	 * 根据分页信息获得分页数据
+	 * @param type 素材类型 （image,video,voice,news）
+	 * @param offset
+	 * @param pagesize
+	 * @return
+	 */
+	public static Page getMaterialList( String type,int offset,int pagesize) {
+		Page page = new Page();
+		if(StringUtils.isBlank(type) || (!"image".equals(type)&&!"news".equals(type) && !"video".equals(type) && !"voice".equals(type))){
+			page.setRows(null);
+			page.setTotal(0);
+			return page;
+		}
+		AccessToken accessToken = WeChatConfiguration.accessToken;
+		if(accessToken==null){
+			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+			WeChatConfiguration.accessToken = accessToken;
+		}
+		JSONObject jsonObject = AdvancedUtil.getMaterailListJson(accessToken.getAccess_token(), type, offset, pagesize);
+		if(jsonObject!=null && jsonObject.containsKey("item")){
+			if("news".equals(type)){
+				List<NewsMaterial> list = new Gson().fromJson(jsonObject.getString("item"),  new TypeToken<List<NewsMaterial>>(){}.getType());
+				page.setRows(list);
+			}else{
+				List<OtherMaterial> list = new Gson().fromJson(jsonObject.getString("item"),  new TypeToken<List<OtherMaterial>>(){}.getType());
+				page.setRows(list);
+			}
+			page.setTotal(jsonObject.getInt("total_count"));
+			return page;
+		}
+		page.setTotal(0);
+		page.setRows(null);
+		return page;
 	}
 }

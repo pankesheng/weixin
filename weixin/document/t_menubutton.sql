@@ -33,3 +33,6 @@ CREATE TABLE `t_menubutton` (
   `utime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_menubutton add btn_media_id varchar(100) ;
+alter table t_menubutton add btn_media_name varchar(100);

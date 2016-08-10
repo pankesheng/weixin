@@ -54,8 +54,7 @@ public class IndexAction extends BasicAction {
 	public void menu(HttpServletRequest request, PrintWriter out) {
 
 		MenuDto m11 = new MenuDto("微信菜单按钮管理", Configuration.getContextPath() + "/menubutton/tolist.do");
-		MenuDto m12 = new MenuDto("素材管理",Configuration.getContextPath()+"/material/tolist.do");
-		MenuDto m1 = MenuDto.initPMenuDto("测试", m11,m12);
+		MenuDto m1 = MenuDto.initPMenuDto("测试", m11);
 
 		List<MenuDto> menu = new ArrayList<MenuDto>();
 		menu.add(m1);
