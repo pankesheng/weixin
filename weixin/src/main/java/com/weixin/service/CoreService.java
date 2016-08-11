@@ -16,14 +16,12 @@ import com.weixin.message.resp.TransInfo;
 import com.weixin.pojo.AccessToken;
 import com.weixin.pojo.KfInfo;
 import com.weixin.pojo.OnLineKf;
-import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WeChatUserInfo;
 import com.weixin.session.Session;
 import com.weixin.session.SessionList;
 import com.weixin.util.AdvancedUtil;
 import com.weixin.util.MessageUtil;
 import com.weixin.util.QuartzManager;
-import com.weixin.util.WechatApiHelper;
 /** 
  * 核心服务类 
  *  

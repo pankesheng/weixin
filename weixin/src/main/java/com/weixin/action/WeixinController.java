@@ -48,7 +48,6 @@ public class WeixinController {
         // 响应消息  
         PrintWriter out = response.getWriter();  
         out.print(respMessage); 
-        System.out.println(respMessage);
         out.close();  
     }  
 	

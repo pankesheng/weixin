@@ -80,7 +80,6 @@ public class WeChatPayController {
 	// orderNo 订单编号
 	// descr 商品描述
 	// money 金额，double类型
-	@SuppressWarnings("deprecation")
 	@RequestMapping("/paymain")
 	public void paymain(HttpServletRequest request,
 			HttpServletResponse response, Long userId, Long orderNo,
@@ -104,7 +103,7 @@ public class WeChatPayController {
 		// orderNo = appid+SHA1Util.getTimeStamp();
 		backUri = backUri + "?userId=" + userId + "&orderNo=" + orderNo	+ "&describe=" + descr + "&money=" + money;
 		// URLEncoder.encode 后可以在backUri 的url里面获取传递的所有参数
-		backUri = URLEncoder.encode(backUri);
+		backUri = URLEncoder.encode(backUri,"UTF-8");
 		// scope 参数视各自需求而定，这里用scope=snsapi_base 不弹出授权页面直接授权目的只获取统一支付接口的openid
 		String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid
 				+ "&redirect_uri=" + backUri
@@ -181,7 +180,7 @@ public class WeChatPayController {
 		// 总金额以分为单位，不带小数点
 		int total_fee = intMoney;
 		// 订单生成的机器 IP
-		String spbill_create_ip = request.getRemoteAddr();
+		String spbill_create_ip = CommonUtil.getRemortIP(request);
 		// 订 单 生 成 时 间 非必输
 		// String time_start ="";
 		// 订单失效时间 非必输
