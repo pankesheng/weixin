@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
 import com.weixin.configuration.WeChatConfiguration;
-import com.weixin.pojo.AccessToken;
 import com.weixin.pojo.JsApiTicket;
 import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WeChatOauth2Token;
@@ -73,9 +72,8 @@ public class WeChatPayController {
 			String accessToken = weixinOauth2Token.getAccessToken();
 			// 用户标识
 			String openId = weixinOauth2Token.getOpenId();
-			AccessToken at = AdvancedUtil.getAccessToken(WeChatConfiguration.appId,WeChatConfiguration.appSecret) ;
 			// 获取用户信息
-			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(at.getAccess_token(),openId);// [/align][align=left] // 设置要传递的参数
+			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken,openId);// [/align][align=left] // 设置要传递的参数
 			request.setAttribute("snsUserInfo", snsUserInfo);
 			model.addAttribute("snsUserInfo", snsUserInfo);
 		}
