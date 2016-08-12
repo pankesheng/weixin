@@ -14,6 +14,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,7 @@ import com.weixin.material.UploadMaterail;
 import com.weixin.message.resp.Article;
 import com.weixin.message.resp.Music;
 import com.weixin.pojo.AccessToken;
+import com.weixin.pojo.JsApiTicket;
 import com.weixin.pojo.KfInfo;
 import com.weixin.pojo.OnLineKf;
 import com.weixin.pojo.SNSUserInfo;
@@ -248,8 +250,8 @@ public class AdvancedUtil {
 	 * @return
 	 */
 	public static AccessToken getAccessToken(String appid, String appsecret) {
+		System.out.println("accesstoken过期，重启获取accesstoken");
 		AccessToken accessToken = null;
-
 		String requestUrl = WeChatConfiguration.TOKEN_URL.replace("APPID",
 				appid).replace("APPSECRET", appsecret);
 		JSONObject jsonObject = CommonUtil
@@ -258,9 +260,11 @@ public class AdvancedUtil {
 		if (null != jsonObject) {
 			try {
 				accessToken = new AccessToken();
-				accessToken.setAccess_token(jsonObject
-						.getString("access_token"));
-				accessToken.setExpires_in(jsonObject.getInt("expires_in"));
+				accessToken.setAccess_token(jsonObject.getString("access_token"));
+				int expires_in = jsonObject.getInt("expires_in");
+				long endtime = new Date().getTime()+expires_in-500;
+				accessToken.setExpires_in(expires_in);
+				accessToken.setEndtime(endtime);
 			} catch (JSONException e) {
 				accessToken = null;
 				// 获取token失败
@@ -375,7 +379,8 @@ public class AdvancedUtil {
 		// access_token 是 调用接口凭证
 		// openid 是 普通用户的标识，对当前公众号唯一
 		// lang 否 返回国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语
-		String requestUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+//		String requestUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+		String requestUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 		requestUrl = requestUrl.replace("ACCESS_TOKEN", accessToken).replace(
 				"OPENID", openId);
 		// 通过网页授权获取用户信息
@@ -398,9 +403,10 @@ public class AdvancedUtil {
 				snsUserInfo.setCity(jsonObject.getString("city"));
 				// 用户头像
 				snsUserInfo.setHeadImgUrl(jsonObject.getString("headimgurl"));
+				//unionid (在公众号绑定到微信开放平台的时候才能获取到该值)
+//				snsUserInfo.setUnionid(jsonObject.getString("unionid"));
 				// 用户特权信息
-				snsUserInfo.setPrivilegeList(JSONArray.toList(
-						jsonObject.getJSONArray("privilege"), List.class));
+				snsUserInfo.setPrivilegeList(JSONArray.toList(jsonObject.getJSONArray("privilege"), List.class));
 			} catch (Exception e) {
 				snsUserInfo = null;
 				int errorCode = jsonObject.getInt("errcode");
@@ -1133,6 +1139,57 @@ public class AdvancedUtil {
 		}
 		return null;
 	}
+	
+	/**
+	 * 获取保存的accesstoken 如果accesstoken为null 或者过去重新获取accesstoken
+	 * @return
+	 */
+	public static AccessToken getAccessToken(){
+		AccessToken accessToken = WeChatConfiguration.accessToken;
+		if(accessToken==null || accessToken.getEndtime()<new Date().getTime()){
+			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
+			WeChatConfiguration.accessToken = accessToken;
+		}
+		return accessToken;
+	}
+	
+	
+	 public static JsApiTicket getJsApiTicket(String accessToken) {  
+       JsApiTicket jsApiTicket = null;  
+       String requestUrl = WeChatConfiguration.JSAPI_TICKET_URL.replace("ACCESS_TOKEN", accessToken);  
+       JSONObject jsonObject = CommonUtil.httpsRequest(requestUrl, "GET", null);  
+       // 如果请求成功  
+       if (null != jsonObject) {  
+           try {  
+               jsApiTicket = new JsApiTicket();  
+               jsApiTicket.setTicket(jsonObject.getString("ticket")); 
+               int expires_in = jsonObject.getInt("expires_in");
+               long endtime = new Date().getTime()+expires_in - 500;
+               jsApiTicket.setExpires_in(expires_in);
+               jsApiTicket.setEndtime(endtime);
+           } catch (JSONException e) {  
+               accessToken = null;  
+               // 获取jsApiTicket失败  
+               log.error("获取jsApiTicket失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));  
+           }  
+       }  
+       return jsApiTicket;  
+   }
+	
+	/**
+	 * 获取jsapiticket 如果为空或者过期 重新发起请求获取
+	 * @return
+	 */
+	public static JsApiTicket getJsApiTicket(){
+		JsApiTicket jsApiTicket = WeChatConfiguration.jsapi_ticket;
+		if(jsApiTicket==null || jsApiTicket.getEndtime()<jsApiTicket.getEndtime()){
+			AccessToken accessToken = AdvancedUtil.getAccessToken();
+			jsApiTicket = AdvancedUtil.getJsApiTicket(accessToken.getAccess_token());
+			WeChatConfiguration.jsapi_ticket = jsApiTicket;
+		}
+		return jsApiTicket;
+	}
+	
 	
 	public static void main(String args[]) {
 		String type = "image";

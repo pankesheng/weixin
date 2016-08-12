@@ -8,6 +8,7 @@ public class AccessToken {
 	private String openid;
 	private String scope;
 	private String unionid;
+	private long endtime;
 
 	public String getAccess_token() {
 		return access_token;
@@ -55,6 +56,14 @@ public class AccessToken {
 
 	public void setUnionid(String unionid) {
 		this.unionid = unionid;
+	}
+
+	public long getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(long endtime) {
+		this.endtime = endtime;
 	}
 
 	@Override

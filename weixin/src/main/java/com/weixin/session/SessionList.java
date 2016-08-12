@@ -92,6 +92,7 @@ public class SessionList {
             sessionList.add(session);  
         }  
     }  
+    
     /** 
      * 根据name,获取session对象中键值对 
      * @param name 

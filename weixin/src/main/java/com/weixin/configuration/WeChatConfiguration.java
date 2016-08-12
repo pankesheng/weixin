@@ -1,6 +1,7 @@
 package com.weixin.configuration;
 
 import com.weixin.pojo.AccessToken;
+import com.weixin.pojo.JsApiTicket;
 
 /**
  * @ClassName: ParameterUtil
@@ -17,6 +18,9 @@ public class WeChatConfiguration {
 	public static String appSecret = "f7f6b851edb551403b9bf66e1f41297b";
 	//储存接口令牌 accessToken 由于accesstoken每天只能获取2000次，为了节省次数在项目启动的时候获取一次存储下来在即将失效的时候重新获取
 	public static AccessToken accessToken ;
+	//储存jsapi_ticket 游湖获取jsapi_ticket 接口限制，进行保存
+	public static JsApiTicket jsapi_ticket;
+	public final static String ACCESSTOKEN = "accesstoken";
 	
 	public final static String MCH_ID = "12412412412";//商户号
 	public final static String API_KEY = "4532452345";//API密钥
@@ -47,6 +51,9 @@ public class WeChatConfiguration {
 	 public final static String MENU_GET_URL = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
 	// 菜单删除（GET）
 	public final static String MENU_DELETE_URL = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
+	//获取jsapi_ticket (GET)
+	public final static String JSAPI_TICKET_URL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
+		
 	/**
 	 * 微信支付接口地址
 	 */
@@ -91,6 +98,8 @@ public class WeChatConfiguration {
 	/**
 	 *  用户相关
 	 */
+	//根据openid 获取用户信息 (GET)
+	public final static String USER_INFO_URL = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 	//获取用户列表信息(GET)  默认从头开始拉取 每次最多10000条，在获取下一批的时候 添加参数&next_openid=NEXT_OPENID 
 	public final static String USER_LIST_URL = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN";
 	

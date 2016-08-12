@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.SortedMap;
+import java.util.TreeMap;
 
 /*
 '============================================================================
@@ -41,6 +42,16 @@ public class SHA1Util {
 //		System.out.println("SHA1签名为："+getSha1(params));
 		return getSha1(params);
 	}
+	
+	public static void main(String[] args) throws Exception {
+		SortedMap<String, String> map = new TreeMap<String, String>();
+		map.put("appId", "wx6b53b7fefa354109");
+		map.put("timestamp", "1470969749");
+		map.put("nonceStr", "hS51MQgKfQKaUGTo");
+		String str = createSHA1Sign(map);
+		System.out.println(str);
+	}
+	
 	//Sha1签名
 	public static String getSha1(String str) {
 		if (str == null || str.length() == 0) {

@@ -24,6 +24,8 @@ public class SNSUserInfo {
 	private String city;
 	// 头像链接
 	private String headImgUrl;
+
+	private String unionid;
 	// 特权信息
 	private List<String> privilegeList;
 
@@ -90,4 +92,13 @@ public class SNSUserInfo {
 	public void setPrivilegeList(List<String> privilegeList) {
 		this.privilegeList = privilegeList;
 	}
+
+	public String getUnionid() {
+		return unionid;
+	}
+
+	public void setUnionid(String unionid) {
+		this.unionid = unionid;
+	}
+	
 }

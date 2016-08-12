@@ -70,8 +70,7 @@ public class QuartzManager {
 			String time) {
 		try {
 			Scheduler sched = gSchedulerFactory.getScheduler();
-			JobDetail jobDetail = new JobDetail(jobName, jobGroupName,
-					Class.forName(jobClass));// 任务名，任务组，任务执行类
+			JobDetail jobDetail = new JobDetail(jobName, jobGroupName,Class.forName(jobClass));// 任务名，任务组，任务执行类
 			// 触发器
 			CronTrigger trigger = new CronTrigger(triggerName, triggerGroupName);// 触发器名,触发器组
 			trigger.setCronExpression(time);// 触发器时间设定

@@ -14,11 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.gson.Gson;
 import com.weixin.configuration.WeChatConfiguration;
+import com.weixin.pojo.AccessToken;
+import com.weixin.pojo.JsApiTicket;
 import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WeChatOauth2Token;
 import com.weixin.pojo.WeChatPayResult;
@@ -28,6 +32,7 @@ import com.weixin.util.CommonUtil;
 import com.weixin.util.GetWxOrderno;
 import com.weixin.util.HttpConnect;
 import com.weixin.util.HttpResponse;
+import com.weixin.util.JsApiTickedSign;
 import com.weixin.util.RequestHandler;
 import com.weixin.util.SDKRuntimeException;
 import com.weixin.util.SHA1Util;
@@ -68,8 +73,9 @@ public class WeChatPayController {
 			String accessToken = weixinOauth2Token.getAccessToken();
 			// 用户标识
 			String openId = weixinOauth2Token.getOpenId();
+			AccessToken at = AdvancedUtil.getAccessToken(WeChatConfiguration.appId,WeChatConfiguration.appSecret) ;
 			// 获取用户信息
-			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken,openId);// [/align][align=left] // 设置要传递的参数
+			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(at.getAccess_token(),openId);// [/align][align=left] // 设置要传递的参数
 			request.setAttribute("snsUserInfo", snsUserInfo);
 			model.addAttribute("snsUserInfo", snsUserInfo);
 		}
@@ -269,7 +275,7 @@ public class WeChatPayController {
 		String finalsign = reqHandler.createSign(finalpackage);
 		return "redirect:/wxpay/pay.jsp?appid=" + appid2 + "&timeStamp=" + timestamp + "&nonceStr=" + nonceStr2 + "&package=" + packages + "&sign=" + finalsign;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/notify")
 	public void notify(Model model, HttpServletRequest request,
@@ -353,7 +359,15 @@ public class WeChatPayController {
 		}
 	}
 	
-	public void refundQuery(){
-		
+	@RequestMapping("/jsapidticketsign")
+	public void jsapidticketsign(HttpServletRequest request,String url,PrintWriter out){
+		if(StringUtils.isBlank(url)){
+			out.write(ServiceResult.initErrorJson("url不能为空！"));
+			return ;
+		}
+		JsApiTicket jsapi_ticket = AdvancedUtil.getJsApiTicket();
+		Map<String, String> map = JsApiTickedSign.sign(jsapi_ticket.getTicket(), url);
+		out.write(ServiceResult.initSuccessJson(new Gson().toJson(map)));
 	}
+	
 }

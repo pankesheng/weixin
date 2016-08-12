@@ -15,7 +15,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.weixin.configuration.WeChatConfiguration;
 import com.weixin.configuration.WeChatErrorCode;
-import com.weixin.material.BasicMaterial;
 import com.weixin.material.NewsMaterial;
 import com.weixin.material.OtherMaterial;
 import com.weixin.menu.Menu;
@@ -40,11 +39,7 @@ public class WechatApiHelper {
 			return false;
 		}
 		String jsonMsg = AdvancedUtil.makeTextCustomMessage(openid, content);
-		AccessToken accessToken = WeChatConfiguration.accessToken;
-		if(accessToken==null){
-			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-			WeChatConfiguration.accessToken = accessToken;
-		}
+		AccessToken accessToken = AdvancedUtil.getAccessToken();
 		return AdvancedUtil.sendCustomMessage(accessToken.getAccess_token(), jsonMsg);
 	}
 
@@ -59,11 +54,7 @@ public class WechatApiHelper {
 			return false;
 		}
 		String jsonMsg = AdvancedUtil.makeNewsCustomMessage(openid, articleList);
-		AccessToken accessToken = WeChatConfiguration.accessToken;
-		if(accessToken==null){
-			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-			WeChatConfiguration.accessToken = accessToken;
-		}
+		AccessToken accessToken = AdvancedUtil.getAccessToken();
 		return AdvancedUtil.sendCustomMessage(accessToken.getAccess_token(), jsonMsg);
 	}
 	
@@ -75,11 +66,7 @@ public class WechatApiHelper {
 	 */
 	public static boolean send(String openid,Music music){
 		String jsonMsg = AdvancedUtil.makeMusicCustomMessage(openid, music);
-		AccessToken accessToken = WeChatConfiguration.accessToken;
-		if(accessToken==null){
-			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-			WeChatConfiguration.accessToken = accessToken;
-		}
+		AccessToken accessToken = AdvancedUtil.getAccessToken();
 		return AdvancedUtil.sendCustomMessage(accessToken.getAccess_token(), jsonMsg);
 	}
 	
@@ -92,11 +79,7 @@ public class WechatApiHelper {
 		if(menu.getButton()==null || menu.getButton().length==0 || menu.getButton().length>3){
 			return false;
 		}
-		AccessToken accessToken = WeChatConfiguration.accessToken;
-		if(accessToken==null){
-			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-			WeChatConfiguration.accessToken = accessToken;
-		}
+		AccessToken accessToken = AdvancedUtil.getAccessToken();
         String url = WeChatConfiguration.MENU_CREATE_URL.replace("ACCESS_TOKEN", accessToken.getAccess_token());  
         String jsonMenu = JSONObject.fromObject(menu).toString();  
         JSONObject jsonObject = CommonUtil.httpsRequest(url, "POST", jsonMenu);  
@@ -118,11 +101,7 @@ public class WechatApiHelper {
 		if(menu.getButton()==null || menu.getButton().length==0 || menu.getButton().length>3){
 			return "菜单按钮数量不符合";
 		}
-		AccessToken accessToken = WeChatConfiguration.accessToken;
-		if(accessToken==null){
-			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-			WeChatConfiguration.accessToken = accessToken;
-		}
+		AccessToken accessToken = AdvancedUtil.getAccessToken();
         String url = WeChatConfiguration.MENU_CREATE_URL.replace("ACCESS_TOKEN", accessToken.getAccess_token());  
         String jsonMenu = JSONObject.fromObject(menu).toString();  
         JSONObject jsonObject = CommonUtil.httpsRequest(url, "POST", jsonMenu);  
@@ -140,11 +119,7 @@ public class WechatApiHelper {
 	}
 	
 	public static void main(String[] args) throws ClientProtocolException, IOException {
-		AccessToken accessToken = WeChatConfiguration.accessToken;
-		if(accessToken==null){
-			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-			WeChatConfiguration.accessToken = accessToken;
-		}
+		AccessToken accessToken = AdvancedUtil.getAccessToken();
 		String result = CommonUtil.httpGetRequest(WeChatConfiguration.USER_LIST_URL.replace("ACCESS_TOKEN", accessToken.getAccess_token()));
 		System.out.println(result);
 		JSONObject jsonObject = new JSONObject().fromObject(result);
@@ -179,11 +154,7 @@ public class WechatApiHelper {
 			page.setTotal(0);
 			return page;
 		}
-		AccessToken accessToken = WeChatConfiguration.accessToken;
-		if(accessToken==null){
-			accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-			WeChatConfiguration.accessToken = accessToken;
-		}
+		AccessToken accessToken = AdvancedUtil.getAccessToken();
 		JSONObject jsonObject = AdvancedUtil.getMaterailListJson(accessToken.getAccess_token(), type, offset, pagesize);
 		if(jsonObject!=null && jsonObject.containsKey("item")){
 			if("news".equals(type)){

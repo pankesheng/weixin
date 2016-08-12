@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.weixin.configuration.WeChatConfiguration;
 import com.weixin.message.resp.KfMessage;
 import com.weixin.message.resp.NewsMessage;
 import com.weixin.message.resp.TextMessage;
@@ -121,8 +120,7 @@ public class CoreService {
                 String eventType = requestMap.get("Event");
                 // 订阅  
                 if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {   
-                	AccessToken accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-                	WeChatConfiguration.accessToken = accessToken;
+                	AccessToken accessToken = AdvancedUtil.getAccessToken();
                 	WeChatUserInfo userInfo = AdvancedUtil.getUserInfo(accessToken.getAccess_token(), fromUserName);
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
                     textMessage.setContent("欢迎你关注了该测试号。。。。。。");  
@@ -139,11 +137,7 @@ public class CoreService {
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
                     if(eventKey.equals("zxkf")){
                     	StringBuilder sb = new StringBuilder();
-                    	AccessToken accessToken = WeChatConfiguration.accessToken;
-                        if(accessToken==null){
-                        	accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
-                        	WeChatConfiguration.accessToken = accessToken;
-                        }
+                    	AccessToken accessToken = AdvancedUtil.getAccessToken();
                     	List<OnLineKf> list = AdvancedUtil.getOnLineKfList(accessToken.getAccess_token());
             			List<KfInfo> kfs = AdvancedUtil.getKfList(accessToken.getAccess_token());
             			if(list!=null && list.size()>0){
