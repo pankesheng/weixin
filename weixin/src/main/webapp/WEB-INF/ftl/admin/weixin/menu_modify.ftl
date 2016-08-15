@@ -47,7 +47,7 @@
 						<td>
 							<select class="form-select" id="btn_list" name="btn_list" onchange="btnlistchange();">
 								<option value="1" <#if (obj.btn_list)?? && obj.btn_list==1>selected</#if>>是</option>
-								<option value="0" <#if !(obj.btn_list)?? ||((obj.btn_list)?? && obj.btn_list==0) >checked</#if>>否</option>
+								<option value="0" <#if !(obj.btn_list)?? ||((obj.btn_list)?? && obj.btn_list==0) >selected</#if>>否</option>
 							</select>
 						</td>
 		        	</tr>
@@ -66,7 +66,7 @@
 		            		</select>
 		            	</td>
 		            </tr>
-					<tr id="keytr" <#if !(obj.pid)?? || ((obj.btn_type)?? && obj.btn_type!="click")>style="display:none;"</#if> >
+					<tr id="keytr" <#if !(obj.id)?? || ((obj.btn_type)?? && obj.btn_type!="click")>style="display:none;"</#if> >
 						<td><label class="form-label">触发key值</label></td>
 						<td>
 							<select class="form-select" name="btn_key">
@@ -77,11 +77,11 @@
 							</select>
 						</td>
 					</tr>
-					<tr id="urltr" <#if !(obj.pid)?? || ((obj.btn_type)?? && obj.btn_type!="view")>style="display:none;"</#if>>
+					<tr id="urltr" <#if !(obj.id)?? || ((obj.btn_type)?? && obj.btn_type!="view")>style="display:none;"</#if>>
 						<td><label class="form-label">url地址</label></td>
 						<td><input type="text" class="form-control" name="btn_url" data-check="max-len:200" value="${(obj.btn_url)!}" /></td>
 					</tr>
-					<tr id="materialtr" <#if !(obj.pid)?? || ((obj.btn_type)?? && obj.btn_type!="material")>style="display:none;"</#if>>
+					<tr id="materialtr" <#if !(obj.id)?? || ((obj.btn_type)?? && obj.btn_type!="material")>style="display:none;"</#if>>
 						<td><label class="form-label">选择素材</label></td>
 						<td>
 							<input type="text" class="form-control" id="btn_media_name" onclick="tochoosemedia();" name="btn_media_name" value="${(obj.btn_media_name)!}" />

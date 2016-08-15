@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.mapper.MenuButtonMapper">
+	
+	<!-- <cache /> -->
+	
+	<!-- 大于等于(&gt;=);小于等于(&lt;=); -->
+	<sql id="qbuilder">
+		<where>
+			<if test="qbuilder.id!=null">and t_menubutton.id = #{qbuilder.id}</if>
+			<if test="qbuilder.pid!=null">and t_menubutton.pid = #{qbuilder.pid}</if>
+			<if test="qbuilder.btn_name!=null">and t_menubutton.btn_name like #{qbuilder.btn_name}</if>
+			<if test="qbuilder.btn_state!=null">and t_menubutton.btn_state = #{qbuilder.btn_state}</if>
+			<if test="qbuilder.btn_list!=null">and t_menubutton.btn_list = #{qbuilder.btn_list}</if>
+			<if test="qbuilder.pidisnull!=null">and t_menubutton.pid is null</if>
+		</where>
+	</sql>
+	
+	<select id="find" resultType="MenuButton">
+		SELECT * FROM t_menubutton
+		<if test="qbuilder != null">
+			<include refid="qbuilder"/>
+		</if>
+		<choose>
+			<when test="orderby != null">
+				ORDER BY t_menubutton.${orderby}
+			</when>
+			<otherwise>
+				ORDER BY t_menubutton.id
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="start != null and size != null">
+				LIMIT #{start},#{size}
+			</when> 
+			<when test="start == null and size != null">
+				LIMIT #{size}
+			</when> 
+		</choose>
+	</select>
+	
+	<select id="getTotalRows" resultType="int">
+		SELECT COUNT(*) FROM t_menubutton
+		<if test="qbuilder != null">
+			<include refid="qbuilder"/>
+		</if>
+	</select>
+	
+	<select id="findById" resultType="MenuButton">
+		SELECT * FROM t_menubutton WHERE id = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_menubutton
+			(id,pid,btn_list,btn_name,btn_type,btn_url,btn_key,btn_state,btn_order,btn_media_id,btn_media_name,ctime,utime)
+		VALUES
+			(#{object.id},#{object.pid},#{object.btn_list},#{object.btn_name},#{object.btn_type},#{object.btn_url},#{object.btn_key},#{object.btn_state},#{object.btn_order},#{object.btn_media_id},#{object.btn_media_name},now(),now())
+	</insert>
+	
+	<update id="update">
+		UPDATE t_menubutton
+		SET
+			pid = #{object.pid},
+			btn_list = #{object.btn_list},
+			btn_name= #{object.btn_name},
+			btn_type= #{object.btn_type},
+			btn_url = #{object.btn_url},
+			btn_key = #{object.btn_key},
+			btn_state = #{object.btn_state},
+			btn_order = #{object.btn_order},
+			btn_media_id = #{object.btn_media_id},
+			btn_media_name = #{object.btn_media_name},
+			utime = now()
+		WHERE id = #{object.id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM t_menubutton WHERE id = #{id}
+	</delete>
+	
+	<delete id="deleteByIds">
+		DELETE FROM t_menubutton WHERE id in 
+		<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<delete id="cleanTable">
+		DELETE FROM t_menubutton
+	</delete>
+
+</mapper>
