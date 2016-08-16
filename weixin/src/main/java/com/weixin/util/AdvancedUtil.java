@@ -262,7 +262,7 @@ public class AdvancedUtil {
 				accessToken = new AccessToken();
 				accessToken.setAccess_token(jsonObject.getString("access_token"));
 				int expires_in = jsonObject.getInt("expires_in");
-				long endtime = new Date().getTime()+expires_in-500;
+				long endtime = new Date().getTime()+expires_in*1000-500*1000;
 				accessToken.setExpires_in(expires_in);
 				accessToken.setEndtime(endtime);
 			} catch (JSONException e) {
@@ -295,7 +295,7 @@ public class AdvancedUtil {
 			String appSecret, String code) {
 		WeChatOauth2Token wat = null;
 		// 拼接请求地址
-		String requestUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+		String requestUrl = WeChatConfiguration.OAUTH2_ACCESSTOKEN_URL;// "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
 		requestUrl = requestUrl.replace("APPID", appId);
 		requestUrl = requestUrl.replace("SECRET", appSecret);
 		requestUrl = requestUrl.replace("CODE", code);
@@ -335,8 +335,8 @@ public class AdvancedUtil {
 	public static WeChatOauth2Token refreshOauth2AccessToken(String appId,
 			String refreshToken) {
 		WeChatOauth2Token wat = null;
-		// 拼接请求地址
-		String requestUrl = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&grant_type=refresh_token&refresh_token=REFRESH_TOKEN";
+		// 拼接请求地址			 
+		String requestUrl = WeChatConfiguration.OAUTH2_REFRESHTOKEN_URL; //"https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&grant_type=refresh_token&refresh_token=REFRESH_TOKEN";
 		requestUrl = requestUrl.replace("APPID", appId);
 		requestUrl = requestUrl.replace("REFRESH_TOKEN", refreshToken);
 		// 刷新网页授权凭证
@@ -379,8 +379,7 @@ public class AdvancedUtil {
 		// access_token 是 调用接口凭证
 		// openid 是 普通用户的标识，对当前公众号唯一
 		// lang 否 返回国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语
-//		String requestUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
-		String requestUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+		String requestUrl = WeChatConfiguration.SNS_USERINFO_URL; //"https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 		requestUrl = requestUrl.replace("ACCESS_TOKEN", accessToken).replace(
 				"OPENID", openId);
 		// 通过网页授权获取用户信息
@@ -561,7 +560,7 @@ public class AdvancedUtil {
 	public static WeChatUserInfo getUserInfo(String accessToken, String openId) {
 		WeChatUserInfo weixinUserInfo = null;
 		// 拼接请求地址
-		String requestUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+		String requestUrl = WeChatConfiguration.USER_INFO_URL; // "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 		requestUrl = requestUrl.replace("ACCESS_TOKEN", accessToken).replace(
 				"OPENID", openId);
 		// 获取用户信息
@@ -1101,13 +1100,7 @@ public class AdvancedUtil {
 		params.put("type", type);
 		params.put("offset", offset);
 		params.put("count", count);
-//		String result = CommonUtil.httpPostRequest(url, params);
-		String result = "";
-		if("news".equals(type)){
-			result = CommonUtil.readTxtFile("E:/test.txt");
-		}else{
-			result = CommonUtil.readTxtFile("E:/test2.txt");
-		}
+		String result = CommonUtil.httpPostRequest(url, params);
 		JSONObject jsonObject = JSONObject.fromObject(result);
 		return jsonObject;
 	}
@@ -1164,7 +1157,7 @@ public class AdvancedUtil {
                jsApiTicket = new JsApiTicket();  
                jsApiTicket.setTicket(jsonObject.getString("ticket")); 
                int expires_in = jsonObject.getInt("expires_in");
-               long endtime = new Date().getTime()+expires_in - 500;
+               long endtime = new Date().getTime()+expires_in*1000 - 500*1000;
                jsApiTicket.setExpires_in(expires_in);
                jsApiTicket.setEndtime(endtime);
            } catch (JSONException e) {  

@@ -568,7 +568,7 @@ public class CommonUtil {
     }  
     
     /** 
-     * 发起http get请求获取返回结果 
+     * 发起http post请求获取返回结果 
      * @param requestUrl 请求地址 
      * @return 
      */  
@@ -618,7 +618,21 @@ public class CommonUtil {
             System.out.println(e.getStackTrace());  
         }  
         return buffer.toString();  
-    }  
+    } 
+    
+    public static String paramstourl(Map<String, Object> params){
+    	StringBuilder sb = new StringBuilder();
+    	int i = 0;
+        for (Iterator<Map.Entry<String, Object>> it = params.entrySet().iterator(); it.hasNext();) {
+            Map.Entry<String, Object> entry = (Map.Entry<String, Object>) it.next();
+            if(i>0){
+            	sb.append("&");
+            }
+            sb.append(entry.getKey()+"="+entry.getValue().toString());
+            i++;
+        }
+        return sb.toString();
+    }
     
     
     public static String readTxtFile(String filePath){

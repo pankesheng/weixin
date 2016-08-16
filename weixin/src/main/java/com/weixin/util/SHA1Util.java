@@ -24,7 +24,7 @@ public class SHA1Util {
 		return String.valueOf(System.currentTimeMillis() / 1000);
 	}
 	
-   //创建签名SHA1
+	//创建签名SHA1
 	@SuppressWarnings("rawtypes")
 	public static String createSHA1Sign(SortedMap<String, String> signParams) throws Exception {
 		StringBuffer sb = new StringBuffer();

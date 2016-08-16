@@ -3,8 +3,8 @@ package com.weixin.action;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -15,11 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
+import com.weixin.common.Configuration;
 import com.weixin.configuration.WeChatConfiguration;
 import com.weixin.pojo.JsApiTicket;
 import com.weixin.pojo.SNSUserInfo;
@@ -43,6 +45,8 @@ import com.zcj.web.dto.ServiceResult;
 @RequestMapping(value = "/wxpay")
 public class WeChatPayController {
 	
+//	@Autowired
+//	private OrderService orderService;
 	
 	@RequestMapping("/test/index")
 	public String testIndex(Model model){
@@ -54,7 +58,7 @@ public class WeChatPayController {
 	public void oauth(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String redirect_uri = WeChatConfiguration.DOMAIN_URL+"/wxpay/oauth2.ajax";//  : -> %3A      / -> %2F
     	String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri.replaceAll(":", "%3A").replaceAll("/", "%2F")+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
-		response.sendRedirect(url);
+		response.sendRedirect(url); 
 	}
 	
 	@RequestMapping(value = "/oauth2")
@@ -64,7 +68,7 @@ public class WeChatPayController {
 		response.setCharacterEncoding("UTF-8");// [/align][align=left] //
 												// 用户同意授权后，能获取到code
 		String code = request.getParameter("code");// [/align][align=left] //
-													// 用户同意授权
+		// 用户同意授权
 		if (!"authdeny".equals(code)) {
 			// 获取网页授权access_token
 			WeChatOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken(WeChatConfiguration.appId,WeChatConfiguration.appSecret, code);
@@ -77,9 +81,10 @@ public class WeChatPayController {
 			request.setAttribute("snsUserInfo", snsUserInfo);
 			model.addAttribute("snsUserInfo", snsUserInfo);
 		}
-		return "/wxpay/index2.jsp";
+		model.addAttribute("basePath", Configuration.getContextPath());
+		return "/www/zone.jsp";
 	}
-
+	
 	// userId 用户id
 	// orderNo 订单编号
 	// descr 商品描述
@@ -90,12 +95,13 @@ public class WeChatPayController {
 			String descr, Double money, PrintWriter out) throws IOException {
 		String appid = WeChatConfiguration.appId;
 		String backUri = WeChatConfiguration.PAY_ACTION;
-		orderNo = UtilString.getLongUUID();
-//		money = 0.01;
-//		descr = "测试商品0001";
 		if (orderNo == null) {
 			out.write(ServiceResult.initErrorJson("订单号不能为空!"));
 			return;
+		}
+		if(StringUtils.isBlank(descr)){
+			out.write(ServiceResult.initErrorJson("商品描述不能为空！"));
+			return ;
 		}
 		if (money == null) {
 			out.write(ServiceResult.initErrorJson("金额不能为空！"));
@@ -119,7 +125,7 @@ public class WeChatPayController {
 	@RequestMapping(value = "/topay")
 	public String topay(HttpServletRequest request,
 			HttpServletResponse response, String userId, String orderNo,
-			String money, String describe, String code, Model model) {
+			String money, String describe, String code, Model model) throws UnsupportedEncodingException {
 		float sessionmoney = Float.parseFloat(money);
 		String finalmoney = String.format("%.2f", sessionmoney);
 		finalmoney = finalmoney.replace(".", "");
@@ -133,7 +139,6 @@ public class WeChatPayController {
 		String URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="
 				+ appid + "&secret=" + appsecret + "&code=" + code
 				+ "&grant_type=authorization_code";
-		Map<String, Object> dataMap = new HashMap<String, Object>();
 		HttpResponse temp = HttpConnect.getInstance().doGetStr(URL);
 		String tempValue = "";
 		if (temp == null) {
@@ -167,7 +172,7 @@ public class WeChatPayController {
 		// 子商户号 非必输
 		// String sub_mch_id="";
 		// 设备号 非必输
-		String device_info = "";
+		//String device_info = "";
 		// 随机数
 		String nonce_str = strReq;
 		// 商品描述
@@ -215,7 +220,7 @@ public class WeChatPayController {
 
 		RequestHandler reqHandler = new RequestHandler(request, response);
 		reqHandler.init(appid, appsecret, partnerkey);
-
+		
 		String sign = reqHandler.createSign(packageParams);
 		String xml = "<xml>" + "<appid>" + appid + "</appid>" + "<mch_id>"
 				+ mch_id + "</mch_id>" + "<nonce_str>" + nonce_str
@@ -241,22 +246,18 @@ public class WeChatPayController {
 		try {
 			allParameters = reqHandler.genPackage(packageParams);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String createOrderURL = WeChatConfiguration.UNIFIED_ORDER_URL;//"https://api.mch.weixin.qq.com/pay/unifiedorder";
-		Map<String, Object> dataMap2 = new HashMap<String, Object>();
 		String prepay_id = "";
 		try {
 			prepay_id = new GetWxOrderno().getPayNo(createOrderURL, xml);
-			System.out.println("prepay_id:" + prepay_id);
-			System.out.println("orderNo:" + orderNo);
+			System.out.println("prepay_id:"+prepay_id);
 			if (prepay_id.equals("")) {
 				model.addAttribute("ErrorMsg", "统一支付接口获取预支付订单出错！");
 				return "redirect:/wxpay/payerror.jsp";
 			}
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		SortedMap<String, String> finalpackage = new TreeMap<String, String>();
@@ -271,9 +272,9 @@ public class WeChatPayController {
 		finalpackage.put("package", packages);
 		finalpackage.put("signType", "MD5");
 		String finalsign = reqHandler.createSign(finalpackage);
-		return "redirect:/wxpay/pay.jsp?appid=" + appid2 + "&timeStamp=" + timestamp + "&nonceStr=" + nonceStr2 + "&package=" + packages + "&sign=" + finalsign;
+		return "redirect:/wxpay/pay.jsp?appid=" + appid2 + "&timeStamp=" + timestamp + "&nonceStr=" + nonceStr2 + "&package=" + packages + "&sign=" + finalsign+"&orderNo="+orderNo;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/notify")
 	public void notify(Model model, HttpServletRequest request,
@@ -309,9 +310,11 @@ public class WeChatPayController {
 		wpr.setTradeType(m.get("trade_type").toString());
 		wpr.setTransactionId(m.get("transaction_id").toString());
 		if ("SUCCESS".equals(wpr.getResultCode())) {
+//			orderService.userPaySuccess(Long.parseLong(wpr.getOutTradeNo()), 3, wpr.getOutTradeNo());
 			// 支付成功
 			resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
-					+ "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+						+ "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+			
 		} else {
 			resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
 					+ "<return_msg><![CDATA[报文为空]]></return_msg>" + "</xml> ";
@@ -326,9 +329,6 @@ public class WeChatPayController {
 	@SuppressWarnings("unused")
 	@RequestMapping("refund")
 	public void refund(HttpServletResponse response,String out_trade_no,Double total_fee1,Double refund_fee1) throws SDKRuntimeException {
-//		total_fee1 = 1d;
-//		refund_fee1 = 1d;
-//		out_trade_no = "1728854433046528";
 		total_fee1 = total_fee1/100;
 		refund_fee1 = refund_fee1/100;
 		String out_refund_no = UtilString.getUUID();// 退款单号，随机生成 ，但长度应该跟文档一样（32位）(卖家信息校验不一致，请核实后再试)
