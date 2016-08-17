@@ -1183,7 +1183,6 @@ public class AdvancedUtil {
 		return jsApiTicket;
 	}
 	
-	
 	public static void main(String args[]) {
 		String type = "image";
 		AccessToken accessToken = AdvancedUtil.getAccessToken(WeChatConfiguration.appId, WeChatConfiguration.appSecret);
