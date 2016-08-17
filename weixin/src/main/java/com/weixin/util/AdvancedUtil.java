@@ -1175,7 +1175,7 @@ public class AdvancedUtil {
 	 */
 	public static JsApiTicket getJsApiTicket(){
 		JsApiTicket jsApiTicket = WeChatConfiguration.jsapi_ticket;
-		if(jsApiTicket==null || jsApiTicket.getEndtime()<jsApiTicket.getEndtime()){
+		if(jsApiTicket==null || jsApiTicket.getEndtime()<new Date().getTime()){
 			AccessToken accessToken = AdvancedUtil.getAccessToken();
 			jsApiTicket = AdvancedUtil.getJsApiTicket(accessToken.getAccess_token());
 			WeChatConfiguration.jsapi_ticket = jsApiTicket;
