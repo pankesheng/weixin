@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.google.gson.Gson;
 import com.weixin.common.Configuration;
 import com.weixin.configuration.WeChatConfiguration;
+import com.weixin.pojo.AccessToken;
 import com.weixin.pojo.JsApiTicket;
 import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WeChatOauth2Token;
 import com.weixin.pojo.WeChatPayResult;
+import com.weixin.pojo.WeChatUserInfo;
 import com.weixin.util.AdvancedUtil;
 import com.weixin.util.ClientCustomSSL;
 import com.weixin.util.CommonUtil;
@@ -57,7 +58,9 @@ public class WeChatPayController {
 	@RequestMapping(value="/oauth")
 	public void oauth(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String redirect_uri = WeChatConfiguration.DOMAIN_URL+"/wxpay/oauth2.ajax";//  : -> %3A      / -> %2F
-    	String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri.replaceAll(":", "%3A").replaceAll("/", "%2F")+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+		String param = request.getParameter("param");
+		param = param==null?"":param;
+    	String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+WeChatConfiguration.appId+"&redirect_uri="+redirect_uri.replaceAll(":", "%3A").replaceAll("/", "%2F")+"&response_type=code&scope=snsapi_userinfo&state="+param+"#wechat_redirect";
 		response.sendRedirect(url); 
 	}
 	
@@ -68,6 +71,7 @@ public class WeChatPayController {
 		response.setCharacterEncoding("UTF-8");// [/align][align=left] //
 												// 用户同意授权后，能获取到code
 		String code = request.getParameter("code");// [/align][align=left] //
+		String state = request.getParameter("state");
 		// 用户同意授权
 		if (!"authdeny".equals(code)) {
 			// 获取网页授权access_token
@@ -78,11 +82,17 @@ public class WeChatPayController {
 			String openId = weixinOauth2Token.getOpenId();
 			// 获取用户信息
 			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken,openId);// [/align][align=left] // 设置要传递的参数
+			
+			AccessToken at = AdvancedUtil.getAccessToken();
+			WeChatUserInfo userInfo = AdvancedUtil.getUserInfo(at.getAccess_token(), openId);
+			System.out.println(userInfo.getSubscribe());
 			request.setAttribute("snsUserInfo", snsUserInfo);
 			model.addAttribute("snsUserInfo", snsUserInfo);
+			request.setAttribute("param", state);
+			model.addAttribute("param", state);
 		}
 		model.addAttribute("basePath", Configuration.getContextPath());
-		return "/www/zone.jsp";
+		return "/wxpay/index2.jsp";
 	}
 	
 	// userId 用户id

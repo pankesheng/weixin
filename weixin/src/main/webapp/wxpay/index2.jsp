@@ -26,6 +26,7 @@
   <tr><td>城市</td><td><%=user.getCity()%></td></tr>
   <tr><td>头像</td><td><%=user.getHeadImgUrl()%></td></tr>
   <tr><td>特权</td><td><%=user.getPrivilegeList()%></td></tr>
+  <tr><td>param</td><td><%=request.getAttribute("param") %></td></tr>
 </table>
 <%
   }

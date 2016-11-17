@@ -53,9 +53,8 @@ public class IndexAction extends BasicAction {
 	@RequestMapping("/menu")
 	public void menu(HttpServletRequest request, PrintWriter out) {
 
-		MenuDto m11 = new MenuDto("微信菜单按钮管理", Configuration.getContextPath() + "/menubutton/tolist.do");
-		MenuDto m1 = MenuDto.initPMenuDto("测试", m11);
-
+		MenuDto m11 = new MenuDto("通讯录", Configuration.getContextPath() + "/user/tolist.do");
+		MenuDto m1 = MenuDto.initPMenuDto("菜单", m11);
 		List<MenuDto> menu = new ArrayList<MenuDto>();
 		menu.add(m1);
 

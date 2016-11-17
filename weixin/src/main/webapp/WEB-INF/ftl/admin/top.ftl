@@ -14,7 +14,7 @@
 <body style="background-color:transparent;">
 	<div class="header clearfix">
 		<div class="logo"><#-- <img src='${contextPath}/admin/images/logo.jpg' /> --></div>
-		<h1 class="web-title">掌网任务管理系统</h1>
+		<h1 class="web-title">管理系统</h1>
 		<div class="icon-bar clearfix" id="iconBar">
 			<div class="icon-index" data-title="首页">
 				<!-- TODO 不透露实际地址，隐式加载首页 -->

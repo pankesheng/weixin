@@ -70,33 +70,34 @@ public class CoreService {
             
             // 文本消息  
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {  
-                String content = requestMap.get("Content");
-                if(SessionList.search(fromUserName, Session.phase_kf)>-1){
-	            	if(content.equals("0") && "random".equals(SessionList.getSession(fromUserName,Session.phase_kf,content))){
-	            		kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
-	                	QuartzManager.removeJob("phase"+Session.phase_kf+fromUserName);
-	                    respMessage = MessageUtil.kfMessageToXml(kfMessage);
-	            	}else{
-		            	OnLineKf kf = (OnLineKf) SessionList.getSession(fromUserName,Session.phase_kf,content);
-		                if(kf!=null){
-	//	                	if(kf.getAcceped_case()>=kf.getAuto_accept()){
-	//	                		textMessage.setContent("对不起，该客服接入人员已满，请稍后刷新在线客服列表重新选择。");
-	//	                		respMessage = MessageUtil.textMessageToXml(textMessage);
-	//	                	}else{
-			                	kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
-			                	TransInfo transInfo = new TransInfo();
-			                	transInfo.setKfAccount(kf.getKf_account());
-			                	kfMessage.setTransInfo(transInfo);
-			                	QuartzManager.removeJob("phase"+Session.phase_kf+fromUserName);
-			                    respMessage = MessageUtil.kfMessageToXml(kfMessage);
-	//	                	}
-		                }else{
-		                	textMessage.setContent("您想要接入的客服不存在或请求已超时！");
-		                	SessionList.resetQuartz(fromUserName,Session.phase_kf);
-		                	respMessage = MessageUtil.textMessageToXml(textMessage);
-		                }
-	            	}
-	            }
+            	textMessage.setContent(""); 
+            	respMessage = MessageUtil.textMessageToXml(textMessage);
+//                if(SessionList.search(fromUserName, Session.phase_kf)>-1){
+//	            	if(content.equals("0") && "random".equals(SessionList.getSession(fromUserName,Session.phase_kf,content))){
+//	            		kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
+//	                	QuartzManager.removeJob("phase"+Session.phase_kf+fromUserName);
+//	                    respMessage = MessageUtil.kfMessageToXml(kfMessage);
+//	            	}else{
+//		            	OnLineKf kf = (OnLineKf) SessionList.getSession(fromUserName,Session.phase_kf,content);
+//		                if(kf!=null){
+//	//	                	if(kf.getAcceped_case()>=kf.getAuto_accept()){
+//	//	                		textMessage.setContent("对不起，该客服接入人员已满，请稍后刷新在线客服列表重新选择。");
+//	//	                		respMessage = MessageUtil.textMessageToXml(textMessage);
+//	//	                	}else{
+//			                	kfMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_SERVICE);
+//			                	TransInfo transInfo = new TransInfo();
+//			                	transInfo.setKfAccount(kf.getKf_account());
+//			                	kfMessage.setTransInfo(transInfo);
+//			                	QuartzManager.removeJob("phase"+Session.phase_kf+fromUserName);
+//			                    respMessage = MessageUtil.kfMessageToXml(kfMessage);
+//	//	                	}
+//		                }else{
+//		                	textMessage.setContent("您想要接入的客服不存在或请求已超时！");
+//		                	SessionList.resetQuartz(fromUserName,Session.phase_kf);
+//		                	respMessage = MessageUtil.textMessageToXml(textMessage);
+//		                }
+//	            	}
+//	            }
             }  
             // 图片消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
@@ -123,7 +124,14 @@ public class CoreService {
                 	AccessToken accessToken = AdvancedUtil.getAccessToken();
                 	WeChatUserInfo userInfo = AdvancedUtil.getUserInfo(accessToken.getAccess_token(), fromUserName);
                     textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
-                    textMessage.setContent("欢迎你关注了该测试号。。。。。。");  
+                    String content = requestMap.get("Content");
+                    System.out.println(content);
+                    StringBuilder sb = new StringBuilder("么么哒终于等到你，欢迎加入舟岛小鲜吃货团，吃最新鲜的海鲜大餐！\n");
+                    sb.append("/:jj/:jj继续购物>>http://m.wzzdxx.com/\n\n");
+                    sb.append("舟岛小鲜，分享大海美味的购物平台，分享给每一个钟爱美食的人。让你和大海的距离只要24小时！一起拼吧，爱拼才会赢！\n\n");
+                    sb.append("/:sun 所有海产品来自舟山群岛，渔船靠岸码头直发，拼团成功后24小时内保证发货，让您体验“从大海到舌尖上的新鲜”。\n\n");
+                    sb.append("【下载舟岛小鲜APP】\nhttp://t.cn/RtRje0P \n可查看订单、追踪物流，而且每次确认收货联系在线客服可领取20元无门槛代金券送哟！ ");
+                    textMessage.setContent(sb.toString());
                     respMessage = MessageUtil.textMessageToXml(textMessage);
                 }  
                 // 取消订阅  

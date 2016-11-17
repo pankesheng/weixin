@@ -16,9 +16,9 @@ public class WeChatConfiguration {
 	/** 与开发模式接口配置信息中的Token保持一致*/
 	public static String token = "sheng";
 	/**微信公众号id 标识*/
-	public static String appId = "wx4beaf827cc97a96d";
+	public static String appId = "wxf34d9e475e8858bc";
 	/** 用户标识密钥*/
-	public static String appSecret = "f7f6b851edb551403b9bf66e1f41297b";
+	public static String appSecret = "041413e2b14ccf950c0e86ff52a9bcd2 ";
 	
 	/**商户号*/
 	public final static String MCH_ID = "12412412412";
