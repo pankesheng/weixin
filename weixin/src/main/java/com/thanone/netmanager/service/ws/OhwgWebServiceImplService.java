@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "OhwgWebServiceImplService", targetNamespace = "http://ws.service.netmanager.thanone.com/", wsdlLocation = "http://192.168.1.158:8080/netmanager/ohwg/User?wsdl")
+@WebServiceClient(name = "OhwgWebServiceImplService", targetNamespace = "http://ws.service.netmanager.thanone.com/", wsdlLocation = "http://192.168.1.158:8082/netmanager/ohwg/User?wsdl")
 public class OhwgWebServiceImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class OhwgWebServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.1.158:8080/netmanager/ohwg/User?wsdl");
+            url = new URL("http://192.168.1.158:8082/netmanager/ohwg/User?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

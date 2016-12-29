@@ -25,8 +25,86 @@ public interface OhwgWebService {
 
     /**
      * 
-     * @param arg1
-     * @param arg0
+     * @param account
+     * @param password
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getToken", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.GetToken")
+    @ResponseWrapper(localName = "getTokenResponse", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.GetTokenResponse")
+    public String getToken(
+        @WebParam(name = "account", targetNamespace = "")
+        String account,
+        @WebParam(name = "password", targetNamespace = "")
+        String password);
+
+    /**
+     * 
+     * @param token
+     * @param userId
+     * @param terminalType
+     * @param mac
+     * @param ip
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "telAcOn", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelAcOn")
+    @ResponseWrapper(localName = "telAcOnResponse", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelAcOnResponse")
+    public String telAcOn(
+        @WebParam(name = "token", targetNamespace = "")
+        String token,
+        @WebParam(name = "userId", targetNamespace = "")
+        Long userId,
+        @WebParam(name = "mac", targetNamespace = "")
+        String mac,
+        @WebParam(name = "ip", targetNamespace = "")
+        String ip,
+        @WebParam(name = "terminal_type", targetNamespace = "")
+        String terminalType);
+
+    /**
+     * 
+     * @param recordId
+     * @param token
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "telAcOff", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelAcOff")
+    @ResponseWrapper(localName = "telAcOffResponse", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelAcOffResponse")
+    public String telAcOff(
+        @WebParam(name = "token", targetNamespace = "")
+        String token,
+        @WebParam(name = "recordId", targetNamespace = "")
+        Long recordId);
+
+    /**
+     * 
+     * @param recordId
+     * @param token
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "telCnsOff", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelCnsOff")
+    @ResponseWrapper(localName = "telCnsOffResponse", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelCnsOffResponse")
+    public String telCnsOff(
+        @WebParam(name = "token", targetNamespace = "")
+        String token,
+        @WebParam(name = "recordId", targetNamespace = "")
+        Long recordId);
+
+    /**
+     * 
+     * @param token
+     * @param account
+     * @param password
      * @return
      *     returns java.lang.String
      */
@@ -35,26 +113,28 @@ public interface OhwgWebService {
     @RequestWrapper(localName = "check", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.Check")
     @ResponseWrapper(localName = "checkResponse", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.CheckResponse")
     public String check(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
+        @WebParam(name = "token", targetNamespace = "")
+        String token,
+        @WebParam(name = "account", targetNamespace = "")
+        String account,
+        @WebParam(name = "password", targetNamespace = "")
+        String password);
 
     /**
      * 
-     * @param arg1
-     * @param arg0
+     * @param recordId
+     * @param token
      * @return
      *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "telAc", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelAc")
-    @ResponseWrapper(localName = "telAcResponse", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelAcResponse")
-    public String telAc(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        Integer arg1);
+    @RequestWrapper(localName = "telCnsOn", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelCnsOn")
+    @ResponseWrapper(localName = "telCnsOnResponse", targetNamespace = "http://ws.service.netmanager.thanone.com/", className = "com.thanone.netmanager.service.ws.TelCnsOnResponse")
+    public String telCnsOn(
+        @WebParam(name = "token", targetNamespace = "")
+        String token,
+        @WebParam(name = "recordId", targetNamespace = "")
+        Long recordId);
 
 }

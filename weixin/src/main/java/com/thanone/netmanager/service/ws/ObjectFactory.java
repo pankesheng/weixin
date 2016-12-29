@@ -24,24 +24,24 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _TelAcOnResponse_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telAcOnResponse");
+    private final static QName _TelCnsOff_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telCnsOff");
+    private final static QName _TelCnsOffResponse_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telCnsOffResponse");
     private final static QName _Check_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "check");
-    private final static QName _TelAc_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telAc");
+    private final static QName _TelCnsOn_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telCnsOn");
+    private final static QName _TelAcOff_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telAcOff");
+    private final static QName _TelAcOffResponse_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telAcOffResponse");
     private final static QName _CheckResponse_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "checkResponse");
-    private final static QName _TelAcResponse_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telAcResponse");
+    private final static QName _GetTokenResponse_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "getTokenResponse");
+    private final static QName _GetToken_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "getToken");
+    private final static QName _TelAcOn_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telAcOn");
+    private final static QName _TelCnsOnResponse_QNAME = new QName("http://ws.service.netmanager.thanone.com/", "telCnsOnResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.thanone.netmanager.service.ws
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link TelAcResponse }
-     * 
-     */
-    public TelAcResponse createTelAcResponse() {
-        return new TelAcResponse();
     }
 
     /**
@@ -53,11 +53,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TelAc }
+     * Create an instance of {@link TelCnsOn }
      * 
      */
-    public TelAc createTelAc() {
-        return new TelAc();
+    public TelCnsOn createTelCnsOn() {
+        return new TelCnsOn();
+    }
+
+    /**
+     * Create an instance of {@link TelAcOffResponse }
+     * 
+     */
+    public TelAcOffResponse createTelAcOffResponse() {
+        return new TelAcOffResponse();
+    }
+
+    /**
+     * Create an instance of {@link TelAcOff }
+     * 
+     */
+    public TelAcOff createTelAcOff() {
+        return new TelAcOff();
     }
 
     /**
@@ -66,6 +82,89 @@ public class ObjectFactory {
      */
     public Check createCheck() {
         return new Check();
+    }
+
+    /**
+     * Create an instance of {@link TelCnsOffResponse }
+     * 
+     */
+    public TelCnsOffResponse createTelCnsOffResponse() {
+        return new TelCnsOffResponse();
+    }
+
+    /**
+     * Create an instance of {@link TelCnsOff }
+     * 
+     */
+    public TelCnsOff createTelCnsOff() {
+        return new TelCnsOff();
+    }
+
+    /**
+     * Create an instance of {@link TelAcOnResponse }
+     * 
+     */
+    public TelAcOnResponse createTelAcOnResponse() {
+        return new TelAcOnResponse();
+    }
+
+    /**
+     * Create an instance of {@link TelCnsOnResponse }
+     * 
+     */
+    public TelCnsOnResponse createTelCnsOnResponse() {
+        return new TelCnsOnResponse();
+    }
+
+    /**
+     * Create an instance of {@link TelAcOn }
+     * 
+     */
+    public TelAcOn createTelAcOn() {
+        return new TelAcOn();
+    }
+
+    /**
+     * Create an instance of {@link GetToken }
+     * 
+     */
+    public GetToken createGetToken() {
+        return new GetToken();
+    }
+
+    /**
+     * Create an instance of {@link GetTokenResponse }
+     * 
+     */
+    public GetTokenResponse createGetTokenResponse() {
+        return new GetTokenResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TelAcOnResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telAcOnResponse")
+    public JAXBElement<TelAcOnResponse> createTelAcOnResponse(TelAcOnResponse value) {
+        return new JAXBElement<TelAcOnResponse>(_TelAcOnResponse_QNAME, TelAcOnResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TelCnsOff }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telCnsOff")
+    public JAXBElement<TelCnsOff> createTelCnsOff(TelCnsOff value) {
+        return new JAXBElement<TelCnsOff>(_TelCnsOff_QNAME, TelCnsOff.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TelCnsOffResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telCnsOffResponse")
+    public JAXBElement<TelCnsOffResponse> createTelCnsOffResponse(TelCnsOffResponse value) {
+        return new JAXBElement<TelCnsOffResponse>(_TelCnsOffResponse_QNAME, TelCnsOffResponse.class, null, value);
     }
 
     /**
@@ -78,12 +177,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TelAc }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TelCnsOn }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telAc")
-    public JAXBElement<TelAc> createTelAc(TelAc value) {
-        return new JAXBElement<TelAc>(_TelAc_QNAME, TelAc.class, null, value);
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telCnsOn")
+    public JAXBElement<TelCnsOn> createTelCnsOn(TelCnsOn value) {
+        return new JAXBElement<TelCnsOn>(_TelCnsOn_QNAME, TelCnsOn.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TelAcOff }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telAcOff")
+    public JAXBElement<TelAcOff> createTelAcOff(TelAcOff value) {
+        return new JAXBElement<TelAcOff>(_TelAcOff_QNAME, TelAcOff.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TelAcOffResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telAcOffResponse")
+    public JAXBElement<TelAcOffResponse> createTelAcOffResponse(TelAcOffResponse value) {
+        return new JAXBElement<TelAcOffResponse>(_TelAcOffResponse_QNAME, TelAcOffResponse.class, null, value);
     }
 
     /**
@@ -96,12 +213,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TelAcResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetTokenResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telAcResponse")
-    public JAXBElement<TelAcResponse> createTelAcResponse(TelAcResponse value) {
-        return new JAXBElement<TelAcResponse>(_TelAcResponse_QNAME, TelAcResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "getTokenResponse")
+    public JAXBElement<GetTokenResponse> createGetTokenResponse(GetTokenResponse value) {
+        return new JAXBElement<GetTokenResponse>(_GetTokenResponse_QNAME, GetTokenResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetToken }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "getToken")
+    public JAXBElement<GetToken> createGetToken(GetToken value) {
+        return new JAXBElement<GetToken>(_GetToken_QNAME, GetToken.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TelAcOn }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telAcOn")
+    public JAXBElement<TelAcOn> createTelAcOn(TelAcOn value) {
+        return new JAXBElement<TelAcOn>(_TelAcOn_QNAME, TelAcOn.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TelCnsOnResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.service.netmanager.thanone.com/", name = "telCnsOnResponse")
+    public JAXBElement<TelCnsOnResponse> createTelCnsOnResponse(TelCnsOnResponse value) {
+        return new JAXBElement<TelCnsOnResponse>(_TelCnsOnResponse_QNAME, TelCnsOnResponse.class, null, value);
     }
 
 }
